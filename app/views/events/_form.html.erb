@@ -1,0 +1,24 @@
+<%= simple_form_for(@event) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :title, label: 'Titre' %>
+        <%= f.input :location, label: 'Lieu' %>
+        <%= f.input :description, input_html: { rows: 3 } %>
+        <%= f.input :public, inline_label: "Événement public" %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :datetime, :as => :datetime_picker %>
+        <%= f.input :price, label: 'Prix (0€ pour événement gratuit)' %>
+        <%= f.input :link, label: 'Lien' %>
+        <%= f.input :host, label: 'Organisateur' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

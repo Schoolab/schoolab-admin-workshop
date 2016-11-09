@@ -40,8 +40,12 @@ gem 'cancancan', '~> 1.10'
 # Pagination
 gem 'kaminari'
 
+# Moment
+gem 'momentjs-rails', '~> 2.9'
+
 # Simple forms
 gem 'simple_form'
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

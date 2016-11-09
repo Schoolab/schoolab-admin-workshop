@@ -1,0 +1,26 @@
+<h2>Entreprises résidentes</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Étage</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @companies.each do |company| %>
+      <tr>
+        <td><%= company.name %></td>
+        <td><%= company.floor.present? ? company.floor.name : "N/A" %></td>
+        <td><%= link_to 'Modifier', edit_company_path(company) %></td>
+        <td><%= link_to 'Supprimer', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nouvelle entreprise', new_company_path %>

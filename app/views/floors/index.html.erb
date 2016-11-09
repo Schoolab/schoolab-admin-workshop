@@ -1,0 +1,24 @@
+<h2>Étages</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @floors.each do |floor| %>
+      <tr>
+        <td><%= floor.name %></td>
+        <td><%= link_to 'Modifier', edit_floor_path(floor) %></td>
+        <td><%= link_to 'Supprimer', floor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Ajouter un étage', new_floor_path %>
