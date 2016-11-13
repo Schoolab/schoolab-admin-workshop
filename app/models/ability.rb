@@ -9,6 +9,7 @@ class Ability
       can :manage, Event
       can :manage, Company
       can :manage, Floor
+      can :manage, User
     else
       can :read, :all
     end

@@ -12,8 +12,8 @@
     <% @floors.each do |floor| %>
       <tr>
         <td><%= floor.name %></td>
-        <td><%= link_to 'Modifier', edit_floor_path(floor) %></td>
-        <td><%= link_to 'Supprimer', floor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Modifier', edit_floor_path(floor), class: 'btn btn-default btn-xs' %></td>
+        <td><%= link_to 'Supprimer', floor, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-xs' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -21,4 +21,6 @@
 
 <br>
 
+<% if can? :manage, Floor %>
 <%= link_to 'Ajouter un étage', new_floor_path %>
+<% end %>

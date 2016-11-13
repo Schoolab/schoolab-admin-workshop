@@ -1,12 +1,13 @@
 class FloorsController < ApplicationController
   before_action :set_floor, only: [:show, :edit, :update, :destroy]
 
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:index]
 
   # GET /floors
   # GET /floors.json
   def index
     @floors = Floor.all
+    authorize! :manage, Floor
   end
 
   # GET /floors/1

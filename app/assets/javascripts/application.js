@@ -12,9 +12,17 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require twitter/bootstrap
 //= require turbolinks
 //= require moment
 //= require bootstrap-datetimepicker
 //= require pickers
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+
+  $('.datatable').DataTable();
+
+});

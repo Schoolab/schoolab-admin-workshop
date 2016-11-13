@@ -14,8 +14,8 @@
       <tr>
         <td><%= company.name %></td>
         <td><%= company.floor.present? ? company.floor.name : "N/A" %></td>
-        <td><%= link_to 'Modifier', edit_company_path(company) %></td>
-        <td><%= link_to 'Supprimer', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Modifier', edit_company_path(company), class: 'btn btn-default btn-xs' %></td>
+        <td><%= link_to 'Supprimer', company, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-xs' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -23,4 +23,6 @@
 
 <br>
 
+<% if can? :manage, Company %>
 <%= link_to 'Nouvelle entreprise', new_company_path %>
+<% end %>

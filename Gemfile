@@ -32,9 +32,13 @@ gem 'jbuilder', '~> 2.5'
 # Bootstrap
 gem "twitter-bootstrap-rails"
 gem 'devise-bootstrap-views'
+gem 'jquery-datatables-rails', '~> 3.4.0'
 
 # Users
 gem 'devise'
+gem 'omniauth'
+gem 'devise_token_auth'
+gem 'rack-cors', :require => 'rack/cors'
 
 # User roles
 gem 'cancancan', '~> 1.10'
