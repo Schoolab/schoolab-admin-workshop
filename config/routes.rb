@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :floors
 
-  resources :residents, only: [:index, :new, :create, :destroy]
+  resources :residents, only: [:index, :new, :create, :update, :destroy]
 
   match 'residents/make_admin/:id' => 'residents#make_admin', via: :patch, as: 'make_admin'
   match 'residents/make_user/:id' => 'residents#make_user', via: :patch, as: 'make_user'

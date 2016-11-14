@@ -34,12 +34,28 @@ class ResidentsController < ApplicationController
     authorize! :manage, User
   end
 
+  # PATCH/PUT /residents/:id
+  # PATCH/PUT /residents/:id.json
+  def update
+    @user = User.find(params[:id])
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to residents_path, notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+    authorize! :manage, User
+  end
+
   # Un-RESTful methods
 
-  # PATCH /residents/make_admin/:id
-  def make_admin
+  # PATCH /residents/set_role/:id
+  def set_role
     @user = User.find(params[:id])
-    @user.role = "admin"
+    @user.role = params[:role]
     if @user.save
       redirect_to residents_path
     else
@@ -48,22 +64,10 @@ class ResidentsController < ApplicationController
     authorize! :manage, User
   end
 
-  # PATCH /residents/make_user/:id
-  def make_user
-    @user = User.find(params[:id])
-    @user.role = "user"
-    if @user.save
-      redirect_to residents_path
-    else
-      redirect_to residents_path, notice: 'Unable to remove admin'
-    end
-    authorize! :manage, User
-  end
-
   private
 
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :phone, :title, :company_id)
+      params.require(:user).permit(:first_name, :last_name, :email, :phone, :title, :company_id, :role)
     end
 
 end

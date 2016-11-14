@@ -16,3 +16,11 @@
  *= require devise_bootstrap_views
  *= require bootstrap-datetimepicker
  */
+
+.input-xs {
+  height: 22px;
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
