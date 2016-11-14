@@ -1,0 +1,35 @@
+<h2>Ajouter un résident</h2>
+
+<%= simple_form_for @user, url: residents_path do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :first_name %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :last_name %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :email %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :phone %>
+      </div>
+    </div><div class="row">
+      <div class="col-md-6">
+        <%= f.input :title %>
+      </div>
+      <div class="col-md-6">
+        <%= f.association :company %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

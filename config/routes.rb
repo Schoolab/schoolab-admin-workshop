@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { registrations: 'registrations' }
 
-  get 'events/today' => 'events#today'
+  # get 'events/today' => 'events#today'
 
   resources :events
 
@@ -12,14 +12,18 @@ Rails.application.routes.draw do
 
   resources :floors
 
-  resources :residents, only: [:index, :edit, :update, :destroy]
+  resources :residents, only: [:index, :new, :create, :destroy]
 
   match 'residents/make_admin/:id' => 'residents#make_admin', via: :patch, as: 'make_admin'
   match 'residents/make_user/:id' => 'residents#make_user', via: :patch, as: 'make_user'
 
-  namespace :api do
+  namespace :api, defaults: {format: :json} do
     scope :v1 do
       mount_devise_token_auth_for 'User', at: 'auth'
+      scope :events do
+        get '/' => 'events#index'
+        get 'today' => 'events#today'
+      end
     end
   end
 

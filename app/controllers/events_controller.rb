@@ -4,23 +4,15 @@ class EventsController < ApplicationController
   load_and_authorize_resource only: [:new, :edit, :create, :update, :destroy]
 
   # GET /events
-  # GET /events.json
   def index
     Time.zone = 'Paris'
-    @past_events = Event.where("datetime < ?", Time.zone.today).order(datetime: :desc)
-    @events = Event.where("datetime >= ?", Time.zone.today).order(datetime: :asc)
-    authorize! :read, Event
-  end
-
-  # GET /events/today.json
-  def today
-    Time.zone = 'Paris'
-    @events = Event.where(datetime: Time.zone.today).order(datetime: :asc)
+    @past_events = Event.where("date < ?", Time.zone.today).order(date: :desc)
+    # @events = Event.where("date >= ?", Time.zone.today).order(date: :asc)
+    @events = Event.all
     authorize! :read, Event
   end
 
   # GET /events/1
-  # GET /events/1.json
   def show
     authorize! :read, Event
   end

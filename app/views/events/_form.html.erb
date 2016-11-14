@@ -10,7 +10,15 @@
         <%= f.input :public, inline_label: "Événement public" %>
       </div>
       <div class="col-md-6">
-        <%= f.input :datetime, :as => :datetime_picker %>
+        <%= f.input :date %>
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.input :start_time, label: "Heure de début" %>
+          </div>
+          <div class="col-md-6">
+            <%= f.input :end_time, label: "Heure de fin" %>
+          </div>
+        </div>
         <%= f.input :price, label: 'Prix (0€ pour événement gratuit)' %>
         <%= f.input :link, label: 'Lien' %>
         <%= f.input :host, label: 'Organisateur' %>

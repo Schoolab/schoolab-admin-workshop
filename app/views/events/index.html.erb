@@ -18,7 +18,7 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event.datetime %></td>
+        <td><%= event.date %></td>
         <td><%= event.title %></td>
         <td><%= event.location %></td>
         <td><%= event.full_price %></td>
@@ -54,7 +54,7 @@
   <tbody>
     <% @past_events.each do |event| %>
       <tr>
-        <td><%= event.datetime %></td>
+        <td><%= event.date %></td>
         <td><%= event.title %></td>
         <td><%= event.location %></td>
         <td><%= event.full_price %></td>
