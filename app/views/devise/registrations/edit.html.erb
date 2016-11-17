@@ -27,6 +27,15 @@
       </div>
       <div class="row">
         <div class="form-group col-md-6">
+          <% if @user.photo.file? %>
+          <%= image_tag @user.photo.url(:thumb), class: 'img-thumbnail pull-left', style: 'margin-right: 10px;' %>
+          <% end %>
+          <%= f.label :photo %>
+          <%= f.file_field :photo %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
           <%= f.label :email %>
           <%= f.email_field :email, class: "form-control" %>
         </div>

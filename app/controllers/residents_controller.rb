@@ -37,6 +37,7 @@ class ResidentsController < ApplicationController
   # GET /residents/:id
   def edit
     @user = User.find(params[:id])
+    authorize! :manager, User
   end
 
   # PATCH/PUT /residents/:id
@@ -58,7 +59,7 @@ class ResidentsController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :phone, :title, :company_id, :role)
+      params.require(:user).permit(:first_name, :last_name, :email, :phone, :title, :company_id, :role, :photo)
     end
 
 end

@@ -1,2 +1,14 @@
+<% if user_signed_in? %>
+
+<% if current_user.photo.file? %>
+  <%= image_tag current_user.photo.url(:thumb), size: 80, class: 'img-thumbnail img-circle pull-left', style: 'margin-right: 15px; margin-top: 15px;' %>
+<% end %>
+<h1>Bienvenue, <%= current_user.first_name %></h1>
+<p>Ici vous pouvez créer des événements et ajouter des résidents.</p>
+
+<% else %>
+
 <h1>Admin Schoolab</h1>
 <p>Ici vous pouvez créer des événements et ajouter des résidents.</p>
+
+<% end %>

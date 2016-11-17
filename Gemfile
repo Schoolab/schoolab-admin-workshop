@@ -40,6 +40,9 @@ gem 'omniauth'
 gem 'devise_token_auth'
 gem 'rack-cors', :require => 'rack/cors'
 
+# File handling
+gem 'paperclip'
+
 # User roles
 gem 'cancancan', '~> 1.10'
 
@@ -51,7 +54,6 @@ gem 'momentjs-rails', '~> 2.9'
 
 # Simple forms
 gem 'simple_form'
-gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
