@@ -12,10 +12,7 @@ Rails.application.routes.draw do
 
   resources :floors
 
-  resources :residents, only: [:index, :new, :create, :update, :destroy]
-
-  match 'residents/make_admin/:id' => 'residents#make_admin', via: :patch, as: 'make_admin'
-  match 'residents/make_user/:id' => 'residents#make_user', via: :patch, as: 'make_user'
+  resources :residents, only: [:index, :new, :create, :edit, :update, :destroy]
 
   namespace :api, defaults: {format: :json} do
     scope :v1 do

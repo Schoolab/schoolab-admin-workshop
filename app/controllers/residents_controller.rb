@@ -34,6 +34,11 @@ class ResidentsController < ApplicationController
     authorize! :manage, User
   end
 
+  # GET /residents/:id
+  def edit
+    @user = User.find(params[:id])
+  end
+
   # PATCH/PUT /residents/:id
   # PATCH/PUT /residents/:id.json
   def update
@@ -46,20 +51,6 @@ class ResidentsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
-    end
-    authorize! :manage, User
-  end
-
-  # Un-RESTful methods
-
-  # PATCH /residents/set_role/:id
-  def set_role
-    @user = User.find(params[:id])
-    @user.role = params[:role]
-    if @user.save
-      redirect_to residents_path
-    else
-      redirect_to residents_path, notice: 'Unable to make admin'
     end
     authorize! :manage, User
   end

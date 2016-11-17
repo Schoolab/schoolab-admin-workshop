@@ -16,6 +16,7 @@
       <th>Entreprise</th>
       <th data-orderable="false">Role</th>
       <th data-orderable="false"></th>
+      <th data-orderable="false"></th>
     </tr>
   </thead>
 
@@ -32,7 +33,16 @@
             <%= f.input :role, collection: User::ROLES, label: false, default: 1, input_html: {class: 'input-xs', onchange: "this.form.submit()"} %>
           <% end %>
         </td>
-        <td><%= link_to 'Supprimer', resident_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-xs' %></td>
+        <td>
+          <%= link_to edit_resident_path(user), class: 'btn btn-default btn-xs' do %>
+          <span class="glyphicon glyphicon-pencil"></span>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to resident_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do %>
+            <span class="glyphicon glyphicon-remove"></span>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

@@ -7,8 +7,7 @@ class EventsController < ApplicationController
   def index
     Time.zone = 'Paris'
     @past_events = Event.where("date < ?", Time.zone.today).order(date: :desc)
-    # @events = Event.where("date >= ?", Time.zone.today).order(date: :asc)
-    @events = Event.all
+    @events = Event.where("date >= ?", Time.zone.today).order(date: :asc)
     authorize! :read, Event
   end
 
@@ -47,7 +46,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to events_path, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
@@ -74,6 +73,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:title, :datetime, :location, :host, :price, :link, :description, :internal, :weekly)
+      params.require(:event).permit(:title, :date, :start_time, :end_time, :location, :host, :price, :link, :description, :internal, :weekly)
     end
 end

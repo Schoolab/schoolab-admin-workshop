@@ -13,10 +13,10 @@
         <%= f.input :date %>
         <div class="row">
           <div class="col-md-6">
-            <%= f.input :start_time, label: "Heure de début" %>
+            <%= f.input :start_time, label: "Heure de début", minute_step: 15, default: Time.parse('9:00') %>
           </div>
           <div class="col-md-6">
-            <%= f.input :end_time, label: "Heure de fin" %>
+            <%= f.input :end_time, label: "Heure de fin", minute_step: 15, default: Time.parse('18:00') %>
           </div>
         </div>
         <%= f.input :price, label: 'Prix (0€ pour événement gratuit)' %>
