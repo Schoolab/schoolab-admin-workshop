@@ -42,6 +42,7 @@ gem 'rack-cors', :require => 'rack/cors'
 
 # File handling
 gem 'paperclip'
+gem 'aws-sdk', '~> 2.3'
 
 # User roles
 gem 'cancancan', '~> 1.10'
