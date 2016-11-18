@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161117191503) do
+ActiveRecord::Schema.define(version: 20161118093223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,19 +24,23 @@ ActiveRecord::Schema.define(version: 20161117191503) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.string   "title",       default: "",    null: false
-    t.string   "location",    default: "",    null: false
+    t.string   "title",              default: "",    null: false
+    t.string   "location",           default: "",    null: false
     t.string   "host"
-    t.float    "price",       default: 0.0,   null: false
+    t.float    "price",              default: 0.0,   null: false
     t.string   "link"
     t.text     "description"
-    t.boolean  "public",      default: false
-    t.boolean  "weekly",      default: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.boolean  "public",             default: false
+    t.boolean  "weekly",             default: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.date     "date"
     t.time     "start_time"
     t.time     "end_time"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "floors", force: :cascade do |t|
