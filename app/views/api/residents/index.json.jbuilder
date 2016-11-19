@@ -1,0 +1,1 @@
+json.array! @residents, partial: 'api/residents/resident', as: :resident

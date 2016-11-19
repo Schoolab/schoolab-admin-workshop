@@ -20,6 +20,9 @@ Rails.application.routes.draw do
         get 'today' => 'events#today'
         get 'public' => 'events#public'
       end
+      scope :residents do
+        get '/' => 'residents#index'
+      end
     end
   end
 
