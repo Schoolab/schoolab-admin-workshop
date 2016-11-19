@@ -4,8 +4,6 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { registrations: 'registrations' }
 
-  # get 'events/today' => 'events#today'
-
   resources :events
 
   resources :companies
