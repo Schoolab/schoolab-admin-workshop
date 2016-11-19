@@ -1,44 +1,42 @@
-<%= simple_form_for @user, url: residents_path do |f| %>
-  <%= f.error_notification %>
+<%= form.error_notification %>
 
-  <div class="form-inputs">
-    <div class="row">
-      <div class="col-md-6">
-        <%= f.input :first_name %>
-      </div>
-      <div class="col-md-6">
-        <%= f.input :last_name %>
-      </div>
+<div class="form-inputs">
+  <div class="row">
+    <div class="col-md-6">
+      <%= form.input :first_name %>
     </div>
-    <div class="row">
-      <div class="col-md-6">
-        <%= f.input :email %>
-      </div>
-      <div class="col-md-6">
-        <%= f.input :phone %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <%= f.input :title %>
-      </div>
-      <div class="col-md-6">
-        <%= f.association :company %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <% if @user.photo.file? %>
-        <%= image_tag @user.photo.url(:thumb), class: 'img-thumbnail pull-left', style: 'margin-right: 10px;' %>
-        <% end %>
-        <%= f.input :photo, as: :file %>
-      </div>
+    <div class="col-md-6">
+      <%= form.input :last_name %>
     </div>
   </div>
-
-  <br>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= form.input :email %>
+    </div>
+    <div class="col-md-6">
+      <%= form.input :phone %>
+    </div>
   </div>
-<% end %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= form.input :title %>
+    </div>
+    <div class="col-md-6">
+      <%= form.association :company %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <% if @user.photo.file? %>
+      <%= image_tag @user.photo.url(:thumb), class: 'img-thumbnail pull-left', style: 'margin-right: 10px;' %>
+      <% end %>
+      <%= form.input :photo, as: :file %>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<div class="form-actions">
+  <%= form.button :submit %>
+</div>
