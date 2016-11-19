@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       scope :events do
         get '/' => 'events#index'
         get 'today' => 'events#today'
+        get 'public' => 'events#public'
       end
     end
   end
