@@ -6,6 +6,11 @@
       <div class="col-md-6">
         <%= f.input :name, label: "Nom de l'entreprise" %>
         <%= f.association :floor %>
+        <% if @company.image.file? %>
+          <%= image_tag @company.image.url(:medium), class: 'img-thumbnail' %>
+          <br><br>
+        <% end %>
+        <%= f.input :image, as: :file %>
       </div>
     </div>
   </div>
