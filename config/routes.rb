@@ -23,6 +23,9 @@ Rails.application.routes.draw do
       scope :residents do
         get '/' => 'residents#index'
       end
+      scope :companies do
+        get '/' => 'companies#index'
+      end
     end
   end
 
