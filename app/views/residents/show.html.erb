@@ -1,0 +1,29 @@
+<% if @user.photo.file? %>
+  <%= image_tag @user.photo.url(:thumb), size: 80, class: 'img-thumbnail img-circle pull-left', style: 'margin-right: 15px; margin-top: 15px;' %>
+<% end %>
+
+<h2><%= @user.name %></h2>
+
+<p><%= @user.title %></p>
+<p><%= @user.company.present? ? @user.company.name : "N/A" %></p>
+
+<h3>Réservations</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Horaire</th>
+      <th>Salle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user.reservations.each do |reservation| %>
+      <tr>
+        <td><%= reservation.date %></td>
+        <td><%= reservation.time %></td>
+        <td><%= link_to reservation.meeting_room.name, reservation.meeting_room %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

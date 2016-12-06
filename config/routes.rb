@@ -12,7 +12,12 @@ Rails.application.routes.draw do
 
   resources :meeting_rooms
 
-  resources :residents, only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :reservations, except: [:show] do
+    get 'search' => "reservations#search", on: :collection
+    post 'search' => 'reservations#search_results', on: :collection
+  end
+
+  resources :residents, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   namespace :api, defaults: {format: :json} do
     scope :v1 do

@@ -6,6 +6,12 @@ class ResidentsController < ApplicationController
     authorize! :read, User
   end
 
+  # GET /residents/:id
+  def show
+    @user = User.find(params[:id])
+    authorize! :read, User
+  end
+
   # GET /floors/new
   def new
     @user = User.new

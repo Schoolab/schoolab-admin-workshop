@@ -1,0 +1,31 @@
+<h2>Reservations</h2>
+
+<table class="datatable table" data-paging="false" data-info="false">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Horaires</th>
+      <th>Salle</th>
+      <th>Résident</th>
+      <th data-orderable="false"></th>
+      <th data-orderable="false"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reservations.each do |reservation| %>
+      <tr>
+        <td><%= reservation.date %></td>
+        <td><%= reservation.time %></td>
+        <td><%= link_to reservation.meeting_room.name, reservation.meeting_room %></td>
+        <td><%= link_to reservation.user.name, resident_path(reservation.user) %></td>
+        <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
+        <td><%= link_to 'Delete', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Reservation', new_reservation_path %>

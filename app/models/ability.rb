@@ -11,6 +11,10 @@ class Ability
       can :manage, Floor
       can :manage, User
       can :manage, MeetingRoom
+      can :manage, Reservation
+    elsif user.role == "user"
+      can :manage, Reservation
+      can :read, :all
     else
       can :read, :all
     end
