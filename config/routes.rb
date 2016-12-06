@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   resources :floors
 
+  resources :meeting_rooms
+
   resources :residents, only: [:index, :new, :create, :edit, :update, :destroy]
 
   namespace :api, defaults: {format: :json} do

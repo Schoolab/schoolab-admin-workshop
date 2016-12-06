@@ -10,6 +10,7 @@ class Ability
       can :manage, Company
       can :manage, Floor
       can :manage, User
+      can :manage, MeetingRoom
     else
       can :read, :all
     end
