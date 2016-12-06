@@ -43,7 +43,7 @@ class MeetingRoomsController < ApplicationController
   def update
     respond_to do |format|
       if @meeting_room.update(meeting_room_params)
-        format.html { redirect_to @meeting_room, notice: 'Meeting room was successfully updated.' }
+        format.html { redirect_to member_rooms_path, notice: 'Meeting room was successfully updated.' }
         format.json { render :show, status: :ok, location: @meeting_room }
       else
         format.html { render :edit }
