@@ -59,15 +59,11 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/search
   def search
-    @reservation = Reservation.new
-    authorize! :manage, Reservation
-  end
-
-  # POST /reservations/search
-  def search_results
-    @reservation = Reservation.new(reservation_params)
-    @rooms = MeetingRoom.all
-    render :search
+    if params.has_key?(:room_search)
+      @search = RoomSearch.new(search_params)
+    else
+      @search = RoomSearch.new
+    end
     authorize! :manage, Reservation
   end
 
@@ -75,6 +71,11 @@ class ReservationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_reservation
       @reservation = Reservation.find(params[:id])
+    end
+
+    # Search parameters
+    def search_params
+      params.require(:room_search).permit(:start_time, :length)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

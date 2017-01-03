@@ -1,10 +1,16 @@
 <h2>Réserver une salle</h2>
 
-<%= simple_form_for @reservation, url: search_reservations_path do |f| %>
+<%= simple_form_for @search, url: search_reservations_path, method: :get do |f| %>
 
-<%= f.input :start_time, minute_step: 30, default: Time.parse('9:00'), label: "Date et heure" %>
+<div class="row">
 
-<%= f.button :submit, "Rechercher", class: 'btn-primary' %>
+  <div class="col-md-6">
+    <%= f.input :start_time, as: :datetime, minute_step: 30 %>
+  </div>
+
+</div>
+
+<%= f.submit "Rechercher", class: 'btn btn-primary' %>
 
 <% end %>
 

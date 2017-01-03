@@ -12,9 +12,9 @@
  *
  *= require_tree .
  *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
- *= require_self
  *= require devise_bootstrap_views
  *= require bootstrap-datetimepicker
+ *= require_self
  */
 
 .input-xs {

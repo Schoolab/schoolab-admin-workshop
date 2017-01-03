@@ -14,7 +14,6 @@ Rails.application.routes.draw do
 
   resources :reservations, except: [:show] do
     get 'search' => "reservations#search", on: :collection
-    post 'search' => 'reservations#search_results', on: :collection
   end
 
   resources :residents, only: [:index, :show, :new, :create, :edit, :update, :destroy]
