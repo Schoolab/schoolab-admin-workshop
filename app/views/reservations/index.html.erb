@@ -3,6 +3,7 @@
 <table class="datatable table" data-paging="false" data-info="false">
   <thead>
     <tr>
+      <th></th>
       <th>Date</th>
       <th>Horaires</th>
       <th>Salle</th>
@@ -15,6 +16,7 @@
   <tbody>
     <% @reservations.each do |reservation| %>
       <tr>
+        <td><%= reservation.id %></td>
         <td><%= reservation.date %></td>
         <td><%= reservation.time %></td>
         <td><%= link_to reservation.meeting_room.name, reservation.meeting_room %></td>

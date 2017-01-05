@@ -1,6 +1,4 @@
-class RoomSearch
-  include ActiveModel::Model
+class RoomSearch < ApplicationRecord
 
-  attr_accessor :start_time, :length
-  validates_presence_of :start_time
+
 end
