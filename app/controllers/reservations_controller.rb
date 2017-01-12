@@ -5,7 +5,9 @@ class ReservationsController < ApplicationController
   # GET /reservations
   # GET /reservations.json
   def index
-    @reservations = Reservation.all
+    Time.zone = 'Paris'
+    @reservations = Reservation.where("start_time >= ?", Time.zone.today).order(start_time: :asc)
+    @past_reservations = Reservation.where("start_time < ?", Time.zone.today).order(start_time: :desc)
   end
 
   # GET /reservations/new
