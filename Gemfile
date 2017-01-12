@@ -56,6 +56,9 @@ gem 'momentjs-rails', '~> 2.9'
 # Simple forms
 gem 'simple_form'
 
+# SendGrid
+gem 'sendgrid-ruby'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
