@@ -82,3 +82,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Heroku
 gem 'rails_12factor', group: :production
 gem "lograge", group: :production
+
+# SSL
+gem 'platform-api', github: 'jalada/platform-api', branch: 'master'
+gem 'letsencrypt-rails-heroku', group: 'production'
