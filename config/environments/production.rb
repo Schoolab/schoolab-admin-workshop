@@ -100,5 +100,16 @@ Rails.application.configure do
     s3_region: ENV.fetch('AWS_REGION'),
     s3_host_name: "s3-eu-west-1.amazonaws.com"
   }
+
+  # Sendgrid for ActionMailer
+  ActionMailer::Base.smtp_settings = {
+    :user_name => ENV.fetch('SENDGRID_USERNAME'),
+    :password => ENV.fetch('SENDGRID_PASSWORD'),
+    :domain => ENV.fetch('DOMAIN'),
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
 }
 end
