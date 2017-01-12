@@ -74,6 +74,7 @@ group :development do
   gem "better_errors"
   gem 'guard'
   gem 'guard-livereload'
+  gem "letter_opener"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -84,5 +85,5 @@ gem 'rails_12factor', group: :production
 gem "lograge", group: :production
 
 # SSL
-gem 'platform-api', github: 'jalada/platform-api', branch: 'master'
-gem 'letsencrypt-rails-heroku', group: 'production'
+# gem 'platform-api', github: 'jalada/platform-api', branch: 'master'
+# gem 'letsencrypt-rails-heroku', group: 'production'

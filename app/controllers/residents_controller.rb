@@ -6,19 +6,20 @@ class ResidentsController < ApplicationController
     authorize! :read, User
   end
 
-  # GET /floors/new
+  # GET /residents/new
   def new
     @user = User.new
     authorize! :manage, User
   end
 
-  # POST /floors
+  # POST /residents
   def create
     @user = User.new(user_params)
     @user.role = 'user'
     @user.password = "123456"
     @user.password_confirmation = "123456"
     if @user.save
+      p ApplicationMailer.welcome_email @user
       redirect_to residents_path, notice: 'Resident was successfully added.'
     else
       render :new
