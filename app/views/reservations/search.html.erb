@@ -30,7 +30,7 @@
       <tr>
         <th></th>
         <th>Salle</th>
-        <th>Réservation</th>
+        <th>Réservations</th>
       </tr>
     </thead>
 
@@ -42,13 +42,20 @@
         <td><div class="colour-square" style="background-color: <%= room.colour %>"></div></td>
         <td><%= room.name %></td>
         <td>
-          <% if reservation = room.reservation_at(@search.start_time, reservation_end_time) %>
-            <%= link_to reservation.user.name, resident_path(reservation.user) %> | <%= reservation.time %>
+          <% if reservations = room.reservation_at(@search.start_time, reservation_end_time) %>
+            <% reservations.each do |reservation| %>
+              <%= link_to reservation.user.name, resident_path(reservation.user) %> | <%= reservation.time %>
+              <% if reservation.user == current_user %>
+               | <%= link_to "Annuler", reservation, method: :delete %>
+              <% end %>
+              <br>
+            <% end %>
           <% else %>
             <%= simple_form_for @reservation do |f| %>
               <%= f.input :meeting_room_id, as: :hidden, input_html: { value: room.id } %>
               <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
               <%= f.input :start_time, as: :hidden, input_html: { value: @search.start_time } %>
+              <%= f.input :end_time, as: :hidden, input_html: { value: reservation_end_time } %>
               <% label = "Réserver de " + @search.start_time.strftime('%Hh%M') + " à " + reservation_end_time.strftime('%Hh%M') %>
               <%= f.submit label, class: 'btn btn-default btn-xs' %>
             <% end %>

@@ -26,7 +26,7 @@ class ReservationsController < ApplicationController
 
     respond_to do |format|
       if @reservation.save
-        format.html { redirect_to reservations_path, notice: 'Reservation was successfully created.' }
+        format.html { redirect_to :back, notice: 'La réservation a bien été enregistrée.' }
         format.json { render :show, status: :created }
       else
         format.html { render :new }
@@ -54,7 +54,7 @@ class ReservationsController < ApplicationController
   def destroy
     @reservation.destroy
     respond_to do |format|
-      format.html { redirect_to reservations_url, notice: 'Reservation was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'La réservation a été annulée.' }
       format.json { head :no_content }
     end
   end
