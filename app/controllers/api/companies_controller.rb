@@ -1,4 +1,5 @@
-class Api::CompaniesController < ApplicationController
+class Api::CompaniesController < Api::BaseController
+  before_action :authenticate_user!
 
   # GET /companies.json
   def index

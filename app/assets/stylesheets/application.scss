@@ -12,9 +12,9 @@
  *
  *= require_tree .
  *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
- *= require_self
  *= require devise_bootstrap_views
  *= require bootstrap-datetimepicker
+ *= require_self
  */
 
 .input-xs {
@@ -23,4 +23,21 @@
   font-size: 12px;
   line-height: 1.5;
   border-radius: 3px;
+}
+
+.colour-square {
+  width: 100%;
+  height: 20px;
+  border: 1px solid #333;
+}
+
+.fade {
+  opacity: .8;
+}
+
+tr.today {
+  background-color: #F6F6F6;
+  &:last-of-type {
+    border-bottom: 1px solid #ccc;
+  }
 }

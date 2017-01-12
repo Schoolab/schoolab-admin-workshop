@@ -25,4 +25,6 @@ $(document).on('turbolinks:load', function() {
 
   $('.datatable').DataTable();
 
+  $('.datetimepicker').datetimepicker()
+
 });

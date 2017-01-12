@@ -1,4 +1,4 @@
-class Api::ResidentsController < ApplicationController
+class Api::ResidentsController < Api::BaseController
 
   # GET /residents.json
   def index

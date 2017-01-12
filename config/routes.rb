@@ -10,7 +10,13 @@ Rails.application.routes.draw do
 
   resources :floors
 
-  resources :residents, only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :meeting_rooms
+
+  resources :reservations, except: [:show] do
+    get 'search' => "reservations#search", on: :collection
+  end
+
+  resources :residents, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   namespace :api, defaults: {format: :json} do
     scope :v1 do

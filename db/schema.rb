@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161122185730) do
+ActiveRecord::Schema.define(version: 20170105101059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,27 +54,59 @@ ActiveRecord::Schema.define(version: 20161122185730) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "meeting_rooms", force: :cascade do |t|
+    t.string   "name"
+    t.string   "colour"
+    t.integer  "floor_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.index ["floor_id"], name: "index_meeting_rooms_on_floor_id", using: :btree
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.integer  "meeting_room_id"
+    t.integer  "user_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["meeting_room_id"], name: "index_reservations_on_meeting_room_id", using: :btree
+    t.index ["user_id"], name: "index_reservations_on_user_id", using: :btree
+  end
+
+  create_table "room_searches", force: :cascade do |t|
+    t.datetime "start_time",  null: false
+    t.time     "length_time", null: false
+    t.integer  "length",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "",      null: false
-    t.string   "encrypted_password",     default: "",      null: false
+    t.string   "email",                  default: "",         null: false
+    t.string   "encrypted_password",     default: "",         null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,       null: false
+    t.integer  "sign_in_count",          default: 0,          null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.string   "first_name",             default: "",      null: false
-    t.string   "last_name",              default: "",      null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.string   "first_name",             default: "",         null: false
+    t.string   "last_name",              default: "",         null: false
     t.string   "phone"
     t.string   "title"
-    t.string   "role",                   default: "user"
+    t.string   "role",                   default: "inactive"
     t.integer  "company_id"
-    t.string   "provider",               default: "email", null: false
-    t.string   "uid",                    default: "",      null: false
+    t.string   "provider",               default: "email",    null: false
+    t.string   "uid",                    default: "",         null: false
     t.json     "tokens"
     t.string   "photo_file_name"
     t.string   "photo_content_type"

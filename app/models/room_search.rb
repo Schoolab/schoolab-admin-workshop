@@ -1,0 +1,4 @@
+class RoomSearch < ApplicationRecord
+
+
+end

@@ -1,0 +1,26 @@
+<%= simple_form_for(@reservation) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :start_time, minute_step: 30, default: Time.parse('9:00') %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :end_time, minute_step: 30, default: Time.parse('18:00') %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.association :meeting_room %>
+      </div>
+      <div class="col-md-6">
+        <%= f.association :user %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
