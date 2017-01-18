@@ -1,0 +1,6 @@
+tr.today {
+  background-color: #F6F6F6;
+  &:last-of-type {
+    border-bottom: 1px solid #ccc;
+  }
+}

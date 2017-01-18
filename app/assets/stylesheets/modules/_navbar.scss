@@ -1,0 +1,28 @@
+.navbar-schoolab {
+    background-color: $brand-primary;
+    border-color: rgba(0, 0, 0, 0.1);
+    padding: 20px 0;
+}
+
+.navbar-brand {
+    padding: 0 15px 0 0;
+    @include hide-text();
+    position: relative;
+
+    &:before {
+        content: '🎓';
+        font-family: $icons-font;
+        font-size: 50px;
+        color: $whitesmoke;
+        font-size: 50px;
+        line-height: initial;
+        display: block;
+        @include font-smoothing();
+    }
+
+    &:hover {
+        &:before {
+            color: $grey-light;
+        }
+    }
+}
