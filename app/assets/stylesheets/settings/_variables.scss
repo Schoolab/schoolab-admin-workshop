@@ -26,3 +26,12 @@ $brand-red:                 #F44E63;
 $brand-font:                CircularStd, sans-serif;
 $icons-font:                Schoolab Icons;
 $primary-font:              Source Sans Pro, sans-serif;
+
+// Bootstrap 3
+
+$brand-success:             $brand-green !default;
+$brand-info:                $brand-blue !default;
+$brand-warning:             $brand-orange !default;
+$brand-danger:              $brand-red !default;
+
+$grid-gutter-width:         16px !default;

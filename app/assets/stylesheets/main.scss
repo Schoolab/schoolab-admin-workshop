@@ -38,20 +38,29 @@
 /* ==========================================================================
 4. MODULES
 ========================================================================== */
+@import "modules/alert";
+@import "modules/btn";
+@import "modules/card";
 @import "modules/colour-square";
 @import "modules/input";
 @import "modules/navbar";
+@import "modules/panel";
+@import "modules/profile";
+@import "modules/reservation";
 @import "modules/table";
+@import "modules/thumbnail";
 
 /* ==========================================================================
 5. LAYOUTS
 ========================================================================== */
-// @import "layouts/section";
+@import "layouts/base";
 
 /* ==========================================================================
 6. HELPERS
 ========================================================================== */
+@import "helpers/base";
 @import "helpers/fade";
+@import "helpers/animations";
 
 /* ==========================================================================
 7. THEMES

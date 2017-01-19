@@ -1,55 +1,55 @@
-<h2>Liste des résidents</h2>
+<div class="card col-xs-12">
+  <h2 class="card-title">Liste des résidents</h2>
 
-<br>
+  <div class="card-group">
+    <%= link_to "Ajouter un résident", new_resident_path, class: 'btn btn-primary btn-sm' %>
+  </div>
 
-<%= link_to "Ajouter un résident", new_resident_path, class: 'btn btn-primary btn-sm' %>
-
-<br><br>
-
-<table class="table datatable">
-  <thead>
-    <tr>
-      <th>Nom</th>
-      <th>Prénom</th>
-      <th>Email</th>
-      <th>Téléphone</th>
-      <th>Entreprise</th>
-      <th data-orderable="false">Role</th>
-      <th data-orderable="false"></th>
-      <th data-orderable="false"></th>
-      <th data-orderable="false"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
+  <table class="table datatable">
+    <thead>
       <tr>
-        <td><%= user.last_name %></td>
-        <td><%= user.first_name %></td>
-        <td><%= mail_to user.email %></td>
-        <td><%= tel_to user.phone %></td>
-        <td><%= user.company.present? ? user.company.name : "N/A" %></td>
-        <td>
-          <%= simple_form_for user, url: resident_path(user), method: :patch do |f| %>
-            <%= f.input :role, collection: User::ROLES, label: false, default: 1, input_html: {class: 'input-xs', onchange: "this.form.submit()"} %>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to resident_path(user), class: 'btn btn-default btn-xs' do %>
-          <span class="glyphicon glyphicon-eye-open"></span>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to edit_resident_path(user), class: 'btn btn-default btn-xs' do %>
-          <span class="glyphicon glyphicon-pencil"></span>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to resident_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do %>
-            <span class="glyphicon glyphicon-remove"></span>
-          <% end %>
-        </td>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>Téléphone</th>
+        <th>Entreprise</th>
+        <th data-orderable="false">Role</th>
+        <th data-orderable="false"></th>
+        <th data-orderable="false"></th>
+        <th data-orderable="false"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.last_name %></td>
+          <td><%= user.first_name %></td>
+          <td><%= mail_to user.email %></td>
+          <td><%= tel_to user.phone %></td>
+          <td><%= user.company.present? ? user.company.name : "N/A" %></td>
+          <td>
+            <%= simple_form_for user, url: resident_path(user), method: :patch do |f| %>
+              <%= f.input :role, collection: User::ROLES, label: false, default: 1, input_html: {class: 'input-xs', onchange: "this.form.submit()"} %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to resident_path(user), class: 'btn btn-default btn-xs' do %>
+            <span class="glyphicon glyphicon-eye-open"></span>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to edit_resident_path(user), class: 'btn btn-default btn-xs' do %>
+            <span class="glyphicon glyphicon-pencil"></span>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to resident_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do %>
+              <span class="glyphicon glyphicon-remove"></span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

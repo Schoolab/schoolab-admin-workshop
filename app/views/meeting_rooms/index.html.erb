@@ -1,37 +1,39 @@
-<h2>Salles de réunion</h2>
+<div class="card col-xs-12">
+  <h2 class="card-title">Salles de réunion</h2>
+  
+  <div class="card-group">
+    <%= link_to 'Nouvelle salle de réunion', new_meeting_room_path, class: 'btn btn-primary btn-sm' %>
+  </div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Nom</th>
-      <th>Étage</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @meeting_rooms.each do |meeting_room| %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><div class="colour-square" style="background-color: <%= meeting_room.colour %>"></div></td>
-        <td><%= meeting_room.name %></td>
-        <td><%= meeting_room.floor.present? ? meeting_room.floor.name : "N/A" %></td>
-        <td><%= link_to 'Voir les réservations', meeting_room %></td>
-        <td>
-          <%= link_to edit_meeting_room_path(meeting_room), class: 'btn btn-default btn-xs' do %>
-          <span class="glyphicon glyphicon-pencil"></span>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to meeting_room_path(meeting_room), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do %>
-            <span class="glyphicon glyphicon-remove"></span>
-          <% end %>
-        </td>
+        <th></th>
+        <th>Nom</th>
+        <th>Étage</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
-
-<%= link_to 'New Meeting Room', new_meeting_room_path %>
+    <tbody>
+      <% @meeting_rooms.each do |meeting_room| %>
+        <tr>
+          <td><div class="colour-square" style="background-color: <%= meeting_room.colour %>"></div></td>
+          <td><%= meeting_room.name %></td>
+          <td><%= meeting_room.floor.present? ? meeting_room.floor.name : "N/A" %></td>
+          <td><%= link_to 'Voir les réservations', meeting_room %></td>
+          <td>
+            <%= link_to edit_meeting_room_path(meeting_room), class: 'btn btn-default btn-xs' do %>
+            <span class="glyphicon glyphicon-pencil"></span>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to meeting_room_path(meeting_room), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do %>
+              <span class="glyphicon glyphicon-remove"></span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,39 @@
+.alert {
+    border: none;
+    border-radius: .125rem;
+    padding: .5rem 1rem;
+    font-weight: normal;
+    margin-bottom: .5rem;
+}
+
+.alert-success {
+    background-color: $brand-green;
+    border-color: rgba($black,.1);
+    color: rgba($black,.5);
+}
+
+.alert-info {
+  background-color: $brand-blue;
+  border-color: rgba($black,.1);
+  color: rgba($black,.5);
+}
+
+.alert-warning {
+  background-color: $brand-orange;
+  border-color: rgba($black,.1);
+  color: rgba($black,.5);
+}
+
+.alert-danger {
+  background-color: $brand-red;
+  border-color: rgba($black,.1);
+  color: rgba($black,.5);
+}
+
+.close {
+    line-height: 0.95;
+    color: $black;
+    text-shadow: none;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}

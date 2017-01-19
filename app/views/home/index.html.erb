@@ -1,14 +1,91 @@
 <% if user_signed_in? %>
 
-<% if current_user.photo.file? %>
-  <%= image_tag current_user.photo.url(:thumb), size: 80, class: 'img-thumbnail img-circle pull-left', style: 'margin-right: 15px; margin-top: 15px;' %>
-<% end %>
-<h1>Bienvenue, <%= current_user.first_name %></h1>
-<p>Ici vous pouvez créer des événements et ajouter des résidents.</p>
+<div class="row">
+    <div class="col-xs-12 col-md-4 txt-c">
+
+        <div class="card">
+            <div class="card-group">
+                <% if current_user.photo.file? %>
+                    <div class="img-thumbnail img-square">
+                        <%= image_tag current_user.photo.url(:thumb), size: 96 %>
+                    </div>
+                <% end %>
+                <h2 class="card-title">
+                    <span class="card-title-prefix block">Bienvenue</span>
+                    <%= current_user.first_name %>
+                </h2>
+                <p class="card-muted">
+                    <%= current_user.title %> 
+                    <% if current_user.company %>
+                        chez <%= @current_user.company.name %>
+                    <% end %>
+                </p>
+
+                <%= link_to "Deconnexion", destroy_user_session_path, :method => :delete, class: 'btn btn-primary' %>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-8">
+        <div class="card">
+            <h2 class="card-title">Vos dernières réservations</h2>
+            <div class="card-group reservation-list">
+
+                <% @current_user.reservations.order('reservations.start_time DESC').each do |reservation| %>
+                    <div class="reservation booked">
+                        <div class="reservation-infos" style="background-color: <%= reservation.meeting_room.colour %>">
+                            <div class="reservation-infos-content">
+                                <div class="reservation-infos-name">
+                                    <%= reservation.meeting_room.name %>
+                                </div>
+                                <div class="reservation-infos-floor">
+                                    <%= reservation.meeting_room.floor.present? ? reservation.meeting_room.floor.name : "N/A" %>
+                                </div>
+                            </div>
+                            <div class="reservation-infos-bottom">
+                                <% if reservation.user == current_user && reservation.start_time.today? %>
+                                    <%= link_to "Annuler", reservation, method: :delete, class: 'btn btn-reservation', style: 'color:' + reservation.meeting_room.colour + ';' %>
+                                <% else %>
+                                    <span class="btn-reservation" style="color:<%= reservation.meeting_room.colour %>;">Terminée</span>
+                                <% end %>
+                            </div>
+                        </div>
+                        <div class="reservation-details">
+                            <h3 class="reservation-details-title">Votre réservation</h3>
+                            <p>
+                                <% if reservation.start_time.today? %>
+                                    Aujourd'hui
+                                <% else %>
+                                    <%= reservation.date %> 
+                                <% end %>
+                                <%= 'de ' + 
+                                    reservation.start_time.strftime('%Hh') + 
+                                    (reservation.start_time.strftime('%M') != '00' ? reservation.start_time.strftime('%M') : '') + 
+                                    ' à ' + 
+                                    reservation.end_time.strftime('%Hh') + 
+                                    (reservation.end_time.strftime('%M') != '00' ? reservation.end_time.strftime('%M') : '') + 
+                                    '.' %>
+                            </p>
+                            <h3 class="reservation-details-title muted">Information de la salle</h3>
+                            <p class="muted">Cette salle est située au <%= reservation.meeting_room.floor.present? ? reservation.meeting_room.floor.name : "N/A" %>. Il y a une réunion avant la votre jusqu’à 11h30.</p>
+                        </div>
+                    </div>
+                <% end %>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 <% else %>
 
-<h1>Admin Schoolab</h1>
-<p>Ici vous pouvez créer des événements et ajouter des résidents.</p>
+<div class="row">
+    <div class="card col-xs-12 col-md-4 col-md-offset-4 txt-c">
+        <div class="card-group">
+            <h1 class="card-title">Admin Schoolab</h1>
+            <p class="card-muted">Ici vous pouvez créer des événements et ajouter des résidents.</p>
+        </div>
+    </div>
+</div>
 
 <% end %>

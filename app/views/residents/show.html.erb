@@ -1,11 +1,16 @@
-<% if @user.photo.file? %>
-  <%= image_tag @user.photo.url(:thumb), size: 80, class: 'img-thumbnail img-circle pull-left', style: 'margin-right: 15px; margin-top: 15px;' %>
-<% end %>
+<div class="jumbotron">
+  <% if @user.photo.file? %>
+    <div class="profile-thumbnail img-thumbnail img-square pull-left">
+      <%= image_tag @user.photo.url(:thumb), size: 80 %>
+    </div>
+  <% end %>
 
-<h2><%= @user.name %></h2>
+  <h2 class="profile-username"><%= @user.name %></h2>
 
-<p><%= @user.title %></p>
-<p><%= @user.company.present? ? @user.company.name : "N/A" %></p>
+  <p class="profile-infos"><%= @user.title %> @<%= @user.company.present? ? @user.company.name : "N/A" %> — <%= mail_to @user.email %> — <%= tel_to @user.phone %></p>
+</div>
+
+<% if current_user.role == "admin" %>
 
 <h3>Réservations</h3>
 
@@ -27,3 +32,5 @@
     <% end %>
   </tbody>
 </table>
+
+<% end %>

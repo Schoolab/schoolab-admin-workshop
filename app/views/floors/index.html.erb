@@ -1,26 +1,27 @@
-<h2>Étages</h2>
+<div class="card col-xs-12">
+  <h2 class="card-title">Étages</h2>
+  <% if can? :manage, Floor %>
+  <div class="card-group">
+    <%= link_to 'Ajouter un étage', new_floor_path, class: 'btn btn-primary btn-sm' %>
+  </div>
+  <% end %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Nom</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @floors.each do |floor| %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= floor.name %></td>
-        <td><%= link_to 'Modifier', edit_floor_path(floor), class: 'btn btn-default btn-xs' %></td>
-        <td><%= link_to 'Supprimer', floor, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-xs' %></td>
+        <th>Nom</th>
+        <th colspan="2"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
-
-<% if can? :manage, Floor %>
-<%= link_to 'Ajouter un étage', new_floor_path %>
-<% end %>
+    <tbody>
+      <% @floors.each do |floor| %>
+        <tr>
+          <td><%= floor.name %></td>
+          <td><%= link_to 'Modifier', edit_floor_path(floor), class: 'btn btn-default btn-xs' %></td>
+          <td><%= link_to 'Supprimer', floor, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-xs' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

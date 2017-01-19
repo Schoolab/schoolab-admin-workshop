@@ -1,0 +1,133 @@
+.reservation-grid {
+    margin: 0 -.5rem;
+    
+    .reservation {
+        width: 25%;
+        padding: .5rem;
+        display: inline-block;
+        float: left;
+    }
+}
+
+.reservation-list {
+    margin: 0;
+    
+    .reservation {
+        width: 100%;
+        margin: 1rem 0;
+    }
+}
+
+.reservation {
+    background-color: $white;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+}
+
+.reservation.booked {
+    .reservation-infos {
+        &:after {
+            content: 'lock';
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            @include vendor(transform, translateX(-50%));
+            font-family: Material Icons;
+            font-size: 4rem;
+            line-height: 4rem;
+            color: $black;
+            opacity: .25;
+            z-index: 0;
+        }
+    }
+}
+
+.reservation-infos {
+    background-color: $grey;
+    border-radius: .125rem 0 0 .125rem;
+    padding: 1rem;
+    white-space: nowrap;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    min-height: 176px;
+
+    &:only-child {
+        width: 100%;
+        border-radius: .125rem;
+    }
+}
+
+.reservation-infos-content {
+    position: relative;
+    z-index: 1;
+    padding-top: 2rem;
+}
+
+.reservation-infos-name {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    color: rgba($black, .75);
+}
+
+.reservation-infos-floor {
+    font-size: 1rem;
+    line-height: 1rem;
+    color: rgba($black, .5);
+}
+
+.reservation-infos-bottom {
+    position: relative;
+    z-index: 1;
+}
+
+.reservation-infos-prefix {
+    font-size: .75rem;
+    line-height: 1rem;
+    color: rgba($white, .75);
+}
+
+.reservation-infos-resident {
+    color: $white;
+    line-height: 2rem;
+    font-size: 1rem;
+
+    &:hover {
+        color: $white;
+        text-decoration: underline;
+    }
+}
+
+.reservation-details {
+    border: 1px solid rgba($black, .1);
+    border-left: none;
+    border-radius: 0 .125rem .125rem 0;
+    padding: 1rem 1.5rem;
+
+    h3 {
+        font-size: 1rem;
+        font-weight: bold;
+        line-height: 2rem;
+        margin: 0;
+    }
+
+    p {
+        font-size: 1rem;
+        line-height: 1rem;
+        margin: 0 0 1rem;
+    }
+}
+
+.btn-reservation {
+    display: block;
+    width: 100%;
+    background-color: $white;
+    border-radius: .125rem;
+    min-width: 196px;
+    padding: 0 .25rem;
+    line-height: 2rem;
+    font-size: 1rem;
+}

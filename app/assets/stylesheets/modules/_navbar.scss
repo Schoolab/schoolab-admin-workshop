@@ -1,20 +1,23 @@
 .navbar-schoolab {
-    background-color: $brand-primary;
-    border-color: rgba(0, 0, 0, 0.1);
-    padding: 20px 0;
+    background-color: transparent;
+    border-color: none;
+    padding: 2rem 0;
+    margin: 0;
+    border: none;
 }
 
 .navbar-brand {
-    padding: 0 15px 0 0;
+    height: 3rem;
+    padding: 0 1rem;
     @include hide-text();
     position: relative;
 
     &:before {
         content: '🎓';
         font-family: $icons-font;
-        font-size: 50px;
+        font-size: 3rem;
         color: $whitesmoke;
-        font-size: 50px;
+        font-size: 3rem;
         line-height: initial;
         display: block;
         @include font-smoothing();
@@ -22,7 +25,59 @@
 
     &:hover {
         &:before {
-            color: $grey-light;
+            animation: brand-anim .5s infinite;
         }
     }
+}
+
+.navbar-toggle {
+    background-color: $white;
+    color: $grey;
+}
+
+.navbar-toggle .icon-bar {
+    background-color: $grey;
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+}
+
+.navbar-toggle .icon-bar+.icon-bar {
+    margin-top: 4px;
+}
+
+.navbar-nav > li > a {
+    line-height: 2rem;
+}
+
+.nav {
+    .open {
+        & > a, & > a:hover, & > a:focus {
+            background-color: transparent;
+            color: $whitesmoke;
+        }
+    }
+
+    & > li > a {
+        padding: .5rem;
+
+        &:hover, &:focus {
+            background-color: transparent;
+            color: $white;
+        }
+    }
+}
+
+.navbar-right {
+    margin-right: -.5rem;
+}
+
+.navbar-thumbnail {
+    margin-left: .5rem;
+}
+
+.dropdown-menu {
+    border-radius: 0;
+    padding: .5rem 0;
 }

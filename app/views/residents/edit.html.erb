@@ -1,5 +1,9 @@
-<h2>Modifier un résident</h2>
-
-<%= simple_form_for @user, url: resident_path(@user) do |f| %>
-  <%= render 'form', user: @user, form: f %>
-<% end %>
+<div class="card col-xs-12">
+    <h2 class="card-title">Modifier un résident</h2>
+    
+    <div class="card-group">
+        <%= simple_form_for @user, url: resident_path(@user) do |f| %>
+          <%= render 'form', user: @user, form: f %>
+        <% end %>
+    </div>
+</div>

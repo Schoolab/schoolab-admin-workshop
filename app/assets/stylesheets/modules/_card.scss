@@ -1,0 +1,39 @@
+.card {
+    background-color: $white;
+    border: 1px solid rgba($black, .1);
+    box-shadow: 0 2px 4px rgba($black, .04);
+    padding: 2rem 0;
+    margin-bottom: 1rem;
+}
+
+.card-group {
+    margin-bottom: 1rem;
+    padding: 0 1.5rem;
+}
+
+.card-group:last-of-type {
+    margin-bottom: 0;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin: 0 0 1rem;
+    padding: 0 1.5rem;
+}
+
+.img-thumbnail + .card-title {
+    margin: 1rem 0;
+}
+
+.card-title-prefix {
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1rem;
+    color: $brand-blue;
+    padding: 0 1rem;
+}
+
+.card-muted {
+    color: $grey;
+}
