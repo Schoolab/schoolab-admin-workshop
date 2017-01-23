@@ -1,7 +1,9 @@
-<div class="card col-xs-12">
-  <h2 class="card-title">Étages</h2>
+<div class="panel col-xs-12">
+  <div class="panel-heading">
+    <h2>Étages</h2>
+  </div>
   <% if can? :manage, Floor %>
-  <div class="card-group">
+  <div class="panel-body">
     <%= link_to 'Ajouter un étage', new_floor_path, class: 'btn btn-primary btn-sm' %>
   </div>
   <% end %>

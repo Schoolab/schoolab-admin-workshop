@@ -1,17 +1,27 @@
 .reservation-grid {
     margin: 0 -.5rem;
-    
+    padding: .5rem 1.5rem 1.5rem;
+
     .reservation {
-        width: 25%;
+        width: 100%;
         padding: .5rem;
         display: inline-block;
         float: left;
+
+        @include rwd-xs {
+            width: 50%;
+        }
+
+        @include rwd-lg {
+            width: 25%;
+        }
     }
 }
 
 .reservation-list {
     margin: 0;
-    
+    padding: 0 1.5rem 1rem;
+
     .reservation {
         width: 100%;
         margin: 1rem 0;
@@ -23,6 +33,10 @@
     overflow: hidden;
     display: flex;
     flex-direction: row;
+
+    @include rwd-max-width(700px) {
+      flex-direction: column;
+    }
 }
 
 .reservation.booked {
@@ -58,6 +72,17 @@
     &:only-child {
         width: 100%;
         border-radius: .125rem;
+    }
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
+        @include linearGradient(rgba($black,0), rgba($black, .25));
     }
 }
 

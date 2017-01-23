@@ -7,7 +7,9 @@
         <%= f.input :name, label: "Nom de l'entreprise" %>
         <%= f.association :floor %>
         <% if @company.image.file? %>
-          <%= image_tag @company.image.url(:medium), class: 'img-thumbnail' %>
+          <div class="img-thumbnail">
+          <%= image_tag @company.image.url(:medium) %>
+          </div>
           <br><br>
         <% end %>
         <%= f.input :image, as: :file %>

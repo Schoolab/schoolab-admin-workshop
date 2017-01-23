@@ -1,7 +1,9 @@
-<div class="card col-xs-12">
-  <h2 class="card-title">Liste des résidents</h2>
+<div class="panel col-xs-12">
+  <div class="panel-heading">
+    <h2>Liste des résidents</h2>
+  </div>
 
-  <div class="card-group">
+  <div class="panel-body">
     <%= link_to "Ajouter un résident", new_resident_path, class: 'btn btn-primary btn-sm' %>
   </div>
 
@@ -44,7 +46,7 @@
             <% end %>
           </td>
           <td>
-            <%= link_to resident_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do %>
+            <%= link_to resident_path(user), method: :delete, data: { confirm: 'Êtes-vous sûr ?' }, class: 'btn btn-danger btn-xs' do %>
               <span class="glyphicon glyphicon-remove"></span>
             <% end %>
           </td>

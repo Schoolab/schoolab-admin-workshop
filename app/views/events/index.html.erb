@@ -1,6 +1,8 @@
-<div class="card col-xs-12">
-  <h2 class="card-title">Événements</h2>
-  <div class="card-group">
+<div class="panel col-xs-12">
+  <div class="panel-heading">
+    <h2>Événements</h2>
+  </div>
+  <div class="panel-body">
     <%= link_to "Créer un événement", new_event_path, class: 'btn btn-primary btn-sm' %>
   </div>
 
@@ -37,9 +39,10 @@
   </table>
 </div>
 
-<div class="card col-xs-12 fade">
-
-  <h3 class="card-title">Événements passés</h3>
+<div class="panel col-xs-12 fade">
+  <div class="panel-heading">
+    <h2>Événements passés</h2>
+  </div>
 
   <table class="table datatable" data-paging="false" data-info="false">
     <thead>

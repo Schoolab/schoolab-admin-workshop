@@ -28,7 +28,9 @@
   <div class="row">
     <div class="col-md-6">
       <% if @user.photo.file? %>
-      <%= image_tag @user.photo.url(:thumb), class: 'img-thumbnail pull-left', style: 'margin-right: 10px;' %>
+        <div class="img-thumbnail pull-left" style="margin-right: 1rem;">
+          <%= image_tag @user.photo.url(:thumb) %>
+        </div>
       <% end %>
       <%= form.input :photo, as: :file %>
     </div>

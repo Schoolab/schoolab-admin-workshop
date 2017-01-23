@@ -1,20 +1,35 @@
 .panel {
-    border: none;
-    border-bottom: 2px solid rgba($black, .1);
-    border-radius: 0px;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    background-color: #FEFEFE;
+    border-color: rgba($black, .1);
+    border-radius: .125rem;
+    box-shadow: 0 .125rem .25rem rgba($black, .04);
+    background-color: $white;
+    padding: 2rem 0;
+    width: 100%;
 }
 
 .panel-heading {
-    background-color: $white;
+    background-color: transparent;
     border: none;
-    border-top-right-radius: 0px;
-    border-top-left-radius: 0px;
+    padding: 0 1.5rem 1rem;
 }
 
 .panel-default > .panel-heading {
-    background-color: $white;
-    padding: 15px;
+    background-color: transparent;
+    padding: 2rem 1.5rem 1rem;
+}
+
+.panel-body {
+    padding: 1rem 1.5rem 0;
+}
+
+.panel-heading-prefix {
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1rem;
+    color: $brand-blue;
+    padding: 0 1rem;
+}
+
+.img-thumbnail + .panel-heading {
+    margin: 1rem 0 0;
 }

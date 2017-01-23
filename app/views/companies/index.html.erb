@@ -1,7 +1,9 @@
-<div class="card col-xs-12">
-  <h2 class="card-title">Entreprises résidentes</h2>
+<div class="panel col-xs-12">
+  <div class="panel-heading">
+    <h2>Entreprises résidentes</h2>
+  </div>
   <% if can? :manage, Company %>
-  <div class="card-group">
+  <div class="panel-body">
     <%= link_to 'Nouvelle entreprise', new_company_path, class: 'btn btn-primary btn-sm' %>
   </div>
   <% end %>

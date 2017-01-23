@@ -1,7 +1,12 @@
 .btn {
-    border-radius: 0;
+    border-radius: .125rem;
+    border: none;
 }
 
 .btn-header-signup {
-    margin-right: 15px;
+    margin-right: .5rem;
+}
+
+.btn-default {
+    background-color: #DDDDDD;
 }
