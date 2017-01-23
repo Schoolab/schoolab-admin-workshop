@@ -50,11 +50,11 @@
             </div>
             <div class="reservation-infos-bottom">
               <% if reservation.user == current_user && reservation.start_time > Time.current %>
-              <%= link_to "Annuler", reservation, method: :delete, class: 'btn btn-reservation', style: 'color:' + reservation.meeting_room.colour + ';' %>
+                <%= link_to "Annuler", reservation, method: :delete, class: 'btn btn-reservation', style: 'color:' + reservation.meeting_room.colour + ';' %>
               <% elsif (reservation.start_time <= Time.current && reservation.end_time >= Time.current) %>
-              <span class="btn-reservation" style="color:<%= reservation.meeting_room.colour %>;">En cours</span>
+                <span class="btn-reservation" style="color:<%= reservation.meeting_room.colour %>;">En cours</span>
               <%else %>
-              <span class="btn-reservation" style="color:<%= reservation.meeting_room.colour %>;">Terminée</span>
+                <span class="btn-reservation" style="color:<%= reservation.meeting_room.colour %>;">Terminée</span>
               <% end %>
             </div>
           </div>
