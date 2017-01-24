@@ -34,6 +34,10 @@ class User < ApplicationRecord
     end
   end
 
+  def choose_name
+    self.name + " / " + self.company_name
+  end
+
   private
   def set_default_role
     self.role = "user"

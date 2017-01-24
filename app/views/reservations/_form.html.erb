@@ -15,7 +15,7 @@
         <%= f.association :meeting_room %>
       </div>
       <div class="col-md-6">
-        <%= f.association :user, collection: User.order('first_name ASC, last_name ASC') %>
+        <%= f.association :user, collection: User.order('first_name ASC, last_name ASC'), label_method: :choose_name %>
       </div>
     </div>
   </div>
