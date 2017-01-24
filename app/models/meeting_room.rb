@@ -24,4 +24,6 @@ class MeetingRoom < ApplicationRecord
       return false
     end
   end
+
+
 end

@@ -64,7 +64,8 @@ class ReservationsController < ApplicationController
     if params.has_key?(:room_search)
       @search = RoomSearch.new(search_params)
       @search.length = params[:room_search]["length_time(4i)"].to_i * 3600 + params[:room_search]["length_time(5i)"].to_i * 60
-      @rooms = MeetingRoom.all
+      @available_rooms = MeetingRoom.all.order(:floor_id).select { |m| !m.reservation_at(@search.start_time, @search.start_time + @search.length.to_s.to_i)}
+      @unavailable_rooms = MeetingRoom.all.order(:floor_id).select { |m| m.reservation_at(@search.start_time, @search.start_time + @search.length.to_s.to_i)}
       @reservation = Reservation.new
     else
       @search = RoomSearch.new
