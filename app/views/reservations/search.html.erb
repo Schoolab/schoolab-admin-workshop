@@ -72,9 +72,7 @@
                     </div>
                     <% if reservation.user == current_user %>
                       <%= link_to "Annuler", reservation, method: :delete, class: 'btn btn-reservation', style: 'color:' + room.colour + ';' %>
-                    <% elsif (reservation.start_time <= Time.current && reservation.end_time >= Time.current) %>
-                      <span class="btn-reservation" style="color:<%= reservation.meeting_room.colour %>;">En cours</span>
-                    <%else %>
+                    <% else %>
                       <%= link_to reservation.user.name, resident_path(reservation.user), class: 'reservation-infos-resident' %>
                     <% end %>
 
