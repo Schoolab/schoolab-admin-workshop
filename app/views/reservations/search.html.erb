@@ -20,7 +20,7 @@
 <div class="panel col-xs-12">
 <% if @available_rooms.present? %>
 
-  <h2 class="panel-heading txt-c"><%= @available_rooms.count %> salles disponibles</h2>
+  <h2 class="panel-heading txt-c"><%= @available_rooms.count %> <%= pluralize(@unavailable_rooms.count, 'salle') %> <%= pluralize(@unavailable_rooms.count, 'disponible' %></h2>
 
   <% reservation_end_time = @search.start_time + @search.length.to_s.to_i %>
 
@@ -109,7 +109,7 @@
 
   <br>
 
-  <h2 class="panel-heading txt-c"><%= @unavailable_rooms.count %> salles non disponibles</h2>
+  <h2 class="panel-heading txt-c"><%= @unavailable_rooms.count %> <%= pluralize(@unavailable_rooms.count, 'salle') %> non <%= pluralize(@unavailable_rooms.count, 'disponible' %></h2>
 
   <% reservation_end_time = @search.start_time + @search.length.to_s.to_i %>
 
