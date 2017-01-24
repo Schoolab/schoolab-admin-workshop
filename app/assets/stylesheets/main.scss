@@ -1,0 +1,68 @@
+/**
+* Description: This file import all the CSS files that needed in all pages of the app.
+* Version: 1.1.0
+* Last update: 2017/01/18
+* Author: Alexandre Jolly <hello@alexandrejolly.com>
+*
+* Summary:
+*
+*    1. SETTINGS
+*    2. ASSETS
+*    3. BASE
+*    4. MODULES
+*    5. LAYOUTS
+*    6. HELPERS
+*    7. THEMES
+*
+*/
+
+/* ==========================================================================
+1. SETTINGS
+========================================================================== */
+@import "settings/variables";
+@import "settings/mixins";
+
+// Import bootstrap
+@import "bootstrap";
+
+/* ==========================================================================
+2. ASSETS
+========================================================================== */
+@import "assets/fonts";
+
+/* ==========================================================================
+3. BASE
+========================================================================== */
+@import "base/base";
+
+/* ==========================================================================
+4. MODULES
+========================================================================== */
+@import "modules/alert";
+@import "modules/btn";
+@import "modules/colour-square";
+@import "modules/form";
+@import "modules/input";
+@import "modules/navbar";
+@import "modules/panel";
+@import "modules/profile";
+@import "modules/reservation";
+@import "modules/table";
+@import "modules/thumbnail";
+
+/* ==========================================================================
+5. LAYOUTS
+========================================================================== */
+@import "layouts/base";
+
+/* ==========================================================================
+6. HELPERS
+========================================================================== */
+@import "helpers/base";
+@import "helpers/fade";
+@import "helpers/animations";
+
+/* ==========================================================================
+7. THEMES
+========================================================================== */
+// @import "themes/default";

@@ -1,0 +1,13 @@
+tr.today {
+  background-color: #F6F6F6;
+  &:last-of-type {
+    border-bottom: 1px solid #ccc;
+  }
+}
+
+.dataTables_wrapper {
+    .row:first-child, .row:last-child {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}

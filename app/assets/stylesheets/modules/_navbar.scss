@@ -1,0 +1,100 @@
+.navbar-schoolab {
+    background-color: transparent;
+    border-color: none;
+    padding: 2rem 0;
+    margin: 0;
+    border: none;
+}
+
+.navbar-brand {
+    height: 3rem;
+    padding: 0 1rem;
+    @include hide-text();
+    position: relative;
+
+    &:before {
+        content: '🎓';
+        font-family: $icons-font;
+        font-size: 3rem;
+        color: $whitesmoke;
+        font-size: 3rem;
+        line-height: initial;
+        display: block;
+        @include font-smoothing();
+    }
+
+    &:hover {
+        &:before {
+            animation: brand-anim .5s infinite;
+        }
+    }
+}
+
+.navbar-toggle {
+    background-color: $white;
+    color: $grey;
+}
+
+.navbar-toggle .icon-bar {
+    background-color: $grey;
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+}
+
+.navbar-toggle .icon-bar+.icon-bar {
+    margin-top: 4px;
+}
+
+.navbar-nav > li > a {
+    line-height: 2rem;
+}
+
+.nav {
+    .open {
+        & > a, & > a:hover, & > a:focus {
+            @include rwd-sm {
+              background-color: transparent;
+              color: $whitesmoke;
+            }
+        }
+    }
+
+    & > li > a {
+        padding: .5rem;
+
+        &:hover, &:focus {
+            @include rwd-sm {
+              background-color: transparent;
+              color: $white;
+            }
+        }
+    }
+}
+
+.navbar-right {
+    margin-right: -.5rem;
+}
+
+.navbar-thumbnail {
+    margin-left: .5rem;
+}
+
+.dropdown-menu {
+    border-radius: .125rem;
+    padding: .5rem 0;
+}
+
+.navbar-collapse.navbar-responsive-collapse {
+  @include rwd-max-width($screen-sm) {
+    margin-right: 0!important;
+    margin-left: 0!important;
+    background: white;
+    width: 100%;
+    border-radius: .125rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,.04);
+    border: 1px solid rgba(0,0,0,.1);
+    margin-top: 5rem;
+  }
+}

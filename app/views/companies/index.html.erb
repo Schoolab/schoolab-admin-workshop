@@ -1,29 +1,32 @@
-<h2>Entreprises résidentes</h2>
+<div class="panel col-xs-12">
+  <div class="panel-heading">
+    <h2>Entreprises résidentes</h2>
+  </div>
+  <% if can? :manage, Company %>
+  <div class="panel-body">
+    <%= link_to 'Nouvelle entreprise', new_company_path, class: 'btn btn-primary btn-sm' %>
+  </div>
+  <% end %>
 
-<table class="table datatable" data-paging="false" data-info="false">
-  <thead>
-    <tr>
-      <th>Nom</th>
-      <th>Étage</th>
-      <th data-orderable="false"></th>
-      <th data-orderable="false"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @companies.each do |company| %>
+  <table class="table datatable" data-paging="false" data-info="false">
+    <thead>
       <tr>
-        <td><%= company.name %></td>
-        <td><%= company.floor.present? ? company.floor.name : "N/A" %></td>
-        <td><%= link_to 'Modifier', edit_company_path(company), class: 'btn btn-default btn-xs' %></td>
-        <td><%= link_to 'Supprimer', company, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-xs' %></td>
+        <th>Nom</th>
+        <th>Étage</th>
+        <th data-orderable="false"></th>
+        <th data-orderable="false"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
-
-<% if can? :manage, Company %>
-<%= link_to 'Nouvelle entreprise', new_company_path %>
-<% end %>
+    <tbody>
+      <% @companies.each do |company| %>
+        <tr>
+          <td><%= company.name %></td>
+          <td><%= company.floor.present? ? company.floor.name : "N/A" %></td>
+          <td><%= link_to 'Modifier', edit_company_path(company), class: 'btn btn-default btn-xs' %></td>
+          <td><%= link_to 'Supprimer', company, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-xs' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

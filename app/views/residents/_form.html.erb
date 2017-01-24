@@ -22,13 +22,15 @@
       <%= form.input :title %>
     </div>
     <div class="col-md-6">
-      <%= form.association :company %>
+      <%= form.association :company, collection: Company.order('name ASC') %>
     </div>
   </div>
   <div class="row">
     <div class="col-md-6">
       <% if @user.photo.file? %>
-      <%= image_tag @user.photo.url(:thumb), class: 'img-thumbnail pull-left', style: 'margin-right: 10px;' %>
+        <div class="img-thumbnail pull-left" style="margin-right: 1rem;">
+          <%= image_tag @user.photo.url(:thumb) %>
+        </div>
       <% end %>
       <%= form.input :photo, as: :file %>
     </div>
@@ -38,5 +40,5 @@
 <br>
 
 <div class="form-actions">
-  <%= form.button :submit %>
+  <%= form.button :submit, class: 'btn btn-primary' %>
 </div>

@@ -1,0 +1,37 @@
+// Basic colors
+
+$white:                     #FFFFFF;
+$black:                     #000000;
+
+$grey-dark:                 #444444;
+$grey:                      #777777;
+$grey-light:                #999999;
+
+$whitesmoke-dark:           #EEEEEE;
+$whitesmoke:                #F5F5F5;
+$whitesmoke-light:          #FEFEFE;
+
+// Brand colors
+
+$brand-primary:             #202545;
+$brand-blue:                #377AF4;
+$brand-cyan:                #27DFF2;
+$brand-green:               #4FE88D;
+$brand-yellow:              #FDCC47;
+$brand-orange:              #FFA543;
+$brand-red:                 #F44E63;
+
+// Fonts
+
+$brand-font:                CircularStd, sans-serif;
+$icons-font:                Schoolab Icons;
+$primary-font:              Source Sans Pro, sans-serif;
+
+// Bootstrap 3
+
+$brand-success:             $brand-green !default;
+$brand-info:                $brand-blue !default;
+$brand-warning:             $brand-orange !default;
+$brand-danger:              $brand-red !default;
+
+$grid-gutter-width:         16px !default;

@@ -1,0 +1,95 @@
+// base
+
+.hidden {
+    display: none;
+}
+
+.v-hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.txt-l {
+    text-align: left;
+}
+
+.txt-r {
+    text-align: right;
+}
+
+.txt-c {
+    text-align: center;
+}
+
+.centered {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.txt-success {
+    color: $brand-green;
+}
+
+.txt-error {
+    color: $brand-red;
+}
+
+.lighter {
+    font-weight: lighter;
+}
+
+.lighter strong,
+.lighter b {
+    font-weight: normal;
+}
+
+.regular {
+    font-weight: normal;
+}
+
+.bold, .strong {
+    font-weight: bold;
+}
+
+.bigger {
+    font-size: 1.4em !important;
+    // vertical-align: inherit;
+}
+
+.big {
+    font-size: 1.2em !important;
+    // vertical-align: inherit;
+}
+
+.small {
+    font-size: 1rem !important;
+    // vertical-align: inherit;
+}
+
+.smaller {
+    font-size: .5em !important;
+    // vertical-align: inherit;
+}
+
+.block {
+    width: 100%;
+    display: block;
+}
+
+.pow {
+    font-size: 0.6em;
+    vertical-align: top;
+    margin: 0 0.2em;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.no-uppercase {
+    text-transform: none;
+}
+
+.muted {
+    color: $grey;
+}

@@ -1,0 +1,31 @@
+.img-thumbnail {
+    background-color: $grey-light;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    position: relative;
+
+    &:before {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 2px solid rgba($black, .1);
+    }
+}
+
+.no-thumb {
+    &:after {
+        content: "person";
+        font-family: Material Icons;
+        font-size: 4rem;
+        line-height: 4rem;
+        color: rgba($black,.25);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        @include vendor(transform, translate(-50%, -50%));
+    }
+}

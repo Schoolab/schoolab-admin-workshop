@@ -1,5 +1,11 @@
-<h2>Modifier un résident</h2>
-
-<%= simple_form_for @user, url: resident_path(@user) do |f| %>
-  <%= render 'form', user: @user, form: f %>
-<% end %>
+<div class="panel col-xs-12">
+    <div class="panel-heading">
+        <h2>Modifier un résident</h2>
+    </div>
+    
+    <div class="panel-body">
+        <%= simple_form_for @user, url: resident_path(@user) do |f| %>
+          <%= render 'form', user: @user, form: f %>
+        <% end %>
+    </div>
+</div>

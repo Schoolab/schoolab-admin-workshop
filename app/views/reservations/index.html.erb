@@ -1,73 +1,79 @@
-<h2>Reservations</h2>
+<div class="panel col-xs-12">
+  <div class="panel-heading">
+    <h2>Réservations</h2>
+  </div>
 
-<table class="datatable table" data-paging="false" data-info="false">
-  <thead>
-    <tr>
-      <!-- <th></th> -->
-      <th>Date</th>
-      <th>Horaires</th>
-      <th>Salle</th>
-      <th>Résident</th>
-      <th>Entreprise</th>
-      <th data-orderable="false"></th>
-      <th data-orderable="false"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @reservations.each do |reservation| %>
-      <tr
-      <% if reservation.start_time.midnight == Time.zone.today.midnight %>
-        class="today"
-      <% end %>
-      >
-        <!-- <td><%= reservation.id %></td> -->
-        <td><%= reservation.date %></td>
-        <td><%= reservation.time %></td>
-        <td><%= link_to reservation.meeting_room.name, reservation.meeting_room %></td>
-        <td><%= link_to reservation.user.name, resident_path(reservation.user) %></td>
-        <td><%= reservation.user.company.name %>
-        <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
-        <td><%= link_to 'Delete', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <table class="datatable table" data-paging="false" data-info="false">
+    <thead>
+      <tr>
+        <!-- <th></th> -->
+        <th>Date</th>
+        <th>Horaires</th>
+        <th>Salle</th>
+        <th>Résident</th>
+        <th>Entreprise</th>
+        <th data-orderable="false"></th>
+        <th data-orderable="false"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
-
-<h3 class="fade">Réservations passées</h3>
-
-<table class="datatable table fade" data-paging="false" data-info="false">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Date</th>
-      <th>Horaires</th>
-      <th>Salle</th>
-      <th>Résident</th>
-      <th>Entreprise</th>
-      <th data-orderable="false"></th>
-      <th data-orderable="false"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @past_reservations.each do |reservation| %>
-      <tr
-      <% if reservation.start_time.midnight == Time.zone.today.midnight %>
-        class="today"
+    <tbody>
+      <% @reservations.each do |reservation| %>
+        <tr
+        <% if reservation.start_time.midnight == Time.zone.today.midnight %>
+          class="today"
+        <% end %>
+        >
+          <!-- <td><%= reservation.id %></td> -->
+          <td><%= reservation.date %></td>
+          <td><%= reservation.time %></td>
+          <td><%= link_to reservation.meeting_room.name, reservation.meeting_room %></td>
+          <td><%= link_to reservation.user.name, resident_path(reservation.user) %></td>
+          <td><%= reservation.user.company_name %></td>
+          <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
+          <td><%= link_to 'Delete', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
       <% end %>
-      >
-        <td><%= reservation.id %></td>
-        <td><%= reservation.date %></td>
-        <td><%= reservation.time %></td>
-        <td><%= link_to reservation.meeting_room.name, reservation.meeting_room %></td>
-        <td><%= link_to reservation.user.name, resident_path(reservation.user) %></td>
-        <td><%= reservation.user.company.name %>
-        <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
-        <td><%= link_to 'Delete', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tbody>
+  </table>
+</div>
+
+<div class="panel col-xs-12 fade">
+  <div class="panel-heading">
+    <h2>Réservations passées</h2>
+  </div>
+
+  <table class="datatable table" data-paging="false" data-info="false">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Date</th>
+        <th>Horaires</th>
+        <th>Salle</th>
+        <th>Résident</th>
+        <th>Entreprise</th>
+        <th data-orderable="false"></th>
+        <th data-orderable="false"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @past_reservations.each do |reservation| %>
+        <tr
+        <% if reservation.start_time.midnight == Time.zone.today.midnight %>
+          class="today"
+        <% end %>
+        >
+          <td><%= reservation.id %></td>
+          <td><%= reservation.date %></td>
+          <td><%= reservation.time %></td>
+          <td><%= link_to reservation.meeting_room.name, reservation.meeting_room %></td>
+          <td><%= link_to reservation.user.name, resident_path(reservation.user) %></td>
+          <td><%= reservation.user.company.name %></td>
+          <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
+          <td><%= link_to 'Delete', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

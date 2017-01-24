@@ -1,72 +1,109 @@
-<h2>Réserver une salle</h2>
+<div class="panel col-xs-12 txt-c">
+  <h2 class="panel-heading">Réserver une salle</h2>
 
-<%= simple_form_for @search, url: search_reservations_path, method: :get do |f| %>
+  <%= simple_form_for @search, url: search_reservations_path, method: :get do |f| %>
 
-<div class="row">
+  <div class="panel-body">
+    <div class="form-sentence muted">
+      J’ai besoin d’une salle le
+      <%= f.input :start_time, as: :datetime, minute_step: 30, label: false %>
+      pendant
+      <%= f.input :length_time, as: :time, minute_step: 30, default: Time.parse('1:00'), start_hour: 0, end_hour: 4, label: false %>.
+    </div>
 
-  <div class="col-md-6">
-    <%= f.input :start_time, as: :datetime, minute_step: 30, label: "Heure" %>
+    <%= f.submit "Rechercher", class: 'btn btn-primary' %>
   </div>
 
-  <div class="col-md-6">
-    <%= f.input :length_time, as: :time, minute_step: 30, default: Time.parse('1:00'), start_hour: 0, end_hour: 4, label: "Durée" %>
-  </div>
-
+  <% end %>
 </div>
 
-<%= f.submit "Rechercher", class: 'btn btn-primary' %>
-
-<% end %>
-
 <% if @rooms.present? %>
+<div class="panel col-xs-12">
 
-  <h3>Résultats : <%= @search.start_time.strftime('%e %b %Y') %></h3>
+  <h2 class="panel-heading txt-c"><%= @rooms.count %> salles disponibles</h2>
 
   <% reservation_end_time = @search.start_time + @search.length.to_s.to_i %>
 
-  <table class="table">
+  <div class="panel-body reservation-grid">
+  <% @rooms.order(:floor_id).each do |room| %>
 
-    <thead>
-      <tr>
-        <th></th>
-        <th>Salle</th>
-        <th>Réservations</th>
-      </tr>
-    </thead>
+    <div class="reservation <%= reservations = room.reservation_at(@search.start_time, reservation_end_time) ? 'booked' : '' %>">
+      <div class="reservation-infos" style="background-color: <%= room.colour %>">
+          <div class="reservation-infos-content">
+              <div class="reservation-infos-name">
+                  <%= room.name %>
+              </div>
+              <div class="reservation-infos-floor">
+                  <%= room.floor.present? ? room.floor.name : "N/A" %>
+              </div>
+          </div>
+          <div class="reservation-infos-bottom">
+              <% if reservations = room.reservation_at(@search.start_time, reservation_end_time) %>
 
-    <tbody>
+                <% if reservations.count > 1 %>
+                  <%-# More than 1 reservation -%>
+                  <span class="btn btn-reservation">Réservé</span>
+                  <div class="reservation-infos-resident-list">
+                    <% reservations.each do |reservation| %>
+                      <div class="reservation-infos-prefix">
+                        Réservé de <%= reservation.start_time.strftime('%Hh') + (reservation.start_time.strftime('%M') != '00' ? reservation.start_time.strftime('%M') : '') + ' à ' + reservation.end_time.strftime('%Hh') + (reservation.end_time.strftime('%M') != '00' ? reservation.end_time.strftime('%M') : '') %> par
+                      </div>
+                      <% if reservation.user == current_user %>
+                        <span class="reservation-infos-resident">Vous (<%= link_to "Annuler", reservation, method: :delete %>)</span>
+                      <% else %>
+                        <%= link_to reservation.user.name, resident_path(reservation.user), class: 'reservation-infos-resident' %>
+                      <% end %>
+                    <% end %>
+                  </div>
 
-<% @rooms.each do |room| %>
+                <% else %>
 
-      <tr>
-        <td><div class="colour-square" style="background-color: <%= room.colour %>"></div></td>
-        <td><%= room.name %></td>
-        <td>
-          <% if reservations = room.reservation_at(@search.start_time, reservation_end_time) %>
-            <% reservations.each do |reservation| %>
-              <%= link_to reservation.user.name, resident_path(reservation.user) %> | <%= reservation.time %>
-              <% if reservation.user == current_user %>
-               | <%= link_to "Annuler", reservation, method: :delete %>
+                  <%-# 1 reservation -%>
+                  <% reservations.each do |reservation| %>
+                    <div class="reservation-infos-prefix">
+                      Réservé
+                      <%= 'de ' +
+                        reservation.start_time.strftime('%Hh') +
+                        (reservation.start_time.strftime('%M') != '00' ? reservation.start_time.strftime('%M') : '') +
+                        ' à ' +
+                        reservation.end_time.strftime('%Hh') +
+                        (reservation.end_time.strftime('%M') != '00' ? reservation.end_time.strftime('%M') : '') %>
+                      <%= reservation.user != current_user ? 'par' : ' ' %>
+                    </div>
+                    <% if reservation.user == current_user %>
+                      <%= link_to "Annuler", reservation, method: :delete, class: 'btn btn-reservation', style: 'color:' + room.colour + ';' %>
+                    <% elsif (reservation.start_time <= Time.current && reservation.end_time >= Time.current) %>
+                      <span class="btn-reservation" style="color:<%= reservation.meeting_room.colour %>;">En cours</span>
+                    <%else %>
+                      <%= link_to reservation.user.name, resident_path(reservation.user), class: 'reservation-infos-resident' %>
+                    <% end %>
+
+                  <% end %>
+                <% end %>
+
+              <% else %>
+
+                <%= simple_form_for @reservation do |f| %>
+                  <%= f.input :meeting_room_id, as: :hidden, input_html: { value: room.id } %>
+                  <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+                  <%= f.input :start_time, as: :hidden, input_html: { value: @search.start_time } %>
+                  <%= f.input :end_time, as: :hidden, input_html: { value: reservation_end_time } %>
+                  <% label = "Réserver de " +
+                      @search.start_time.strftime('%Hh') +
+                      (@search.start_time.strftime('%M') != '00' ? @search.start_time.strftime('%M') : '') +
+                      ' à ' +
+                      reservation_end_time.strftime('%Hh') +
+                      (reservation_end_time.strftime('%M') != '00' ? reservation_end_time.strftime('%M') : '') %>
+                  <%= f.submit label, class: 'btn btn-reservation', style: 'color:' + room.colour + ';' %>
+
+                <% end %>
               <% end %>
-              <br>
-            <% end %>
-          <% else %>
-            <%= simple_form_for @reservation do |f| %>
-              <%= f.input :meeting_room_id, as: :hidden, input_html: { value: room.id } %>
-              <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
-              <%= f.input :start_time, as: :hidden, input_html: { value: @search.start_time } %>
-              <%= f.input :end_time, as: :hidden, input_html: { value: reservation_end_time } %>
-              <% label = "Réserver de " + @search.start_time.strftime('%Hh%M') + " à " + reservation_end_time.strftime('%Hh%M') %>
-              <%= f.submit label, class: 'btn btn-default btn-xs' %>
-            <% end %>
-          <% end %>
-        </td>
-      </tr>
+          </div>
+      </div>
+    </div>
 
-<% end %>
+  <% end %>
+  </div>
 
-    </tbody>
-
-  </table>
-
+</div>
 <% end %>
