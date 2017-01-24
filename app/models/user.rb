@@ -32,6 +32,7 @@ class User < ApplicationRecord
     else
       "N/A"
     end
+  end
 
   private
   def set_default_role
