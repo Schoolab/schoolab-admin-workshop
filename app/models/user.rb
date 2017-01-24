@@ -26,6 +26,13 @@ class User < ApplicationRecord
     self.first_name + " " + self.last_name
   end
 
+  def company_name
+    if self.company.present?
+      self.company.name
+    else
+      "N/A"
+    end
+
   private
   def set_default_role
     self.role = "user"

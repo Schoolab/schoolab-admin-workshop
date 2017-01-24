@@ -29,7 +29,7 @@
           <td><%= reservation.time %></td>
           <td><%= link_to reservation.meeting_room.name, reservation.meeting_room %></td>
           <td><%= link_to reservation.user.name, resident_path(reservation.user) %></td>
-          <td><%= reservation.user.company.name %></td>
+          <td><%= reservation.user.company_name %></td>
           <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
           <td><%= link_to 'Delete', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>

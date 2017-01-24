@@ -22,7 +22,7 @@
       <%= form.input :title %>
     </div>
     <div class="col-md-6">
-      <%= form.association :company %>
+      <%= form.association :company, collection: Company.order('name ASC') %>
     </div>
   </div>
   <div class="row">
