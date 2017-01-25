@@ -41,7 +41,7 @@
       </div>
 
       <div class="panel-body reservation-list">
-        <% @user.reservations.order('reservations.start_time DESC').each do |reservation| %>
+        <% @user.reservations.order('reservations.start_time ASC').each do |reservation| %>
           <div class="reservation booked">
             <div class="reservation-infos" style="background-color: <%= reservation.meeting_room.colour %>">
               <div class="reservation-infos-content">
