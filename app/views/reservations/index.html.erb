@@ -41,7 +41,7 @@
     <h2>Réservations passées</h2>
   </div>
 
-  <table class="datatable table" data-paging="false" data-info="false" data-order="0 DESC, 1 ASC">
+  <table class="datatable table" data-paging="false" data-info="false" data-order="0 DESC">
     <thead>
       <tr>
         <th>Date</th>
@@ -65,7 +65,7 @@
           <td><%= reservation.time %></td>
           <td><%= link_to reservation.meeting_room.name, reservation.meeting_room %></td>
           <td><%= link_to reservation.user.name, resident_path(reservation.user) %></td>
-          <td><%= reservation.user.company.name %></td>
+          <td><%= reservation.user.company.present? ? reservation.user.company.name : "N/A" %></td>
           <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
           <td><%= link_to 'Delete', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
