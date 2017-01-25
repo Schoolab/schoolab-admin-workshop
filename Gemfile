@@ -59,6 +59,9 @@ gem 'simple_form'
 # SendGrid
 gem 'sendgrid-ruby'
 
+# Internationalization
+gem 'rails-i18n'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

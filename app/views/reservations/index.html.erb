@@ -6,7 +6,6 @@
   <table class="datatable table" data-paging="false" data-info="false">
     <thead>
       <tr>
-        <!-- <th></th> -->
         <th>Date</th>
         <th>Horaires</th>
         <th>Salle</th>
@@ -24,8 +23,7 @@
           class="today"
         <% end %>
         >
-          <!-- <td><%= reservation.id %></td> -->
-          <td><%= reservation.date %></td>
+          <td data-order="<%= reservation.start_time %>"><%= reservation.friendly_date %></td>
           <td><%= reservation.time %></td>
           <td><%= link_to reservation.meeting_room.name, reservation.meeting_room %></td>
           <td><%= link_to reservation.user.name, resident_path(reservation.user) %></td>
@@ -43,10 +41,9 @@
     <h2>Réservations passées</h2>
   </div>
 
-  <table class="datatable table" data-paging="false" data-info="false">
+  <table class="datatable table" data-paging="false" data-info="false" data-order="0 DESC, 1 ASC">
     <thead>
       <tr>
-        <th></th>
         <th>Date</th>
         <th>Horaires</th>
         <th>Salle</th>
@@ -64,8 +61,7 @@
           class="today"
         <% end %>
         >
-          <td><%= reservation.id %></td>
-          <td><%= reservation.date %></td>
+          <td data-order="<%= reservation.start_time %>"><%= reservation.friendly_date %></td>
           <td><%= reservation.time %></td>
           <td><%= link_to reservation.meeting_room.name, reservation.meeting_room %></td>
           <td><%= link_to reservation.user.name, resident_path(reservation.user) %></td>

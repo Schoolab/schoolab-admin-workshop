@@ -32,7 +32,7 @@
   <div class="col-xs-12 col-md-8">
     <div class="panel">
       <div class="panel-heading">
-        <h2>Vos réservations aujourd'hui</h2>
+        <h2>Vos réservations</h2>
       </div>
       <div class="panel-body reservation-list">
 
@@ -64,7 +64,7 @@
               <% if reservation.start_time.today? %>
               Aujourd'hui
               <% else %>
-              <%= reservation.date %>
+              <%= reservation.friendly_date %>
               <% end %>
               <%= 'de ' +
               reservation.start_time.strftime('%Hh') +

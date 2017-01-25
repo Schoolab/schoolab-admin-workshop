@@ -21,6 +21,8 @@ module SchoolappBack
     end
 
     config.time_zone = 'Paris'
+    config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+    config.i18n.default_locale = :fr
     config.active_record.default_timezone = :local
     config.active_record.time_zone_aware_types = [:datetime, :time]
     config.assets.paths << Rails.root.join("app", "assets", "fonts")

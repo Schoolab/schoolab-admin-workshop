@@ -13,6 +13,10 @@ class Reservation < ApplicationRecord
     self.start_time.strftime('%d/%m/%y')
   end
 
+  def friendly_date
+    I18n.l(self.start_time, format: '%A %e %B')
+  end
+
   def time
     time = self.start_time.strftime('%Hh%M')
     time += self.end_time.strftime(' - %Hh%M')
