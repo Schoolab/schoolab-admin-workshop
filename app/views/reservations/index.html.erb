@@ -6,7 +6,7 @@
   <table class="datatable table" data-paging="false" data-info="false">
     <thead>
       <tr>
-        <th>Date</th>
+        <th data-orderable="false">Date</th>
         <th>Horaires</th>
         <th>Salle</th>
         <th>Résident</th>
@@ -25,7 +25,7 @@
         <% end %>
         >
           <% if reservation.friendly_date == last_date %>
-          <td data-order="<%= reservation.start_time %>"></td>
+          <td data-order="<%= reservation.start_time %>" style="border-bottom: none;"></td>
           <% else %>
           <% last_date = reservation.friendly_date %>
           <td data-order="<%= reservation.start_time %>"><%= reservation.friendly_date %></td>
