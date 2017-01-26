@@ -17,13 +17,19 @@
     </thead>
 
     <tbody>
+      <% last_date = nil %>
       <% @reservations.each do |reservation| %>
         <tr
         <% if reservation.start_time.midnight == Time.zone.today.midnight %>
           class="today"
         <% end %>
         >
+          <% if reservation.friendly_date == last_date %>
+          <td data-order="<%= reservation.start_time %>"></td>
+          <% else %>
+          <% last_date = reservation.friendly_date %>
           <td data-order="<%= reservation.start_time %>"><%= reservation.friendly_date %></td>
+          <% end %>
           <td><%= reservation.time %></td>
           <td><%= link_to reservation.meeting_room.name, reservation.meeting_room %></td>
           <td><%= link_to reservation.user.name, resident_path(reservation.user) %></td>
