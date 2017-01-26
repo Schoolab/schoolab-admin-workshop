@@ -76,7 +76,7 @@
               %>
             </p>
             <h3 class="reservation-details-title muted">Information de la salle</h3>
-            <p class="muted">Cette salle est située au <%= reservation.meeting_room.floor.present? ? reservation.meeting_room.floor.name : "N/A" %>. Il y a une réunion avant la votre jusqu’à 11h30.</p>
+            <p class="muted">Cette salle est située au <%= reservation.meeting_room.floor.present? ? reservation.meeting_room.floor.name : "N/A" %>. <%#-Il y a une réunion avant la votre jusqu’à 11h30.%></p>
           </div>
         </div>
 
