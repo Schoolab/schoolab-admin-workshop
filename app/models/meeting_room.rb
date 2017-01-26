@@ -1,7 +1,7 @@
 class MeetingRoom < ApplicationRecord
   belongs_to :floor
 
-  has_many :reservations
+  has_many :reservations, dependent: :destroy
 
   def reservation_at(start_time, end_time)
     reservations = []
