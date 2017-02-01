@@ -6,14 +6,14 @@
   border-radius: .125rem;
 }
 
-.form-control {
-  height: 2rem;
+.form-control, select {
   border-color: $brand-15;
   border-radius: .125rem;
   box-shadow: none;
-  padding: .25rem .5rem;
+  padding: 0 .5rem;
   font-size: 1rem;
-  line-height: 1.5rem;
+  line-height: 2rem;
+  color: $brand-75;
 
   &:hover {
     border-color: $brand-25;
@@ -41,4 +41,116 @@
     line-height: 2rem;
     color: $grey-dark;
   }
+}
+
+select {
+  border: 1px solid $brand-75;
+  cursor: pointer;
+
+  -webkit-user-select: none;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  user-select: none;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  &:focus {
+    background-color: $brand-10;
+  }
+
+  &:-moz-focusring {
+      color: transparent;
+      text-shadow: 0 0 0 $black;
+  }
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+  margin-bottom: 0;
+}
+
+.inputfile + label .label-btn {
+  border-radius: .125rem;
+  font-weight: normal;
+  font-size: .875rem;
+  line-height: 2rem;
+  display: inline-block;
+  background-color: $brand-blue;
+  border: 1px solid $brand-blue;
+  color: $white;
+  padding: 0 1rem 0 2.25rem;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+
+  &:hover {
+    &:before {
+      transform: scaleX(1) skew(0deg);
+      transition: transform .25s ease-out;
+    }
+  }
+
+  &:before {
+    content: "";
+    background-color: rgba($black,.25);
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: scaleX(0) skew(-30deg);
+    transform-origin: 0 0;
+    transition: transform .2s ease-in;
+  }
+
+  &:after {
+    content: "cloud_upload";
+    font-family: Material Icons;
+    font-size: 1.25rem;
+    line-height: 2rem;
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    top: 0;
+    left: .125rem;
+    text-align: center;
+    color: inherit;
+  }
+}
+
+.inputfile:focus + label .label-btn {
+  border: 1px solid rgba($black, .25);
+  box-shadow: 0 .125rem .25rem $box-shadow-color;
+
+  &:before {
+    transform: scaleX(1) skew(0deg);
+    transition: transform .25s ease-out;
+  }
+}
+
+.inputfile + label .label-btn * {
+	pointer-events: none;
+}
+
+.label-filename {
+  display: inline-block;
+  line-height: 2rem;
+  padding: 0 1rem;
+  font-size: 1rem;
+  font-weight: normal;
+  float: right;
+  color: $brand-50;
 }

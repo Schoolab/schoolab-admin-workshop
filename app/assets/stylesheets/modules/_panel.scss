@@ -5,6 +5,7 @@
     background-color: $white;
     padding: 2rem 0;
     width: 100%;
+    color: $brand-75;
 }
 
 .panel-heading {
@@ -19,7 +20,7 @@
 }
 
 .panel-body {
-    padding: .5rem 1.5rem 0;
+    padding: 0 1.5rem;
 }
 
 .panel-heading-prefix {
@@ -32,4 +33,8 @@
 
 .img-thumbnail + .panel-heading {
     margin: 1rem 0 0;
+}
+
+.panel-grey {
+  background-color: $brand-05;
 }

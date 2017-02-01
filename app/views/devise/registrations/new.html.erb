@@ -1,56 +1,121 @@
-<%= bootstrap_devise_error_messages! %>
-<div class="panel panel-default devise-bs">
-  <div class="panel-heading">
-    <h4><%= t('.sign_up', :default => "Sign up") %></h4>
+<div class="row">
+  <div class="col-xs-12 col-md-5">
+
+    <div class="panel">
+      <div class="panel-heading">
+        <h2><%= t('.sign_in', :default => "Sign in") %></h2>
+      </div>
+      <div class="panel-body">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f| %>
+          <div class="form-group">
+            <%= f.label :email, class: "sr-only" %>
+            <%= f.email_field :email, autofocus: true, placeholder: "Adresse mail", class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.password_field :password, autocomplete: "off", placeholder: "Mot de passe", class: "form-control" %>
+          </div>
+          <div class="form-inline-links">
+            <% if devise_mapping.recoverable? && controller_name != 'passwords' %>
+              <%= link_to t(".forgot_your_password", :default => "Forgot your password?"), new_password_path(resource_name), class: "pull-left" %>
+            <% end %>
+            <%= f.submit  t('.sign_in', :default => "Sign in"), class: "btn btn-primary pull-right" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="panel panel-grey">
+      <div class="panel-heading">
+        <h2>C’est quoi l’admin ?</h2>
+      </div>
+      <div class="panel-body">
+        <%= image_tag "illustration_team-member1.png", class: "pull-right", style: "width:4rem;margin-top:-1rem;" %>
+        <p>Vous êtes résident ? Vous voulez savoir à quoi sert ce site internet ?</p>
+        <%= link_to "Découvrir l'admin Schoolab", new_user_session_path, class: "btn btn-info" %>
+      </div>
+    </div>
+
   </div>
-  <div class="panel-body">
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { role: "form" }) do |f| %>
-      <div class="row">
-        <div class="form-group col-md-3">
-          <%= f.label :first_name, value: "Prénom" %>
-          <%= f.text_field :first_name, autofocus: true, class: "form-control" %>
-        </div>
-        <div class="form-group col-md-3">
-          <%= f.label :last_name, value: "Nom" %>
-          <%= f.text_field :last_name, class: "form-control" %>
-        </div>
-        <div class="form-group col-md-6">
-          <%= f.label :company_id, value: "Entreprise" %>
-          <%= f.collection_select :company_id, Company.all.order(:name), :id, :name, {}, class: 'form-control' %>
-        </div>
+
+  <div class="col-xs-12 col-md-7">
+
+    <%= bootstrap_devise_error_messages! %>
+    <div class="panel">
+      <div class="panel-heading">
+        <h2><%= t('.sign_up', :default => "Inscription") %></h2>
       </div>
-      <div class="row">
-        <div class="form-group col-md-6">
-          <%= f.label :title, value: "Poste" %>
-          <%= f.text_field :title, class: "form-control" %>
-        </div>
-        <div class="form-group col-md-6">
-          <%= f.label :photo %>
-          <%= f.file_field :photo %>
-        </div>
+      <div class="panel-body">
+        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { role: "form" }) do |f| %>
+
+          <h4>Faites-nous un sourire</h4>
+          <p>Envoyez nous votre photo, ce sera plus simple pour les résidents de vous identifier dans l’immeuble.</p>
+          <p class="small">Vous n’avez pas de photo ? Pas de panique, de temps en temps nous faisons des séances photos à Schoolab, on vous préviendra par mail.</p>
+          <div class="row form-row">
+            <div class="form-group col-xs-12">
+              <%= f.file_field :photo, class: "inputfile", data: { :caption => "{nb} fichiers selectionnés" } %>
+              <%= f.label :photo, '<span class="label-btn">Envoyer une photo</span><span class="label-filename">Pas de fichier selectionné</span>'.html_safe %>
+            </div>
+          </div>
+
+          <h4>Comment vous appelle-t-on ?</h4>
+          <p>Nous avons besoin de vos informations personnelles afin de pouvoir vous appeler par votre nom ou si vous avez oublié votre mot de passe.</p>
+          <div class="row form-row">
+            <div class="form-group col-md-6">
+              <%= f.label :first_name, "Prénom", class: "sr-only" %>
+              <%= f.text_field :first_name, autofocus: true, placeholder: "Prénom", class: "form-control" %>
+            </div>
+            <div class="form-group col-md-6">
+              <%= f.label :last_name, "Nom", class: "sr-only" %>
+              <%= f.text_field :last_name, placeholder: "Nom", class: "form-control" %>
+            </div>
+          </div>
+
+          <h4>Que faites-vous ?</h4>
+          <p>Donnez nous un peu plus de détails à propos de votre présence ici. Cela permettra aux autres résidents de mieux vous identifier dans l’immeuble.</p>
+          <div class="row form-row">
+            <div class="form-group select-wrapper col-md-6 has-feedback has-feedback-left">
+              <%= f.label :company_id, "Entreprise", class: "sr-only" %>
+              <%= f.collection_select :company_id, Company.all.order(:name), :id, :name, {}, class: 'form-control' %>
+              <i class="form-control-feedback material-icons">location_city</i>
+            </div>
+            <div class="form-group col-md-6 has-feedback has-feedback-left">
+              <%= f.label :title, "Poste", class: "sr-only" %>
+              <%= f.text_field :title, placeholder: "Votre poste", class: "form-control" %>
+              <i class="form-control-feedback material-icons">work</i>
+            </div>
+          </div>
+
+          <h4>Vos moyens de contact</h4>
+          <p>Il est important d’indiquer un moyen de contact afin que d’autres résidents puisse vous joindre.</p>
+          <div class="row form-row">
+            <div class="form-group col-md-6 has-feedback has-feedback-left">
+              <%= f.label :email, class: "sr-only" %>
+              <%= f.email_field :email, placeholder: "Adresse mail", class: "form-control" %>
+              <i class="form-control-feedback material-icons">mail</i>
+            </div>
+            <div class="form-group col-md-6 has-feedback has-feedback-left">
+              <%= f.label :phone, class: "sr-only" %>
+              <%= f.text_field :phone, placeholder: "Numéro de téléphone", class: "form-control" %>
+              <i class="form-control-feedback material-icons">phone</i>
+            </div>
+          </div>
+
+          <h4>Et on sécurise votre compte</h4>
+          <p>Comme à votre habitude, indiqué un mot de passe afin de sécuriser l’accès à votre compte sur l’admin Schoolab. On ne va rien vous apprendre, mais il vaut mieux garder ces informations pour vous.</p>
+          <div class="row form-row">
+            <div class="form-group col-md-6">
+              <%= f.label :password, class: "sr-only" %>
+              <%= f.password_field :password, placeholder: "Mot de passe", class: "form-control" %>
+            </div>
+            <div class="form-group col-md-6">
+              <%= f.label :password_confirmation, class: "sr-only" %>
+              <%= f.password_field :password_confirmation, placeholder: "Confirmation", class: "form-control" %>
+            </div>
+          </div>
+          <%= f.submit "Que l'aventure commence !", class: "btn btn-primary center-block" %>
+        <% end %>
       </div>
-      <div class="row">
-        <div class="form-group col-md-6">
-          <%= f.label :email %>
-          <%= f.email_field :email, class: "form-control" %>
-        </div>
-        <div class="form-group col-md-6">
-          <%= f.label :phone %>
-          <%= f.text_field :phone, class: "form-control" %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="form-group col-md-6">
-          <%= f.label :password %>
-          <%= f.password_field :password, class: "form-control" %>
-        </div>
-        <div class="form-group col-md-6">
-          <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation, class: "form-control" %>
-        </div>
-      </div>
-      <%= f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary" %>
-    <% end %>
+    </div>
+
   </div>
 </div>
-<%= render "devise/shared/links" %>

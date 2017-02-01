@@ -7,25 +7,47 @@
       </div>
       <div class="panel-body">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f| %>
-          <div class="form-group has-feedback has-feedback-left">
+          <div class="form-group">
             <%= f.label :email, class: "sr-only" %>
             <%= f.email_field :email, autofocus: true, placeholder: "Adresse mail", class: "form-control" %>
-            <i class="form-control-feedback material-icons">mail</i>
           </div>
           <div class="form-group">
             <%= f.password_field :password, autocomplete: "off", placeholder: "Mot de passe", class: "form-control" %>
           </div>
-          <% if devise_mapping.rememberable? %>
-            <div class="checkbox">
-              <%= f.label :remember_me do %>
-                <%= f.check_box :remember_me %> <%= t('.remember_me', :default => "Remember me") %>
-              <% end %>
-            </div>
-          <% end %>
-          <%= f.submit  t('.sign_in', :default => "Sign in"), class: "btn btn-primary" %>
+          <div class="form-inline-links">
+            <% if devise_mapping.recoverable? && controller_name != 'passwords' %>
+              <%= link_to t(".forgot_your_password", :default => "Forgot your password?"), new_password_path(resource_name), class: "pull-left" %>
+            <% end %>
+            <%= f.submit  t('.sign_in', :default => "Sign in"), class: "btn btn-primary pull-right" %>
+          </div>
         <% end %>
       </div>
     </div>
-    <%= render "devise/shared/links" %>
+
+    <div class="panel panel-grey">
+      <div class="panel-heading">
+        <h2>Pas encore de compte ?</h2>
+      </div>
+      <div class="panel-body">
+        <%= image_tag "illustration_team-member2.png", class: "pull-right", style: "width:90px;margin-top:-1rem;" %>
+        <p>Tu es résident et tu n’as toujours pas de compte ? Qu’attends-tu, inscrit toi dés aujourd’hui !</p>
+        <% if devise_mapping.registerable? && controller_name != 'registrations' %>
+          <%= link_to "S'inscrire", new_registration_path(resource_name), class: "btn btn-info" %>
+        <% end %>
+      </div>
+    </div>
   </div>
-</div>
+
+  <div class="col-xs-12 col-md-7">
+
+    <div class="panel">
+      <div class="panel-heading">
+        <h2>Bienvenue sur l’admin Schoolab l’ami !</h2>
+      </div>
+      <div class="panel-body">
+        <p class="big">Si vous accédez à cette page c’est que vous êtes résident au Schoolab, félicitations.</p>
+        <p>Ici vous retrouverez toutes les informations utiles à votre vie au sein du Schoolab : reservation de salles, programmes du jour, fiches contact des entreprises et des résidents.</p>
+        <%= image_tag "illustration_team.png", class: "img-responsive center-block", style: "max-width: 470px;" %>
+      </div>
+    </div>
+  </div>

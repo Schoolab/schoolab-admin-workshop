@@ -52,17 +52,20 @@
 }
 
 .bigger {
-    font-size: 1.4em !important;
+    font-size: 1.5em !important;
     // vertical-align: inherit;
 }
 
 .big {
-    font-size: 1.2em !important;
+    font-size: 1.25em !important;
+    margin: 0 auto 1rem;
+    line-height: 1.75rem;
     // vertical-align: inherit;
 }
 
 .small {
-    font-size: 1rem !important;
+    font-size: .75rem !important;
+    line-height: 1rem;
     // vertical-align: inherit;
 }
 

@@ -52,3 +52,12 @@ h6 {
     font-size: .875rem;
     line-height: 1rem;
 }
+
+p {
+  line-height: 1.25rem;
+  margin: 0 0 .75rem;
+}
+
+p + img {
+  margin-top: 1.5rem;
+}

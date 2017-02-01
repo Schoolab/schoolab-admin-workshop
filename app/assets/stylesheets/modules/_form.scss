@@ -8,17 +8,44 @@
 }
 
 .form-group {
-  margin: 0 auto;
+  margin: 0 auto .5rem;
 }
 
-.form-group + .form-group {
-  margin: .5rem auto 0;
+.form-inline-links {
+  display: block;
+  line-height: 2rem;
+  margin: 1rem 0 0;
 }
+
+.form-row {
+  margin-bottom: 1.5rem;
+}
+
+.select-wrapper {
+  position: relative;
+
+  &:after {
+    content: "expand_more";
+    font-family: Material Icons;
+    font-size: 1.25rem;
+    line-height: 2rem;
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    right: .125rem;
+    top: 0;
+    pointer-events:none;
+    color: $brand-75;
+    text-align: center;
+  }
+}
+
 
 .form-control-feedback {
   width: 2rem;
   height: 2rem;
   font-size: 1.25rem;
+  line-height: 2rem;
   color: $brand-75;
   right: .125rem;
 }
@@ -34,4 +61,22 @@
 
 .has-feedback .form-control {
     padding-right: 2.25rem;
+}
+
+.select-wrapper[class*="col-"] {
+  &:after {
+    right: .625rem;
+  }
+}
+
+.form-group[class*="col-"] {
+  .form-control-feedback {
+    right: .625rem;
+  }
+}
+
+.form-group.has-feedback-left[class*="col-"] {
+  .form-control-feedback {
+    left: .625rem;
+  }
 }

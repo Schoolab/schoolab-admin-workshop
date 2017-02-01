@@ -21,6 +21,7 @@
 ========================================================================== */
 @import "settings/variables";
 @import "settings/mixins";
+@import "settings/bootstrap-variables";
 
 // Import bootstrap
 @import "bootstrap";
@@ -54,6 +55,7 @@
 5. LAYOUTS
 ========================================================================== */
 @import "layouts/base";
+@import "layouts/footer";
 
 /* ==========================================================================
 6. HELPERS
