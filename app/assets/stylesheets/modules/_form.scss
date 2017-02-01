@@ -1,8 +1,37 @@
 .form-inline {
 }
 
-.form-sentence input, 
+.form-sentence input,
 .form-sentence select {
     margin-left: .125rem;
     margin-right: .125rem;
+}
+
+.form-group {
+  margin: 0 auto;
+}
+
+.form-group + .form-group {
+  margin: .5rem auto 0;
+}
+
+.form-control-feedback {
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.25rem;
+  color: $brand-75;
+  right: .125rem;
+}
+
+.has-feedback-left .form-control-feedback {
+  left: .125rem;
+}
+
+.has-feedback-left .form-control {
+  padding-right: .5rem;
+  padding-left: 2.25rem;
+}
+
+.has-feedback .form-control {
+    padding-right: 2.25rem;
 }

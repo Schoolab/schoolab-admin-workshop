@@ -3,6 +3,8 @@
 $white:                     #FFFFFF;
 $black:                     #000000;
 
+
+// to-do: delete this
 $grey-dark:                 #444444;
 $grey:                      #777777;
 $grey-light:                #999999;
@@ -20,6 +22,18 @@ $brand-green:               #4FE88D;
 $brand-yellow:              #FDCC47;
 $brand-orange:              #FFA543;
 $brand-red:                 #F44E63;
+
+// Brand declinaisons
+$brand-75:                  #555971;
+$brand-50:                  #898C9C;
+$brand-25:                  #BDBEC6;
+$brand-15:                  #DCDDE0;
+$brand-10:                  #EAEAEC;
+$brand-05:                  #F4F4F5;
+
+// Other
+$border-color:              $brand-15;
+$box-shadow-color:          rgba($black, .04);
 
 // Fonts
 

@@ -1,7 +1,7 @@
 .panel {
-    border-color: rgba($black, .1);
+    border-color: $border-color;
     border-radius: .125rem;
-    box-shadow: 0 .125rem .25rem rgba($black, .04);
+    box-shadow: 0 .125rem .25rem $box-shadow-color;
     background-color: $white;
     padding: 2rem 0;
     width: 100%;
@@ -19,7 +19,7 @@
 }
 
 .panel-body {
-    padding: 1rem 1.5rem 0;
+    padding: .5rem 1.5rem 0;
 }
 
 .panel-heading-prefix {
