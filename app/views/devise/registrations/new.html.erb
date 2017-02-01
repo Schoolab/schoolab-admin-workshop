@@ -3,7 +3,7 @@
 
     <div class="panel">
       <div class="panel-heading">
-        <h2><%= t('.sign_in', :default => "Sign in") %></h2>
+        <h2>Connexion</h2>
       </div>
       <div class="panel-body">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f| %>
@@ -16,9 +16,9 @@
           </div>
           <div class="form-inline-links">
             <% if devise_mapping.recoverable? && controller_name != 'passwords' %>
-              <%= link_to t(".forgot_your_password", :default => "Forgot your password?"), new_password_path(resource_name), class: "pull-left" %>
+              <%= link_to t(".forgot_your_password", :default => "Mot de passe oublié ?"), new_password_path(resource_name), class: "pull-left" %>
             <% end %>
-            <%= f.submit  t('.sign_in', :default => "Sign in"), class: "btn btn-primary pull-right" %>
+            <%= f.submit "Connexion", class: "btn btn-primary pull-right" %>
           </div>
         <% end %>
       </div>
