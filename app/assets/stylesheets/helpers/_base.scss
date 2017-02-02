@@ -34,6 +34,12 @@
     color: $brand-red;
 }
 
+.secondary-info,
+.secondary-info a {
+  color: $brand-50;
+}
+
+
 .lighter {
     font-weight: lighter;
 }
@@ -94,5 +100,5 @@
 }
 
 .muted {
-    color: $grey;
+    color: $brand-50;
 }

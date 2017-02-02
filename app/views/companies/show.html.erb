@@ -1,4 +1,60 @@
-<p id="notice"><%= notice %></p>
+<% @employees = User.where('company_id = ?', @company.id) %>
 
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+<div class="row">
+  <div class="col-xs-12 col-md-4">
+    <div class="panel txt-c">
+      <div class="panel-body">
+        <% if @company.image.file? %>
+          <div class="img-thumbnail img-square">
+            <%= image_tag @company.image.url(:medium), size: 96 %>
+          </div>
+        <% else %>
+          <div class="img-thumbnail img-square no-thumb company" style="width:96px;height:96px;"></div>
+        <% end %>
+
+        <div class="panel-heading">
+          <h2><%= @company.name %></h2>
+        </div>
+        <ul class="list-infos">
+          <li class="muted"><%= @company.floor.name %></li>
+          <li class="muted"><%= @employees.count %> employés</li>
+        </ul>
+
+        <h4><%= @company.name %> c'est quoi ?</h4>
+        <p><%= @company.description %></p>
+
+        <% if current_user.role == "admin" %>
+          <%= link_to "Paramètres", edit_company_path(@company), class: 'btn btn-default' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-md-8">
+    <% if @employees.each do |employee| %>
+    <div class="panel">
+      <div class="panel-body">
+
+        <% if employee.photo.file? %>
+          <div class="img-thumbnail img-square pull-left" style="margin-right:1rem;">
+            <%= image_tag employee.photo.url(:thumb), size: 80 %>
+          </div>
+        <% else %>
+          <div class="img-thumbnail img-square no-thumb resident pull-left" style="width:80px;height:80px;margin-right:1rem;"></div>
+        <% end %>
+
+        <h3 class="panel-title"><%= employee.name %></h3>
+        <% if employee.title? %>
+          <p class="panel-subtitle"><%= employee.title %></p>
+        <% end %>
+        <ul class="inline-list">
+          <li><%= mail_to employee.email %></li>
+          <li class="secondary-info"><%= tel_to employee.phone %></li>
+        </ul>
+      </div>
+    </div>
+    <% end.empty? %>
+
+    <% end %>
+  </div>
+</div>

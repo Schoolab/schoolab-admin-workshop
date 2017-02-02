@@ -44,6 +44,7 @@
 @import "modules/colour-square";
 @import "modules/form";
 @import "modules/input";
+@import "modules/list";
 @import "modules/navbar";
 @import "modules/panel";
 @import "modules/profile";
@@ -60,9 +61,10 @@
 /* ==========================================================================
 6. HELPERS
 ========================================================================== */
+@import "helpers/animations";
 @import "helpers/base";
 @import "helpers/fade";
-@import "helpers/animations";
+@import "helpers/position";
 
 /* ==========================================================================
 7. THEMES

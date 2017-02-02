@@ -11,13 +11,17 @@
   margin: 0 auto .5rem;
 }
 
+.form-group:last-child {
+  margin: 0 auto;
+}
+
 .form-inline-links {
   display: block;
   line-height: 2rem;
   margin: 1rem 0 0;
 }
 
-.form-row {
+.form-row:not(:last-child) {
   margin-bottom: 1.5rem;
 }
 
@@ -33,7 +37,7 @@
     height: 2rem;
     position: absolute;
     right: .125rem;
-    top: 0;
+    top: 1px;
     pointer-events:none;
     color: $brand-75;
     text-align: center;
@@ -48,6 +52,10 @@
   line-height: 2rem;
   color: $brand-75;
   right: .125rem;
+}
+
+.has-feedback label.sr-only ~ .form-control-feedback {
+  top: 1px;
 }
 
 .has-feedback-left .form-control-feedback {

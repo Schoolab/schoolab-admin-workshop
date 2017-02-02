@@ -1,5 +1,5 @@
 .img-thumbnail {
-    background-color: $grey-light;
+    background-color: $brand-10;
     padding: 0;
     border-radius: 0;
     border: none;
@@ -12,20 +12,27 @@
         left: 0;
         right: 0;
         bottom: 0;
-        border: 2px solid rgba($black, .1);
+        border: 2px solid rgba($black,.1);
     }
 }
 
 .no-thumb {
     &:after {
-        content: "person";
         font-family: Material Icons;
         font-size: 4rem;
         line-height: 4rem;
-        color: rgba($black,.25);
+        color: $brand-50;
         position: absolute;
         top: 50%;
         left: 50%;
         @include vendor(transform, translate(-50%, -50%));
     }
+}
+
+.no-thumb.resident:after {
+  content: "person";
+}
+
+.no-thumb.company:after {
+  content: "location_city";
 }

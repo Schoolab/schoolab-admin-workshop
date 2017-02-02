@@ -4,10 +4,10 @@
       <div class="panel-body">
         <% if @user.photo.file? %>
           <div class="img-thumbnail img-square">
-            <%= image_tag @user.photo.url(:thumb), size: 96 %>
+            <%= image_tag @user.photo.url(:medium), size: 96 %>
           </div>
         <% else %>
-          <div class="img-thumbnail img-square no-thumb" style="width:96px;height:96px;"></div>
+          <div class="img-thumbnail img-square no-thumb resident" style="width:96px;height:96px;"></div>
         <% end %>
         <div class="panel-heading">
           <h2><%= @user.name %></h2>
