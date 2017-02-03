@@ -13,17 +13,25 @@
           <h2><%= @user.name %></h2>
         </div>
         <p class="muted">
-          <%= @user.title %>
-          <% if @user.company %>
-            chez <%= @user.company.name %>
+          <% if @user.title? %>
+            <%= @user.title %> chez
+          <% end %>
+          <% if @user.company.name? %>
+            <%= @user.company.name %>
           <% end %>
         </p>
         <ul class="profile-links">
           <li class="profile-icon-email"><%= mail_to @user.email %></li>
-          <li class="profile-icon-phone"><%= tel_to @user.phone %></li>
+          <% if @user.phone? %>
+            <li class="profile-icon-phone"><%= tel_to @user.phone %></li>
+          <% end %>
         </ul>
 
-        <% if (current_user == @user) || (current_user.role == "admin") %>
+        <% if current_user == @user %>
+          <%= link_to edit_user_registration_path, class: 'btn btn-default btn-icon' do %>
+            <i class="material-icons">settings</i> <span>Paramètres</span>
+          <% end %>
+        <% elsif current_user.role == "admin" %>
           <%= link_to edit_resident_path(@user), class: 'btn btn-default btn-icon' do %>
             <i class="material-icons">settings</i> <span>Paramètres</span>
           <% end %>

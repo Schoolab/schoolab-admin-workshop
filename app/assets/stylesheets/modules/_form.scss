@@ -58,6 +58,10 @@
   top: 1px;
 }
 
+.has-feedback label ~ .form-control-feedback {
+    top: 1.75rem;
+}
+
 .has-feedback-left .form-control-feedback {
   left: .125rem;
 }

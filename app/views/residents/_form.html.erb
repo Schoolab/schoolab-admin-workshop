@@ -1,44 +1,66 @@
 <%= form.error_notification %>
 
-<div class="form-inputs">
-  <div class="row">
-    <div class="col-md-6">
-      <%= form.input :first_name %>
-    </div>
-    <div class="col-md-6">
-      <%= form.input :last_name %>
-    </div>
+<div class="row form-row">
+
+  <div class="form-group col-xs-12 align-items-center">
+    <% if @user.photo.file? %>
+      <div class="img-thumbnail" style="margin-right: 1rem;">
+        <%= image_tag @user.photo.url(:medium), size: 96, class: "pull-left" %>
+      </div>
+    <% end %>
+
+    <%= form.file_field :photo, as: :file, class: "inputfile", data: { :caption => "{nb} fichiers selectionnés" } %>
+    <%= form.label :photo, '<span class="label-btn">Envoyer une photo</span><span class="label-filename">Pas de fichier selectionné</span>'.html_safe %>
   </div>
-  <div class="row">
-    <div class="col-md-6">
-      <%= form.input :email %>
-    </div>
-    <div class="col-md-6">
-      <%= form.input :phone %>
-    </div>
+
+</div>
+<div class="row form-row">
+
+  <div class="form-group col-md-6">
+    <%= form.label :first_name, "Prénom", class: "sr-only" %>
+    <%= form.text_field :first_name, autofocus: true, placeholder: "Prénom", class: "form-control" %>
   </div>
-  <div class="row">
-    <div class="col-md-6">
-      <%= form.input :title %>
-    </div>
-    <div class="col-md-6">
-      <%= form.association :company, collection: Company.order('name ASC') %>
-    </div>
+  <div class="form-group col-md-6">
+    <%= form.label :last_name, "Nom", class: "sr-only" %>
+    <%= form.text_field :last_name, placeholder: "Nom", class: "form-control" %>
   </div>
-  <div class="row">
-    <div class="col-md-6">
-      <% if @user.photo.file? %>
-        <div class="img-thumbnail pull-left" style="margin-right: 1rem;">
-          <%= image_tag @user.photo.url(:thumb) %>
-        </div>
-      <% end %>
-      <%= form.input :photo, as: :file %>
-    </div>
+
+  <div class="form-group col-md-6 has-feedback has-feedback-left">
+    <%= form.label :company_id, "Nom", class: "sr-only" %>
+    <%= form.collection_select :company_id, Company.all.order(:name), :id, :name, {}, class: 'form-control' %>
+    <i class="form-control-feedback material-icons">location_city</i>
   </div>
+
+  <div class="form-group col-md-6 has-feedback has-feedback-left">
+    <%= form.label :title, "Votre poste", class: "sr-only" %>
+    <%= form.text_field :title, placeholder: "Votre poste", class: "form-control" %>
+    <i class="form-control-feedback material-icons">work</i>
+  </div>
+
+  <div class="form-group col-md-6 has-feedback has-feedback-left">
+    <%= form.label :email, "Adresse mail", class: "sr-only" %>
+    <%= form.text_field :email, placeholder: "Adresse mail", class: "form-control" %>
+    <i class="form-control-feedback material-icons">mail</i>
+  </div>
+  <div class="form-group col-md-6 has-feedback has-feedback-left">
+    <%= form.label :phone, "Numéro de téléphone", class: "sr-only" %>
+    <%= form.text_field :phone, placeholder: "Numéro de téléphone", class: "form-control" %>
+    <i class="form-control-feedback material-icons">phone</i>
+  </div>
+
 </div>
 
-<br>
+<h4>Est-ce un admin ?</h4>
+<p>Indiquez le rôle de l'utilisateur sur l'admin de Schoolab.</p>
 
-<div class="form-actions">
-  <%= form.button :submit, class: 'btn btn-primary' %>
+<div class="row form-row">
+  <div class="form-group col-md-6 has-feedback has-feedback-left">
+    <%= form.input :role, collection: User::ROLES, label: false, default: 1, input_html: {class: 'form-control'} %>
+    <i class="form-control-feedback material-icons">whatshot</i>
+  </div>
+
+  <div class="form-group col-xs-12">
+    <%= form.submit "Sauvegarder", class: "btn btn-primary pull-right" %>
+  </div>
+
 </div>

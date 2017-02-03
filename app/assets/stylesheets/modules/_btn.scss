@@ -36,19 +36,23 @@
       outline: 0;
       border-color: $brand-blue;
     }
+
+    .glyphicon, .material-icons, .icon, span {
+      vertical-align: middle;
+    }
 }
+
 .btn.btn-icon {
   padding: .375rem 1rem;
 
   .glyphicon, .material-icons, .icon, span {
-    vertical-align: middle;
     line-height: 1.25rem;
   }
 
   .glyphicon, .material-icons, .icon {
     font-size: 1.25rem;
     line-height: 1.25rem;
-    margin: 0 .125rem 0 -.5rem;
+    margin: 0 .25rem 0 -.5rem;
   }
 }
 
@@ -60,6 +64,7 @@
   .glyphicon, .material-icons, .icon {
     font-size: .875rem;
     line-height: .875rem;
+    margin: 0 .25rem 0 -.125rem;
   }
 }
 

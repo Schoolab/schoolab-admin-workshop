@@ -23,6 +23,11 @@
     box-shadow: 0 .125rem .25rem $box-shadow-color;
     border-color: $brand-blue;
   }
+
+  &.input-xs {
+    font-size: .75rem;
+    line-height: .875rem;
+  }
 }
 
 .form-sentence .form-group {

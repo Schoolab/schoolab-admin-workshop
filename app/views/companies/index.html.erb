@@ -25,18 +25,18 @@
           <td><%= company.name %></td>
           <td><%= company.floor.present? ? company.floor.name : "N/A" %></td>
           <td>
-            <%= link_to company_path(company), class: 'btn btn-default btn-xs btn-icon' do %>
-            <i class="material-icons">visibility</i> <span>Voir</span>
+            <%= link_to company_path(company), class: 'btn btn-default btn-xs' do %>
+            <i class="material-icons">visibility</i><span>Voir</span>
             <% end %>
           </td>
           <td>
-            <%= link_to edit_company_path(company), class: 'btn btn-default btn-xs btn-icon' do %>
-            <i class="material-icons">edit</i> <span>Modifier</span>
+            <%= link_to edit_company_path(company), class: 'btn btn-default btn-xs' do %>
+            <i class="material-icons">edit</i><span>Modifier</span>
             <% end %>
           </td>
           <td>
-            <%= link_to company_path(company), method: :delete, data: { confirm: 'Êtes-vous sûr ?' }, class: 'btn btn-danger btn-xs btn-icon' do %>
-              <i class="material-icons">delete</i> <span>Supprimer</span>
+            <%= link_to company_path(company), method: :delete, data: { confirm: 'Êtes-vous sûr ?' }, class: 'btn btn-danger btn-xs' do %>
+              <i class="material-icons">delete</i><span>Supprimer</span>
             <% end %>
           </td>
         </tr>

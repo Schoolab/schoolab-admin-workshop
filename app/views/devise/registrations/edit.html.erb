@@ -1,64 +1,94 @@
 <%= bootstrap_devise_error_messages! %>
-<div class="panel panel-default devise-bs">
-  <div class="panel-heading">
-    <h2><%= t('.title', :resource => resource_class.model_name.human , :default => "Edit #{resource_name.to_s.humanize}") %></h2>
-  </div>
-  <div class="panel-body">
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-      <div class="row">
-        <div class="form-group col-md-6">
-          <%= f.label :first_name %>
-          <%= f.text_field :first_name, autofocus: true, class: "form-control" %>
-        </div>
-        <div class="form-group col-md-6">
-          <%= f.label :last_name %>
-          <%= f.text_field :last_name, class: "form-control" %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="form-group col-md-6">
-          <%= f.label :title %>
-          <%= f.text_field :title, class: "form-control" %>
-        </div>
-        <div class="form-group col-md-6">
-          <%= f.label :company %>
-          <%= f.collection_select :company_id, Company.all, :id, :name, {}, { class: "form-control select" } %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="form-group col-md-6">
+<div class="col-xs-12 col-md-8 col-md-offset-2">
+  <div class="panel panel-default devise-bs">
+    <div class="panel-heading">
+      <h2>Paramètres</h2>
+    </div>
+    <div class="panel-body">
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+
+      <h4>Faites-nous un sourire</h4>
+      <p>Envoyez nous votre photo, ce sera plus simple pour les résidents de vous identifier dans l’immeuble.</p>
+      <p class="small">Vous n’avez pas de photo ? Pas de panique, de temps en temps nous faisons des séances photos à Schoolab, on vous préviendra par mail.</p>
+      <div class="row form-row">
+        <div class="form-group col-xs-12 align-items-center">
           <% if @user.photo.file? %>
-          <%= image_tag @user.photo.url(:thumb), class: 'img-thumbnail pull-left', style: 'margin-right: 10px;' %>
+            <div class="img-thumbnail" style="margin-right: 1rem;">
+              <%= image_tag @user.photo.url(:medium), size: 96, class: "pull-left" %>
+            </div>
           <% end %>
-          <%= f.label :photo %>
-          <%= f.file_field :photo %>
+          <%= f.file_field :photo, class: "inputfile", data: { :caption => "{nb} fichiers selectionnés" } %>
+          <%= f.label :photo, '<span class="label-btn">Envoyer une photo</span><span class="label-filename">Pas de fichier selectionné</span>'.html_safe %>
         </div>
       </div>
-      <div class="row">
+
+      <h4>Comment vous appelle-t-on ?</h4>
+      <p>Nous avons besoin de vos informations personnelles afin de pouvoir vous appeler par votre nom ou si vous avez oublié votre mot de passe.</p>
+      <div class="row form-row">
         <div class="form-group col-md-6">
-          <%= f.label :email %>
-          <%= f.email_field :email, class: "form-control" %>
+          <%= f.label :first_name, "Prénom", class: "sr-only" %>
+          <%= f.text_field :first_name, autofocus: true, placeholder: "Prénom", class: "form-control" %>
         </div>
         <div class="form-group col-md-6">
-          <%= f.label :phone %>
-          <%= f.text_field :phone, class: "form-control" %>
+          <%= f.label :last_name, "Nom", class: "sr-only" %>
+          <%= f.text_field :last_name, placeholder: "Nom", class: "form-control" %>
         </div>
       </div>
-      <div class="row">
-        <div class="form-group col-md-4">
-          <%= f.label :current_password %>
-          <%= f.password_field :current_password, class: "form-control" %>
+
+      <h4>Que faites-vous ?</h4>
+      <p>Donnez nous un peu plus de détails à propos de votre présence ici. Cela permettra aux autres résidents de mieux vous identifier dans l’immeuble.</p>
+      <div class="row form-row">
+        <div class="form-group select-wrapper col-md-6 has-feedback has-feedback-left">
+          <%= f.label :company_id, "Entreprise", class: "sr-only" %>
+          <%= f.collection_select :company_id, Company.all.order(:name), :id, :name, {}, class: 'form-control' %>
+          <i class="form-control-feedback material-icons">location_city</i>
         </div>
-        <div class="form-group col-md-4">
-          <%= f.label :password %>
-          <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-        </div>
-        <div class="form-group col-md-4">
-          <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+        <div class="form-group col-md-6 has-feedback has-feedback-left">
+          <%= f.label :title, "Poste", class: "sr-only" %>
+          <%= f.text_field :title, placeholder: "Votre poste", class: "form-control" %>
+          <i class="form-control-feedback material-icons">work</i>
         </div>
       </div>
-      <%= f.submit t('.update', :default => "Update"), class: "btn btn-primary" %>
-    <% end %>
+
+      <h4>Vos moyens de contact</h4>
+      <p>Il est important d’indiquer un moyen de contact afin que d’autres résidents puisse vous joindre.</p>
+      <div class="row form-row">
+        <div class="form-group col-md-6 has-feedback has-feedback-left">
+          <%= f.label :email, class: "sr-only" %>
+          <%= f.email_field :email, placeholder: "Adresse mail", class: "form-control" %>
+          <i class="form-control-feedback material-icons">mail</i>
+        </div>
+        <div class="form-group col-md-6 has-feedback has-feedback-left">
+          <%= f.label :phone, class: "sr-only" %>
+          <%= f.text_field :phone, placeholder: "Numéro de téléphone", class: "form-control" %>
+          <i class="form-control-feedback material-icons">phone</i>
+        </div>
+      </div>
+
+      <h4>Modifier votre mot de passe</h4>
+      <p>Comme à votre habitude, indiquez un mot de passe afin de sécuriser l’accès à votre compte sur l’admin Schoolab. On ne va rien vous apprendre, mais il vaut mieux garder ces informations pour vous.</p>
+      <div class="row form-row">
+        <div class="form-group col-md-6">
+          <%= f.label :password, class: "sr-only" %>
+          <%= f.password_field :password, autocomplete: "off", placeholder: "Mot de passe", class: "form-control" %>
+        </div>
+        <div class="form-group col-md-6">
+          <%= f.label :password_confirmation, class: "sr-only" %>
+          <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirmation", class: "form-control" %>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <div class="input-group">
+        <%= f.password_field :current_password, placeholder: "Entrer votre mot de passe avant de sauvegarder...", class: "form-control" %>
+        <span class="input-group-btn">
+          <%= f.button :submit, :class => "btn btn-primary" do %>
+            Sauvegarder
+          <% end %>
+        </span>
+      </div>
+    </div>
+  <% end %>
+
   </div>
 </div>

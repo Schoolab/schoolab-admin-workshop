@@ -15,7 +15,7 @@
         <th>Email</th>
         <th>Téléphone</th>
         <th>Entreprise</th>
-        <th data-orderable="false">Role</th>
+        <th data-orderable="false">Rôle</th>
         <th data-orderable="false"></th>
         <th data-orderable="false"></th>
         <th data-orderable="false"></th>
@@ -37,17 +37,17 @@
           </td>
           <td>
             <%= link_to resident_path(user), class: 'btn btn-default btn-xs' do %>
-            <i class="material-icons">visibility</i> <span>Voir</span>
+            <i class="material-icons">visibility</i><span>Voir</span>
             <% end %>
           </td>
           <td>
             <%= link_to edit_resident_path(user), class: 'btn btn-default btn-xs' do %>
-            <i class="material-icons">edit</i> <span>Modifier</span>
+            <i class="material-icons">edit</i><span>Modifier</span>
             <% end %>
           </td>
           <td>
             <%= link_to resident_path(user), method: :delete, data: { confirm: 'Êtes-vous sûr ?' }, class: 'btn btn-danger btn-xs' do %>
-              <i class="material-icons">delete</i> <span>Supprimer</span>
+              <i class="material-icons">delete</i><span>Supprimer</span>
             <% end %>
           </td>
         </tr>
