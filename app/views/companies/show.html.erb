@@ -5,11 +5,11 @@
     <div class="panel txt-c">
       <div class="panel-body">
         <% if @company.image.file? %>
-          <div class="img-thumbnail img-square">
+          <div class="img-thumbnail company-thumb">
             <%= image_tag @company.image.url(:medium), size: 96 %>
           </div>
         <% else %>
-          <div class="img-thumbnail img-square no-thumb company-thumb" style="width:96px;height:96px;"></div>
+          <div class="img-thumbnail no-thumb company-thumb" style="width:96px;height:96px;"></div>
         <% end %>
 
         <div class="panel-heading">
@@ -17,7 +17,7 @@
         </div>
         <ul class="list-infos">
           <li class="muted"><%= @company.floor.name %></li>
-          <li class="muted"><%= @employees.count %> employés</li>
+          <li class="muted"><%= @employees.count %> <%= 'employé'.pluralize(@employees.count) %></li>
         </ul>
 
         <h4><%= @company.name %> c'est quoi ?</h4>
@@ -28,7 +28,9 @@
         <% end %>
 
         <% if current_user.role == "admin" %>
-          <%= link_to "Paramètres", edit_company_path(@company), class: 'btn btn-default' %>
+          <%= link_to edit_company_path(@company), class: 'btn btn-default btn-icon' do %>
+            <i class="material-icons">settings</i><span>Paramètres</span>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -45,7 +47,7 @@
 
         <div class="resident">
           <% if employee.photo.file? %>
-            <div class="img-thumbnail img-square pull-left">
+            <div class="img-thumbnail resident-thumb pull-left">
               <%= image_tag employee.photo.url(:thumb), size: 80 %>
             </div>
           <% else %>

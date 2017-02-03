@@ -102,3 +102,13 @@
 .muted {
     color: $brand-50;
 }
+
+.muted a {
+  color: inherit;
+  background-color: rgba($black, .04);
+
+  &:hover {
+    text-decoration: none;
+    background-color: rgba($black, .1);
+  }
+}

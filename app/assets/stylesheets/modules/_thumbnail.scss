@@ -36,3 +36,12 @@
 .no-thumb.company-thumb:after {
   content: "location_city";
 }
+
+.resident-thumb, .resident-thumb:before {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.navbar-thumbnail {
+  vertical-align: middle;
+}

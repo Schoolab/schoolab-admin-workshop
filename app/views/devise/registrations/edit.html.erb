@@ -13,9 +13,11 @@
       <div class="row form-row">
         <div class="form-group col-xs-12 align-items-center">
           <% if @user.photo.file? %>
-            <div class="img-thumbnail" style="margin-right: 1rem;">
+            <div class="img-thumbnail resident-thumb" style="margin-right: 1rem;">
               <%= image_tag @user.photo.url(:medium), size: 96, class: "pull-left" %>
             </div>
+          <% else %>
+            <div class="img-thumbnail no-thumb resident-thumb" style="width:96px;height:96px;margin-right:1rem;"></div>
           <% end %>
           <%= f.file_field :photo, class: "inputfile", data: { :caption => "{nb} fichiers selectionnés" } %>
           <%= f.label :photo, '<span class="label-btn">Envoyer une photo</span><span class="label-filename">Pas de fichier selectionné</span>'.html_safe %>

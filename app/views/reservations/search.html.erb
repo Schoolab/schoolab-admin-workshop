@@ -107,8 +107,6 @@
 
 <% if @unavailable_rooms.present? %>
 
-  <br>
-
   <h2 class="panel-heading txt-c"><%= @unavailable_rooms.count %> <%= 'salle'.pluralize(@unavailable_rooms.count) %> non <%= 'disponible'.pluralize(@unavailable_rooms.count) %></h2>
 
   <% reservation_end_time = @search.start_time + @search.length.to_s.to_i %>

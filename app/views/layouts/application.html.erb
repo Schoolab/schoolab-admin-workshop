@@ -63,7 +63,7 @@
                   <%= current_user.first_name %>
 
                   <% if current_user.photo.file? %>
-                    <div class="img-thumbnail img-square navbar-thumbnail">
+                    <div class="img-thumbnail navbar-thumbnail resident-thumb">
                       <%= image_tag current_user.photo.url(:thumb), size: 32 %>
                     </div>
                   <% end %>

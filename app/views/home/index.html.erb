@@ -36,10 +36,10 @@
       <div class="panel-heading">
         <h2>Vos réservations</h2>
       </div>
+
+      <% if @current_user.reservations.where('reservations.end_time > ?', Time.current).order('reservations.start_time ASC').each do |reservation| %>
+
       <div class="panel-body reservation-list">
-
-        <% if @current_user.reservations.where('reservations.end_time > ?', Time.current).order('reservations.start_time ASC').each do |reservation| %>
-
         <div class="reservation booked">
           <div class="reservation-infos" style="background-color: <%= reservation.meeting_room.colour %>">
             <div class="reservation-infos-content">
@@ -81,13 +81,17 @@
             <p class="muted">Cette salle est située au <%= reservation.meeting_room.floor.present? ? reservation.meeting_room.floor.name : "N/A" %>. <%#-Il y a une réunion avant la votre jusqu’à 11h30.%></p>
           </div>
         </div>
-
-        <% end.empty? %>
-          <p class="muted">Oh non... il n'y a aucune reservation.</p>
-          <%= link_to "Réserver une salle", search_reservations_path, class: 'btn btn-info' %>
-        <% end %>
-
       </div>
+
+      <% end.empty? %>
+
+      <div class="panel-body">
+        <p class="muted">Oh non... il n'y a aucune reservation.</p>
+        <%= link_to "Réserver une salle", search_reservations_path, class: 'btn btn-info' %>
+      </div>
+
+      <% end %>
+
     </div>
   </div>
 </div>
