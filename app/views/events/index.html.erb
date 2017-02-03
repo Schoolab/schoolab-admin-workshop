@@ -24,7 +24,7 @@
     <tbody>
       <% @events.each do |event| %>
         <tr>
-          <td><%= event.date.strftime('%d %b %Y') %></td>
+          <td><%= event.friendly_date %></td>
           <td><%= event.start_time.strftime('%kh%M') %>-<%= event.end_time.strftime('%kh%M') %></td>
           <td><strong><%= event.title %></strong></td>
           <td><%= event.location %></td>
@@ -62,7 +62,7 @@
     <tbody>
       <% @past_events.each do |event| %>
         <tr>
-          <td><%= event.date.strftime('%d %b %Y') %></td>
+          <td><%= event.friendly_date %></td>
           <td><%= event.start_time.strftime('%kh%M') %>-<%= event.end_time.strftime('%kh%M') %></td>
           <td><strong><%= event.title %></strong></td>
           <td><%= event.location %></td>

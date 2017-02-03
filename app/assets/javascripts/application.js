@@ -17,15 +17,21 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require moment
-//= require bootstrap-datetimepicker
-//= require pickers
+//= require bootstrap-datetimepicker.min
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
 
   $('.datatable').DataTable();
 
-  $('.datetimepicker').datetimepicker()
+  $('.form_datetime').datetimepicker({
+    weekStart: 1,
+    autoclose: true,
+    todayBtn: true,
+    pickerPosition: "bottom-left",
+    format: 'mm-dd-yyyy hh:',
+    minView: 0
+  });
 
 });
 

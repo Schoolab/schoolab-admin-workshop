@@ -92,3 +92,18 @@
     left: .625rem;
   }
 }
+
+.form-group.date_time_picker {
+  width: auto;
+  max-width: 250px;
+  margin: 0 20px;
+  vertical-align: middle;
+  .input-group-addon {
+    border: 0;
+    border-radius: .125rem;
+  }
+}
+
+.form-sentence {
+  margin-bottom: 1rem;
+}

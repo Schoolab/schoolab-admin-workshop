@@ -6,7 +6,7 @@
   <div class="panel-body">
     <div class="form-sentence muted">
       J’ai besoin d’une salle le
-      <%= f.input :start_time, as: :datetime, minute_step: 30, label: false %>
+      <%= f.input :start_time, as: :date_time_picker, label: false, value: Time.now %>
       pendant
       <%= f.input :length_time, as: :time, minute_step: 30, default: Time.parse('1:00'), start_hour: 0, end_hour: 4, label: false %>.
     </div>

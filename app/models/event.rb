@@ -10,4 +10,8 @@ class Event < ApplicationRecord
       return self.price.to_s + ' €'
     end
   end
+
+  def friendly_date
+    I18n.l(self.start_time, format: '%A %e %B')
+  end
 end
