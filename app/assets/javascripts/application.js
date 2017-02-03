@@ -38,9 +38,6 @@ $(document).on('turbolinks:load', function() {
 		var label	 = $(this).next(),
 		labelVal = label.html();
 
-		console.log(label);
-		console.log(labelVal);
-
 		$(this).on( 'change', function( e )
 		{
 			var fileName = '';
@@ -48,8 +45,6 @@ $(document).on('turbolinks:load', function() {
 				fileName = ( this.getAttribute( 'data-caption' ) || '' ).replace( '{nb}', this.files.length );
 			else
 				fileName = e.target.value.split( '\\' ).pop();
-
-			console.log(fileName);
 
 			if( fileName )
 				label.find( '.label-filename' ).html(fileName);
