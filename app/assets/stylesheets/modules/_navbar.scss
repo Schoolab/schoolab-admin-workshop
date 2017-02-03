@@ -23,7 +23,7 @@
         @include font-smoothing();
     }
 
-    &:hover {
+    &:hover, &:focus {
         &:before {
             animation: brand-anim .5s infinite;
         }

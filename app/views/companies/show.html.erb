@@ -9,7 +9,7 @@
             <%= image_tag @company.image.url(:medium), size: 96 %>
           </div>
         <% else %>
-          <div class="img-thumbnail img-square no-thumb company" style="width:96px;height:96px;"></div>
+          <div class="img-thumbnail img-square no-thumb company-thumb" style="width:96px;height:96px;"></div>
         <% end %>
 
         <div class="panel-heading">
@@ -21,7 +21,11 @@
         </ul>
 
         <h4><%= @company.name %> c'est quoi ?</h4>
-        <p><%= @company.description %></p>
+        <% if @company.description? %>
+          <p><%= @company.description %></p>
+        <% else %>
+          <p class="muted">Pas de description...</p>
+        <% end %>
 
         <% if current_user.role == "admin" %>
           <%= link_to "Paramètres", edit_company_path(@company), class: 'btn btn-default' %>
@@ -31,30 +35,41 @@
   </div>
 
   <div class="col-xs-12 col-md-8">
-    <% if @employees.each do |employee| %>
+
     <div class="panel">
+      <div class="panel-heading">
+        <h2>Liste des employés</h2>
+      </div>
       <div class="panel-body">
+        <% if @employees.each do |employee| %>
 
-        <% if employee.photo.file? %>
-          <div class="img-thumbnail img-square pull-left" style="margin-right:1rem;">
-            <%= image_tag employee.photo.url(:thumb), size: 80 %>
+        <div class="resident">
+          <% if employee.photo.file? %>
+            <div class="img-thumbnail img-square pull-left">
+              <%= image_tag employee.photo.url(:thumb), size: 80 %>
+            </div>
+          <% else %>
+            <div class="img-thumbnail img-square no-thumb resident-thumb" style="width:80px;height:80px;"></div>
+          <% end %>
+
+          <div class="resident-details">
+            <h3 class="panel-title"><%= employee.name %></h3>
+            <% if employee.title? %>
+              <p class="panel-subtitle"><%= employee.title %></p>
+            <% end %>
+            <ul class="inline-list">
+              <li><%= mail_to employee.email %></li>
+              <li class="secondary-info"><%= tel_to employee.phone %></li>
+            </ul>
           </div>
-        <% else %>
-          <div class="img-thumbnail img-square no-thumb resident pull-left" style="width:80px;height:80px;margin-right:1rem;"></div>
-        <% end %>
+        </div>
 
-        <h3 class="panel-title"><%= employee.name %></h3>
-        <% if employee.title? %>
-          <p class="panel-subtitle"><%= employee.title %></p>
+        <% end.empty? %>
+
+          <p class="muted">Il n'y a personne dans cette entreprise...</p>
+
         <% end %>
-        <ul class="inline-list">
-          <li><%= mail_to employee.email %></li>
-          <li class="secondary-info"><%= tel_to employee.phone %></li>
-        </ul>
       </div>
     </div>
-    <% end.empty? %>
-
-    <% end %>
   </div>
 </div>

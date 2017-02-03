@@ -17,6 +17,11 @@ a {
     }
 }
 
+a:focus {
+  outline: 0;
+  border-color: $brand-blue;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: $brand-font;
     color: $brand-primary;

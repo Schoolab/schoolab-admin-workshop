@@ -1,0 +1,13 @@
+.resident {
+  background: $white;
+  border-radius: $border-radius-small;
+  border: 1px solid $border-color;
+  padding: 1.5rem;
+  margin: 0 auto 1rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.resident-details {
+  margin: 0 0 0 1rem;
+}

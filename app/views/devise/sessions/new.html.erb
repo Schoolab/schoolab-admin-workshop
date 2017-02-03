@@ -32,7 +32,9 @@
         <%= image_tag "illustration_team-member2.png", class: "pull-right", style: "width:90px;margin-top:-1rem;" %>
         <p>Tu es résident et tu n’as toujours pas de compte ? Qu’attends-tu, inscrit toi dés aujourd’hui !</p>
         <% if devise_mapping.registerable? && controller_name != 'registrations' %>
-          <%= link_to "S'inscrire", new_registration_path(resource_name), class: "btn btn-info" %>
+          <%= link_to new_registration_path(resource_name), class: "btn btn-info btn-icon" do %>
+            <i class="material-icons">person</i> <span>S'inscrire</span>
+          <% end %>
         <% end %>
       </div>
     </div>

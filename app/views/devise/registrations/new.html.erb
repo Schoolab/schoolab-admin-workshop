@@ -31,7 +31,9 @@
       <div class="panel-body">
         <%= image_tag "illustration_team-member1.png", class: "pull-right", style: "width:4rem;margin-top:-1rem;" %>
         <p>Vous êtes résident ? Vous voulez savoir à quoi sert ce site internet ?</p>
-        <%= link_to "Découvrir l'admin Schoolab", new_user_session_path, class: "btn btn-info" %>
+        <%= link_to new_user_session_path, class: "btn btn-info btn-icon" do %>
+          <i class="material-icons">visibility</i> <span>Découvrir l'admin Schoolab</span>
+        <% end %>
       </div>
     </div>
 
@@ -112,7 +114,9 @@
               <%= f.password_field :password_confirmation, placeholder: "Confirmation", class: "form-control" %>
             </div>
           </div>
-          <%= f.submit "Que l'aventure commence !", class: "btn btn-primary center-block" %>
+          <%= f.button :submit, class: "btn btn-primary btn-icon center-block" do %>
+            <i class="material-icons">send</i> <span>Que l'aventure commence !</span>
+          <% end %>
         <% end %>
       </div>
     </div>

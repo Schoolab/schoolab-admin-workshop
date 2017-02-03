@@ -23,7 +23,9 @@
           <% end %>
         </p>
 
-        <%= link_to "Voir mon profil", resident_path(current_user), class: 'btn btn-default' %>
+        <%= link_to resident_path(current_user), class: 'btn btn-default btn-icon' do %>
+          <i class="material-icons">visibility</i> <span>Voir mon profil</span>
+        <% end %>
         <%= link_to "Deconnexion", destroy_user_session_path, :method => :delete, class: 'btn btn-primary' %>
       </div>
     </div>

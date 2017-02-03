@@ -37,17 +37,17 @@
           </td>
           <td>
             <%= link_to resident_path(user), class: 'btn btn-default btn-xs' do %>
-            <span class="glyphicon glyphicon-eye-open"></span>
+            <i class="material-icons">visibility</i> <span>Voir</span>
             <% end %>
           </td>
           <td>
             <%= link_to edit_resident_path(user), class: 'btn btn-default btn-xs' do %>
-            <span class="glyphicon glyphicon-pencil"></span>
+            <i class="material-icons">edit</i> <span>Modifier</span>
             <% end %>
           </td>
           <td>
             <%= link_to resident_path(user), method: :delete, data: { confirm: 'Êtes-vous sûr ?' }, class: 'btn btn-danger btn-xs' do %>
-              <span class="glyphicon glyphicon-remove"></span>
+              <i class="material-icons">delete</i> <span>Supprimer</span>
             <% end %>
           </td>
         </tr>

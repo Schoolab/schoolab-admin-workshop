@@ -29,10 +29,10 @@
     }
 }
 
-.no-thumb.resident:after {
+.no-thumb.resident-thumb:after {
   content: "person";
 }
 
-.no-thumb.company:after {
+.no-thumb.company-thumb:after {
   content: "location_city";
 }

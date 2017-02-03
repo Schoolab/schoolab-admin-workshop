@@ -23,10 +23,10 @@
           <li class="profile-icon-phone"><%= tel_to @user.phone %></li>
         </ul>
 
-        <% if current_user == @user %>
-          <%= link_to "Paramètres", edit_user_registration_path, class: 'btn btn-default' %>
-        <% elsif current_user.role == "admin" %>
-          <%= link_to "Paramètres", edit_resident_path(@user), class: 'btn btn-default' %>
+        <% if (current_user == @user) || (current_user.role == "admin") %>
+          <%= link_to edit_resident_path(@user), class: 'btn btn-default btn-icon' do %>
+            <i class="material-icons">settings</i> <span>Paramètres</span>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -91,7 +91,7 @@
 
     <% elsif (current_user.role == "admin" || current_user == @user) && @user.reservations.count == 0 %>
 
-      <div class="panel col-xs-12 col-md-8">
+      <div class="panel">
       <div class="panel-heading">
         <h2>Dernières réservations</h2>
       </div>
@@ -102,7 +102,7 @@
 
     <% else %>
 
-    <div class="panel col-xs-12 col-md-8">
+    <div class="panel">
       <div class="panel-heading">
         <h2>Dernières réservations</h2>
       </div>
