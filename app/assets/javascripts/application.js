@@ -22,30 +22,26 @@
 
 $(document).on('turbolinks:load', function() {
 
-  $('.datatable').DataTable();
+	$('.datatable').DataTable();
 
-  $('.form_datetime').datetimepicker({
-    weekStart: 1,
-    autoclose: true,
-    todayBtn: true,
-    pickerPosition: "bottom-left",
-    format: 'mm-dd-yyyy hh:',
-    minView: 0
-  });
+	$('.form_datetime').datetimepicker({
+		weekStart: 1,
+		autoclose: true,
+		todayBtn: true,
+		pickerPosition: "bottom-left",
+		format: 'mm-dd-yyyy hh:',
+		minView: 0
+	});
 
-});
+	$('.inputfile').each(function() {
 
-'use strict';
+		var label	 = $(this).next(),
+		labelVal = label.html();
 
-;( function ( document, window, index )
-{
-	var inputs = document.querySelectorAll( '.inputfile' );
-	Array.prototype.forEach.call( inputs, function( input )
-	{
-		var label	 = input.nextElementSibling,
-			labelVal = label.innerHTML;
+		console.log(label);
+		console.log(labelVal);
 
-		input.addEventListener( 'change', function( e )
+		$(this).on( 'change', function( e )
 		{
 			var fileName = '';
 			if( this.files && this.files.length > 1 )
@@ -53,14 +49,18 @@ $(document).on('turbolinks:load', function() {
 			else
 				fileName = e.target.value.split( '\\' ).pop();
 
+			console.log(fileName);
+
 			if( fileName )
-				label.querySelector( '.label-filename' ).innerHTML = fileName;
+				label.find( '.label-filename' ).html(fileName);
 			else
 				label.innerHTML = labelVal;
 		});
 
 		// Firefox bug fix
-		input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
-		input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
+		$(this).on('focus', function(){ $(this).addClass( 'has-focus' ); });
+		$(this).on( 'blur', function(){ $(this).removeClass( 'has-focus' ); });
+
 	});
-}( document, window, 0 ));
+
+});
