@@ -2,9 +2,12 @@
   <div class="panel-heading">
     <h2>Événements</h2>
   </div>
+
+  <% if can? :manage, Event %>
   <div class="panel-body">
     <%= link_to "Créer un événement", new_event_path, class: 'btn btn-primary btn-sm' %>
   </div>
+  <% end %>
 
   <table class="table datatable" data-paging="false" data-info="false">
     <thead>
@@ -23,17 +26,17 @@
 
     <tbody>
       <% @events.each do |event| %>
-        <tr>
-          <td><%= event.friendly_date %></td>
-          <td><%= event.start_time.strftime('%kh%M') %>-<%= event.end_time.strftime('%kh%M') %></td>
-          <td><strong><%= event.title %></strong></td>
-          <td><%= event.location %></td>
-          <td><%= event.full_price %></td>
+      <tr>
+        <td><%= event.friendly_date %></td>
+        <td><%= event.start_time.strftime('%kh%M') %>-<%= event.end_time.strftime('%kh%M') %></td>
+        <td><strong><%= event.title %></strong></td>
+        <td><%= event.location %></td>
+        <td><%= event.full_price %></td>
         <% if can? :manage, Event %>
-          <td><%= link_to 'Modifier', edit_event_path(event) %></td>
-          <td><%= link_to 'Supprimer', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Modifier', edit_event_path(event) %></td>
+        <td><%= link_to 'Supprimer', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
-        </tr>
+      </tr>
       <% end %>
     </tbody>
   </table>
@@ -61,17 +64,17 @@
 
     <tbody>
       <% @past_events.each do |event| %>
-        <tr>
-          <td><%= event.friendly_date %></td>
-          <td><%= event.start_time.strftime('%kh%M') %>-<%= event.end_time.strftime('%kh%M') %></td>
-          <td><strong><%= event.title %></strong></td>
-          <td><%= event.location %></td>
-          <td><%= event.full_price %></td>
+      <tr>
+        <td><%= event.friendly_date %></td>
+        <td><%= event.start_time.strftime('%kh%M') %>-<%= event.end_time.strftime('%kh%M') %></td>
+        <td><strong><%= event.title %></strong></td>
+        <td><%= event.location %></td>
+        <td><%= event.full_price %></td>
         <% if can? :manage, Event %>
-          <td><%= link_to 'Modifier', edit_event_path(event) %></td>
-          <td><%= link_to 'Supprimer', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Modifier', edit_event_path(event) %></td>
+        <td><%= link_to 'Supprimer', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
-        </tr>
+      </tr>
       <% end %>
     </tbody>
   </table>

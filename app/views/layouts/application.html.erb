@@ -54,6 +54,7 @@
             <% elsif user_signed_in? && current_user.role == "user" %>
             <li><%= link_to "Réserver une salle", search_reservations_path %></li>
             <li><%= link_to "Événements", events_path  %></li>
+            <li><%= link_to "Résidents", residents_path  %></li>
             <% end %>
           </ul>
           <!-- Right -->
@@ -73,7 +74,7 @@
                   <li><%= link_to "Voir mon profil", resident_path(current_user) %></li>
                   <li><%= link_to "Paramètres", edit_user_registration_path %></li>
                   <li role="separator" class="divider"></li>
-                  <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+                  <li><%= link_to "Déconnexion", destroy_user_session_path, :method => :delete %></li>
                 </ul>
               </li>
             <% end %>
