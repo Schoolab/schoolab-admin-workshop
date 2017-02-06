@@ -25,12 +25,18 @@ $(document).on('turbolinks:load', function() {
 	$('.datatable').DataTable();
 
 	$('.form_datetime').datetimepicker({
+		locale: 'fr',
 		weekStart: 1,
 		autoclose: true,
 		todayBtn: true,
+		defaultDate: new Date(),
 		pickerPosition: "bottom-left",
-		format: 'mm-dd-yyyy hh:',
-		minView: 0
+		format: 'dd MM yyyy à hh:ii',
+		minView: 0,
+		icons: {
+			previous: 'glyphicon glyphicon-chevron-left',
+      next: 'glyphicon glyphicon-chevron-right',
+		}
 	});
 
 	$('.inputfile').each(function() {

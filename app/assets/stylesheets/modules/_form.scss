@@ -1,11 +1,11 @@
 .form-inline {
 }
 
-.form-sentence input,
-.form-sentence select {
-    margin-left: .125rem;
-    margin-right: .125rem;
-}
+// .form-sentence input,
+// .form-sentence select {
+//     margin-left: .125rem;
+//     margin-right: .125rem;
+// }
 
 .form-group {
   margin: 0 auto .5rem;
@@ -93,17 +93,10 @@
   }
 }
 
-.form-group.date_time_picker {
-  width: auto;
-  max-width: 250px;
-  margin: 0 20px;
-  vertical-align: middle;
-  .input-group-addon {
-    border: 0;
-    border-radius: .125rem;
-  }
-}
-
 .form-sentence {
   margin-bottom: 1rem;
+
+  .form-group {
+    margin: 0 auto;
+  }
 }

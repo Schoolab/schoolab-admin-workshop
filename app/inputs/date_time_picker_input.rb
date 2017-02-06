@@ -2,13 +2,13 @@ class DateTimePickerInput < SimpleForm::Inputs::Base
   def input
     template.content_tag(:div, class: 'input-group date form_datetime') do
       template.concat @builder.text_field(attribute_name, input_html_options)
-      template.concat span_remove
+      # template.concat span_remove
       template.concat span_table
     end
   end
 
   def input_html_options
-    super.merge({class: 'form-control', readonly: true})
+    super.merge({class: 'form-control input-include-addon', readonly: true})
   end
 
   def span_remove

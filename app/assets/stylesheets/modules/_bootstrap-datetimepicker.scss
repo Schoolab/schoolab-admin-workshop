@@ -1,0 +1,139 @@
+.datetimepicker {
+  .table-condensed > thead > tr > th,
+  .table-condensed > thead > tr > td,
+  .table-condensed > tbody > tr > th,
+  .table-condensed > tbody > tr > td,
+  .table-condensed > tfoot > tr > th,
+  .table-condensed > tfoot > tr > td {
+    padding: 0;
+  }
+}
+
+.datetimepicker.dropdown-menu {
+  padding: .5rem;
+  border: 1px solid $border-color;
+  box-shadow: 0 6px 12px rgba($black,.25)
+}
+
+.datetimepicker thead {
+  border-bottom: 1px solid $brand-10;
+}
+
+.datetimepicker td, .datetimepicker th {
+  line-height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+}
+
+.datetimepicker table tr td span {
+  border-radius: 50%;
+}
+
+.datetimepicker th.switch,
+.datetimepicker th.prev,
+.datetimepicker th.next {
+  line-height: 2rem;
+  color: $brand-75;
+  padding: .5rem 0!important
+}
+
+.datetimepicker th.switch,
+.datetimepicker th.today {
+  color: $brand-primary;
+  font-size: 1rem;
+}
+
+.datetimepicker th.switch,
+.datetimepicker th.prev,
+.datetimepicker th.next,
+.datetimepicker th.today {
+  border-radius: .125rem;
+}
+
+.datetimepicker td.day {
+  font-size: 1rem;
+}
+
+.datetimepicker th.dow {
+  font-size: .75rem;
+  line-height: 1.5rem;
+  font-weight: normal;
+  color: $brand-50;
+}
+
+.datetimepicker table tr td {
+  color: $brand-75;
+}
+
+.datetimepicker table tr td.old, .datetimepicker table tr td.new {
+  color: $brand-15;
+}
+
+.datetimepicker table tr td.active,
+.datetimepicker table tr td.active:hover,
+.datetimepicker table tr td.active.disabled,
+.datetimepicker table tr td.active.disabled:hover {
+  text-shadow: none;
+  border: none;
+}
+
+.datetimepicker table tr td.active:active,
+.datetimepicker table tr td.active:hover:active,
+.datetimepicker table tr td.active.disabled:active,
+.datetimepicker table tr td.active.disabled:hover:active,
+.datetimepicker table tr td.active.active,
+.datetimepicker table tr td.active:hover.active,
+.datetimepicker table tr td.active.disabled.active,
+.datetimepicker table tr td.active.disabled:hover.active {
+  background: $brand-blue;
+}
+
+.datetimepicker table tr td span.active:active,
+.datetimepicker table tr td span.active:hover:active,
+.datetimepicker table tr td span.active.disabled:active,
+.datetimepicker table tr td span.active.disabled:hover:active,
+.datetimepicker table tr td span.active.active,
+.datetimepicker table tr td span.active:hover.active,
+.datetimepicker table tr td span.active.disabled.active,
+.datetimepicker table tr td span.active.disabled:hover.active {
+  background: $brand-blue;
+}
+
+.form-group.date_time_picker {
+  width: auto;
+  max-width: 250px;
+  vertical-align: middle;
+
+  .input-group-addon {
+    border-color: $brand-15;
+    border-radius: 0 .125rem .125rem 0;
+  }
+}
+
+.date_time_picker {
+  .form-control {
+    &:focus {
+      background-color: #EAEAEC;
+    }
+  }
+  .form-control[disabled],
+  .form-control[readonly],
+  fieldset[disabled] .form-control {
+    background: $white;
+  }
+}
+
+.datetimepicker {
+    margin: .5rem 0 0;
+}
+
+.datetimepicker-dropdown-bottom-left {
+  &:before {
+    right: 9px;
+    border-bottom-color: $brand-15;
+  }
+
+  &:after {
+    right: 10px;
+  }
+}

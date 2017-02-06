@@ -34,19 +34,19 @@
   display: inline-block;
 }
 
-.form-sentence {
-  input, select {
-    background-color: $whitesmoke;
-    padding: 0 .5rem;
-    border: none;
-    border-radius: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    line-height: 2rem;
-    color: $grey-dark;
-  }
-}
+// .form-sentence {
+//   input, select {
+//     background-color: $whitesmoke;
+//     padding: 0 .5rem;
+//     border: none;
+//     border-radius: none;
+//     -webkit-appearance: none;
+//     -moz-appearance: none;
+//     appearance: none;
+//     line-height: 2rem;
+//     color: $grey-dark;
+//   }
+// }
 
 select {
   border: 1px solid $brand-75;
@@ -137,7 +137,7 @@ select {
 }
 
 .inputfile:focus + label .label-btn {
-  border: 1px solid rgba($black, .25);
+  border: 1px solid $brand-15;
   box-shadow: 0 .125rem .25rem $box-shadow-color;
 
   &:before {
@@ -158,4 +158,29 @@ select {
   font-weight: normal;
   float: right;
   color: $brand-50;
+}
+
+.input-include-addon {
+  border-radius: .125rem!important;
+}
+
+.input-group-addon {
+  padding: .375rem .5rem;
+  color: $brand-75;
+  background-color: $white;
+
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+.input-include-addon + .input-group-addon {
+  position: absolute;
+  top: 3px;
+  right: 1px;
+  z-index: 3;
+  font-size: 1rem;
+  border: none;
+  width: 2rem;
+  background: transparent;
 }
