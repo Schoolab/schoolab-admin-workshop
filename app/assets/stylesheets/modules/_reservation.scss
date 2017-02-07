@@ -63,7 +63,8 @@
     white-space: nowrap;
     text-align: center;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
     position: relative;
     min-height: 176px;
@@ -86,32 +87,35 @@
 }
 
 .reservation-infos-content {
-    position: relative;
-    z-index: 1;
-    padding-top: 2rem;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  padding-top: 2rem;
 }
 
 .reservation-infos-name {
-    font-size: 1.5rem;
-    line-height: 2rem;
-    color: rgba($black, .75);
+  font-size: 1.5rem;
+  line-height: 2rem;
+  color: rgba($black, .75);
 }
 
 .reservation-infos-floor {
-    font-size: 1rem;
-    line-height: 1rem;
-    color: rgba($black, .5);
+  font-size: 1rem;
+  line-height: 1rem;
+  color: rgba($black, .5);
 }
 
 .reservation-infos-bottom {
-    position: relative;
-    z-index: 1;
+  width: 100%;
+  align-self: flex-end;
+  position: relative;
+  z-index: 1;
 }
 
 .reservation-infos-prefix {
-    font-size: .75rem;
-    line-height: 1rem;
-    color: rgba($white, .75);
+  font-size: .75rem;
+  line-height: 1rem;
+  color: rgba($white, .75);
 }
 
 .reservation-infos-resident {
