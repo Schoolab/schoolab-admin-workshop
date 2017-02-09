@@ -139,3 +139,21 @@
     right: 10px;
   }
 }
+
+.length {
+  display: inline-block;
+}
+
+@media (screen and max-width: 768px) {
+  .form-sentence .form-group {
+    display: block;
+    max-width: 250px;
+    margin: .5rem auto;
+  }
+  .length {
+    .form-control {
+      display: inline-block;
+      width: 50px;
+    }
+  }
+}
