@@ -17,9 +17,11 @@
           </h2>
         </div>
         <p class="muted">
-          <%= current_user.title %>
-          <% if current_user.company %>
-          chez <%= @current_user.company.name %>
+          <% if current_user.title? %>
+            <%= current_user.title %> chez
+          <% end %>
+          <% if current_user.company.name? %>
+            <%= link_to current_user.company.name, company_path(current_user.company) %>
           <% end %>
         </p>
 
