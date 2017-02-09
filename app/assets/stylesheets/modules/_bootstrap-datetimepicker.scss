@@ -101,9 +101,11 @@
 
 .form-group.date_time_picker {
   width: auto;
-  max-width: 250px;
+  width: 250px;
   vertical-align: middle;
-
+  .input-group {
+    width: 100%;
+  }
   .input-group-addon {
     border-color: $brand-15;
     border-radius: 0 .125rem .125rem 0;

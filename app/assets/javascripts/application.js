@@ -24,18 +24,34 @@ $(document).on('turbolinks:load', function() {
 
 	$('.datatable').DataTable();
 
-	$('.form_datetime').datetimepicker({
-		locale: 'fr',
+	$.fn.datetimepicker.dates['fr'] = {
+		days: ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"],
+		daysShort: ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"],
+		daysMin: ["D", "L", "Ma", "Me", "J", "V", "S", "D"],
+		months: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
+		monthsShort: ["Jan", "Fev", "Mar", "Avr", "Mai", "Jui", "Jul", "Aou", "Sep", "Oct", "Nov", "Dec"],
+		today: "Aujourd'hui",
+		suffix: [],
+		meridiem: ["am", "pm"],
 		weekStart: 1,
-		autoclose: true,
+		format: "dd/mm/yyyy hh:ii"
+	};
+
+	$('.form_datetime').datetimepicker({
+		language: 'fr',
+		weekStart: 1,
+		autoclose: false,
 		todayBtn: true,
 		defaultDate: new Date(),
+		startDate: new Date(),
+		minuteStep: 30,
+		initialDate: new Date(),
 		pickerPosition: "bottom-left",
-		format: 'dd MM yyyy à hh:ii',
+		format: 'dd MM yyyy hh:ii',
 		minView: 0,
 		icons: {
 			previous: 'glyphicon glyphicon-chevron-left',
-      next: 'glyphicon glyphicon-chevron-right',
+			next: 'glyphicon glyphicon-chevron-right',
 		}
 	});
 
