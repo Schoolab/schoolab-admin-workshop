@@ -63,6 +63,7 @@ class ReservationsController < ApplicationController
   def search
     if params.has_key?(:room_search)
       @search = RoomSearch.new(search_params)
+      p params[:start_time]
       @search.length = params[:room_search]["length_time(4i)"].to_i * 3600 + params[:room_search]["length_time(5i)"].to_i * 60
       @available_rooms = MeetingRoom.all.order(:floor_id).select { |m| !m.reservation_at(@search.start_time, @search.start_time + @search.length.to_s.to_i)}
       @unavailable_rooms = MeetingRoom.all.order(:floor_id).select { |m| m.reservation_at(@search.start_time, @search.start_time + @search.length.to_s.to_i)}
@@ -81,7 +82,7 @@ class ReservationsController < ApplicationController
 
     # Search parameters
     def search_params
-      params.require(:room_search).permit(:start_time, :length_time)
+      params.require(:room_search).permit(:start_time, :length_time, :start_time_date, :start_time_time)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

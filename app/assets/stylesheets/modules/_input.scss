@@ -32,6 +32,11 @@
 
 .form-sentence .form-group {
   display: inline-block;
+  vertical-align: middle;
+}
+
+.datepicker {
+  min-width: 200px;
 }
 
 // .form-sentence {

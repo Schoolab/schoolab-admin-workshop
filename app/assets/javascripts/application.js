@@ -17,39 +17,48 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require moment
-//= require bootstrap-datetimepicker.min
+//= require bootstrap-datepicker
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
 
 	$('.datatable').DataTable();
 
-	$.fn.datetimepicker.dates['fr'] = {
+	$.fn.datepicker.dates['fr'] = {
 		days: ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"],
 		daysShort: ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"],
 		daysMin: ["D", "L", "Ma", "Me", "J", "V", "S", "D"],
 		months: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
 		monthsShort: ["Jan", "Fev", "Mar", "Avr", "Mai", "Jui", "Jul", "Aou", "Sep", "Oct", "Nov", "Dec"],
 		today: "Aujourd'hui",
-		suffix: [],
-		meridiem: ["am", "pm"],
 		weekStart: 1,
-		format: "dd/mm/yyyy hh:ii",
-		todayBtn: false
+		format: "DD d MM yyyy",
+		titleFormat: 'MM yyyy'
 	};
 
-	$('.form_datetime').datetimepicker({
+	// $('.form_datetime').datetimepicker({
+	// 	language: 'fr',
+	// 	weekStart: 1,
+	// 	autoclose: false,
+	// 	todayBtn: false,
+	// 	defaultDate: new Date(),
+	// 	startDate: new Date(),
+	// 	minuteStep: 30,
+	// 	initialDate: new Date(),
+	// 	pickerPosition: "bottom-left",
+	// 	format: 'dd MM yyyy hh:ii',
+	// 	minView: 0,
+	// 	icons: {
+	// 		previous: 'glyphicon glyphicon-chevron-left',
+	// 		next: 'glyphicon glyphicon-chevron-right',
+	// 	}
+	// });
+
+	$('.datepicker').datepicker({
 		language: 'fr',
-		weekStart: 1,
-		autoclose: false,
-		todayBtn: false,
-		defaultDate: new Date(),
+		autoclose: true,
 		startDate: new Date(),
-		minuteStep: 30,
-		initialDate: new Date(),
-		pickerPosition: "bottom-left",
-		format: 'dd MM yyyy hh:ii',
-		minView: 0,
+		todayHighlight: true,
 		icons: {
 			previous: 'glyphicon glyphicon-chevron-left',
 			next: 'glyphicon glyphicon-chevron-right',
