@@ -14,10 +14,10 @@
         </div>
         <p class="muted">
           <% if @user.title? %>
-            <%= @user.title %> chez
+            <%= @user.title %>
           <% end %>
-          <% if @user.company.name? %>
-            <%= link_to @user.company.name, company_path(@user.company) %>
+          <% if @user.company.present? %>
+            chez <%= link_to @user.company.name, company_path(@user.company) %>
           <% end %>
         </p>
         <ul class="profile-links">

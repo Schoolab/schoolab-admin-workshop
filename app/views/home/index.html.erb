@@ -18,10 +18,10 @@
         </div>
         <p class="muted">
           <% if current_user.title? %>
-            <%= current_user.title %> chez
+            <%= current_user.title %>
           <% end %>
-          <% if current_user.company.name? %>
-            <%= link_to current_user.company.name, company_path(current_user.company) %>
+          <% if current_user.company.present? %>
+            chez <%= link_to current_user.company.name, company_path(current_user.company) %>
           <% end %>
         </p>
 
