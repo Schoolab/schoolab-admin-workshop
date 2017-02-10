@@ -1,4 +1,33 @@
-.form-inline {
+.form-row .form-inline {
+  display: flex;
+  flex-direction: row;
+  line-height: 2rem;
+
+  select {
+    display: flex;
+    flex-grow: 1;
+    // position: relative;
+    // z-index: 1;
+  }
+
+  // select:hover, select:focus {
+  //   z-index: 2;
+  // }
+
+  select + select {
+    // border-radius: 0;
+    margin: 0 .25rem;
+  }
+
+  select:first-of-type {
+    // border-radius: $border-radius-small 0 0 $border-radius-small;
+    margin-left: 0;
+  }
+
+  select:last-of-type {
+    // border-radius: 0 $border-radius-small $border-radius-small 0;
+    margin-right: 0;
+  }
 }
 
 // .form-sentence input,
@@ -66,14 +95,15 @@
   left: .125rem;
 }
 
+.has-feedback .form-control {
+    padding-right: 2.25rem;
+}
+
 .has-feedback-left .form-control {
   padding-right: .5rem;
   padding-left: 2.25rem;
 }
 
-.has-feedback .form-control {
-    padding-right: 2.25rem;
-}
 
 .select-wrapper[class*="col-"] {
   &:after {
