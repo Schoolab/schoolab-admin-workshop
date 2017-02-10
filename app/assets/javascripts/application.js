@@ -34,14 +34,15 @@ $(document).on('turbolinks:load', function() {
 		suffix: [],
 		meridiem: ["am", "pm"],
 		weekStart: 1,
-		format: "dd/mm/yyyy hh:ii"
+		format: "dd/mm/yyyy hh:ii",
+		todayBtn: false
 	};
 
 	$('.form_datetime').datetimepicker({
 		language: 'fr',
 		weekStart: 1,
 		autoclose: false,
-		todayBtn: true,
+		todayBtn: false,
 		defaultDate: new Date(),
 		startDate: new Date(),
 		minuteStep: 30,
