@@ -62,10 +62,12 @@ class ReservationsController < ApplicationController
   # GET /reservations/search
   def search
     if params.has_key?(:room_search)
-      @search = RoomSearch.new(search_params)
-      d = Date.parse(params[:room_search][:start_time_date])
-      @search.start_time = DateTime.new(d.year, d.month, d.day, params[:room_search]["start_time_time(4i)"].to_i, params[:room_search]["start_time_time(5i)"].to_i, 0)
-      @search.length = params[:room_search]["length_time(4i)"].to_i * 3600 + params[:room_search]["length_time(5i)"].to_i * 60
+      @search = RoomSearch.new do |s|
+        d = Date.parse(params[:room_search][:start_time_date])
+        s.start_time = Time.zone.local(d.year, d.month, d.day, params[:room_search]["start_time_time(4i)"].to_i, params[:room_search]["start_time_time(5i)"].to_i, 0)
+        s.length = params[:room_search]["length_time(4i)"].to_i * 3600 + params[:room_search]["length_time(5i)"].to_i * 60
+        s.length_time = Time.zone.local(d.year, d.month, d.day, params[:room_search]["length_time(4i)"].to_i, params[:room_search]["length_time(5i)"].to_i, 0)
+      end
 
       @available_rooms = MeetingRoom.all.order(:floor_id).select { |m| !m.reservation_at(@search.start_time, @search.start_time + @search.length.to_s.to_i)}
       @unavailable_rooms = MeetingRoom.all.order(:floor_id).select { |m| m.reservation_at(@search.start_time, @search.start_time + @search.length.to_s.to_i)}

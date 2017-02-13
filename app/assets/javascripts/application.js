@@ -17,10 +17,13 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require moment
+//= require moment/fr.js
 //= require bootstrap-datepicker
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
+
+	moment.locale('fr');
 
 	$('.datatable').DataTable();
 
@@ -35,24 +38,6 @@ $(document).on('turbolinks:load', function() {
 		format: "DD d MM yyyy",
 		titleFormat: 'MM yyyy'
 	};
-
-	// $('.form_datetime').datetimepicker({
-	// 	language: 'fr',
-	// 	weekStart: 1,
-	// 	autoclose: false,
-	// 	todayBtn: false,
-	// 	defaultDate: new Date(),
-	// 	startDate: new Date(),
-	// 	minuteStep: 30,
-	// 	initialDate: new Date(),
-	// 	pickerPosition: "bottom-left",
-	// 	format: 'dd MM yyyy hh:ii',
-	// 	minView: 0,
-	// 	icons: {
-	// 		previous: 'glyphicon glyphicon-chevron-left',
-	// 		next: 'glyphicon glyphicon-chevron-right',
-	// 	}
-	// });
 
 	$('.datepicker').datepicker({
 		language: 'fr',
