@@ -63,7 +63,10 @@ class ReservationsController < ApplicationController
   def search
     if params.has_key?(:room_search)
       @search = RoomSearch.new(search_params)
+      d = Date.parse(params[:room_search][:start_time_date])
+      @search.start_time = DateTime.new(d.year, d.month, d.day, params[:room_search]["start_time_time(4i)"].to_i, params[:room_search]["start_time_time(5i)"].to_i, 0)
       @search.length = params[:room_search]["length_time(4i)"].to_i * 3600 + params[:room_search]["length_time(5i)"].to_i * 60
+
       @available_rooms = MeetingRoom.all.order(:floor_id).select { |m| !m.reservation_at(@search.start_time, @search.start_time + @search.length.to_s.to_i)}
       @unavailable_rooms = MeetingRoom.all.order(:floor_id).select { |m| m.reservation_at(@search.start_time, @search.start_time + @search.length.to_s.to_i)}
       @reservation = Reservation.new
@@ -81,11 +84,11 @@ class ReservationsController < ApplicationController
 
     # Search parameters
     def search_params
-      params.require(:room_search).permit(:start_time, :length_time)
+      params.require(:room_search).permit(:length_time)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_params
       params.require(:reservation).permit(:start_time, :end_time, :meeting_room_id, :user_id)
     end
-end
+  end
