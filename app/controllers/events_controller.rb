@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_filter :modify_date_params, :only => [:create, :update]
 
   load_and_authorize_resource only: [:new, :edit, :create, :update, :destroy]
 
@@ -71,8 +72,12 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id])
     end
 
+    def modify_date_params
+      params[:event][:date] = Date.parse(params[:event][:date])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
       params.require(:event).permit(:title, :date, :start_time, :end_time, :location, :host, :price, :link, :description, :public, :weekly, :image)
     end
-end
+  end
