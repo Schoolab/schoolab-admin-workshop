@@ -14,4 +14,13 @@ class Event < ApplicationRecord
   def friendly_date
     I18n.l(self.date, format: '%A %e %B')
   end
+
+  def picker_date
+    if self.date.present?
+      I18n.l(self.date, format: '%e %B %Y')
+    else
+      I18n.l(Date.today, format: '%e %B %Y')
+    end
+  end
+
 end
