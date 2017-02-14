@@ -46,16 +46,21 @@
         <% if @employees.each do |employee| %>
 
         <div class="resident">
-          <% if employee.photo.file? %>
-            <div class="img-thumbnail resident-thumb pull-left">
-              <%= image_tag employee.photo.url(:thumb), size: 80 %>
-            </div>
-          <% else %>
-            <div class="img-thumbnail img-square no-thumb resident-thumb" style="width:80px;height:80px;"></div>
+          <%= link_to resident_path(employee) do %>
+            <% if employee.photo.file? %>
+              <div class="img-thumbnail resident-thumb pull-left">
+                <%= image_tag employee.photo.url(:thumb), size: 80 %>
+              </div>
+            <% else %>
+              <div class="img-thumbnail img-square no-thumb resident-thumb" style="width:80px;height:80px;"></div>
+            <% end %>
           <% end %>
 
           <div class="resident-details">
-            <h3 class="panel-title"><%= employee.name %></h3>
+            <h3 class="panel-title">
+              <%= link_to resident_path(employee) do %>
+                <%= employee.name %></h3>
+              <% end %>
             <% if employee.title? %>
               <p class="panel-subtitle"><%= employee.title %></p>
             <% end %>

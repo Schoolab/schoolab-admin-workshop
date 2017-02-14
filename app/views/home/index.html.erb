@@ -6,8 +6,8 @@
     <div class="panel txt-c">
       <div class="panel-body">
         <% if current_user.photo.file? %>
-        <div class="img-thumbnail img-square">
-          <%= image_tag current_user.photo.url(:thumb), size: 96 %>
+        <div class="img-thumbnail resident-thumb">
+          <%= image_tag current_user.photo.url(:medium), size: 96 %>
         </div>
         <% end %>
         <div class="panel-heading">
