@@ -1,4 +1,4 @@
-.datetimepicker {
+.datepicker {
   .table-condensed > thead > tr > th,
   .table-condensed > thead > tr > td,
   .table-condensed > tbody > tr > th,
@@ -9,93 +9,136 @@
   }
 }
 
-.datetimepicker.dropdown-menu {
+.datepicker.dropdown-menu {
   padding: .5rem;
   border: 1px solid $border-color;
-  box-shadow: 0 6px 12px rgba($black,.25)
+  box-shadow: 0 6px 12px rgba($black,.25);
+  margin-top: .5rem;
 }
 
-.datetimepicker thead {
+.datepicker thead {
   border-bottom: 1px solid $brand-10;
 }
 
-.datetimepicker td, .datetimepicker th {
+.datepicker table tr td, .datepicker table tr th {
   line-height: 2.5rem;
   width: 2.5rem;
+  height: 2.5rem;
+  border-radius: .125rem;
+
+  &.day, &.month, &.year, &.decade, &.century {
+    border-radius: 50%;
+  }
+}
+
+.datepicker table tr td span {
   border-radius: 50%;
 }
 
-.datetimepicker table tr td span {
-  border-radius: 50%;
-}
-
-.datetimepicker th.switch,
-.datetimepicker th.prev,
-.datetimepicker th.next {
+.datepicker th.switch,
+.datepicker th.prev,
+.datepicker th.next {
+  font-size: 1rem;
   line-height: 2rem;
   color: $brand-75;
-  padding: .5rem 0!important
+  padding: 0 !important;
 }
 
-.datetimepicker th.switch,
-.datetimepicker th.today {
+.datepicker th.switch,
+.datepicker th.today {
   color: $brand-primary;
   font-size: 1rem;
 }
 
-.datetimepicker th.switch,
-.datetimepicker th.prev,
-.datetimepicker th.next,
-.datetimepicker th.today {
+.datepicker th.switch,
+.datepicker th.prev,
+.datepicker th.next,
+.datepicker th.today {
   border-radius: .125rem;
 }
 
-.datetimepicker td.day {
+.datepicker td.day {
   font-size: 1rem;
 }
 
-.datetimepicker th.dow {
+.datepicker th.dow {
   font-size: .75rem;
   line-height: 1.5rem;
   font-weight: normal;
   color: $brand-50;
 }
 
-.datetimepicker table tr td {
+.datepicker table tr td {
   color: $brand-75;
 }
 
-.datetimepicker table tr td.old, .datetimepicker table tr td.new {
+.datepicker table tr td.old, .datepicker table tr td.new {
   color: $brand-15;
 }
 
-.datetimepicker table tr td.active,
-.datetimepicker table tr td.active:hover,
-.datetimepicker table tr td.active.disabled,
-.datetimepicker table tr td.active.disabled:hover {
+.datepicker table tr td.active,
+.datepicker table tr td.active:hover,
+.datepicker table tr td.active.disabled,
+.datepicker table tr td.active.disabled:hover {
   text-shadow: none;
   border: none;
 }
 
-.datetimepicker table tr td.active:active,
-.datetimepicker table tr td.active:hover:active,
-.datetimepicker table tr td.active.disabled:active,
-.datetimepicker table tr td.active.disabled:hover:active,
-.datetimepicker table tr td.active.active,
-.datetimepicker table tr td.active:hover.active,
-.datetimepicker table tr td.active.disabled.active,
-.datetimepicker table tr td.active.disabled:hover.active {
+.datepicker table tr td span.active:active,
+.datepicker table tr td span.active:hover:active,
+.datepicker table tr td span.active.disabled:active,
+.datepicker table tr td span.active.disabled:hover:active,
+.datepicker table tr td span.active.active,
+.datepicker table tr td span.active:hover.active,
+.datepicker table tr td span.active.disabled.active,
+.datepicker table tr td span.active.disabled:hover.active,
+
+.datepicker table tr td span.active:active:hover,
+.datepicker table tr td span.active:hover:active:hover,
+.datepicker table tr td span.active.disabled:active:hover,
+.datepicker table tr td span.active.disabled:hover:active:hover,
+.datepicker table tr td span.active.active:hover,
+.datepicker table tr td span.active:hover.active:hover,
+.datepicker table tr td span.active.disabled.active:hover,
+.datepicker table tr td span.active.disabled:hover.active:hover,
+.datepicker table tr td span.active:active:focus,
+.datepicker table tr td span.active:hover:active:focus,
+.datepicker table tr td span.active.disabled:active:focus,
+.datepicker table tr td span.active.disabled:hover:active:focus,
+.datepicker table tr td span.active.active:focus,
+.datepicker table tr td span.active:hover.active:focus,
+.datepicker table tr td span.active.disabled.active:focus,
+.datepicker table tr td span.active.disabled:hover.active:focus,
+.datepicker table tr td span.active:active.focus,
+.datepicker table tr td span.active:hover:active.focus,
+.datepicker table tr td span.active.disabled:active.focus,
+.datepicker table tr td span.active.disabled:hover:active.focus,
+.datepicker table tr td span.active.active.focus,
+.datepicker table tr td span.active:hover.active.focus,
+.datepicker table tr td span.active.disabled.active.focus,
+.datepicker table tr td span.active.disabled:hover.active.focus,
+
+.datepicker table tr td.active:active,
+.datepicker table tr td.active.highlighted:active,
+.datepicker table tr td.active.active,
+.datepicker table tr td.active.highlighted.active {
   background: $brand-blue;
+  border: none;
+  color: $white;
 }
 
-.datetimepicker table tr td span.active:active,
-.datetimepicker table tr td span.active:hover:active,
-.datetimepicker table tr td span.active.disabled:active,
-.datetimepicker table tr td span.active.disabled:hover:active,
-.datetimepicker table tr td span.active.active,
-.datetimepicker table tr td span.active:hover.active,
-.datetimepicker table tr td span.active.disabled.active,
-.datetimepicker table tr td span.active.disabled:hover.active {
+.datepicker table tr td.active:active:hover,
+.datepicker table tr td.active.highlighted:active:hover,
+.datepicker table tr td.active.active:hover,
+.datepicker table tr td.active.highlighted.active:hover,
+.datepicker table tr td.active:active:focus,
+.datepicker table tr td.active.highlighted:active:focus,
+.datepicker table tr td.active.active:focus,
+.datepicker table tr td.active.highlighted.active:focus,
+.datepicker table tr td.active:active.focus,
+.datepicker table tr td.active.highlighted:active.focus,
+.datepicker table tr td.active.active.focus,
+.datepicker table tr td.active.highlighted.active.focus {
   background: $brand-blue;
 }
 
@@ -125,11 +168,7 @@
   }
 }
 
-.datetimepicker {
-    margin: .5rem 0 0;
-}
-
-.datetimepicker-dropdown-bottom-left {
+.datepicker-dropdown-bottom-left {
   &:before {
     right: 9px;
     border-bottom-color: $brand-15;
