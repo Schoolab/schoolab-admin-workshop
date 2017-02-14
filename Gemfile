@@ -41,6 +41,9 @@ gem 'omniauth'
 gem 'devise_token_auth'
 gem 'rack-cors', :require => 'rack/cors'
 
+gem "audited", "~> 4.3"
+gem "rails-observers", github: 'rails/rails-observers'
+
 # File handling
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.3'

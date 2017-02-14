@@ -23,4 +23,6 @@ class Event < ApplicationRecord
     end
   end
 
+  audited
+
 end

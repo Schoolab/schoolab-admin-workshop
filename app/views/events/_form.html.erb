@@ -75,11 +75,30 @@
       <div class="form-group col-md-12 align-items-center space-between">
         <ul class="simple-list muted">
           <% if @event.created_at.present? %>
-            <li><%= 'Créé il y a ' + time_ago_in_words(@event.created_at) + '.' %></li>
+            <li>
+              <% if @event.audits.present? %>
+                <% user_id = @event.audits.first.user.id %>
+                <%= 'Créé il y a ' + time_ago_in_words(@event.created_at) + ' par ' %>
+                <%= link_to @event.audits.first.user.name, resident_path(user_id) %>.
+              <% else %>
+                <%= 'Créé il y a ' + time_ago_in_words(@event.created_at) + '.' %>
+              <% end %>
+            </li>
           <% end %>
           <% if @event.updated_at != @event.created_at %>
-            <li><%= 'Modifié il y a ' + time_ago_in_words(@event.updated_at) + '.'%></li>
+            <li>
+              <% if @event.audits.present? %>
+              <%-# Évènement créés avec Audited -%>
+                <% user_id = @event.audits.last.user.id %>
+                <%= 'Modifié il y a ' + time_ago_in_words(@event.updated_at) + ' par ' %>
+                <%= link_to @event.audits.last.user.name, resident_path(user_id) %>.
+              <% else %>
+              <%-# Évènement créés avant Audited -%>
+                <%= 'Modifié il y a ' + time_ago_in_words(@event.updated_at) + '.' %>
+              <% end %>
+            </li>
           <% end %>
+
         </ul>
 
         <%= f.submit "Sauvegarder", class: "btn btn-primary" %>
