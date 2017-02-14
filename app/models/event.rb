@@ -12,6 +12,6 @@ class Event < ApplicationRecord
   end
 
   def friendly_date
-    I18n.l(self.start_time, format: '%A %e %B')
+    I18n.l(self.date, format: '%A %e %B')
   end
 end

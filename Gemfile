@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
 gem 'jquery-datatables-rails', '~> 3.4.0'
+gem 'bootstrap-datepicker-rails'
 
 # Users
 gem 'devise'
@@ -55,6 +56,9 @@ gem 'momentjs-rails', '~> 2.9'
 
 # Simple forms
 gem 'simple_form'
+
+# Date time handling
+gem 'date_time_attribute'
 
 # SendGrid
 gem 'sendgrid-ruby'

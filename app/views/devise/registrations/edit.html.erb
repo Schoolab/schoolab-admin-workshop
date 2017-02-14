@@ -68,11 +68,11 @@
       </div>
 
       <h4>Modifier votre mot de passe</h4>
-      <p>Comme à votre habitude, indiquez un mot de passe afin de sécuriser l’accès à votre compte sur l’admin Schoolab. On ne va rien vous apprendre, mais il vaut mieux garder ces informations pour vous.</p>
+      <p>Pour changer votre mot de passe, entrez le nouveau mot de passe ci-dessus et confirmer tout en bas avec votre mot de passe actuel.</p>
       <div class="row form-row">
         <div class="form-group col-md-6">
           <%= f.label :password, class: "sr-only" %>
-          <%= f.password_field :password, autocomplete: "off", placeholder: "Mot de passe", class: "form-control" %>
+          <%= f.password_field :password, autocomplete: "off", placeholder: "Nouveau mot de passe", class: "form-control" %>
         </div>
         <div class="form-group col-md-6">
           <%= f.label :password_confirmation, class: "sr-only" %>
@@ -82,7 +82,7 @@
     </div>
     <div class="panel-footer">
       <div class="input-group">
-        <%= f.password_field :current_password, placeholder: "Entrer votre mot de passe avant de sauvegarder...", class: "form-control" %>
+        <%= f.password_field :current_password, placeholder: "Entrer votre mot de passe actuel avant de sauvegarder...", class: "form-control" %>
         <span class="input-group-btn">
           <%= f.button :submit, :class => "btn btn-primary" do %>
             Sauvegarder
