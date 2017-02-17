@@ -7,7 +7,7 @@ class Event < ApplicationRecord
     if self.price == 0
       return 'Gratuit'
     else
-      return self.price.to_s + ' €'
+      return self.price.to_s + '€'
     end
   end
 

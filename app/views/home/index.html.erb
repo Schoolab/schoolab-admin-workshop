@@ -34,23 +34,62 @@
 
     <div class="panel">
       <div class="panel-heading">
-        <h2>Explorer Schoolab Cléry</h2>
+        <h2>Évènements à venir</h2>
       </div>
       <div class="panel-body">
 
-        <% if Floor.present? %>
-          <h3>
-            <i class="material-icons">view_agenda</i>
-            Les étages (<%= Floor.count %>)
-          </h3>
-          <ul class="simple-list">
-          <% Floor.each do |floor| %>
-            <li>
-              <%= link_to floor.name, floor_path(floor) %>
+        <% @events = Event.where("date >= ?", Time.zone.today).order(date: :asc).take(3) %>
+
+        <ul class="events">
+          <% @events.each do |event| %>
+            <li class="event">
+              <% if event.image.present? %>
+                <div class="event-img" style="background-image: url(<%= image_path event.image.url(:medium) %>)"></div>
+              <% end %>
+              <div class="event-content">
+                <p class="meta meta-top meta-blue">
+                  <% if event.date.today? %>
+                    Aujourd'hui
+                    <%= + ' de ' +
+                    event.start_time.strftime('%Hh') +
+                    (event.start_time.strftime('%M') != '00' ? event.start_time.strftime('%M') : '') +
+                    ' à ' +
+                    event.end_time.strftime('%Hh') +
+                    (event.end_time.strftime('%M') != '00' ? event.end_time.strftime('%M') : '') %>
+                  <% else %>
+                    <%= event.date.strftime('%d/%m/%y') %>
+                    <%= ' de ' +
+                    event.start_time.strftime('%Hh') +
+                    (event.start_time.strftime('%M') != '00' ? event.start_time.strftime('%M') : '') +
+                    ' à ' +
+                    event.end_time.strftime('%Hh') +
+                    (event.end_time.strftime('%M') != '00' ? event.end_time.strftime('%M') : '') %>
+                  <% end %>
+                </p>
+                <h3 class="event-title">
+                  <%= event.title %>
+                  <% if event.host? %>
+                    <span class="info-block">
+                      par <%= event.host %>
+                    </span>
+                  <% end %>
+                </h3>
+                <% if event.location.present? %>
+                  <p class="meta meta-bottom meta-grey">
+                    <i class="icon material-icons">view_agenda</i>
+                    <%= event.location %>
+                    <% if event.price.present? %>
+                      <span class="pull-right"><%= event.full_price %></span>
+                    <% end %>
+                  </p>
+                <% end %>
+                <% if event.link.present? %>
+                  <a href="<%= event.link %>" class="event-more">Plus d'infos ›</a>
+                <% end %>
+              </div>
             </li>
           <% end %>
-          </ul>
-        <% end %>
+        </ul>
 
       </div>
     </div>
