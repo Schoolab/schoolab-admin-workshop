@@ -12,7 +12,7 @@
     <thead>
       <tr>
         <th>Nom</th>
-        <th colspan="2"></th>
+        <th colspan="3"></th>
       </tr>
     </thead>
 
@@ -20,6 +20,7 @@
       <% @floors.each do |floor| %>
         <tr>
           <td><%= floor.name %></td>
+          <td><%= link_to 'Voir', floor_path(floor), class: 'btn btn-default btn-xs' %></td>
           <td><%= link_to 'Modifier', edit_floor_path(floor), class: 'btn btn-default btn-xs' %></td>
           <td><%= link_to 'Supprimer', floor, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-xs' %></td>
         </tr>

@@ -29,10 +29,10 @@
 
   <% reservation_end_time = @search.start_time + @search.length.to_s.to_i %>
 
-  <div class="panel-body reservation-grid">
+  <div class="panel-body reservation-grid row">
     <% @available_rooms.each do |room| %>
 
-    <div class="reservation <%= reservations = room.reservation_at(@search.start_time, reservation_end_time) ? 'booked' : '' %>">
+    <div class="reservation col-xs-12 col-md-6 col-lg-3 <%= reservations = room.reservation_at(@search.start_time, reservation_end_time) ? 'booked' : '' %>">
       <div class="reservation-infos" style="background-color: <%= room.colour %>">
         <div class="reservation-infos-content">
           <div class="reservation-infos-name">
@@ -116,10 +116,10 @@
 
   <% reservation_end_time = @search.start_time + @search.length.to_s.to_i %>
 
-  <div class="panel-body reservation-grid">
+  <div class="panel-body reservation-grid row">
     <% @unavailable_rooms.each do |room| %>
 
-    <div class="reservation <%= reservations = room.reservation_at(@search.start_time, reservation_end_time) ? 'booked' : '' %>">
+    <div class="reservation col-xs-12 col-md-6 col-lg-3 <%= reservations = room.reservation_at(@search.start_time, reservation_end_time) ? 'booked' : '' %>">
       <div class="reservation-infos" style="background-color: <%= room.colour %>">
         <div class="reservation-infos-content">
           <div class="reservation-infos-name">

@@ -1,4 +1,103 @@
-<p id="notice"><%= notice %></p>
+<% @companies = Company.where('floor_id = ?', @floor.id) %>
+<% @spaces = MeetingRoom.where('floor_id = ?', @floor.id) %>
 
-<%= link_to 'Edit', edit_floor_path(@floor) %> |
-<%= link_to 'Back', floors_path %>
+<div class="row">
+  <div class="col-xs-12 col-md-4">
+    <div class="panel txt-c">
+      <div class="panel-body">
+        <div class="img-thumbnail no-thumb floor-thumb" style="width:96px;height:96px;"></div>
+
+        <div class="panel-heading">
+          <h2><%= @floor.name %></h2>
+        </div>
+        <ul class="list-infos">
+          <li class="muted"><%= @companies.count %> <%= 'entreprise'.pluralize(@companies.count) %></li>
+          <li class="muted"><%= @spaces.count %> <%= 'salle'.pluralize(@spaces.count) %> de réunion</li>
+        </ul>
+
+        <% if current_user.role == "admin" %>
+          <%= link_to edit_floor_path(@floor), class: 'btn btn-default btn-icon' do %>
+            <i class="material-icons">settings</i><span>Paramètres</span>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-md-8">
+
+    <div class="panel">
+      <div class="panel-heading">
+        <h2>Liste des entreprises</h2>
+      </div>
+      <div class="panel-body">
+        <% if @companies.each do |company| %>
+
+          <% @employees = User.where('company_id = ?', company.id) %>
+
+          <div class="resident">
+            <%= link_to company_path(company) do %>
+              <% if company.image.file? %>
+                <div class="img-thumbnail company-thumb pull-left">
+                  <%= image_tag company.image.url(:medium), size: 80 %>
+                </div>
+              <% else %>
+                <div class="img-thumbnail no-thumb company-thumb" style="width:80px;height:80px;"></div>
+              <% end %>
+            <% end %>
+
+            <div class="resident-details">
+              <h3 class="panel-title">
+                <%= link_to company_path(company) do %>
+                  <%= company.name %></h3>
+                <% end %>
+              <p class="panel-subtitle"><%= @employees.count %> <%= 'employé'.pluralize(@employees.count) %></p>
+            </div>
+          </div>
+
+        <% end.empty? %>
+
+          <p class="muted">Il n'y a pas d'entreprise à cet étage...</p>
+
+        <% end %>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-heading">
+        <h2>Liste des salles de réunion</h2>
+      </div>
+      <div class="panel-body row">
+        <% if @spaces.each do |space| %>
+
+        <div class="reservation col-xs-12 col-md-6 col-xl-4">
+          <div class="reservation-infos" style="background-color: <%= space.colour %>">
+            <div class="reservation-infos-content">
+              <div class="reservation-infos-name">
+                <%= space.name %>
+              </div>
+              <div class="reservation-infos-floor">
+                <%= space.floor.present? ? space.floor.name : "N/A" %>
+              </div>
+            </div>
+            <div class="reservation-infos-bottom">
+
+              <%-# More than 1 reservation -%>
+              <span class="btn btn-reservation">Voir les réservations</span>
+              <div class="reservation-infos-resident-list">
+                <span class="reservation-infos-resident">Cette fonctionnalité arrive bientôt !</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <% end.empty? %>
+
+          <p class="muted">Il n'y a pas d'entreprise à cet étage...</p>
+
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

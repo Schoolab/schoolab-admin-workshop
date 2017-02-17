@@ -37,6 +37,10 @@
   content: "location_city";
 }
 
+.no-thumb.floor-thumb:after {
+  content: "view_agenda";
+}
+
 .resident-thumb, .resident-thumb:before {
   border-radius: 50%;
   overflow: hidden;
