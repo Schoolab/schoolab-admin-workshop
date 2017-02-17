@@ -38,7 +38,7 @@
           <div class="resident">
             <%= link_to company_path(company) do %>
               <% if company.image.file? %>
-                <div class="img-thumbnail company-thumb pull-left">
+                <div class="img-thumbnail company-thumb pull-left" style="width:80px;height:80px;">
                   <%= image_tag company.image.url(:medium), size: 80 %>
                 </div>
               <% else %>

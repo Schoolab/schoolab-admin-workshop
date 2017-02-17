@@ -3,7 +3,7 @@
     <div class="panel txt-c">
       <div class="panel-body">
         <% if @user.photo.file? %>
-          <div class="img-thumbnail resident-thumb">
+          <div class="img-thumbnail resident-thumb" style="width:96px;height:96px;">
             <%= image_tag @user.photo.url(:medium), size: 96 %>
           </div>
         <% else %>
@@ -20,10 +20,10 @@
             chez <%= link_to @user.company.name, company_path(@user.company) %>
           <% end %>
         </p>
-        <ul class="profile-links">
-          <li class="profile-icon-email"><%= mail_to @user.email %></li>
+        <ul class="simple-list">
+          <li class="list-icon list-icon-email"><%= mail_to @user.email %></li>
           <% if @user.phone? %>
-            <li class="profile-icon-phone"><%= tel_to @user.phone %></li>
+            <li class="list-icon list-icon-phone"><%= tel_to @user.phone %></li>
           <% end %>
         </ul>
 

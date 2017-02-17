@@ -10,31 +10,3 @@
     color: $grey;
     margin-bottom: 3px;
 }
-
-.profile-links {
-    list-style: none;
-    padding: 0;
-}
-
-[class^="profile-icon-"], [class*=" profile-icon-"] {
-    &:before {
-        speak: none;
-        font-family: Material Icons;
-        font-style: normal;
-        font-weight: normal;
-        font-variant: normal;
-        text-transform: none;
-        line-height: 1;
-        color: $grey;
-        vertical-align: middle;
-        padding: 0 .5rem 0 0;
-    }
-}
-
-.profile-icon-phone:before {
-    content: "phone";
-}
-
-.profile-icon-email:before {
-    content: "email";
-}

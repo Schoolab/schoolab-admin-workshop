@@ -6,7 +6,7 @@
     <div class="panel txt-c">
       <div class="panel-body">
         <% if current_user.photo.file? %>
-        <div class="img-thumbnail resident-thumb">
+        <div class="img-thumbnail resident-thumb" style="width:96px;height:96px;">
           <%= image_tag current_user.photo.url(:medium), size: 96 %>
         </div>
         <% end %>
@@ -31,16 +31,39 @@
         <%= link_to "Deconnexion", destroy_user_session_path, :method => :delete, class: 'btn btn-primary' %>
       </div>
     </div>
+
+    <div class="panel">
+      <div class="panel-heading">
+        <h2>Explorer Schoolab Cléry</h2>
+      </div>
+      <div class="panel-body">
+
+        <% if Floor.present? %>
+          <h3>
+            <i class="material-icons">view_agenda</i>
+            Les étages (<%= Floor.count %>)
+          </h3>
+          <ul class="simple-list">
+          <% Floor.each do |floor| %>
+            <li>
+              <%= link_to floor.name, floor_path(floor) %>
+            </li>
+          <% end %>
+          </ul>
+        <% end %>
+
+      </div>
+    </div>
   </div>
 
   <div class="col-xs-12 col-md-8">
     <div class="panel">
       <div class="panel-heading">
-        <h2>Vos réservations</h2>
+        <h2>Mes réservations à venir</h2>
       </div>
 
       <div class="panel-body reservation-list">
-        
+
         <% if @current_user.reservations.where('reservations.end_time > ?', Time.current).order('reservations.start_time ASC').each do |reservation| %>
 
           <div class="reservation booked">
