@@ -23,3 +23,37 @@
   padding: 0;
   margin: 0 auto 1rem;
 }
+
+.simple-list {
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+
+.list-icon {
+    &:before {
+        speak: none;
+        font-family: Material Icons;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        color: $grey;
+        vertical-align: middle;
+        padding: 0 .5rem 0 0;
+    }
+}
+
+.list-icon-phone:before {
+    content: "phone";
+}
+
+.list-icon-email:before {
+    content: "email";
+}
+
+.list-icon-floor:before {
+    content: "view_agenda";
+}

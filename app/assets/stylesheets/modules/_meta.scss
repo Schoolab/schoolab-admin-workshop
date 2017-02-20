@@ -1,0 +1,27 @@
+.meta {
+  display: block;
+  line-height: 1.25rem;
+  font-size: 1rem;
+}
+
+.meta-top {
+  margin: 0 0 .5rem;
+}
+
+.meta-bottom {
+  margin: .5rem 0 0;
+}
+
+.meta-grey {
+  color: $brand-50;
+}
+
+.meta-blue {
+  color: $brand-blue;
+}
+
+.meta .icon {
+  font-size: 1.25em;
+  line-height: 1.25rem;
+  vertical-align: text-bottom;
+}

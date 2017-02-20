@@ -6,8 +6,8 @@
     <div class="panel txt-c">
       <div class="panel-body">
         <% if current_user.photo.file? %>
-        <div class="img-thumbnail img-square">
-          <%= image_tag current_user.photo.url(:thumb), size: 96 %>
+        <div class="img-thumbnail resident-thumb" style="width:96px;height:96px;">
+          <%= image_tag current_user.photo.url(:medium), size: 96 %>
         </div>
         <% end %>
         <div class="panel-heading">
@@ -31,69 +31,130 @@
         <%= link_to "Deconnexion", destroy_user_session_path, :method => :delete, class: 'btn btn-primary' %>
       </div>
     </div>
+
+    <div class="panel">
+      <div class="panel-heading">
+        <h2>Évènements à venir</h2>
+      </div>
+      <div class="panel-body">
+
+        <% @events = Event.where("date >= ?", Time.zone.today).order(date: :asc).take(3) %>
+
+        <ul class="events">
+          <% @events.each do |event| %>
+            <li class="event">
+              <% if event.image.present? %>
+                <div class="event-img" style="background-image: url(<%= image_path event.image.url(:medium) %>)"></div>
+              <% end %>
+              <div class="event-content">
+                <p class="meta meta-top meta-blue">
+                  <% if event.date.today? %>
+                    Aujourd'hui
+                    <%= + ' de ' +
+                    event.start_time.strftime('%Hh') +
+                    (event.start_time.strftime('%M') != '00' ? event.start_time.strftime('%M') : '') +
+                    ' à ' +
+                    event.end_time.strftime('%Hh') +
+                    (event.end_time.strftime('%M') != '00' ? event.end_time.strftime('%M') : '') %>
+                  <% else %>
+                    <%= event.date.strftime('%d/%m/%y') %>
+                    <%= ' de ' +
+                    event.start_time.strftime('%Hh') +
+                    (event.start_time.strftime('%M') != '00' ? event.start_time.strftime('%M') : '') +
+                    ' à ' +
+                    event.end_time.strftime('%Hh') +
+                    (event.end_time.strftime('%M') != '00' ? event.end_time.strftime('%M') : '') %>
+                  <% end %>
+                </p>
+                <h3 class="event-title">
+                  <%= event.title %>
+                  <% if event.host? %>
+                    <span class="info-block">
+                      par <%= event.host %>
+                    </span>
+                  <% end %>
+                </h3>
+                <% if event.location.present? %>
+                  <p class="meta meta-bottom meta-grey">
+                    <i class="icon material-icons">view_agenda</i>
+                    <%= event.location %>
+                    <% if event.price.present? %>
+                      <span class="pull-right"><%= event.full_price %></span>
+                    <% end %>
+                  </p>
+                <% end %>
+                <% if event.link.present? %>
+                  <a href="<%= event.link %>" class="event-more">Plus d'infos ›</a>
+                <% end %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+
+      </div>
+    </div>
   </div>
 
   <div class="col-xs-12 col-md-8">
     <div class="panel">
       <div class="panel-heading">
-        <h2>Vos réservations</h2>
+        <h2>Mes réservations à venir</h2>
       </div>
-
-      <% if @current_user.reservations.where('reservations.end_time > ?', Time.current).order('reservations.start_time ASC').each do |reservation| %>
 
       <div class="panel-body reservation-list">
-        <div class="reservation booked">
-          <div class="reservation-infos" style="background-color: <%= reservation.meeting_room.colour %>">
-            <div class="reservation-infos-content">
-              <div class="reservation-infos-name">
-                <%= reservation.meeting_room.name %>
+
+        <% if @current_user.reservations.where('reservations.end_time > ?', Time.current).order('reservations.start_time ASC').each do |reservation| %>
+
+          <div class="reservation booked">
+            <div class="reservation-infos" style="background-color: <%= reservation.meeting_room.colour %>">
+              <div class="reservation-infos-content">
+                <div class="reservation-infos-name">
+                  <%= reservation.meeting_room.name %>
+                </div>
+                <div class="reservation-infos-floor">
+                  <%= reservation.meeting_room.floor.present? ? reservation.meeting_room.floor.name : "N/A" %>
+                </div>
               </div>
-              <div class="reservation-infos-floor">
-                <%= reservation.meeting_room.floor.present? ? reservation.meeting_room.floor.name : "N/A" %>
+              <div class="reservation-infos-bottom">
+                <% if reservation.user == current_user && reservation.start_time > Time.current %>
+                  <%= link_to "Annuler", reservation, method: :delete, class: 'btn btn-reservation', style: 'color:' + reservation.meeting_room.colour + ';' %>
+                <% elsif (reservation.start_time <= Time.current && reservation.end_time >= Time.current) %>
+                  <span class="btn-reservation" style="color:<%= reservation.meeting_room.colour %>;">En cours</span>
+                <%else %>
+                  <span class="btn-reservation" style="color:<%= reservation.meeting_room.colour %>;">Terminée</span>
+                <% end %>
               </div>
             </div>
-            <div class="reservation-infos-bottom">
-              <% if reservation.user == current_user && reservation.start_time > Time.current %>
-                <%= link_to "Annuler", reservation, method: :delete, class: 'btn btn-reservation', style: 'color:' + reservation.meeting_room.colour + ';' %>
-              <% elsif (reservation.start_time <= Time.current && reservation.end_time >= Time.current) %>
-                <span class="btn-reservation" style="color:<%= reservation.meeting_room.colour %>;">En cours</span>
-              <%else %>
-                <span class="btn-reservation" style="color:<%= reservation.meeting_room.colour %>;">Terminée</span>
-              <% end %>
+            <div class="reservation-details">
+              <h3 class="reservation-details-title">Votre réservation</h3>
+              <p>
+                <% if reservation.start_time.today? %>
+                Aujourd'hui
+                <% else %>
+                <%= reservation.friendly_date %>
+                <% end %>
+                <%= 'de ' +
+                reservation.start_time.strftime('%Hh') +
+                (reservation.start_time.strftime('%M') != '00' ? reservation.start_time.strftime('%M') : '') +
+                ' à ' +
+                reservation.end_time.strftime('%Hh') +
+                (reservation.end_time.strftime('%M') != '00' ? reservation.end_time.strftime('%M') : '') +
+                '.'
+                %>
+              </p>
+              <h3 class="reservation-details-title muted">Information de la salle</h3>
+              <p class="muted">Cette salle est située au <%= reservation.meeting_room.floor.present? ? reservation.meeting_room.floor.name : "N/A" %>. <%#-Il y a une réunion avant la votre jusqu’à 11h30.%></p>
             </div>
           </div>
-          <div class="reservation-details">
-            <h3 class="reservation-details-title">Votre réservation</h3>
-            <p>
-              <% if reservation.start_time.today? %>
-              Aujourd'hui
-              <% else %>
-              <%= reservation.friendly_date %>
-              <% end %>
-              <%= 'de ' +
-              reservation.start_time.strftime('%Hh') +
-              (reservation.start_time.strftime('%M') != '00' ? reservation.start_time.strftime('%M') : '') +
-              ' à ' +
-              reservation.end_time.strftime('%Hh') +
-              (reservation.end_time.strftime('%M') != '00' ? reservation.end_time.strftime('%M') : '') +
-              '.'
-              %>
-            </p>
-            <h3 class="reservation-details-title muted">Information de la salle</h3>
-            <p class="muted">Cette salle est située au <%= reservation.meeting_room.floor.present? ? reservation.meeting_room.floor.name : "N/A" %>. <%#-Il y a une réunion avant la votre jusqu’à 11h30.%></p>
-          </div>
-        </div>
+
+        <% end.empty? %>
+
+          <p class="muted">Oh non... il n'y a aucune reservation.</p>
+          <%= link_to "Réserver une salle", search_reservations_path, class: 'btn btn-info' %>
+
+        <% end %>
+
       </div>
-
-      <% end.empty? %>
-
-      <div class="panel-body">
-        <p class="muted">Oh non... il n'y a aucune reservation.</p>
-        <%= link_to "Réserver une salle", search_reservations_path, class: 'btn btn-info' %>
-      </div>
-
-      <% end %>
-
     </div>
   </div>
 </div>

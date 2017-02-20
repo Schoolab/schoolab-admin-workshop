@@ -1,19 +1,24 @@
 .img-thumbnail {
-    background-color: $brand-10;
-    padding: 0;
-    border-radius: 0;
-    border: none;
-    position: relative;
+  background-color: $brand-10;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  position: relative;
 
-    &:before {
-        position: absolute;
-        content: "";
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border: 2px solid rgba($black,.1);
-    }
+  &:before {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border: 2px solid rgba($black,.1);
+  }
+
+  img {
+    -o-object-fit: cover;
+    object-fit: cover;
+  }
 }
 
 .no-thumb {
@@ -35,6 +40,10 @@
 
 .no-thumb.company-thumb:after {
   content: "location_city";
+}
+
+.no-thumb.floor-thumb:after {
+  content: "view_agenda";
 }
 
 .resident-thumb, .resident-thumb:before {

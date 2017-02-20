@@ -7,11 +7,22 @@ class Event < ApplicationRecord
     if self.price == 0
       return 'Gratuit'
     else
-      return self.price.to_s + ' €'
+      return self.price.to_s + '€'
     end
   end
 
   def friendly_date
     I18n.l(self.date, format: '%A %e %B')
   end
+
+  def picker_date
+    if self.date.present?
+      I18n.l(self.date, format: '%e %B %Y')
+    else
+      I18n.l(Date.today, format: '%e %B %Y')
+    end
+  end
+
+  audited
+
 end

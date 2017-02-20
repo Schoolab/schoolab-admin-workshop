@@ -1,4 +1,5 @@
 /**
+/**
 * Description: This file import all the CSS files that needed in all pages of the app.
 * Version: 1.1.0
 * Last update: 2017/01/18
@@ -40,19 +41,23 @@
 4. MODULES
 ========================================================================== */
 @import "modules/alert";
+@import "modules/bootstrap-datetimepicker";
 @import "modules/btn";
 @import "modules/colour-square";
+@import "modules/event";
 @import "modules/form";
+@import "modules/info";
 @import "modules/input";
 @import "modules/list";
+@import "modules/meta";
 @import "modules/navbar";
 @import "modules/panel";
+@import "modules/planning";
 @import "modules/profile";
 @import "modules/reservation";
 @import "modules/resident";
 @import "modules/table";
 @import "modules/thumbnail";
-@import "modules/bootstrap-datetimepicker";
 
 /* ==========================================================================
 5. LAYOUTS
