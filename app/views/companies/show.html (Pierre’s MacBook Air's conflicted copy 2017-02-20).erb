@@ -1,0 +1,82 @@
+<% @employees = User.where('company_id = ?', @company.id) %>
+
+<div class="row">
+  <div class="col-xs-12 col-md-4">
+    <div class="panel txt-c">
+      <div class="panel-body">
+        <% if @company.image.file? %>
+          <div class="img-thumbnail company-thumb">
+            <%= image_tag @company.image.url(:medium), size: 96 %>
+          </div>
+        <% else %>
+          <div class="img-thumbnail no-thumb company-thumb" style="width:96px;height:96px;"></div>
+        <% end %>
+
+        <div class="panel-heading">
+          <h2><%= @company.name %></h2>
+        </div>
+        <ul class="list-infos">
+          <li class="muted"><%= @company.floor.name %></li>
+          <li class="muted"><%= @employees.count %> <%= 'employé'.pluralize(@employees.count) %></li>
+        </ul>
+
+        <h4><%= @company.name %> c'est quoi ?</h4>
+        <% if @company.description? %>
+          <p><%= @company.description %></p>
+        <% else %>
+          <p class="muted">Pas de description...</p>
+        <% end %>
+
+        <% if current_user.role == "admin" %>
+          <%= link_to edit_company_path(@company), class: 'btn btn-default btn-icon' do %>
+            <i class="material-icons">settings</i><span>Paramètres</span>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-md-8">
+
+    <div class="panel">
+      <div class="panel-heading">
+        <h2>Liste des employés</h2>
+      </div>
+      <div class="panel-body">
+        <% if @employees.each do |employee| %>
+
+        <div class="resident">
+          <%= link_to resident_path(employee) do %>
+            <% if employee.photo.file? %>
+              <div class="img-thumbnail resident-thumb pull-left">
+                <%= image_tag employee.photo.url(:thumb), size: 80 %>
+              </div>
+            <% else %>
+              <div class="img-thumbnail img-square no-thumb resident-thumb" style="width:80px;height:80px;"></div>
+            <% end %>
+          <% end %>
+
+          <div class="resident-details">
+            <h3 class="panel-title">
+              <%= link_to resident_path(employee) do %>
+                <%= employee.name %></h3>
+              <% end %>
+            <% if employee.title? %>
+              <p class="panel-subtitle"><%= employee.title %></p>
+            <% end %>
+            <ul class="inline-list">
+              <li><%= mail_to employee.email %></li>
+              <li class="secondary-info"><%= tel_to employee.phone %></li>
+            </ul>
+          </div>
+        </div>
+
+        <% end.empty? %>
+
+          <p class="muted">Il n'y a personne dans cette entreprise...</p>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

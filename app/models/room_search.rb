@@ -4,9 +4,9 @@ class RoomSearch < ApplicationRecord
 
 	def friendly_start_time
 		if self.start_time.present?
-			I18n.l(self.start_time, format: '%e %B %Y')
+			I18n.l(self.start_time, format: '%d/%m/%Y')
 		else
-			I18n.l(Date.today, format: '%e %B %Y')
+			I18n.l(Date.today, format: '%d/%m/%Y')
 		end
 	end
 
