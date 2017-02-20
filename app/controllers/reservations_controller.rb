@@ -64,6 +64,7 @@ class ReservationsController < ApplicationController
     if params.has_key?(:room_search)
       @search = RoomSearch.new do |s|
         d = Date.parse(params[:room_search][:start_time_date])
+        p d
         s.start_time = Time.zone.local(d.year, d.month, d.day, params[:room_search]["start_time_time(4i)"].to_i, params[:room_search]["start_time_time(5i)"].to_i, 0)
         s.length = params[:room_search]["length_time(4i)"].to_i * 3600 + params[:room_search]["length_time(5i)"].to_i * 60
         s.length_time = Time.zone.local(d.year, d.month, d.day, params[:room_search]["length_time(4i)"].to_i, params[:room_search]["length_time(5i)"].to_i, 0)
