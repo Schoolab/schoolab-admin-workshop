@@ -169,6 +169,55 @@
 
       </div>
     </div>
+
+    <div class="panel">
+      <div class="panel-heading">
+        <h2>Ils nous ont rejoint cette semaine</h2>
+      </div>
+      <div class="panel-body">
+        <% @newbies = User.where('created_at >= ?', Time.zone.today - 7).order('created_at DESC') %>
+
+        <% if @newbies.each do |employee| %>
+
+        <div class="resident">
+          <%= link_to resident_path(employee) do %>
+            <% if employee.photo.file? %>
+              <div class="img-thumbnail resident-thumb pull-left" style="width:80px;height:80px;">
+                <%= image_tag employee.photo.url(:medium), size: 80 %>
+              </div>
+            <% else %>
+              <div class="img-thumbnail no-thumb resident-thumb" style="width:80px;height:80px;"></div>
+            <% end %>
+          <% end %>
+
+          <div class="resident-details">
+            <h3 class="panel-title">
+              <%= link_to resident_path(employee) do %>
+                <%= employee.name %></h3>
+              <% end %>
+            <% if employee.title? %>
+              <p class="panel-subtitle">
+                <% if employee.title.present? %>
+                  <%= employee.title %>
+                <% end %>
+                <% if employee.company.present? %>
+                  <span class="muted">
+                    chez <%= link_to employee.company.name, company_path(employee.company) %>
+                  </span>
+                <% end %>
+              </p>
+            <% end %>
+          </div>
+        </div>
+
+        <% end.empty? %>
+
+          <p class="muted">Personne ne nous a rejoint cette semaine...</p>
+
+        <% end %>
+      </div>
+    </div>
+
   </div>
 </div>
 

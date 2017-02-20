@@ -13,7 +13,7 @@
           <h2><%= @user.name %></h2>
         </div>
         <p class="muted">
-          <% if @user.title? %>
+          <% if @user.title.present? %>
             <%= @user.title %>
           <% end %>
           <% if @user.company.present? %>
