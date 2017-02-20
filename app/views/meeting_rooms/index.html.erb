@@ -1,10 +1,11 @@
 <div class="panel col-xs-12">
   <div class="panel-heading">
-    <h2>Salles de réunion</h2>
-  </div>
-  
-  <div class="panel-body">
-    <%= link_to 'Nouvelle salle de réunion', new_meeting_room_path, class: 'btn btn-primary btn-sm' %>
+    <h2>
+      Salles de réunion
+      <% if can? :manage, MeetingRoom %>
+        <%= link_to 'Nouvelle salle de réunion', new_meeting_room_path, class: 'btn btn-primary pull-right' %>
+      <% end %>
+    </h2>
   </div>
 
   <table class="table">

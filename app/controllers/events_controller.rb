@@ -12,6 +12,13 @@ class EventsController < ApplicationController
     authorize! :read, Event
   end
 
+  # GET /events/past
+  def past
+    Time.zone = 'Paris'
+    @past_events = Event.where("date < ?", Time.zone.today).order(date: :desc)
+    authorize! :read, Event
+  end
+
   # GET /events/1
   def show
     authorize! :read, Event

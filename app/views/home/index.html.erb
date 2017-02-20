@@ -34,11 +34,15 @@
 
     <div class="panel">
       <div class="panel-heading">
-        <h2>Évènements à venir</h2>
+        <h2>Événements à venir</h2>
       </div>
       <div class="panel-body">
 
-        <% @events = Event.where("date >= ?", Time.zone.today).order(date: :asc).take(3) %>
+        <% if Event.where("date = ?", Time.zone.today).present? && (Event.where("date = ?", Time.zone.today).count > 3)  %>
+          <% @events = Event.where("date = ?", Time.zone.today).order(date: :asc) %>
+        <% else %>
+          <% @events = Event.where("date >= ?", Time.zone.today).order(date: :asc).take(3) %>
+        <% end %>
 
         <ul class="events">
           <% @events.each do |event| %>
@@ -74,22 +78,31 @@
                     </span>
                   <% end %>
                 </h3>
-                <% if event.location.present? %>
-                  <p class="meta meta-bottom meta-grey">
+                <p class="meta meta-bottom meta-grey">
+                  <% if event.location.present? %>
                     <i class="icon material-icons">view_agenda</i>
                     <%= event.location %>
-                    <% if event.price.present? %>
-                      <span class="pull-right"><%= event.full_price %></span>
-                    <% end %>
-                  </p>
-                <% end %>
+                    <span class="pull-right"><%= event.full_price %></span>
+                  <% else %>
+                    <%= event.full_price %>
+                  <% end %>
+                </p>
                 <% if event.link.present? %>
                   <a href="<%= event.link %>" class="event-more">Plus d'infos ›</a>
+                  <% if can? :manage, Event %>
+                    <%= link_to 'Modifier', edit_event_path(event), class: "muted event-more pull-right" %>
+                  <% end %>
+                <% else %>
+                  <% if can? :manage, Event %>
+                    <%= link_to 'Modifier', edit_event_path(event), class: "muted event-more" %>
+                  <% end %>
                 <% end %>
               </div>
             </li>
           <% end %>
         </ul>
+
+        <%= link_to "Voir plus d'événements ›", events_path  %>
 
       </div>
     </div>

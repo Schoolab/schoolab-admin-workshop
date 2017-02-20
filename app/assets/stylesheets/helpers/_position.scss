@@ -7,3 +7,9 @@
   display: flex;
   justify-content: space-between;
 }
+
+.flex-end {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}

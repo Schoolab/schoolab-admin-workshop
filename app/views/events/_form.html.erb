@@ -1,108 +1,144 @@
 <%= simple_form_for(@event) do |f| %>
   <%= f.error_notification %>
 
-    <div class="row form-row">
+<div class="col-xs-12 col-md-8">
+  <div class="panel">
+    <div class="panel-heading">
+      <% if f.object.new_record? %>
+        <h2>Ajouter un événement</h2>
+      <% else %>
+        <h2>Modifier un évènement</h2>
+      <% end %>
+    </div>
+    <div class="panel-body">
+      <div class="row form-row">
 
-      <div class="form-group col-md-12 has-feedback has-feedback-left">
-        <%= f.label :title, "Nom de l'évènement", class: "sr-only" %>
-        <%= f.text_field :title, placeholder: "Nom de l'évènement", class: "form-control" %>
-        <i class="form-control-feedback material-icons">event_note</i>
-      </div>
+        <div class="form-group col-md-12 has-feedback has-feedback-left">
+          <%= f.label :title, "Nom de l'évènement", class: "sr-only" %>
+          <%= f.text_field :title, placeholder: "Nom de l'évènement", class: "form-control" %>
+          <i class="form-control-feedback material-icons">event_note</i>
+        </div>
 
-      <div class="form-group col-md-6 has-feedback">
-        <%= f.label :start_time, "Date" %>
-        <%= f.input :date, as: :string, label: false, input_html: { class: 'datepicker form-control', value: f.object.picker_date } %>
-        <i class="form-control-feedback material-icons">today</i>
-      </div>
+        <div class="form-group col-md-6 has-feedback">
+          <%= f.label :start_time, "Date" %>
+          <%= f.input :date, as: :string, label: false, input_html: { class: 'datepicker form-control', value: f.object.picker_date } %>
+          <i class="form-control-feedback material-icons">today</i>
+        </div>
 
-      <div class="form-group col-md-6">
-        <%= f.label :start_time, "Horaires" %>
-        <div class="row">
-          <div class="col-md-6">
-            <%= f.input :start_time, label: false, minute_step: 15, default: Time.parse('9:00') %>
+        <div class="form-group col-md-6">
+          <%= f.label :start_time, "Horaires" %>
+          <div class="row">
+            <div class="col-md-6">
+              <%= f.input :start_time, label: false, minute_step: 15, default: Time.parse('9:00') %>
+            </div>
+            <div class="col-md-6">
+              <%= f.input :end_time, label: false, minute_step: 15, default: Time.parse('18:00') %>
+            </div>
           </div>
-          <div class="col-md-6">
-            <%= f.input :end_time, label: false, minute_step: 15, default: Time.parse('18:00') %>
+        </div>
+
+        <div class="form-group col-md-12">
+          <%= f.label :description, "Description" %>
+          <%= f.input_field :description, input_html: { rows: 3 }, class: "form-control" %>
+        </div>
+
+        <div class="form-group col-md-6 has-feedback has-feedback-left">
+          <%= f.label :location, "Lieu/étage", class: "sr-only" %>
+          <%= f.text_field :location, placeholder: "Lieu/étage", class: "form-control" %>
+          <i class="form-control-feedback material-icons">view_agenda</i>
+        </div>
+
+        <div class="form-group col-md-6 has-feedback has-feedback-left">
+          <%= f.label :host, "Organisateur", class: "sr-only" %>
+          <%= f.text_field :host, placeholder: "Organisateur", class: "form-control" %>
+          <i class="form-control-feedback material-icons">group</i>
+        </div>
+
+        <div class="form-group col-md-6 has-feedback has-feedback-left">
+          <%= f.label :price, "Prix (0€ pour les évènements gratuits)", class: "sr-only" %>
+          <%= f.text_field :price, placeholder: "Prix (0€ pour les évènements gratuits)", default: false, class: "form-control" %>
+          <i class="form-control-feedback material-icons">monetization_on</i>
+        </div>
+
+        <div class="form-group col-md-6 has-feedback has-feedback-left">
+          <%= f.label :link, "Lien", class: "sr-only" %>
+          <%= f.text_field :link, placeholder: "Lien", class: "form-control" %>
+          <i class="form-control-feedback material-icons">link</i>
+        </div>
+
+        <div class="form-group col-xs-12">
+          <%= f.label "Image de l'évènement", style: "display: block;" %>
+          <div class="row">
+            <% if @event.image.file? %>
+              <div class="col-xs-12 col-md-6">
+                <div class="img-thumbnail" style="width: 100%;">
+                  <%= image_tag @event.image.url(:medium), width: '100%', class: "pull-left" %>
+                </div>
+              </div>
+            <% end %>
+            <div class="col-xs-12 col-md-6">
+              <%= f.file_field :image, as: :file, class: "inputfile", data: { :caption => "{nb} fichiers selectionnés" } %>
+              <%= f.label :image, '<span class="label-btn">Envoyer une photo</span><span class="label-filename">Pas de fichier selectionné</span>'.html_safe %>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="form-group col-md-12">
-        <%= f.label :description, "Description" %>
-        <%= f.input_field :description, input_html: { rows: 3 }, class: "form-control" %>
-      </div>
-
-      <div class="form-group col-md-6 has-feedback has-feedback-left">
-        <%= f.label :location, "Lieu/étage", class: "sr-only" %>
-        <%= f.text_field :location, placeholder: "Lieu/étage", class: "form-control" %>
-        <i class="form-control-feedback material-icons">view_agenda</i>
-      </div>
-
-      <div class="form-group col-md-6 has-feedback has-feedback-left">
-        <%= f.label :host, "Organisateur", class: "sr-only" %>
-        <%= f.text_field :host, placeholder: "Organisateur", class: "form-control" %>
-        <i class="form-control-feedback material-icons">group</i>
-      </div>
-
-      <div class="form-group col-md-6 has-feedback has-feedback-left">
-        <%= f.label :price, "Prix (0€ pour les évènements gratuits)", class: "sr-only" %>
-        <%= f.text_field :price, placeholder: "Prix (0€ pour les évènements gratuits)", default: false, class: "form-control" %>
-        <i class="form-control-feedback material-icons">monetization_on</i>
-      </div>
-
-      <div class="form-group col-md-6 has-feedback has-feedback-left">
-        <%= f.label :link, "Lien", class: "sr-only" %>
-        <%= f.text_field :link, placeholder: "Lien", class: "form-control" %>
-        <i class="form-control-feedback material-icons">link</i>
-      </div>
-
-      <div class="form-group col-xs-12">
-        <%= f.label "Image de l'évènement", style: "display: block;" %>
-        <% if @event.image.file? %>
-          <div class="img-thumbnail" style="margin-right: 1rem;">
-            <%= image_tag @event.image.url(:medium), width: '100%', class: "pull-left" %>
-          </div>
-        <% end %>
-
-        <%= f.file_field :image, as: :file, class: "inputfile", data: { :caption => "{nb} fichiers selectionnés" } %>
-        <%= f.label :image, '<span class="label-btn">Envoyer une photo</span><span class="label-filename">Pas de fichier selectionné</span>'.html_safe %>
-      </div>
-
-      <div class="form-group col-md-6">
-        <%= f.input :public, inline_label: "Événement public" %>
-      </div>
-
-      <div class="form-group col-md-12 align-items-center space-between">
-        <ul class="simple-list muted">
-          <% if @event.created_at.present? %>
-            <li>
-              <% if @event.audits.present? %>
-                <% user_id = @event.audits.first.user.id %>
-                <%= 'Créé il y a ' + time_ago_in_words(@event.created_at) + ' par ' %>
-                <%= link_to @event.audits.first.user.name, resident_path(user_id) %>.
-              <% else %>
-                <%= 'Créé il y a ' + time_ago_in_words(@event.created_at) + '.' %>
-              <% end %>
-            </li>
-          <% end %>
-          <% if @event.updated_at != @event.created_at %>
-            <li>
-              <% if @event.audits.present? %>
-              <%-# Évènement créés avec Audited -%>
-                <% user_id = @event.audits.last.user.id %>
-                <%= 'Modifié il y a ' + time_ago_in_words(@event.updated_at) + ' par ' %>
-                <%= link_to @event.audits.last.user.name, resident_path(user_id) %>.
-              <% else %>
-              <%-# Évènement créés avant Audited -%>
-                <%= 'Modifié il y a ' + time_ago_in_words(@event.updated_at) + '.' %>
-              <% end %>
-            </li>
-          <% end %>
-
-        </ul>
-
-        <%= f.submit "Sauvegarder", class: "btn btn-primary" %>
-      </div>
     </div>
+  </div>
+</div>
+
+<div class="col-xs-12 col-md-4">
+  <div class="panel">
+    <div class="panel-heading">
+      <h3>Publier</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <%= f.input :public, inline_label: "Événement public" %>
+        <p class="muted">Signifie que l'événement sera affiché sur le site internet de Schoolab.</p>
+      </div>
+      
+      <ul class="simple-list muted">
+        <% if @event.created_at.present? %>
+          <li>
+            <% if @event.audits.present? %>
+              <% user_id = @event.audits.first.user.id %>
+              <%= 'Créé il y a ' + time_ago_in_words(@event.created_at) + ' par ' %>
+              <%= link_to @event.audits.first.user.name, resident_path(user_id) %>.
+            <% else %>
+              <%= 'Créé il y a ' + time_ago_in_words(@event.created_at) + '.' %>
+            <% end %>
+          </li>
+        <% end %>
+        <% if @event.updated_at != @event.created_at %>
+          <li>
+            <% if @event.audits.present? %>
+            <%-# Évènement créés avec Audited -%>
+              <% user_id = @event.audits.last.user.id %>
+              <%= 'Modifié il y a ' + time_ago_in_words(@event.updated_at) + ' par ' %>
+              <%= link_to @event.audits.last.user.name, resident_path(user_id) %>.
+            <% else %>
+            <%-# Évènement créés avant Audited -%>
+              <%= 'Modifié il y a ' + time_ago_in_words(@event.updated_at) + '.' %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="panel-footer">
+      <% if f.object.new_record? %>
+        <div class="flex-end">
+          <%= f.submit "Publier", class: "btn btn-primary" %>
+        </div>
+      <% else %>
+        <div class="space-between">
+          <%= link_to 'Supprimer', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link btn-link--danger" %>
+          <%= f.submit "Sauvegarder", class: "btn btn-primary pull-right" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
 <% end %>

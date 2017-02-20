@@ -6,7 +6,11 @@
   <div class="panel-body">
     <div class="form-sentence muted">
       J’ai besoin d’une salle le
-      <%= f.input :start_time_date, as: :string, label: false, input_html: { class: 'datepicker', value: f.object.friendly_start_time } %> à
+      <div class="form-group has-feedback">
+        <%= f.label :start_time, "Date", class: "sr-only" %>
+        <%= f.input :start_time_date, as: :string, label: false, input_html: { class: 'datepicker form-control', value: f.object.friendly_start_time } %>
+        <i class="form-control-feedback material-icons">today</i>
+      </div> à
       <div class="length">
       <%= f.input :start_time_time, as: :time, minute_step: 30, label: false, start_hour: 8, end_hour: 22 %>
       </div>

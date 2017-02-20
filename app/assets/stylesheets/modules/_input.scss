@@ -103,6 +103,8 @@ select {
   position: relative;
   z-index: 1;
   overflow: hidden;
+  float: left;
+  margin-right: 1rem;
 
   &:hover {
     &:before {
@@ -158,10 +160,10 @@ select {
 .label-filename {
   display: inline-block;
   line-height: 2rem;
-  padding: 0 1rem;
+  padding: 0;
   font-size: 1rem;
   font-weight: normal;
-  float: right;
+  float: left;
   color: $brand-50;
 }
 
