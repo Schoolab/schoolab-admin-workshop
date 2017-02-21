@@ -52,25 +52,24 @@
                 </span>
               <% end %>
             </h3>
-            <% if event.description.present? %>
-              <p>
-                <%= event.description %>
-              </p>
-            <% end %>
             <p class="meta meta-bottom meta-grey">
               <% if event.location.present? %>
                 <i class="icon material-icons">view_agenda</i>
                 <%= event.location %>
-                <span class="pull-right"><%= event.full_price %></span>
+                <span class="pull-right muted"><%= event.full_price %></span>
               <% else %>
-                <%= event.full_price %>
+                <span class="muted"><%= event.full_price %></span>
               <% end %>
             </p>
             <% if event.link.present? %>
               <a href="<%= event.link %>" class="event-more">Plus d'infos ›</a>
-            <% end %>
-            <% if can? :manage, Event %>
-              <%= link_to 'Modifier', edit_event_path(event), class: "muted event-more" %>
+              <% if can? :manage, Event %>
+                <%= link_to 'Modifier', edit_event_path(event), class: "muted event-more pull-right" %>
+              <% end %>
+            <% else %>
+              <% if can? :manage, Event %>
+                <%= link_to 'Modifier', edit_event_path(event), class: "muted event-more" %>
+              <% end %>
             <% end %>
           </div>
         </li>
@@ -123,9 +122,9 @@
               <% if event.location.present? %>
                 <i class="icon material-icons">view_agenda</i>
                 <%= event.location %>
-                <span class="pull-right"><%= event.full_price %></span>
+                <span class="pull-right muted"><%= event.full_price %></span>
               <% else %>
-                <%= event.full_price %>
+                <span class="muted"><%= event.full_price %></span>
               <% end %>
             </p>
             <% if event.link.present? %>
@@ -180,25 +179,24 @@
                 </span>
               <% end %>
             </h3>
-            <% if event.description.present? %>
-              <p>
-                <%= event.description %>
-              </p>
-            <% end %>
             <p class="meta meta-bottom meta-grey">
               <% if event.location.present? %>
                 <i class="icon material-icons">view_agenda</i>
                 <%= event.location %>
-                <span class="pull-right"><%= event.full_price %></span>
+                <span class="pull-right muted"><%= event.full_price %></span>
               <% else %>
-                <%= event.full_price %>
+                <span class="muted"><%= event.full_price %></span>
               <% end %>
             </p>
             <% if event.link.present? %>
               <a href="<%= event.link %>" class="event-more">Plus d'infos ›</a>
-            <% end %>
-            <% if can? :manage, Event %>
-              <%= link_to 'Modifier', edit_event_path(event), class: "muted event-more" %>
+              <% if can? :manage, Event %>
+                <%= link_to 'Modifier', edit_event_path(event), class: "muted event-more pull-right" %>
+              <% end %>
+            <% else %>
+              <% if can? :manage, Event %>
+                <%= link_to 'Modifier', edit_event_path(event), class: "muted event-more" %>
+              <% end %>
             <% end %>
           </div>
         </li>
