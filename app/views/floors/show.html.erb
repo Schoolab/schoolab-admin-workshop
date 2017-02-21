@@ -51,9 +51,18 @@
             <div class="resident-details">
               <h3 class="panel-title">
                 <%= link_to company_path(company) do %>
-                  <%= company.name %></h3>
+                  <%= company.name %>
                 <% end %>
+              </h3>
               <p class="panel-subtitle"><%= @employees.count %> <%= 'employé'.pluralize(@employees.count) %></p>
+              <ul class="inline-list">
+                <% if company.email? %>
+                  <li><%= mail_to company.email %></li>
+                <% end %>
+                <% if company.phone? %>
+                  <li class="secondary-info"><%= tel_to company.phone %></li>
+                <% end %>
+              </ul>
             </div>
           </div>
 

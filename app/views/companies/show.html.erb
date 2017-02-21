@@ -70,14 +70,19 @@
           <div class="resident-details">
             <h3 class="panel-title">
               <%= link_to resident_path(employee) do %>
-                <%= employee.name %></h3>
+                <%= employee.name %>
               <% end %>
+            </h3>
             <% if employee.title? %>
               <p class="panel-subtitle"><%= employee.title %></p>
             <% end %>
             <ul class="inline-list">
-              <li><%= mail_to employee.email %></li>
-              <li class="secondary-info"><%= tel_to employee.phone %></li>
+              <% if employee.email? %>
+                <li><%= mail_to employee.email %></li>
+              <% end %>
+              <% if employee.phone? %>
+                <li class="secondary-info"><%= tel_to employee.phone %></li>
+              <% end %>
             </ul>
           </div>
         </div>
