@@ -25,5 +25,13 @@ class MeetingRoom < ApplicationRecord
     end
   end
 
+  def is_available
+    if self.status.blank?
+      return true
+    else
+      return false
+    end
+  end
+
 
 end

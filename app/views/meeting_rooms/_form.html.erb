@@ -55,6 +55,29 @@
         <div class="form-group">
           <%= f.input :reservable, inline_label: "Espace reservable" %>
           <p class="muted">Signifie que cet espace sera disponible à la reservation sur l'admin.</p>
+
+
+          <div class="checkbox">
+            <label>
+              <% if meeting_room.is_available %>
+                <input type="checkbox" class="helper-toggle">
+              <% else %>
+                <input type="checkbox" checked="checked" class="helper-toggle">
+              <% end %>
+              Rendre cet espace provisoirement indisponible
+            </label>
+          </div>
+          <div class="row">
+            <% if meeting_room.is_available %>
+              <div class="form-group toggle-group hidden col-md-12 has-feedback has-feedback-left">
+            <% else %>
+              <div class="form-group toggle-group col-md-12 has-feedback has-feedback-left">
+            <% end %>
+              <%= f.label :status, "Raison", class: "sr-only" %>
+              <%= f.text_field :status, placeholder: "Raison", class: "form-control toggle-form-control" %>
+              <i class="form-control-feedback material-icons">help</i>
+            </div>
+          </div>
         </div>
       </div>
       <div class="panel-footer">
