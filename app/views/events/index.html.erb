@@ -34,6 +34,14 @@
                 ' à ' +
                 event.end_time.strftime('%Hh') +
                 (event.end_time.strftime('%M') != '00' ? event.end_time.strftime('%M') : '') %>
+              <% elsif event.date == Date.tomorrow %>
+                Demain
+                <%= + ' de ' +
+                event.start_time.strftime('%Hh') +
+                (event.start_time.strftime('%M') != '00' ? event.start_time.strftime('%M') : '') +
+                ' à ' +
+                event.end_time.strftime('%Hh') +
+                (event.end_time.strftime('%M') != '00' ? event.end_time.strftime('%M') : '') %>
               <% else %>
                 <%= event.date.strftime('%d/%m/%y') %>
                 <%= ' de ' +
@@ -89,6 +97,14 @@
             <p class="meta meta-top meta-blue">
               <% if event.date.today? %>
                 Aujourd'hui
+                <%= + ' de ' +
+                event.start_time.strftime('%Hh') +
+                (event.start_time.strftime('%M') != '00' ? event.start_time.strftime('%M') : '') +
+                ' à ' +
+                event.end_time.strftime('%Hh') +
+                (event.end_time.strftime('%M') != '00' ? event.end_time.strftime('%M') : '') %>
+              <% elsif event.date == Date.tomorrow %>
+                Demain
                 <%= + ' de ' +
                 event.start_time.strftime('%Hh') +
                 (event.start_time.strftime('%M') != '00' ? event.start_time.strftime('%M') : '') +
@@ -155,6 +171,14 @@
             <p class="meta meta-top meta-blue">
               <% if event.date.today? %>
                 Aujourd'hui
+                <%= + ' de ' +
+                event.start_time.strftime('%Hh') +
+                (event.start_time.strftime('%M') != '00' ? event.start_time.strftime('%M') : '') +
+                ' à ' +
+                event.end_time.strftime('%Hh') +
+                (event.end_time.strftime('%M') != '00' ? event.end_time.strftime('%M') : '') %>
+              <% elsif event.date == Date.tomorrow %>
+                Demain
                 <%= + ' de ' +
                 event.start_time.strftime('%Hh') +
                 (event.start_time.strftime('%M') != '00' ? event.start_time.strftime('%M') : '') +
