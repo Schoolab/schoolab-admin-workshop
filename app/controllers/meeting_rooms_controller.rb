@@ -70,6 +70,6 @@ class MeetingRoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def meeting_room_params
-      params.require(:meeting_room).permit(:name, :colour, :floor_id, :photo, :capacity)
+      params.require(:meeting_room).permit(:name, :colour, :floor_id, :photo, :capacity, :reservable, :description)
     end
 end

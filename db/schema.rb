@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221151107) do
+ActiveRecord::Schema.define(version: 20170221162616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,13 +82,15 @@ ActiveRecord::Schema.define(version: 20170221151107) do
     t.string   "name"
     t.string   "colour"
     t.integer  "floor_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.integer  "capacity",           default: 1
+    t.text     "description"
+    t.boolean  "reservable",         default: false
     t.index ["floor_id"], name: "index_meeting_rooms_on_floor_id", using: :btree
   end
 
