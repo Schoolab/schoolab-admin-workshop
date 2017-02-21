@@ -50,7 +50,7 @@
 
         <div class="form-group col-md-6 has-feedback has-feedback-left">
           <%= f.label :host, "Organisateur", class: "sr-only" %>
-          <%= f.text_field :host, placeholder: "Organisateur", class: "form-control" %>
+          <%= f.text_field :host, placeholder: "Organisateur (entreprise, programme)", class: "form-control" %>
           <i class="form-control-feedback material-icons">group</i>
         </div>
 
@@ -98,7 +98,7 @@
         <%= f.input :public, inline_label: "Événement public" %>
         <p class="muted">Signifie que l'événement sera affiché sur le site internet de Schoolab.</p>
       </div>
-      
+
       <ul class="simple-list muted">
         <% if @event.created_at.present? %>
           <li>
