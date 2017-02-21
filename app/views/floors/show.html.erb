@@ -13,7 +13,7 @@
         </div>
         <ul class="list-infos">
           <li class="muted"><%= @companies.count %> <%= 'entreprise'.pluralize(@companies.count) %></li>
-          <li class="muted"><%= @residents %> <%= 'résident'.pluralize(@residents) %></li>
+          <li class="muted"><%= @floor.residents_nb(@companies) %> <%= 'résident'.pluralize(@residents) %></li>
           <li class="muted"><%= @spaces.count %> <%= 'salle'.pluralize(@spaces.count) %> de réunion</li>
         </ul>
 
@@ -79,7 +79,7 @@
                 <%= space.name %>
               </div>
               <div class="reservation-infos-floor">
-                <%= space.floor.present? ? space.floor.name : "N/A" %>
+                <%= space.floor.present? ? space.floor.name : "N/A" %> - <%= space.capacity %> <%= 'place'.pluralize(space.capacity) %>
               </div>
             </div>
             <div class="reservation-infos-bottom">
