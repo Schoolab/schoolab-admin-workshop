@@ -1,9 +1,9 @@
 <div class="panel col-xs-12">
   <div class="panel-heading">
     <h2>
-      Salles de réunion
+      Espaces
       <% if can? :manage, MeetingRoom %>
-        <%= link_to 'Nouvelle salle de réunion', new_meeting_room_path, class: 'btn btn-primary pull-right' %>
+        <%= link_to 'Ajouter un espace', new_meeting_room_path, class: 'btn btn-primary pull-right' %>
       <% end %>
     </h2>
   </div>
@@ -14,6 +14,7 @@
         <th></th>
         <th>Nom</th>
         <th>Étage</th>
+        <th>Capacité</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -24,15 +25,20 @@
           <td><div class="colour-square" style="background-color: <%= meeting_room.colour %>"></div></td>
           <td><%= meeting_room.name %></td>
           <td><%= meeting_room.floor.present? ? meeting_room.floor.name : "N/A" %></td>
-          <td><%= link_to 'Voir les réservations', meeting_room %></td>
+          <td><%= meeting_room.capacity %></td>
           <td>
-            <%= link_to edit_meeting_room_path(meeting_room), class: 'btn btn-default btn-xs' do %>
-            <span class="glyphicon glyphicon-pencil"></span>
+            <%= link_to meeting_room, class: 'btn btn-default btn-xs' do %>
+            <i class="material-icons">visibility</i><span>Voir les réservations</span>
             <% end %>
           </td>
           <td>
-            <%= link_to meeting_room_path(meeting_room), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do %>
-              <span class="glyphicon glyphicon-remove"></span>
+            <%= link_to edit_meeting_room_path(meeting_room), class: 'btn btn-default btn-xs' do %>
+            <i class="material-icons">edit</i><span>Modifier</span>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to meeting_room_path(meeting_room), method: :delete, data: { confirm: 'Êtes-vous sûr ?' }, class: 'btn btn-danger btn-xs' do %>
+            <i class="material-icons">delete</i><span>Supprimer</span>
             <% end %>
           </td>
         </tr>

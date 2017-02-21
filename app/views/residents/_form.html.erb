@@ -27,8 +27,8 @@
     <%= form.text_field :last_name, placeholder: "Nom", class: "form-control" %>
   </div>
 
-  <div class="form-group col-md-6 has-feedback has-feedback-left">
-    <%= form.label :company_id, "Nom", class: "sr-only" %>
+  <div class="form-group select-wrapper  col-md-6 has-feedback has-feedback-left">
+    <%= form.label :company_id, "Entreprise", class: "sr-only" %>
     <%= form.collection_select :company_id, Company.all.order(:name), :id, :name, {}, class: 'form-control' %>
     <i class="form-control-feedback material-icons">location_city</i>
   </div>
@@ -56,7 +56,7 @@
 <p>Indiquez le rôle de l'utilisateur sur l'admin de Schoolab.</p>
 
 <div class="row form-row">
-  <div class="form-group col-md-6 has-feedback has-feedback-left">
+  <div class="form-group select-wrapper col-md-6 has-feedback has-feedback-left">
     <%= form.input :role, collection: User::ROLES, label: false, default: 1, input_html: {class: 'form-control'} %>
     <i class="form-control-feedback material-icons">whatshot</i>
   </div>

@@ -43,7 +43,7 @@
             <%= room.name %>
           </div>
           <div class="reservation-infos-floor">
-            <%= room.floor.present? ? room.floor.name : "N/A" %>
+            <%= room.floor.present? ? room.floor.name : "N/A" %> - <%= room.capacity %> <%= 'place'.pluralize(room.capacity) %>
           </div>
         </div>
         <div class="reservation-infos-bottom">

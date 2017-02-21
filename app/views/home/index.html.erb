@@ -133,7 +133,7 @@
                   <%= reservation.meeting_room.name %>
                 </div>
                 <div class="reservation-infos-floor">
-                  <%= reservation.meeting_room.floor.present? ? reservation.meeting_room.floor.name : "N/A" %>
+                  <%= reservation.meeting_room.floor.present? ? reservation.meeting_room.floor.name : "N/A" %> - <%= reservation.meeting_room.capacity %> <%= 'place'.pluralize(reservation.meeting_room.capacity) %>
                 </div>
               </div>
               <div class="reservation-infos-bottom">
@@ -164,7 +164,7 @@
                 %>
               </p>
               <h3 class="reservation-details-title muted">Information de la salle</h3>
-              <p class="muted">Cette salle est située au <%= reservation.meeting_room.floor.present? ? reservation.meeting_room.floor.name : "N/A" %>. <%#-Il y a une réunion avant la votre jusqu’à 11h30.%></p>
+              <p class="muted">Cette salle est située au <%= reservation.meeting_room.floor.present? ? reservation.meeting_room.floor.name : "N/A" %>. Il y a de la place pour <%= reservation.meeting_room.capacity %> <%= 'personne'.pluralize(reservation.meeting_room.capacity) %>. <%#-Il y a une réunion avant la votre jusqu’à 11h30.%></p>
             </div>
           </div>
 
