@@ -29,6 +29,15 @@
           <p class="muted">Pas de description...</p>
         <% end %>
 
+        <ul class="simple-list">
+          <% if @company.email? %>
+            <li class="list-icon list-icon-email"><%= mail_to @company.email %></li>
+          <% end %>
+          <% if @company.phone? %>
+            <li class="list-icon list-icon-phone"><%= tel_to @company.phone %></li>
+          <% end %>
+        </ul>
+
         <% if current_user.role == "admin" %>
           <%= link_to edit_company_path(@company), class: 'btn btn-default btn-icon' do %>
             <i class="material-icons">settings</i><span>Paramètres</span>

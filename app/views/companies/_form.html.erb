@@ -35,6 +35,18 @@
       <%= f.input :description, :input_html => { :rows => 4 } %>
     </div>
 
+    <div class="form-group col-md-6 has-feedback has-feedback-left">
+      <%= f.label :email, "Email de contact", class: "sr-only" %>
+      <%= f.text_field :email, placeholder: "Email de contact", class: "form-control" %>
+      <i class="form-control-feedback material-icons">email</i>
+    </div>
+
+    <div class="form-group col-md-6 has-feedback has-feedback-left">
+      <%= f.label :phone, "Numéro de téléphone", class: "sr-only" %>
+      <%= f.text_field :phone, placeholder: "Numéro de téléphone", class: "form-control" %>
+      <i class="form-control-feedback material-icons">phone</i>
+    </div>
+
     <div class="form-group col-xs-12">
       <%= f.submit "Sauvegarder", class: "btn btn-primary pull-right" %>
     </div>
