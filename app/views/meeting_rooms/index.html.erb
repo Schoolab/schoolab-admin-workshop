@@ -16,7 +16,7 @@
         <th>Étage</th>
         <th>Capacité</th>
         <th>Réservable</th>
-        <th>Disponible</th>
+        <th>Statut</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -29,7 +29,7 @@
           <td><%= meeting_room.floor.present? ? meeting_room.floor.name : "N/A" %></td>
           <td><%= meeting_room.capacity %></td>
           <td><%= meeting_room.reservable? ? "Oui" : "Non" %></td>
-          <td><%= meeting_room.is_available ? "Oui" : meeting_room.status %></td>
+          <td><%= meeting_room.is_available ? "Disponible" : meeting_room.status %></td>
           <td>
             <%= link_to meeting_room, class: 'btn btn-default btn-xs' do %>
             <i class="material-icons">visibility</i><span>Voir les réservations</span>

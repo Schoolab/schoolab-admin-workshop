@@ -70,8 +70,8 @@ class ReservationsController < ApplicationController
         s.length_time = Time.zone.local(d.year, d.month, d.day, params[:room_search]["length_time(4i)"].to_i, params[:room_search]["length_time(5i)"].to_i, 0)
       end
 
-      @available_rooms = MeetingRoom.all.order(:floor_id).select { |m| !m.reservation_at(@search.start_time, @search.start_time + @search.length.to_s.to_i)}
-      @unavailable_rooms = MeetingRoom.all.order(:floor_id).select { |m| m.reservation_at(@search.start_time, @search.start_time + @search.length.to_s.to_i)}
+      @available_rooms = MeetingRoom.where(reservable: true).order(:floor_id).select { |m| !m.reservation_at(@search.start_time, @search.start_time + @search.length.to_s.to_i)}
+      @unavailable_rooms = MeetingRoom.where(reservable: true).all.order(:floor_id).select { |m| m.reservation_at(@search.start_time, @search.start_time + @search.length.to_s.to_i)}
       @reservation = Reservation.new
     else
       @search = RoomSearch.new
