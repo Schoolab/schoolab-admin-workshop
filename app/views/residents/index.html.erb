@@ -1,14 +1,12 @@
 <div class="panel col-xs-12">
   <div class="panel-heading">
-    <h2>Liste des résidents</h2>
+    <h2>
+      Liste des personnes
+      <% if can? :manage, User %>
+        <%= link_to "Nouvelle personne", new_resident_path, class: 'btn btn-primary pull-right' %>
+      <% end %>
+    </h2>
   </div>
-
-
-  <% if can? :manage, User %>
-  <div class="panel-body">
-    <%= link_to "Ajouter un résident", new_resident_path, class: 'btn btn-primary btn-sm' %>
-  </div>
-  <% end %>
 
   <table class="table datatable">
     <thead>

@@ -84,3 +84,20 @@
     background-color: $brand-10;
   }
 }
+
+.btn-link {
+  padding-left: 0;
+  padding-right: 0;
+
+  &:hover, &:focus {
+    box-shadow: none;
+  }
+
+  &:before, &:after {
+    display: none;
+  }
+}
+
+.btn-link--danger {
+  color: $brand-danger;
+}

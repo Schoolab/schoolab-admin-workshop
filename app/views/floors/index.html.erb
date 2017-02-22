@@ -1,12 +1,12 @@
 <div class="panel col-xs-12">
   <div class="panel-heading">
-    <h2>Étages</h2>
+    <h2>
+      Étages
+      <% if can? :manage, Floor %>
+        <%= link_to 'Ajouter un étage', new_floor_path, class: 'btn btn-primary pull-right' %>
+      <% end %>
+    </h2>
   </div>
-  <% if can? :manage, Floor %>
-  <div class="panel-body">
-    <%= link_to 'Ajouter un étage', new_floor_path, class: 'btn btn-primary btn-sm' %>
-  </div>
-  <% end %>
 
   <table class="table">
     <thead>

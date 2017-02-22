@@ -34,11 +34,15 @@
 
     <div class="panel">
       <div class="panel-heading">
-        <h2>Évènements à venir</h2>
+        <h2>Événements à venir</h2>
       </div>
       <div class="panel-body">
 
-        <% @events = Event.where("date >= ?", Time.zone.today).order(date: :asc).take(3) %>
+        <% if Event.where("date = ?", Time.zone.today).present? && (Event.where("date = ?", Time.zone.today).count > 3)  %>
+          <% @events = Event.where("date = ?", Time.zone.today).order(date: :asc) %>
+        <% else %>
+          <% @events = Event.where("date >= ?", Time.zone.today).order(date: :asc).take(3) %>
+        <% end %>
 
         <ul class="events">
           <% @events.each do |event| %>
@@ -50,6 +54,14 @@
                 <p class="meta meta-top meta-blue">
                   <% if event.date.today? %>
                     Aujourd'hui
+                    <%= + ' de ' +
+                    event.start_time.strftime('%Hh') +
+                    (event.start_time.strftime('%M') != '00' ? event.start_time.strftime('%M') : '') +
+                    ' à ' +
+                    event.end_time.strftime('%Hh') +
+                    (event.end_time.strftime('%M') != '00' ? event.end_time.strftime('%M') : '') %>
+                  <% elsif event.date == Date.tomorrow %>
+                    Demain
                     <%= + ' de ' +
                     event.start_time.strftime('%Hh') +
                     (event.start_time.strftime('%M') != '00' ? event.start_time.strftime('%M') : '') +
@@ -74,22 +86,31 @@
                     </span>
                   <% end %>
                 </h3>
-                <% if event.location.present? %>
-                  <p class="meta meta-bottom meta-grey">
+                <p class="meta meta-bottom meta-grey">
+                  <% if event.location.present? %>
                     <i class="icon material-icons">view_agenda</i>
                     <%= event.location %>
-                    <% if event.price.present? %>
-                      <span class="pull-right"><%= event.full_price %></span>
-                    <% end %>
-                  </p>
-                <% end %>
+                    <span class="pull-right muted"><%= event.full_price %></span>
+                  <% else %>
+                    <span class="muted"><%= event.full_price %></span>
+                  <% end %>
+                </p>
                 <% if event.link.present? %>
                   <a href="<%= event.link %>" class="event-more">Plus d'infos ›</a>
+                  <% if can? :manage, Event %>
+                    <%= link_to 'Modifier', edit_event_path(event), class: "muted event-more pull-right" %>
+                  <% end %>
+                <% else %>
+                  <% if can? :manage, Event %>
+                    <%= link_to 'Modifier', edit_event_path(event), class: "muted event-more" %>
+                  <% end %>
                 <% end %>
               </div>
             </li>
           <% end %>
         </ul>
+
+        <%= link_to "Voir plus d'événements ›", events_path  %>
 
       </div>
     </div>
@@ -112,7 +133,7 @@
                   <%= reservation.meeting_room.name %>
                 </div>
                 <div class="reservation-infos-floor">
-                  <%= reservation.meeting_room.floor.present? ? reservation.meeting_room.floor.name : "N/A" %>
+                  <%= reservation.meeting_room.floor.present? ? reservation.meeting_room.floor.name : "N/A" %> - <%= reservation.meeting_room.capacity %> <%= 'place'.pluralize(reservation.meeting_room.capacity) %>
                 </div>
               </div>
               <div class="reservation-infos-bottom">
@@ -143,7 +164,7 @@
                 %>
               </p>
               <h3 class="reservation-details-title muted">Information de la salle</h3>
-              <p class="muted">Cette salle est située au <%= reservation.meeting_room.floor.present? ? reservation.meeting_room.floor.name : "N/A" %>. <%#-Il y a une réunion avant la votre jusqu’à 11h30.%></p>
+              <p class="muted">Cette salle est située au <%= reservation.meeting_room.floor.present? ? reservation.meeting_room.floor.name : "N/A" %>. Il y a de la place pour <%= reservation.meeting_room.capacity %> <%= 'personne'.pluralize(reservation.meeting_room.capacity) %>. <%#-Il y a une réunion avant la votre jusqu’à 11h30.%></p>
             </div>
           </div>
 
@@ -156,6 +177,55 @@
 
       </div>
     </div>
+
+    <div class="panel">
+      <div class="panel-heading">
+        <h2>Ils nous ont rejoint cette semaine</h2>
+      </div>
+      <div class="panel-body">
+        <% @newbies = User.where('created_at >= ?', Time.zone.today - 7).order('created_at DESC') %>
+
+        <% if @newbies.each do |employee| %>
+
+        <div class="resident">
+          <%= link_to resident_path(employee) do %>
+            <% if employee.photo.file? %>
+              <div class="img-thumbnail resident-thumb pull-left" style="width:80px;height:80px;">
+                <%= image_tag employee.photo.url(:medium), size: 80 %>
+              </div>
+            <% else %>
+              <div class="img-thumbnail no-thumb resident-thumb" style="width:80px;height:80px;"></div>
+            <% end %>
+          <% end %>
+
+          <div class="resident-details">
+            <h3 class="panel-title">
+              <%= link_to resident_path(employee) do %>
+                <%= employee.name %></h3>
+              <% end %>
+            <% if employee.title? %>
+              <p class="panel-subtitle">
+                <% if employee.title.present? %>
+                  <%= employee.title %>
+                <% end %>
+                <% if employee.company.present? %>
+                  <span class="muted">
+                    chez <%= link_to employee.company.name, company_path(employee.company) %>
+                  </span>
+                <% end %>
+              </p>
+            <% end %>
+          </div>
+        </div>
+
+        <% end.empty? %>
+
+          <p class="muted">Personne ne nous a rejoint cette semaine...</p>
+
+        <% end %>
+      </div>
+    </div>
+
   </div>
 </div>
 

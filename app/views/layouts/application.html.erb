@@ -87,8 +87,20 @@
       <%= bootstrap_flash %>
       <%= yield %>
 
-      <footer class="footer col-xs-12">
-        <p>&copy; Schoolab 2016</p>
+      <footer class="footer">
+        <div class="row">
+          <ul class="footer-links col-xs-12 col-sm-8">
+            <li class="footer-link">
+              <%= link_to "Le site Schoolab", "https://theschoolab.com/" %>
+            </li>
+            <li class="footer-link">
+              <%= mail_to "agency@theschoolab.com", "Signaler un bug" %>
+            </li>
+          </ul>
+          <p class="col-xs-12 col-sm-4">
+            <span class="pull-right">&copy; Schoolab 2017</span>
+          </p>
+        </div>
       </footer>
 
     </div> <!-- /container -->

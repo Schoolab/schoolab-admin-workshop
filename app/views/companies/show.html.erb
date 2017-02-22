@@ -29,6 +29,15 @@
           <p class="muted">Pas de description...</p>
         <% end %>
 
+        <ul class="simple-list">
+          <% if @company.email? %>
+            <li class="list-icon list-icon-email"><%= mail_to @company.email %></li>
+          <% end %>
+          <% if @company.phone? %>
+            <li class="list-icon list-icon-phone"><%= tel_to @company.phone %></li>
+          <% end %>
+        </ul>
+
         <% if current_user.role == "admin" %>
           <%= link_to edit_company_path(@company), class: 'btn btn-default btn-icon' do %>
             <i class="material-icons">settings</i><span>Paramètres</span>
@@ -61,14 +70,19 @@
           <div class="resident-details">
             <h3 class="panel-title">
               <%= link_to resident_path(employee) do %>
-                <%= employee.name %></h3>
+                <%= employee.name %>
               <% end %>
+            </h3>
             <% if employee.title? %>
               <p class="panel-subtitle"><%= employee.title %></p>
             <% end %>
             <ul class="inline-list">
-              <li><%= mail_to employee.email %></li>
-              <li class="secondary-info"><%= tel_to employee.phone %></li>
+              <% if employee.email? %>
+                <li><%= mail_to employee.email %></li>
+              <% end %>
+              <% if employee.phone? %>
+                <li class="secondary-info"><%= tel_to employee.phone %></li>
+              <% end %>
             </ul>
           </div>
         </div>

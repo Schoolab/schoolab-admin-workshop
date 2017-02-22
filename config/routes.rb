@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { registrations: 'registrations' }
 
-  resources :events
+  resources :events do
+    get 'past' => "events#past", on: :collection
+  end
 
   resources :companies
 

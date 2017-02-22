@@ -1,0 +1,30 @@
+<div class="panel col-xs-12">
+  <div class="panel-heading">
+    <h2>Événements passés</h2>
+  </div>
+
+  <table class="table datatable" data-paging="false" data-info="false">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Heure</th>
+        <th>Titre</th>
+        <th>Lieu</th>
+        <th>Prix</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @past_events.each do |event| %>
+      <tr>
+        <td><%= event.friendly_date %></td>
+        <td><%= event.start_time.strftime('%kh%M') %>-<%= event.end_time.strftime('%kh%M') %></td>
+        <td><strong><%= event.title %></strong></td>
+        <td><%= event.location %></td>
+        <td><%= event.full_price %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>

@@ -19,7 +19,11 @@
 }
 
 .panel-body {
+  padding: 0 1.5rem 1rem;
+
+  &:last-child {
     padding: 0 1.5rem 2rem;
+  }
 }
 
 .panel-heading-prefix {
@@ -52,5 +56,5 @@
 
 .panel-footer {
   background-color: $brand-05;
-  padding: 1rem 1.5rem 2rem;
+  padding: 1rem 1.5rem;
 }

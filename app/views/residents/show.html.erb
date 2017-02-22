@@ -13,7 +13,7 @@
           <h2><%= @user.name %></h2>
         </div>
         <p class="muted">
-          <% if @user.title? %>
+          <% if @user.title.present? %>
             <%= @user.title %>
           <% end %>
           <% if @user.company.present? %>
@@ -32,6 +32,13 @@
             <i class="material-icons">settings</i> <span>Paramètres</span>
           <% end %>
         <% elsif current_user.role == "admin" %>
+          <ul class="simple-list">
+            <% unless @user.last_sign_in_at.present? %>
+              <li>L'utilisateur ne s'est jamais connecté.</li>
+            <% else @user.current_sign_in_at.present? %>
+              <li><%= 'Dernière connexion il y a ' + time_ago_in_words(@user.current_sign_in_at) + '.'%></li>
+            <% end %>
+          </ul>
           <%= link_to edit_resident_path(@user), class: 'btn btn-default btn-icon' do %>
             <i class="material-icons">settings</i> <span>Paramètres</span>
           <% end %>

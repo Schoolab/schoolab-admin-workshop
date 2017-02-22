@@ -75,4 +75,16 @@ $(document).on('turbolinks:load', function() {
 
 	});
 
+	$(function(){
+    $(".helper-toggle").click(function(){
+      if($(this).is(":checked")){
+				$(".toggle-form-control").val("");
+				$(".toggle-group").toggleClass("hidden");
+      } else {
+				$(".toggle-form-control").val("");
+				$(".toggle-group").toggleClass("hidden");
+			}
+    });
+	});
+
 });
