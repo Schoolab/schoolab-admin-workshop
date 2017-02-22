@@ -1,9 +1,9 @@
 <div class="panel col-xs-12">
   <div class="panel-heading">
     <h2>
-      Liste des résidents
+      Liste des personnes
       <% if can? :manage, User %>
-        <%= link_to "Nouveau résident", new_resident_path, class: 'btn btn-primary pull-right' %>
+        <%= link_to "Nouvelle personne", new_resident_path, class: 'btn btn-primary pull-right' %>
       <% end %>
     </h2>
   </div>
