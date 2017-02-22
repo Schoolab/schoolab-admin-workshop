@@ -1,3 +1,5 @@
-<%= simple_form_for @user, url: residents_path do |f| %>
-  <%= render 'form', user: @user, form: f %>
-<% end %>
+<div class="row">
+  <%= simple_form_for @user, url: residents_path do |f| %>
+    <%= render 'form', user: @user, form: f %>
+  <% end %>
+</div>
