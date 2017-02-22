@@ -19,8 +19,6 @@
         <% if can? :manage, User %>
         <th data-orderable="false">Rôle</th>
         <th data-orderable="false"></th>
-        <th data-orderable="false"></th>
-        <th data-orderable="false"></th>
         <% end %>
       </tr>
     </thead>
@@ -40,19 +38,14 @@
           <% end %>
         </td>
         <td>
-          <%= link_to resident_path(user), class: 'btn btn-default btn-xs' do %>
-          <i class="material-icons">visibility</i><span>Voir</span>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to edit_resident_path(user), class: 'btn btn-default btn-xs' do %>
-          <i class="material-icons">edit</i><span>Modifier</span>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to resident_path(user), method: :delete, data: { confirm: 'Êtes-vous sûr ?' }, class: 'btn btn-danger btn-xs' do %>
-          <i class="material-icons">delete</i><span>Supprimer</span>
-          <% end %>
+          <div class="pull-right">
+            <%= link_to resident_path(user), class: 'btn btn-default btn-xs' do %>
+            <i class="material-icons">visibility</i><span>Voir</span>
+            <% end %>
+            <%= link_to edit_resident_path(user), class: 'btn btn-default btn-xs' do %>
+            <i class="material-icons">edit</i><span>Modifier</span>
+            <% end %>
+          </div>
         </td>
         <% end %>
       </tr>
