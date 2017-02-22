@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get '/.well-known/acme-challenge/:id' => 'home#letsencrypt'
+
   root to: "home#index"
 
   devise_for :users, :controllers => { registrations: 'registrations' }
