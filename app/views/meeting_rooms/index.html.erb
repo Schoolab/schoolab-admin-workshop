@@ -3,7 +3,10 @@
     <h2>
       Espaces
       <% if can? :manage, MeetingRoom %>
-        <%= link_to 'Ajouter un espace', new_meeting_room_path, class: 'btn btn-primary pull-right' %>
+      <div class="pull-right">
+        <%= link_to 'Espaces supprimés', deleted_meeting_rooms_path, class: 'btn btn-link' %>
+        <%= link_to 'Ajouter un espace', new_meeting_room_path, class: 'btn btn-primary' %>
+      </div>
       <% end %>
     </h2>
   </div>
@@ -23,24 +26,33 @@
 
     <tbody>
       <% @meeting_rooms.each do |meeting_room| %>
-        <tr>
-          <td><div class="colour-square" style="background-color: <%= meeting_room.colour %>"></div></td>
-          <td><%= meeting_room.name %></td>
-          <td><%= meeting_room.floor.present? ? meeting_room.floor.name : "N/A" %></td>
-          <td><%= meeting_room.capacity %></td>
-          <td><%= meeting_room.reservable? ? "Oui" : "Non" %></td>
-          <td><%= meeting_room.is_available ? "Disponible" : meeting_room.status %></td>
-          <td>
-            <%= link_to meeting_room, class: 'btn btn-default btn-xs' do %>
-            <i class="material-icons">visibility</i><span>Voir les réservations</span>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to edit_meeting_room_path(meeting_room), class: 'btn btn-default btn-xs' do %>
-            <i class="material-icons">edit</i><span>Modifier</span>
-            <% end %>
-          </td>
-        </tr>
+      <tr>
+        <td><div class="colour-square" style="background-color: <%= meeting_room.colour %>"></div></td>
+        <td><%= meeting_room.name %></td>
+        <td><%= meeting_room.floor.present? ? meeting_room.floor.name : "N/A" %></td>
+        <td><%= meeting_room.capacity %></td>
+        <td><%= meeting_room.reservable? ? "Oui" : "Non" %></td>
+        <td><%= meeting_room.is_available ? "Disponible" : meeting_room.status %></td>
+        <% if current_page?(action: 'index') %>
+        <td>
+          <%= link_to meeting_room, class: 'btn btn-default btn-xs' do %>
+          <i class="material-icons">visibility</i><span>Voir les réservations</span>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to edit_meeting_room_path(meeting_room), class: 'btn btn-default btn-xs' do %>
+          <i class="material-icons">edit</i><span>Modifier</span>
+          <% end %>
+        </td>
+        <% end %>
+        <% if current_page?(action: 'deleted') %>
+        <td>
+          <%= link_to recover_meeting_room_path(meeting_room), method: :put, class: 'btn btn-success btn-xs' do %>
+          <i class="material-icons">edit</i><span>Rétablir</span>
+          <% end %>
+        </td>
+        <% end %>
+      </tr>
       <% end %>
     </tbody>
   </table>

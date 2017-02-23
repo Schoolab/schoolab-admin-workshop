@@ -1,11 +1,17 @@
 class MeetingRoomsController < ApplicationController
-  before_action :set_meeting_room, only: [:show, :edit, :update, :destroy]
+  before_action :set_meeting_room, only: [:show, :edit, :update, :destroy, :recover]
   load_and_authorize_resource
 
   # GET /meeting_rooms
   # GET /meeting_rooms.json
   def index
     @meeting_rooms = MeetingRoom.all
+  end
+
+  # GET /meeting_rooms/deleted
+  def deleted
+    @meeting_rooms = MeetingRoom.only_deleted
+    render :index
   end
 
   # GET /meeting_rooms/1
@@ -52,6 +58,15 @@ class MeetingRoomsController < ApplicationController
     end
   end
 
+  # PATCH /meeting_rooms/1/recover
+  def recover
+    @meeting_room.recover
+    respond_to do |format|
+      format.html { redirect_to meeting_rooms_url, notice: 'Meeting room was successfully recovered.' }
+      format.json { head :success }
+    end
+  end
+
   # DELETE /meeting_rooms/1
   # DELETE /meeting_rooms/1.json
   def destroy
@@ -65,7 +80,7 @@ class MeetingRoomsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_meeting_room
-      @meeting_room = MeetingRoom.find(params[:id])
+      @meeting_room = MeetingRoom.with_deleted.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

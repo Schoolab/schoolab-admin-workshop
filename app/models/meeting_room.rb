@@ -3,6 +3,8 @@ class MeetingRoom < ApplicationRecord
 
   has_many :reservations, dependent: :destroy
 
+  acts_as_paranoid
+
   def reservation_at(start_time, end_time)
     reservations = []
     self.reservations.each do |reservation|

@@ -14,7 +14,10 @@ Rails.application.routes.draw do
 
   resources :floors
 
-  resources :meeting_rooms
+  resources :meeting_rooms do
+    get 'deleted' => 'meeting_rooms#deleted', on: :collection
+    match 'recover', to: 'meeting_rooms#recover', on: :member, via: [:put, :patch]
+  end
 
   resources :reservations, except: [:show] do
     get 'search' => "reservations#search", on: :collection
