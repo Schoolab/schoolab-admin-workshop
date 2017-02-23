@@ -8,40 +8,44 @@
     </h2>
   </div>
 
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Nom</th>
-        <th>Étage</th>
-        <th>Capacité</th>
-        <th>Réservable</th>
-        <th>Statut</th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @meeting_rooms.each do |meeting_room| %>
+  <div class="panel-body">
+    <table class="table table-hover">
+      <thead>
         <tr>
-          <td><div class="colour-square" style="background-color: <%= meeting_room.colour %>"></div></td>
-          <td><%= meeting_room.name %></td>
-          <td><%= meeting_room.floor.present? ? meeting_room.floor.name : "N/A" %></td>
-          <td><%= meeting_room.capacity %></td>
-          <td><%= meeting_room.reservable? ? "Oui" : "Non" %></td>
-          <td><%= meeting_room.is_available ? "Disponible" : meeting_room.status %></td>
-          <td>
-            <div class="pull-right">
-              <%= link_to meeting_room, class: 'btn btn-default btn-xs' do %>
-              <i class="material-icons">visibility</i><span>Voir les réservations</span>
-              <% end %>
-              <%= link_to edit_meeting_room_path(meeting_room), class: 'btn btn-default btn-xs' do %>
-              <i class="material-icons">edit</i><span>Modifier</span>
-              <% end %>
-            </div>
-          </td>
+          <th>Nom</th>
+          <th>Étage</th>
+          <th>Capacité</th>
+          <th>Réservable</th>
+          <th>Statut</th>
+          <th></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+        <% @meeting_rooms.each do |meeting_room| %>
+          <tr>
+            <td>
+              <div class="list-dot" style="background-color: <%= meeting_room.colour %>"></div>
+              <%= meeting_room.name %>
+            </td>
+            <td><%= meeting_room.floor.present? ? meeting_room.floor.name : "N/A" %></td>
+            <td><%= meeting_room.capacity %></td>
+            <td><%= meeting_room.reservable? ? "Oui" : "Non" %></td>
+            <td><%= meeting_room.is_available ? "Disponible" : meeting_room.status %></td>
+            <td>
+              <div class="pull-right">
+                <%= link_to meeting_room, class: 'btn btn-default btn-xs' do %>
+                <i class="material-icons">visibility</i><span>Voir les réservations</span>
+                <% end %>
+                <%= link_to edit_meeting_room_path(meeting_room), class: 'btn btn-default btn-xs' do %>
+                <i class="material-icons">edit</i><span>Modifier</span>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
 </div>

@@ -33,5 +33,9 @@ class MeetingRoom < ApplicationRecord
     end
   end
 
+  def colour
+    self.floor.colour
+  end
+
 
 end

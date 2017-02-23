@@ -6,7 +6,7 @@ class FloorsController < ApplicationController
   # GET /floors
   # GET /floors.json
   def index
-    @floors = Floor.all
+    @floors = Floor.all.order('number ASC')
     authorize! :manage, Floor
   end
 
@@ -72,6 +72,6 @@ class FloorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def floor_params
-      params.require(:floor).permit(:name)
+      params.require(:floor).permit(:number, :name, :description, :colour)
     end
 end

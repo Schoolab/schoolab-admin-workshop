@@ -58,3 +58,30 @@
 .list-icon-floor:before {
     content: "view_agenda";
 }
+
+.list-dot {
+  background-color: $brand-10;
+  width: .75rem;
+  height: .75rem;
+  border: 2px solid rgba($black, 0.1);
+  border-radius: 50%;
+  display: inline-block;
+  margin: .375rem .5rem 0 0;
+  float: left;
+}
+
+.list-dot--success {
+  background-color: $brand-green;
+}
+
+.list-dot--info {
+  background-color: $brand-blue;
+}
+
+.list-dot--warning {
+  background-color: $brand-orange;
+}
+
+.list-dot--danger {
+  background-color: $brand-red;
+}

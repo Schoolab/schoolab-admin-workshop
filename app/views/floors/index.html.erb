@@ -8,23 +8,33 @@
     </h2>
   </div>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Nom</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @floors.each do |floor| %>
+  <div class="panel-body">
+    <table class="table table-hover">
+      <thead>
         <tr>
-          <td><%= floor.name %></td>
-          <td><%= link_to 'Voir', floor_path(floor), class: 'btn btn-default btn-xs' %></td>
-          <td><%= link_to 'Modifier', edit_floor_path(floor), class: 'btn btn-default btn-xs' %></td>
-          <td><%= link_to 'Supprimer', floor, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-xs' %></td>
+          <th>Nom</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+        <% @floors.each do |floor| %>
+          <tr>
+            <td>
+              <div class="list-dot" style="background-color: <%= floor.colour %>"></div>
+              <%= floor.name %>
+
+              <div class="pull-right">
+                <%= link_to floor_path(floor), class: 'btn btn-default btn-xs' do %>
+                <i class="material-icons">visibility</i><span>Voir</span>
+                <% end %>
+                <%= link_to edit_floor_path(floor), class: 'btn btn-default btn-xs' do %>
+                <i class="material-icons">edit</i><span>Modifier</span>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

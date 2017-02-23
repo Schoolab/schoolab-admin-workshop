@@ -23,19 +23,13 @@
             <%= f.input_field :description, input_html: { rows: 3 }, class: "form-control" %>
           </div>
 
-          <div class="form-group select-wrapper col-md-4 has-feedback has-feedback-left">
+          <div class="form-group select-wrapper col-md-6 has-feedback has-feedback-left">
             <%= f.label :floor, "Étage", class: "sr-only" %>
             <%= f.association :floor, class: 'form-control', label: false, prompt: "Étage" %>
             <i class="form-control-feedback material-icons">view_agenda</i>
           </div>
 
-          <div class="form-group col-md-4 has-feedback has-feedback-left">
-            <%= f.label :colour, "Couleur de l'espace", class: "sr-only" %>
-            <%= f.text_field :colour, placeholder: "Couleur de l'espace (#RRVVBB)", class: "form-control" %>
-            <i class="form-control-feedback material-icons">palette</i>
-          </div>
-
-          <div class="form-group col-md-4 has-feedback has-feedback-left">
+          <div class="form-group col-md-6 has-feedback has-feedback-left">
             <%= f.label :capacity, "Capacité de l'espace", class: "sr-only" %>
             <%= f.text_field :capacity, placeholder: "Capacité de l'espace", class: "form-control" %>
             <i class="form-control-feedback material-icons">people</i>
@@ -44,55 +38,55 @@
         </div>
       </div>
   </div>
-  </div>
+</div>
 
-  <div class="col-xs-12 col-md-4">
-    <div class="panel">
-      <div class="panel-heading">
-        <h3>Publier</h3>
-      </div>
-      <div class="panel-body">
-        <div class="form-group">
-          <%= f.input :reservable, inline_label: "Espace reservable", as: :boolean %>
-          <p class="muted">Signifie que cet espace sera disponible à la reservation sur l'admin.</p>
+<div class="col-xs-12 col-md-4">
+  <div class="panel">
+    <div class="panel-heading">
+      <h3>Publier</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <%= f.input :reservable, inline_label: "Espace reservable", as: :boolean %>
+        <p class="muted">Signifie que cet espace sera disponible à la reservation sur l'admin.</p>
 
 
-          <div class="checkbox">
-            <label>
-              <% if meeting_room.is_available %>
-                <input type="checkbox" class="helper-toggle">
-              <% else %>
-                <input type="checkbox" checked="checked" class="helper-toggle">
-              <% end %>
-              Rendre cet espace provisoirement indisponible
-            </label>
-          </div>
-          <div class="row">
+        <div class="checkbox">
+          <label>
             <% if meeting_room.is_available %>
-              <div class="form-group toggle-group hidden col-md-12 has-feedback has-feedback-left">
+              <input type="checkbox" class="helper-toggle">
             <% else %>
-              <div class="form-group toggle-group col-md-12 has-feedback has-feedback-left">
+              <input type="checkbox" checked="checked" class="helper-toggle">
             <% end %>
-              <%= f.label :status, "Raison", class: "sr-only" %>
-              <%= f.text_field :status, placeholder: "Raison", class: "form-control toggle-form-control" %>
-              <i class="form-control-feedback material-icons">help</i>
-            </div>
+            Rendre cet espace provisoirement indisponible
+          </label>
+        </div>
+        <div class="row">
+          <% if meeting_room.is_available %>
+            <div class="form-group toggle-group hidden col-md-12 has-feedback has-feedback-left">
+          <% else %>
+            <div class="form-group toggle-group col-md-12 has-feedback has-feedback-left">
+          <% end %>
+            <%= f.label :status, "Raison", class: "sr-only" %>
+            <%= f.text_field :status, placeholder: "Raison", class: "form-control toggle-form-control" %>
+            <i class="form-control-feedback material-icons">help</i>
           </div>
         </div>
       </div>
-      <div class="panel-footer">
-        <% if f.object.new_record? %>
-          <div class="flex-end">
-            <%= f.submit "Publier", class: "btn btn-primary" %>
-          </div>
-        <% else %>
-          <div class="space-between">
-            <%= link_to 'Supprimer', meeting_room, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link btn-link--danger" %>
-            <%= f.submit "Sauvegarder", class: "btn btn-primary pull-right" %>
-          </div>
-        <% end %>
-      </div>
+    </div>
+    <div class="panel-footer">
+      <% if f.object.new_record? %>
+        <div class="flex-end">
+          <%= f.submit "Publier", class: "btn btn-primary" %>
+        </div>
+      <% else %>
+        <div class="space-between">
+          <%= link_to 'Supprimer', meeting_room, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link btn-link--danger" %>
+          <%= f.submit "Sauvegarder", class: "btn btn-primary pull-right" %>
+        </div>
+      <% end %>
     </div>
   </div>
+</div>
 
 <% end %>
