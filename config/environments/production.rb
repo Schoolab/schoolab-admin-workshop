@@ -103,14 +103,14 @@ Rails.application.configure do
   }
 
   # Sendgrid for ActionMailer
+  config.action_mailer.default_url_options = { :host => 'admin.theschoolab.com' }
   ActionMailer::Base.smtp_settings = {
-    :user_name => ENV.fetch('SENDGRID_USERNAME'),
-    :password => ENV.fetch('SENDGRID_PASSWORD'),
-    :domain => ENV.fetch('DOMAIN'),
-    :address => 'smtp.sendgrid.net',
-    :port => 587,
+    :address        => "smtp.sendgrid.net",
+    :port           => "25",
     :authentication => :plain,
-    :enable_starttls_auto => true
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => ENV['SENDGRID_DOMAIN']
   }
 
 end
