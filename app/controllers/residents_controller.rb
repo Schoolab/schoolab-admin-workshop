@@ -3,7 +3,6 @@ class ResidentsController < ApplicationController
   # GET /residents
   def index
     @users = User.all
-    @deleted_users = User.deleted
     authorize! :read, User
   end
 
