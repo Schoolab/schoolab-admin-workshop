@@ -2,6 +2,7 @@ class Reservation < ApplicationRecord
   belongs_to :meeting_room
   belongs_to :user
 
+
   before_create :set_default_end_time
   def set_default_end_time
     if self.end_time == nil

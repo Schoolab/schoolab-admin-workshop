@@ -1,7 +1,8 @@
 class Event < ApplicationRecord
 
-  has_attached_file :image, styles: { large: "1200x1200", medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :image, styles: { large: "1200x1200", medium: "300x300>", thumb: "100x100>" }, default_url: ""
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+
 
   def full_price
     if self.price == 0

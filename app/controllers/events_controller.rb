@@ -7,7 +7,6 @@ class EventsController < ApplicationController
   # GET /events
   def index
     Time.zone = 'Paris'
-    @past_events = Event.where("date < ?", Time.zone.today).order(date: :desc)
     @events = Event.where("date >= ?", Time.zone.today).order(date: :asc)
     authorize! :read, Event
   end

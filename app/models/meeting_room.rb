@@ -1,7 +1,8 @@
 class MeetingRoom < ApplicationRecord
   belongs_to :floor
-
   has_many :reservations, dependent: :destroy
+
+  acts_as_paranoid
 
   def reservation_at(start_time, end_time)
     reservations = []

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get '/.well-known/acme-challenge/:id' => 'home#letsencrypt'
+
   root to: "home#index"
 
   devise_for :users, :controllers => { registrations: 'registrations' }
@@ -10,11 +12,18 @@ Rails.application.routes.draw do
 
   resources :companies
 
-  resources :floors
+  resources :floors do
+    get 'deleted' => 'floors#deleted', on: :collection
+    match 'recover', to: 'floors#recover', on: :member, via: [:put, :patch]
+  end
 
-  resources :meeting_rooms
+  resources :meeting_rooms do
+    get 'deleted' => 'meeting_rooms#deleted', on: :collection
+    match 'recover', to: 'meeting_rooms#recover', on: :member, via: [:put, :patch]
+  end
 
   resources :reservations, except: [:show] do
+    get 'past' => "reservations#past", on: :collection
     get 'search' => "reservations#search", on: :collection
   end
 

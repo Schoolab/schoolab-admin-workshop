@@ -1,0 +1,34 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Nom</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @floors.each do |floor| %>
+      <tr>
+        <td>
+          <div class="list-dot" style="background-color: <%= floor.colour %>"></div>
+          <%= floor.name %>
+
+          <div class="pull-right">
+            <% if current_page?(action: 'index') %>
+              <%= link_to floor_path(floor), class: 'btn btn-default btn-xs' do %>
+              <i class="material-icons">visibility</i><span>Voir</span>
+              <% end %>
+              <%= link_to edit_floor_path(floor), class: 'btn btn-default btn-xs' do %>
+              <i class="material-icons">edit</i><span>Modifier</span>
+              <% end %>
+            <% end %>
+            <% if current_page?(action: 'deleted') %>
+              <%= link_to recover_floor_path(floor), method: :put, class: 'btn btn-success btn-xs' do %>
+              <i class="material-icons">restore</i><span>Rétablir</span>
+              <% end %>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

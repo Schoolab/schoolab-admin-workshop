@@ -7,6 +7,11 @@ class ReservationsController < ApplicationController
   def index
     Time.zone = 'Paris'
     @reservations = Reservation.where("start_time >= ?", Time.zone.today).order(start_time: :asc)
+  end
+
+  # GET /reservations/past
+  def past
+    Time.zone = 'Paris'
     @past_reservations = Reservation.where("start_time < ?", Time.zone.today).order(start_time: :desc)
   end
 

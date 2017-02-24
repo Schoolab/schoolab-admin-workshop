@@ -8,32 +8,38 @@
     </h2>
   </div>
 
-  <table class="table table-hover datatable" data-paging="false" data-info="false">
-    <thead>
-      <tr>
-        <th>Nom</th>
-        <th>Étage</th>
-        <th data-orderable="false"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @companies.each do |company| %>
+  <div class="panel-body">
+    <table class="table table-hover datatable">
+      <thead>
         <tr>
-          <td><%= company.name %></td>
-          <td><%= company.floor.present? ? company.floor.name : "N/A" %></td>
-          <td>
-            <div class="pull-right">
-              <%= link_to company_path(company), class: 'btn btn-default btn-xs' do %>
-              <i class="material-icons">visibility</i><span>Voir</span>
-              <% end %>
-              <%= link_to edit_company_path(company), class: 'btn btn-default btn-xs' do %>
-              <i class="material-icons">edit</i><span>Modifier</span>
-              <% end %>
-            </div>
-          </td>
+          <th>Nom</th>
+          <th>Étage</th>
+          <th data-orderable="false"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+        <% @companies.each do |company| %>
+          <tr>
+            <td><%= company.name %></td>
+            <td>
+              <div class="list-dot" style="background-color: <%= company.floor.present? ? company.floor.colour : "" %>"></div>
+              <%= company.floor.present? ? company.floor.name : "N/A" %>
+            </td>
+            <td>
+              <div class="pull-right">
+                <%= link_to company_path(company), class: 'btn btn-default btn-xs' do %>
+                <i class="material-icons">visibility</i><span>Voir</span>
+                <% end %>
+                <%= link_to edit_company_path(company), class: 'btn btn-default btn-xs' do %>
+                <i class="material-icons">edit</i><span>Modifier</span>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
 </div>

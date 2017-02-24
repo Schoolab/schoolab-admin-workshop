@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20170223102057) do
     t.text     "description"
     t.string   "phone"
     t.string   "email"
+    t.time     "deleted_at"
     t.index ["floor_id"], name: "index_companies_on_floor_id", using: :btree
   end
 
@@ -70,6 +71,7 @@ ActiveRecord::Schema.define(version: 20170223102057) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.time     "deleted_at"
   end
 
   create_table "floors", force: :cascade do |t|
@@ -79,6 +81,7 @@ ActiveRecord::Schema.define(version: 20170223102057) do
     t.text     "description"
     t.string   "colour"
     t.integer  "number"
+    t.time     "deleted_at"
   end
 
   create_table "meeting_rooms", force: :cascade do |t|
@@ -94,6 +97,7 @@ ActiveRecord::Schema.define(version: 20170223102057) do
     t.text     "description"
     t.boolean  "reservable",         default: false
     t.string   "status"
+    t.time     "deleted_at"
     t.index ["floor_id"], name: "index_meeting_rooms_on_floor_id", using: :btree
   end
 
@@ -104,6 +108,7 @@ ActiveRecord::Schema.define(version: 20170223102057) do
     t.datetime "end_time"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.time     "deleted_at"
     t.index ["meeting_room_id"], name: "index_reservations_on_meeting_room_id", using: :btree
     t.index ["user_id"], name: "index_reservations_on_user_id", using: :btree
   end
@@ -142,6 +147,7 @@ ActiveRecord::Schema.define(version: 20170223102057) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.time     "deleted_at"
     t.index ["company_id"], name: "index_users_on_company_id", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
