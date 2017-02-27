@@ -28,6 +28,8 @@ Rails.application.routes.draw do
 
   resources :reservations, except: [:show] do
     get 'past' => "reservations#past", on: :collection
+    get 'deleted' => "reservations#deleted", on: :collection
+    match 'recover', to: 'reservations#recover', on: :member, via: [:put, :patch]
     get 'search' => "reservations#search", on: :collection
   end
 

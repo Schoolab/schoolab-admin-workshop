@@ -73,7 +73,7 @@ class EventsController < ApplicationController
   def recover
     @event.recover
     respond_to do |format|
-      format.html { redirect_to event_url, notice: 'L\'évènement à bien été reccupéré.' }
+      format.html { redirect_to events_url, notice: 'L\'évènement à bien été reccupéré.' }
       format.json { head :success }
     end
   end

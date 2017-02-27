@@ -7,25 +7,25 @@
 }
 
 .alert-success {
-    background-color: $brand-green;
+    background-color: $brand-blue-green;
     border-color: rgba($black,.1);
     color: rgba($black,.5);
 }
 
 .alert-info {
-  background-color: $brand-blue;
+  background-color: $brand-blue-blue;
   border-color: rgba($black,.1);
   color: rgba($black,.5);
 }
 
 .alert-warning {
-  background-color: $brand-orange;
+  background-color: $brand-blue-orange;
   border-color: rgba($black,.1);
   color: rgba($black,.5);
 }
 
 .alert-danger {
-  background-color: $brand-red;
+  background-color: $brand-blue-red;
   border-color: rgba($black,.1);
   color: rgba($black,.5);
 }

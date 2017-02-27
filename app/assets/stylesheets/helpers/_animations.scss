@@ -1,27 +1,27 @@
 @keyframes brand-anim {
 
   0% {
-    color: $brand-blue;
+    color: $brand-blue-blue;
   }
 
   20% {
-    color: $brand-cyan;
+    color: $brand-blue-cyan;
   }
 
   40% {
-    color: $brand-green;
+    color: $brand-blue-green;
   }
 
   60% {
-    color: $brand-yellow;
+    color: $brand-blue-yellow;
   }
 
   80% {
-    color: $brand-orange;
+    color: $brand-blue-orange;
   }
 
   100% {
-    color: $brand-red;
+    color: $brand-blue-red;
   }
 
 }

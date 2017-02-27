@@ -3,49 +3,20 @@
     <h2>
       Réservations
       <div class="pull-right">
-        <%= link_to "Réservations passées", past_reservations_path, class: "btn btn-default" %>
+        <%= link_to "Réserver une salle", search_reservations_path, class: "btn btn-primary" %>
       </div>
     </h2>
+    <% if can? :manage, Reservation %>
+      <ul class="inline-list mt">
+        <li><strong>À venir</strong></li>
+        <li><%= link_to "Terminés", past_reservations_path %></li>
+        <li><%= link_to "Corbeille", deleted_reservations_path %></li>
+      </ul>
+    <% end %>
   </div>
 
   <div class="panel-body">
-    <table class="datatable table" data-paging="false" data-info="false">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Horaires</th>
-          <th>Salle</th>
-          <th>Résident</th>
-          <th>Entreprise</th>
-          <th data-orderable="false"></th>
-          <th data-orderable="false"></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% last_date = nil %>
-        <% @reservations.each do |reservation| %>
-          <tr
-          <% if reservation.start_time.midnight == Time.zone.today.midnight %>
-            class="today"
-          <% end %>
-          >
-            <% if reservation.friendly_date == last_date %>
-            <td data-order="<%= reservation.start_time %>"></td>
-            <% else %>
-            <% last_date = reservation.friendly_date %>
-            <td data-order="<%= reservation.start_time %>"><%= reservation.friendly_date %></td>
-            <% end %>
-            <td><%= reservation.time %></td>
-            <td><%= link_to reservation.meeting_room.name, reservation.meeting_room %></td>
-            <td><%= link_to reservation.user.name, resident_path(reservation.user) %></td>
-            <td><%= reservation.user.company_name %></td>
-            <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
-            <td><%= link_to 'Delete', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <%= render 'list' %>
   </div>
 
 </div>
