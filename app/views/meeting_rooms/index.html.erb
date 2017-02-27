@@ -4,11 +4,16 @@
       Espaces
       <% if can? :manage, MeetingRoom %>
       <div class="pull-right">
-        <%= link_to 'Espaces supprimés', deleted_meeting_rooms_path, class: 'btn btn-link' %>
         <%= link_to 'Ajouter un espace', new_meeting_room_path, class: 'btn btn-primary' %>
       </div>
       <% end %>
     </h2>
+    <% if can? :manage, MeetingRoom %>
+      <ul class="inline-list mt">
+        <li><strong>Tous</strong></li>
+        <li><%= link_to "Corbeille", deleted_meeting_rooms_path %></li>
+      </ul>
+    <% end %>
   </div>
 
   <div class="panel-body">

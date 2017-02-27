@@ -1,14 +1,19 @@
 <div class="panel col-xs-12">
   <div class="panel-heading">
     <h2>
-      Étages supprimés
+      Étages
       <% if can? :manage, Floor %>
         <div class="pull-right">
-          <%= link_to 'Étages', floors_path, class: 'btn btn-default' %>
           <%= link_to 'Ajouter un étage', new_floor_path, class: 'btn btn-primary' %>
         </div>
       <% end %>
     </h2>
+    <% if can? :manage, Floor %>
+      <ul class="inline-list mt">
+        <li><%= link_to "Tous", floors_path %></li>
+        <li><strong>Corbeille</strong></li>
+      </ul>
+    <% end %>
   </div>
 
   <div class="panel-body">

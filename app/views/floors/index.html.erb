@@ -4,11 +4,17 @@
       Étages
       <% if can? :manage, Floor %>
         <div class="pull-right">
-          <%= link_to 'Étages supprimés', deleted_floors_path, class: 'btn btn-default' %>
           <%= link_to 'Ajouter un étage', new_floor_path, class: 'btn btn-primary' %>
         </div>
       <% end %>
     </h2>
+
+    <% if can? :manage, Floor %>
+      <ul class="inline-list mt">
+        <li><strong>Tous</strong></li>
+        <li><%= link_to "Corbeille", deleted_floors_path %></li>
+      </ul>
+    <% end %>
   </div>
 
   <div class="panel-body">

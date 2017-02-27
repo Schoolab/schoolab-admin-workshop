@@ -1,14 +1,19 @@
 <div class="panel col-xs-12">
   <div class="panel-heading">
     <h2>
-      Espaces supprimés
+      Espaces
       <% if can? :manage, MeetingRoom %>
       <div class="pull-right">
-        <%= link_to 'Retour à la liste', meeting_rooms_path, class: 'btn btn-link' %>
         <%= link_to 'Ajouter un espace', new_meeting_room_path, class: 'btn btn-primary' %>
       </div>
       <% end %>
     </h2>
+    <% if can? :manage, MeetingRoom %>
+      <ul class="inline-list mt">
+        <li><%= link_to "Tous", meeting_rooms_path %></li>
+        <li><strong>Corbeille</strong></li>
+      </ul>
+    <% end %>
   </div>
 
   <div class="panel-body">
