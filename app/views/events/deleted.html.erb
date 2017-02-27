@@ -1,7 +1,7 @@
 <div class="panel col-xs-12">
   <div class="panel-heading">
     <h2>
-      Événements passés
+      Événements
       <% if can? :manage, Event %>
         <div class="pull-right">
           <%= link_to "Nouvel événement", new_event_path, class: 'btn btn-primary' %>
@@ -11,8 +11,8 @@
     <% if can? :manage, Event %>
       <ul class="inline-list mt">
         <li><%= link_to "À venir", events_path %></li>
-        <li><strong>Passés</strong></li>
-        <li><%= link_to "Corbeille", deleted_events_path %></li>
+        <li><%= link_to "Passés", past_events_path %></li>
+        <li><strong>Corbeille</strong></li>
       </ul>
     <% end %>
   </div>

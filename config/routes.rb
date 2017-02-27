@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
 
   resources :events do
+    get 'deleted' => "events#deleted", on: :collection
     get 'past' => "events#past", on: :collection
   end
 

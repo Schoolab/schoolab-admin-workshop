@@ -1,10 +1,10 @@
 <div class="panel col-xs-12">
   <div class="panel-heading">
     <h2>
-      Étages
+      Étages supprimés
       <% if can? :manage, Floor %>
         <div class="pull-right">
-          <%= link_to 'Retour à la liste', floors_path, class: 'btn btn-link' %>
+          <%= link_to 'Étages', floors_path, class: 'btn btn-default' %>
           <%= link_to 'Ajouter un étage', new_floor_path, class: 'btn btn-primary' %>
         </div>
       <% end %>
