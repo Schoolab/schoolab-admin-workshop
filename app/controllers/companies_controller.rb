@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :edit, :update, :destroy]
+  before_action :set_company, only: [:show, :edit, :update, :destroy, :recover]
 
   load_and_authorize_resource
 
@@ -7,6 +7,11 @@ class CompaniesController < ApplicationController
   # GET /companies.json
   def index
     @companies = Company.all
+  end
+
+  # GET /companies/deleted
+  def deleted
+    @companies = Company.only_deleted
   end
 
   # GET /companies/1
@@ -49,6 +54,15 @@ class CompaniesController < ApplicationController
     end
   end
 
+  # PATCH /companies/1/recover
+  def recover
+    @company.recover
+    respond_to do |format|
+      format.html { redirect_to companies_path, notice: 'L\'évènement à bien été reccupéré.' }
+      format.json { head :success }
+    end
+  end
+
   # DELETE /companies/1
   # DELETE /companies/1.json
   def destroy
@@ -61,7 +75,7 @@ class CompaniesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_company
-      @company = Company.find(params[:id])
+      @company = Company.with_deleted.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

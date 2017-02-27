@@ -11,7 +11,7 @@
     <% if can? :manage, Event %>
       <ul class="inline-list mt">
         <li><strong>À venir</strong></li>
-        <li><%= link_to "Passés", past_events_path %></li>
+        <li><%= link_to "Terminés", past_events_path %></li>
         <li><%= link_to "Corbeille", deleted_events_path %></li>
       </ul>
     <% end %>

@@ -63,7 +63,7 @@ class FloorsController < ApplicationController
   def recover
     @floor.recover
     respond_to do |format|
-      format.html { redirect_to floor_url, notice: 'Floor was successfully recovered.' }
+      format.html { redirect_to floors_path, notice: 'Floor was successfully recovered.' }
       format.json { head :success }
     end
   end

@@ -69,7 +69,7 @@ class EventsController < ApplicationController
     end
   end
 
-  # PATCH /meeting_rooms/1/recover
+  # PATCH /events/1/recover
   def recover
     @event.recover
     respond_to do |format|
