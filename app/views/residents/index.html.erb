@@ -1,11 +1,16 @@
 <div class="panel col-xs-12">
   <div class="panel-heading">
     <h2>
-      Liste des personnes
+      Personnes
       <% if can? :manage, User %>
         <%= link_to "Nouvelle personne", new_resident_path, class: 'btn btn-primary pull-right' %>
       <% end %>
     </h2>
+    <% if can? :manage, User %>
+      <ul class="inline-list mt">
+        <li><strong>Tous</strong></li>
+      </ul>
+    <% end %>
   </div>
 
   <div class="panel-body">
