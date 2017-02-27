@@ -1,26 +1,64 @@
 <%= simple_form_for(@reservation) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <div class="row">
-      <div class="col-md-6">
-        <%= f.input :start_time, minute_step: 30, default: Time.parse('9:00') %>
-      </div>
-      <div class="col-md-6">
-        <%= f.input :end_time, minute_step: 30, default: Time.parse('18:00') %>
-      </div>
+<div class="col-xs-12 col-md-8">
+  <div class="panel">
+    <div class="panel-heading">
+      <% if f.object.new_record? %>
+        <h2>Créer une réservation</h2>
+      <% else %>
+        <h2>Modifier une réservation</h2>
+      <% end %>
     </div>
-    <div class="row">
-      <div class="col-md-6">
-        <%= f.association :meeting_room %>
-      </div>
-      <div class="col-md-6">
-        <%= f.association :user, collection: User.order('first_name ASC, last_name ASC'), label_method: :choose_name %>
-      </div>
-    </div>
-  </div>
+    <div class="panel-body">
+      <div class="row form-row">
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+        <div class="form-group col-md-6">
+          <%= f.label :start_time, "Date de début" %>
+          <%= f.input :start_time, minute_step: 30, default: Time.parse('9:00'), label: false %>
+        </div>
+
+        <div class="form-group col-md-6">
+          <%= f.label :end_time, "Date de fin" %>
+          <%= f.input :end_time, minute_step: 30, default: Time.parse('18:00'), label: false %>
+        </div>
+
+        <div class="form-group select-wrapper col-md-6">
+          <%= f.label :meeting_room, "Espace", class: "sr-only" %>
+          <%= f.association :meeting_room, class: 'form-control', label: false, prompt: "Espace" %>
+        </div>
+
+        <div class="form-group select-wrapper col-md-6 has-feedback has-feedback-left">
+          <%= f.label :user, "Personne", class: "sr-only" %>
+          <%= f.association :user, class: 'form-control', label: false, prompt: "Personne" %>
+          <i class="form-control-feedback material-icons">person</i>
+        </div>
+
+      </div>
+    </div>
   </div>
+</div>
+
+<div class="col-xs-12 col-md-4">
+  <div class="panel">
+    <div class="panel-heading">
+      <h3>Publier</h3>
+    </div>
+    <div class="panel-body">
+    </div>
+    <div class="panel-footer">
+      <% if f.object.new_record? %>
+        <div class="flex-end">
+          <%= f.submit "Publier", class: "btn btn-primary" %>
+        </div>
+      <% else %>
+        <div class="space-between">
+          <%= link_to 'Supprimer', reservation, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link btn-link--danger" %>
+          <%= f.submit "Sauvegarder", class: "btn btn-primary pull-right" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 <% end %>
