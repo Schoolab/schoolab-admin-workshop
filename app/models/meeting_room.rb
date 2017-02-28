@@ -36,7 +36,7 @@ class MeetingRoom < ApplicationRecord
   end
 
   def colour
-    self.floor.colour
+    self.floor.colour.present? ? self.floor.colour : ""
   end
 
 
