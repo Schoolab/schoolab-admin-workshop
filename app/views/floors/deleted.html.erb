@@ -8,11 +8,10 @@
         </div>
       <% end %>
     </h2>
-
     <% if can? :manage, Floor %>
       <ul class="inline-list mt">
-        <li><strong>Tous</strong></li>
-        <li><%= link_to "Corbeille", deleted_floors_path %></li>
+        <li><%= link_to "Tous", floors_path %></li>
+        <li><strong>Corbeille</strong></li>
       </ul>
     <% end %>
   </div>

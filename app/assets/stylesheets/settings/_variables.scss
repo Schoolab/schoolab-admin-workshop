@@ -15,29 +15,29 @@ $whitesmoke-light:          #FEFEFE;
 
 // Brand colors
 
-$brand-primary:             #202545;
-$brand-blue:                #377AF4;
-$brand-cyan:                #27DFF2;
-$brand-green:               #4FE88D;
-$brand-yellow:              #FDCC47;
-$brand-orange:              #FFA543;
-$brand-red:                 #F44E63;
+$brand-blue-primary:             #202545;
+$brand-blue-blue:                #377AF4;
+$brand-blue-cyan:                #27DFF2;
+$brand-blue-green:               #4FE88D;
+$brand-blue-yellow:              #FDCC47;
+$brand-blue-orange:              #FFA543;
+$brand-blue-red:                 #F44E63;
 
 // Brand declinaisons
-$brand-75:                  #555971;
-$brand-50:                  #898C9C;
-$brand-25:                  #BDBEC6;
-$brand-15:                  #DCDDE0;
-$brand-10:                  #EAEAEC;
-$brand-05:                  #F4F4F5;
+$brand-blue-75:                  #555971;
+$brand-blue-50:                  #898C9C;
+$brand-blue-25:                  #BDBEC6;
+$brand-blue-15:                  #DCDDE0;
+$brand-blue-10:                  #EAEAEC;
+$brand-blue-05:                  #F4F4F5;
 
 // Other
-$border-color:              $brand-15;
+$border-color:              $brand-blue-15;
 $box-shadow-color:          rgba($black, .04);
 
 // Fonts
 
-$brand-font:                CircularStd, sans-serif;
+$brand-blue-font:                CircularStd, sans-serif;
 $icons-font:                Schoolab Icons;
 $primary-font:              Source Sans Pro, sans-serif;
 

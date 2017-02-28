@@ -10,8 +10,8 @@
     </h2>
     <% if can? :manage, MeetingRoom %>
       <ul class="inline-list mt">
-        <li><strong>Tous</strong></li>
-        <li><%= link_to "Corbeille", deleted_meeting_rooms_path %></li>
+        <li><%= link_to "Tous", meeting_rooms_path %></li>
+        <li><strong>Corbeille</strong></li>
       </ul>
     <% end %>
   </div>

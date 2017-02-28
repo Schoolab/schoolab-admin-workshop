@@ -1,9 +1,9 @@
 class MeetingRoom < ApplicationRecord
   belongs_to :floor
-
   has_many :reservations, dependent: :destroy
 
   acts_as_paranoid
+  audited
 
   def reservation_at(start_time, end_time)
     reservations = []
@@ -33,6 +33,10 @@ class MeetingRoom < ApplicationRecord
     else
       return false
     end
+  end
+
+  def colour
+    self.floor.colour
   end
 
 

@@ -5,13 +5,12 @@ class MeetingRoomsController < ApplicationController
   # GET /meeting_rooms
   # GET /meeting_rooms.json
   def index
-    @meeting_rooms = MeetingRoom.all
+    @meeting_rooms = MeetingRoom.all.order('floor_id ASC')
   end
 
   # GET /meeting_rooms/deleted
   def deleted
     @meeting_rooms = MeetingRoom.only_deleted
-    render :index
   end
 
   # GET /meeting_rooms/1
@@ -85,6 +84,6 @@ class MeetingRoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def meeting_room_params
-      params.require(:meeting_room).permit(:name, :colour, :floor_id, :photo, :capacity, :reservable, :description, :status)
+      params.require(:meeting_room).permit(:name, :floor_id, :photo, :capacity, :reservable, :description, :status)
     end
 end

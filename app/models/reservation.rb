@@ -2,6 +2,8 @@ class Reservation < ApplicationRecord
   belongs_to :meeting_room
   belongs_to :user
 
+  acts_as_paranoid
+  audited
 
   before_create :set_default_end_time
   def set_default_end_time

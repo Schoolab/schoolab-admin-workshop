@@ -8,9 +8,9 @@
     </h2>
     <% if can? :manage, Reservation %>
       <ul class="inline-list mt">
-        <li><strong>À venir</strong></li>
+        <li><%= link_to "À venir", reservations_path %></li>
         <li><%= link_to "Terminés", past_reservations_path %></li>
-        <li><%= link_to "Corbeille", deleted_reservations_path %></li>
+        <li><strong>Corbeille</strong></li>
       </ul>
     <% end %>
   </div>

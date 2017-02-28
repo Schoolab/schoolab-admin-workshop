@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :recover]
   before_filter :modify_date_params, :only => [:create, :update]
 
   load_and_authorize_resource only: [:new, :edit, :create, :update, :destroy]
@@ -15,7 +15,14 @@ class EventsController < ApplicationController
   def past
     Time.zone = 'Paris'
     @past_events = Event.where("date < ?", Time.zone.today).order(date: :desc)
-    authorize! :read, Event
+    authorize! :manage, Event
+  end
+
+  # GET /events/past
+  def deleted
+    Time.zone = 'Paris'
+    @past_events = Event.only_deleted.order(date: :desc)
+    authorize! :manage, Event
   end
 
   # GET /events/1
@@ -62,6 +69,15 @@ class EventsController < ApplicationController
     end
   end
 
+  # PATCH /events/1/recover
+  def recover
+    @event.recover
+    respond_to do |format|
+      format.html { redirect_to events_url, notice: 'L\'évènement à bien été reccupéré.' }
+      format.json { head :success }
+    end
+  end
+
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
@@ -75,7 +91,7 @@ class EventsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
-      @event = Event.find(params[:id])
+      @event = Event.with_deleted.find(params[:id])
     end
 
     def modify_date_params

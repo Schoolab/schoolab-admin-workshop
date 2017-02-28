@@ -7,12 +7,19 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
 
   resources :events do
+    get 'deleted' => "events#deleted", on: :collection
     get 'past' => "events#past", on: :collection
   end
 
-  resources :companies
+  resources :companies do
+    get 'deleted' => 'companies#deleted', on: :collection
+    match 'recover', to: 'companies#recover', on: :member, via: [:put, :patch]
+  end
 
-  resources :floors
+  resources :floors do
+    get 'deleted' => 'floors#deleted', on: :collection
+    match 'recover', to: 'floors#recover', on: :member, via: [:put, :patch]
+  end
 
   resources :meeting_rooms do
     get 'deleted' => 'meeting_rooms#deleted', on: :collection
@@ -20,6 +27,9 @@ Rails.application.routes.draw do
   end
 
   resources :reservations, except: [:show] do
+    get 'past' => "reservations#past", on: :collection
+    get 'deleted' => "reservations#deleted", on: :collection
+    match 'recover', to: 'reservations#recover', on: :member, via: [:put, :patch]
     get 'search' => "reservations#search", on: :collection
   end
 

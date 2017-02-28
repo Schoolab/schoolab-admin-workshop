@@ -1,0 +1,23 @@
+<table class="table table-hover datatable" data-paging="true" data-info="false">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Heure</th>
+      <th>Titre</th>
+      <th>Lieu</th>
+      <th>Prix</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @past_events.each do |event| %>
+    <tr>
+      <td><%= event.friendly_date %></td>
+      <td><%= event.start_time.strftime('%kh%M') %>-<%= event.end_time.strftime('%kh%M') %></td>
+      <td><strong><%= event.title %></strong></td>
+      <td><%= event.location %></td>
+      <td><%= event.full_price %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

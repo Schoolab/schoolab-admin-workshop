@@ -1,8 +1,9 @@
 class Event < ApplicationRecord
-
   has_attached_file :image, styles: { large: "1200x1200", medium: "300x300>", thumb: "100x100>" }, default_url: ""
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
+  acts_as_paranoid
+  audited
 
   def full_price
     if self.price == 0
@@ -23,7 +24,5 @@ class Event < ApplicationRecord
       I18n.l(Date.today, format: '%d/%m/%Y')
     end
   end
-
-  audited
 
 end

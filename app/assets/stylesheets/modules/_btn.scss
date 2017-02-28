@@ -34,7 +34,7 @@
 
     &:focus {
       outline: 0;
-      border-color: $brand-blue;
+      border-color: $brand-blue-blue;
     }
 
     .glyphicon, .material-icons, .icon, span {
@@ -73,21 +73,24 @@
 }
 
 .btn-default {
-  background-color: $brand-10;
+  background-color: $brand-blue-10;
 
   &:hover {
-    background-color: $brand-10;
+    background-color: $brand-blue-10;
     border-color: transparent;
   }
 
   &:focus {
-    background-color: $brand-10;
+    background-color: $brand-blue-10;
   }
 }
 
-.btn-link {
+.btn-nopadding {
   padding-left: 0;
   padding-right: 0;
+}
+
+.btn-link {
 
   &:hover, &:focus {
     box-shadow: none;
@@ -99,5 +102,5 @@
 }
 
 .btn-link--danger {
-  color: $brand-danger;
+  color: $brand-blue-danger;
 }
