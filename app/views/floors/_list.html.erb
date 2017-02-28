@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th>Nom</th>
+      <th>Description</th>
     </tr>
   </thead>
 
@@ -11,7 +12,11 @@
         <td>
           <div class="list-dot" style="background-color: <%= floor.colour %>"></div>
           <%= floor.name %>
-
+        </td>
+        <td>
+          <% if floor.description? %>
+            <%= floor.description %>
+          <% end %>
           <div class="pull-right">
             <% if current_page?(action: 'index') %>
               <%= link_to floor_path(floor), class: 'btn btn-default btn-xs' do %>
