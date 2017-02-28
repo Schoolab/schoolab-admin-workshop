@@ -3,6 +3,7 @@ class Event < ApplicationRecord
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   acts_as_paranoid
+  audited
 
   def full_price
     if self.price == 0
@@ -23,7 +24,5 @@ class Event < ApplicationRecord
       I18n.l(Date.today, format: '%d/%m/%Y')
     end
   end
-
-  audited
 
 end

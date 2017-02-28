@@ -22,6 +22,8 @@ class User < ApplicationRecord
 
   ROLES = %i[admin user inactive]
 
+  acts_as_paranoid
+  audited
 
   def name
     self.first_name + " " + self.last_name

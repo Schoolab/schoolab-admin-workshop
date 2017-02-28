@@ -73,6 +73,32 @@
           </div>
         </div>
       </div>
+      <ul class="simple-list muted">
+        <% if @meeting_room.created_at.present? %>
+          <li>
+            <% if @meeting_room.audits.present? %>
+              <% user_id = @meeting_room.audits.first.user.id %>
+              <%= 'Créé il y a ' + time_ago_in_words(@meeting_room.created_at) + ' par ' %>
+              <%= link_to @meeting_room.audits.first.user.name, resident_path(user_id) %>.
+            <% else %>
+              <%= 'Créé il y a ' + time_ago_in_words(@meeting_room.created_at) + '.' %>
+            <% end %>
+          </li>
+        <% end %>
+        <% if @meeting_room.updated_at != @meeting_room.created_at %>
+          <li>
+            <% if @meeting_room.audits.present? %>
+            <%-# Évènement créés avec Audited -%>
+              <% user_id = @meeting_room.audits.last.user.id %>
+              <%= 'Modifié il y a ' + time_ago_in_words(@meeting_room.updated_at) + ' par ' %>
+              <%= link_to @meeting_room.audits.last.user.name, resident_path(user_id) %>.
+            <% else %>
+            <%-# Évènement créés avant Audited -%>
+              <%= 'Modifié il y a ' + time_ago_in_words(@meeting_room.updated_at) + '.' %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
     </div>
     <div class="panel-footer">
       <% if f.object.new_record? %>

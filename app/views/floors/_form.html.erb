@@ -45,6 +45,32 @@
       <h3>Publier</h3>
     </div>
     <div class="panel-body">
+      <ul class="simple-list muted">
+        <% if @floor.created_at.present? %>
+          <li>
+            <% if @floor.audits.present? %>
+              <% user_id = @floor.audits.first.user.id %>
+              <%= 'Créé il y a ' + time_ago_in_words(@floor.created_at) + ' par ' %>
+              <%= link_to @floor.audits.first.user.name, resident_path(user_id) %>.
+            <% else %>
+              <%= 'Créé il y a ' + time_ago_in_words(@floor.created_at) + '.' %>
+            <% end %>
+          </li>
+        <% end %>
+        <% if @floor.updated_at != @floor.created_at %>
+          <li>
+            <% if @floor.audits.present? %>
+            <%-# Évènement créés avec Audited -%>
+              <% user_id = @floor.audits.last.user.id %>
+              <%= 'Modifié il y a ' + time_ago_in_words(@floor.updated_at) + ' par ' %>
+              <%= link_to @floor.audits.last.user.name, resident_path(user_id) %>.
+            <% else %>
+            <%-# Évènement créés avant Audited -%>
+              <%= 'Modifié il y a ' + time_ago_in_words(@floor.updated_at) + '.' %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
     </div>
     <div class="panel-footer">
       <% if f.object.new_record? %>

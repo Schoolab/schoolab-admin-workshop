@@ -6,4 +6,5 @@ class Company < ApplicationRecord
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   acts_as_paranoid
+  audited
 end
