@@ -9,11 +9,11 @@
 }
 
 .planning .thead {
-  border-bottom: 1px solid $brand-15;
+  border-bottom: 1px solid $brand-blue-15;
 }
 
 .planning tr {
-  border-bottom: 1px solid $brand-15;
+  border-bottom: 1px solid $brand-blue-15;
   overflow: hidden;
   padding-left: 15rem;
   position: relative;
@@ -24,7 +24,7 @@
   // padding: .25rem;
 
   &:not(:first-child) {
-    border-left: 1px solid $brand-15;
+    border-left: 1px solid $brand-blue-15;
   }
 }
 
@@ -46,7 +46,7 @@
 }
 
 .planning-header--content {
-  color: $brand-75;
+  color: $brand-blue-75;
   line-height: 1.25rem;
   padding: 0.5rem 0 0;
   background: $white;
@@ -58,7 +58,7 @@
 
 .planning .planning-line--container {
   padding: .5rem 1rem 1rem;
-  background-color: $brand-25;
+  background-color: $brand-blue-25;
 }
 
 .planning-line--title {
@@ -101,7 +101,7 @@
 }
 
 .planning-event--content {
-  background-color: $brand-15;
+  background-color: $brand-blue-15;
   min-height: 4rem;
   padding: .25rem;
   border-radius: $border-radius-small;

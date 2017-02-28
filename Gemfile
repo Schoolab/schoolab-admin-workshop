@@ -41,6 +41,10 @@ gem 'omniauth'
 gem 'devise_token_auth'
 gem 'rack-cors', :require => 'rack/cors'
 
+# Change activerecord to avoid deleting records
+gem 'acts_as_paranoid'
+
+# Audite - edit history
 gem "audited", "~> 4.3"
 gem "rails-observers", github: 'rails/rails-observers'
 

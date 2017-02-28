@@ -1,12 +1,17 @@
 class FloorsController < ApplicationController
-  before_action :set_floor, only: [:show, :edit, :update, :destroy]
+  before_action :set_floor, only: [:show, :edit, :update, :destroy, :recover]
 
   load_and_authorize_resource except: [:index]
 
   # GET /floors
   # GET /floors.json
   def index
-    @floors = Floor.all
+    @floors = Floor.all.order('number ASC')
+    authorize! :manage, Floor
+  end
+
+  def deleted
+    @floors = Floor.only_deleted.order('number ASC')
     authorize! :manage, Floor
   end
 
@@ -54,6 +59,15 @@ class FloorsController < ApplicationController
     end
   end
 
+  # PATCH /meeting_rooms/1/recover
+  def recover
+    @floor.recover
+    respond_to do |format|
+      format.html { redirect_to floors_path, notice: 'Floor was successfully recovered.' }
+      format.json { head :success }
+    end
+  end
+
   # DELETE /floors/1
   # DELETE /floors/1.json
   def destroy
@@ -67,11 +81,11 @@ class FloorsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_floor
-      @floor = Floor.find(params[:id])
+      @floor = Floor.with_deleted.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def floor_params
-      params.require(:floor).permit(:name)
+      params.require(:floor).permit(:number, :name, :description, :colour)
     end
 end

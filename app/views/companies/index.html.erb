@@ -1,46 +1,23 @@
 <div class="panel col-xs-12">
   <div class="panel-heading">
     <h2>
-      Entreprises résidentes
+      Entreprises
       <% if can? :manage, Company %>
-        <%= link_to 'Nouvelle entreprise', new_company_path, class: 'btn btn-primary pull-right' %>
+        <div class="pull-right">
+          <%= link_to 'Nouvelle entreprise', new_company_path, class: 'btn btn-primary' %>
+        </div>
       <% end %>
     </h2>
+    <% if can? :manage, Company %>
+      <ul class="inline-list mt">
+        <li><strong>Tous</strong></li>
+        <li><%= link_to "Corbeille", deleted_companies_path %></li>
+      </ul>
+    <% end %>
   </div>
 
-  <table class="table datatable" data-paging="false" data-info="false">
-    <thead>
-      <tr>
-        <th>Nom</th>
-        <th>Étage</th>
-        <th data-orderable="false"></th>
-        <th data-orderable="false"></th>
-        <th data-orderable="false"></th>
-      </tr>
-    </thead>
+  <div class="panel-body">
+    <%= render 'list' %>
+  </div>
 
-    <tbody>
-      <% @companies.each do |company| %>
-        <tr>
-          <td><%= company.name %></td>
-          <td><%= company.floor.present? ? company.floor.name : "N/A" %></td>
-          <td>
-            <%= link_to company_path(company), class: 'btn btn-default btn-xs' do %>
-            <i class="material-icons">visibility</i><span>Voir</span>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to edit_company_path(company), class: 'btn btn-default btn-xs' do %>
-            <i class="material-icons">edit</i><span>Modifier</span>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to company_path(company), method: :delete, data: { confirm: 'Êtes-vous sûr ?' }, class: 'btn btn-danger btn-xs' do %>
-              <i class="material-icons">delete</i><span>Supprimer</span>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
 </div>

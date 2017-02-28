@@ -119,7 +119,12 @@
   <div class="col-xs-12 col-md-8">
     <div class="panel">
       <div class="panel-heading">
-        <h2>Mes réservations à venir</h2>
+        <h2>
+          Mes réservations à venir
+          <% if @current_user.reservations.where('reservations.end_time > ?', Time.current) %>
+            <%= link_to "Réserver une salle", search_reservations_path, class: 'heading-link pull-right' %>
+          <% end %>
+        </h2>
       </div>
 
       <div class="panel-body reservation-list">

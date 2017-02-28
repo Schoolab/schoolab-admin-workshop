@@ -3,28 +3,21 @@
     <h2>
       Étages
       <% if can? :manage, Floor %>
-        <%= link_to 'Ajouter un étage', new_floor_path, class: 'btn btn-primary pull-right' %>
+        <div class="pull-right">
+          <%= link_to 'Ajouter un étage', new_floor_path, class: 'btn btn-primary' %>
+        </div>
       <% end %>
     </h2>
+
+    <% if can? :manage, Floor %>
+      <ul class="inline-list mt">
+        <li><strong>Tous</strong></li>
+        <li><%= link_to "Corbeille", deleted_floors_path %></li>
+      </ul>
+    <% end %>
   </div>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Nom</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @floors.each do |floor| %>
-        <tr>
-          <td><%= floor.name %></td>
-          <td><%= link_to 'Voir', floor_path(floor), class: 'btn btn-default btn-xs' %></td>
-          <td><%= link_to 'Modifier', edit_floor_path(floor), class: 'btn btn-default btn-xs' %></td>
-          <td><%= link_to 'Supprimer', floor, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-xs' %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="panel-body">
+    <%= render 'list' %>
+  </div>
 </div>

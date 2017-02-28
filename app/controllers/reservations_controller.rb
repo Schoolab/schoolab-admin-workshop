@@ -1,5 +1,5 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:edit, :update, :destroy]
+  before_action :set_reservation, only: [:edit, :update, :destroy, :recover]
   load_and_authorize_resource
 
   # GET /reservations
@@ -7,7 +7,18 @@ class ReservationsController < ApplicationController
   def index
     Time.zone = 'Paris'
     @reservations = Reservation.where("start_time >= ?", Time.zone.today).order(start_time: :asc)
-    @past_reservations = Reservation.where("start_time < ?", Time.zone.today).order(start_time: :desc)
+  end
+
+  # GET /reservations/past
+  def past
+    Time.zone = 'Paris'
+    @reservations = Reservation.where("start_time < ?", Time.zone.today).order(start_time: :desc)
+  end
+
+  # GET /reservations/deleted
+  def deleted
+    Time.zone = 'Paris'
+    @reservations = Reservation.only_deleted.order(start_time: :desc)
   end
 
   # GET /reservations/new
@@ -49,6 +60,15 @@ class ReservationsController < ApplicationController
     end
   end
 
+  # PATCH /reservations/1/recover
+  def recover
+    @reservation.recover
+    respond_to do |format|
+      format.html { redirect_to reservations_path, notice: 'La réservation à bien été reccupérée.' }
+      format.json { head :success }
+    end
+  end
+
   # DELETE /reservations/1
   # DELETE /reservations/1.json
   def destroy
@@ -70,8 +90,8 @@ class ReservationsController < ApplicationController
         s.length_time = Time.zone.local(d.year, d.month, d.day, params[:room_search]["length_time(4i)"].to_i, params[:room_search]["length_time(5i)"].to_i, 0)
       end
 
-      @available_rooms = MeetingRoom.all.order(:floor_id).select { |m| !m.reservation_at(@search.start_time, @search.start_time + @search.length.to_s.to_i)}
-      @unavailable_rooms = MeetingRoom.all.order(:floor_id).select { |m| m.reservation_at(@search.start_time, @search.start_time + @search.length.to_s.to_i)}
+      @available_rooms = MeetingRoom.where(reservable: true).order(:floor_id).select { |m| !m.reservation_at(@search.start_time, @search.start_time + @search.length.to_s.to_i)}
+      @unavailable_rooms = MeetingRoom.where(reservable: true).all.order(:floor_id).select { |m| m.reservation_at(@search.start_time, @search.start_time + @search.length.to_s.to_i)}
       @reservation = Reservation.new
     else
       @search = RoomSearch.new
@@ -82,7 +102,7 @@ class ReservationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reservation
-      @reservation = Reservation.find(params[:id])
+      @reservation = Reservation.with_deleted.find(params[:id])
     end
 
     # Search parameters

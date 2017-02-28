@@ -1,0 +1,46 @@
+<table class="table table-hover datatable">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>Email</th>
+      <th>Téléphone</th>
+      <th>Entreprise</th>
+      <% if can? :manage, User %>
+      <th data-orderable="false">Rôle</th>
+      <th data-orderable="false"></th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td><%= user.last_name %></td>
+      <td><%= user.first_name %></td>
+      <td><%= mail_to user.email %></td>
+      <td><%= tel_to user.phone %></td>
+      <td><%= user.company.present? ? user.company.name : "N/A" %></td>
+      <% if can? :manage, User %>
+      <td>
+        <%= simple_form_for user, url: resident_path(user), method: :patch do |f| %>
+        <%= f.input :role, collection: User::ROLES, label: false, default: 1, input_html: {class: 'input-xs', onchange: "this.form.submit()"} %>
+        <% end %>
+      </td>
+      <td>
+        <div class="pull-right">
+          <% if current_page?(action: 'index') %>
+            <%= link_to resident_path(user), class: 'btn btn-default btn-xs' do %>
+            <i class="material-icons">visibility</i><span>Voir</span>
+            <% end %>
+            <%= link_to edit_resident_path(user), class: 'btn btn-default btn-xs' do %>
+            <i class="material-icons">edit</i><span>Modifier</span>
+            <% end %>
+          <% end %>
+        </div>
+      </td>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

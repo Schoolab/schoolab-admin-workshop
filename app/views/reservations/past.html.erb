@@ -1,0 +1,22 @@
+<div class="panel col-xs-12">
+  <div class="panel-heading">
+    <h2>
+      Réservations
+      <div class="pull-right">
+        <%= link_to "Réserver une salle", search_reservations_path, class: "btn btn-primary" %>
+      </div>
+    </h2>
+    <% if can? :manage, Reservation %>
+      <ul class="inline-list mt">
+        <li><%= link_to "À venir", reservations_path %></li>
+        <li><strong>Terminés</strong></li>
+        <li><%= link_to "Corbeille", deleted_reservations_path %></li>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="panel-body">
+    <%= render 'list' %>
+  </div>
+
+</div>

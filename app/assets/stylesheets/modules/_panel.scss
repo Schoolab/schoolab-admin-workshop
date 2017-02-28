@@ -4,7 +4,7 @@
     box-shadow: 0 .125rem .25rem $box-shadow-color;
     background-color: $white;
     padding: 2rem 0 0;
-    color: $brand-75;
+    color: $brand-blue-75;
 }
 
 .panel-heading {
@@ -30,7 +30,7 @@
     font-weight: bold;
     font-size: 1rem;
     line-height: 1rem;
-    color: $brand-blue;
+    color: $brand-blue-blue;
     padding: 0 1rem;
 }
 
@@ -40,14 +40,14 @@
 }
 
 .panel-grey {
-  background-color: $brand-05;
+  background-color: $brand-blue-05;
 }
 
 .panel-title {
   margin: 0 auto;
   font-size: 1.25rem;
   line-height: 2rem;
-  color: $brand-primary;
+  color: $brand-blue-primary;
 }
 
 .panel-subtitle {
@@ -55,6 +55,6 @@
 }
 
 .panel-footer {
-  background-color: $brand-05;
+  background-color: $brand-blue-05;
   padding: 1rem 1.5rem;
 }

@@ -1,15 +1,90 @@
 <%= simple_form_for(@floor) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <div class="row">
-      <div class="col-md-6">
-        <%= f.input :name, label: "Nom de l'étage" %>
+<div class="col-xs-12 col-md-8">
+  <div class="panel">
+    <div class="panel-heading">
+      <% if f.object.new_record? %>
+        <h2>Ajouter un étage</h2>
+      <% else %>
+        <h2>Modifier un étage</h2>
+      <% end %>
+    </div>
+    <div class="panel-body">
+      <div class="row form-row">
+
+        <div class="form-group col-md-2">
+          <%= f.label :number, "Numéro de l'étage", class: "sr-only" %>
+          <%= f.text_field :number, placeholder: "Numéro", class: "form-control" %>
+        </div>
+
+        <div class="form-group col-md-6">
+          <%= f.label :name, "Nom de l'étage", class: "sr-only" %>
+          <%= f.text_field :name, placeholder: "Nom de l'étage", class: "form-control" %>
+        </div>
+
+        <div class="form-group col-md-4 has-feedback has-feedback-left">
+          <%= f.label :colour, "Couleur (#RRVVBB)", class: "sr-only" %>
+          <%= f.text_field :colour, placeholder: "Couleur (#RRVVBB)", class: "form-control" %>
+          <i class="form-control-feedback material-icons">palette</i>
+        </div>
+
+        <div class="form-group col-md-12">
+          <%= f.label :description, "Description" %>
+          <%= f.input_field :description, input_html: { rows: 3 }, class: "form-control" %>
+        </div>
+
       </div>
     </div>
   </div>
+</div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+<div class="col-xs-12 col-md-4">
+  <div class="panel">
+    <div class="panel-heading">
+      <h3>Publier</h3>
+    </div>
+    <div class="panel-body">
+      <ul class="simple-list muted">
+        <% if @floor.created_at.present? %>
+          <li>
+            <% if @floor.audits.present? %>
+              <% user_id = @floor.audits.first.user.id %>
+              <%= 'Créé il y a ' + time_ago_in_words(@floor.created_at) + ' par ' %>
+              <%= link_to @floor.audits.first.user.name, resident_path(user_id) %>.
+            <% else %>
+              <%= 'Créé il y a ' + time_ago_in_words(@floor.created_at) + '.' %>
+            <% end %>
+          </li>
+        <% end %>
+        <% if @floor.updated_at != @floor.created_at %>
+          <li>
+            <% if @floor.audits.present? %>
+            <%-# Évènement créés avec Audited -%>
+              <% user_id = @floor.audits.last.user.id %>
+              <%= 'Modifié il y a ' + time_ago_in_words(@floor.updated_at) + ' par ' %>
+              <%= link_to @floor.audits.last.user.name, resident_path(user_id) %>.
+            <% else %>
+            <%-# Évènement créés avant Audited -%>
+              <%= 'Modifié il y a ' + time_ago_in_words(@floor.updated_at) + '.' %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="panel-footer">
+      <% if f.object.new_record? %>
+        <div class="flex-end">
+          <%= f.submit "Publier", class: "btn btn-primary" %>
+        </div>
+      <% else %>
+        <div class="space-between">
+          <%= link_to 'Supprimer', floor, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link btn-link--danger" %>
+          <%= f.submit "Sauvegarder", class: "btn btn-primary pull-right" %>
+        </div>
+      <% end %>
+    </div>
   </div>
+</div>
+
 <% end %>

@@ -2,13 +2,19 @@
   <div class="panel-heading">
     <h2>
       Événements
-      <div class="pull-right">
-        <% if can? :manage, Event %>
-          <%= link_to "Événements passés", past_events_path, class: 'btn btn-default' %>
+      <% if can? :manage, Event %>
+        <div class="pull-right">
           <%= link_to "Nouvel événement", new_event_path, class: 'btn btn-primary' %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </h2>
+    <% if can? :manage, Event %>
+      <ul class="inline-list mt">
+        <li><strong>À venir</strong></li>
+        <li><%= link_to "Terminés", past_events_path %></li>
+        <li><%= link_to "Corbeille", deleted_events_path %></li>
+      </ul>
+    <% end %>
   </div>
 
   <% @today = Event.where("date = ?", Time.zone.today).order(date: :asc) %>

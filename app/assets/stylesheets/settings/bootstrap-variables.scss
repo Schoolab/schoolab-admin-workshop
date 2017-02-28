@@ -1,34 +1,34 @@
-$brand-success:             $brand-green !default;
-$brand-info:                $brand-blue !default;
-$brand-warning:             $brand-orange !default;
-$brand-danger:              $brand-red !default;
+$brand-blue-success:             $brand-blue-green !default;
+$brand-blue-info:                $brand-blue-blue !default;
+$brand-blue-warning:             $brand-blue-orange !default;
+$brand-blue-danger:              $brand-blue-red !default;
 
 // Bootstrap 3
 
 $grid-gutter-width:         16px !default;
 
-$btn-default-color:         $brand-75 !default;
+$btn-default-color:         $brand-blue-75 !default;
 $btn-default-bg:            $white !default;
-$btn-default-border:        $brand-25 !default;
+$btn-default-border:        $brand-blue-25 !default;
 
 $btn-primary-color:         $white !default;
-$btn-primary-bg:            $brand-primary !default;
+$btn-primary-bg:            $brand-blue-primary !default;
 $btn-primary-border:        darken($btn-primary-bg, 10%) !default;
 
 $btn-success-color:         $white !default;
-$btn-success-bg:            $brand-success !default;
+$btn-success-bg:            $brand-blue-success !default;
 $btn-success-border:        darken($btn-success-bg, 10%) !default;
 
 $btn-info-color:            $white !default;
-$btn-info-bg:               $brand-info !default;
+$btn-info-bg:               $brand-blue-info !default;
 $btn-info-border:           darken($btn-info-bg, 10%) !default;
 
 $btn-warning-color:         $white !default;
-$btn-warning-bg:            $brand-warning !default;
+$btn-warning-bg:            $brand-blue-warning !default;
 $btn-warning-border:        darken($btn-warning-bg, 10%) !default;
 
 $btn-danger-color:          $white !default;
-$btn-danger-bg:             $brand-danger !default;
+$btn-danger-bg:             $brand-blue-danger !default;
 $btn-danger-border:         darken($btn-danger-bg, 10%) !default;
 
-$btn-link-disabled-color:   $brand-50 !default;
+$btn-link-disabled-color:   $brand-blue-50 !default;

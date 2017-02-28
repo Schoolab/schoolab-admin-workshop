@@ -3,28 +3,28 @@ html {
 }
 
 body {
-    background-color: $brand-05;
-    font-family: $brand-font;
+    background-color: $brand-blue-05;
+    font-family: $brand-blue-font;
     font-size: 1rem;
     @include font-smoothing();
 }
 
 a {
-    color: $brand-blue;
+    color: $brand-blue-blue;
 
     &:hover, &.active {
-        color: $brand-primary;
+        color: $brand-blue-primary;
     }
 }
 
 a:focus {
   outline: 0;
-  border-color: $brand-blue;
+  border-color: $brand-blue-blue;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: $brand-font;
-    color: $brand-primary;
+    font-family: $brand-blue-font;
+    color: $brand-blue-primary;
     margin: 0;
 }
 

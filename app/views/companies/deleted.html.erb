@@ -1,0 +1,23 @@
+<div class="panel col-xs-12">
+  <div class="panel-heading">
+    <h2>
+      Entreprises
+      <% if can? :manage, Company %>
+        <div class="pull-right">
+          <%= link_to 'Nouvelle entreprise', new_company_path, class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </h2>
+    <% if can? :manage, Company %>
+      <ul class="inline-list mt">
+        <li><%= link_to "Tous", companies_path %></li>
+        <li><strong>Corbeille</strong></li>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="panel-body">
+    <%= render 'list' %>
+  </div>
+
+</div>
