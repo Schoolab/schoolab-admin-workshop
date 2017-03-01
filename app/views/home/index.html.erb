@@ -208,7 +208,7 @@
               <%= link_to resident_path(employee) do %>
                 <%= employee.name %></h3>
               <% end %>
-            <% if employee.title? %>
+            <% if employee.title.present? || employee.company.present? %>
               <p class="panel-subtitle">
                 <% if employee.title.present? %>
                   <%= employee.title %>
