@@ -16,11 +16,11 @@
 
         <div class="form-group col-xs-12 align-items-center">
           <% if @user.photo.file? %>
-            <div class="img-thumbnail resident-thumb" style="width:96px;height:96px;margin-right:1rem;">
+            <div class="thumbnail ovale-thumb resident-thumb" style="width:96px;height:96px;margin-right:1rem;">
               <%= image_tag @user.photo.url(:medium), size: 96 %>
             </div>
           <% else %>
-            <div class="img-thumbnail no-thumb resident-thumb" style="width:96px;height:96px;margin-right:1rem;"></div>
+            <div class="thumbnail ovale-thumb no-thumb resident-thumb" style="width:96px;height:96px;margin-right:1rem;"></div>
           <% end %>
 
           <%= form.file_field :photo, as: :file, class: "inputfile", data: { :caption => "{nb} fichiers selectionnés" } %>

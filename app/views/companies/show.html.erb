@@ -5,11 +5,11 @@
     <div class="panel txt-c">
       <div class="panel-body">
         <% if @company.image.file? %>
-          <div class="img-thumbnail company-thumb" style="width:96px;height:96px;">
+          <div class="thumbnail company-thumb mb" style="width:96px;height:96px;">
             <%= image_tag @company.image.url(:medium), size: 96 %>
           </div>
         <% else %>
-          <div class="img-thumbnail no-thumb company-thumb" style="width:96px;height:96px;"></div>
+          <div class="thumbnail no-thumb company-thumb mb" style="width:96px;height:96px;"></div>
         <% end %>
 
         <div class="panel-heading">
@@ -59,11 +59,11 @@
         <div class="resident">
           <%= link_to resident_path(employee) do %>
             <% if employee.photo.file? %>
-              <div class="img-thumbnail resident-thumb pull-left" style="width:80px;height:80px;">
+              <div class="thumbnail ovale-thumb resident-thumb pull-left" style="width:80px;height:80px;">
                 <%= image_tag employee.photo.url(:medium), size: 80 %>
               </div>
             <% else %>
-              <div class="img-thumbnail no-thumb resident-thumb" style="width:80px;height:80px;"></div>
+              <div class="thumbnail ovale-thumb no-thumb resident-thumb" style="width:80px;height:80px;"></div>
             <% end %>
           <% end %>
 

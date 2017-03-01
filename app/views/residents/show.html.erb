@@ -3,11 +3,11 @@
     <div class="panel txt-c">
       <div class="panel-body">
         <% if @user.photo.file? %>
-          <div class="img-thumbnail resident-thumb" style="width:96px;height:96px;">
+          <div class="thumbnail ovale-thumb resident-thumb mb" style="width:96px;height:96px;">
             <%= image_tag @user.photo.url(:medium), size: 96 %>
           </div>
         <% else %>
-          <div class="img-thumbnail no-thumb resident-thumb" style="width:96px;height:96px;"></div>
+          <div class="thumbnail ovale-thumb no-thumb resident-thumb mb" style="width:96px;height:96px;"></div>
         <% end %>
         <div class="panel-heading">
           <h2><%= @user.name %></h2>
