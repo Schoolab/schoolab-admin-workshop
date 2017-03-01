@@ -29,22 +29,20 @@
     }
 }
 
-.reservation.booked {
-    .reservation-infos {
-        &:after {
-            content: 'lock';
-            position: absolute;
-            bottom: 1rem;
-            left: 50%;
-            @include vendor(transform, translateX(-50%));
-            font-family: Material Icons;
-            font-size: 4rem;
-            line-height: 4rem;
-            color: $black;
-            opacity: .25;
-            z-index: 0;
-        }
-    }
+.reservation-infos.booked {
+  &:after {
+    content: 'lock';
+    position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      @include vendor(transform, translateX(-50%));
+      font-family: Material Icons;
+      font-size: 4rem;
+      line-height: 4rem;
+      color: $black;
+      opacity: .25;
+      z-index: 0;
+  }
 }
 
 .reservation-infos {
@@ -190,15 +188,4 @@ a.reservation-infos-resident:hover {
         line-height: 1rem;
         margin: 0 0 1rem;
     }
-}
-
-.btn-reservation {
-    display: block;
-    width: 100%;
-    background-color: $white;
-    border-radius: .125rem;
-    min-width: 196px;
-    padding: 0 .25rem;
-    line-height: 2rem;
-    font-size: 1rem;
 }

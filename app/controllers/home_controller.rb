@@ -7,7 +7,9 @@ class HomeController < ApplicationController
     else
       @events = Event.where("date >= ?", Time.zone.today).order(date: :asc).take(3)
     end
-    
+
+    @reservations = current_user.reservations.where('reservations.end_time > ?', Time.current).order('reservations.start_time ASC')
+
     unless user_signed_in?
       redirect_to new_user_session_path
     end
