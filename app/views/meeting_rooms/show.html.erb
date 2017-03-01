@@ -1,6 +1,20 @@
 <div class="row">
   <div class="col-xs-12 col-md-4">
 
+    <div class="panel-top">
+      <div class="reservation-infos" style="background-color: <%= @meeting_room.colour %>">
+        <div class="reservation-infos-content">
+          <div class="reservation-infos-name">
+            <%= @meeting_room.name %>
+          </div>
+          <div class="reservation-infos-floor">
+            <%= @meeting_room.floor.present? ? @meeting_room.floor.name : "N/A" %> - <%= @meeting_room.capacity %> <%= 'place'.pluralize(@meeting_room.capacity) %>
+          </div>
+        </div>
+        <div class="reservation-infos-bottom"></div>
+      </div>
+    </div>
+
     <div class="panel txt-c">
       <div class="panel-heading">
         <div class="thumbnail losange-thumb no-thumb place-thumb mb" style="width:68px;height:68px;"></div>
@@ -15,7 +29,6 @@
           <% end %>
         <% end %>
       </div>
-
     </div>
 
   </div>

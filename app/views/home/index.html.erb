@@ -38,77 +38,15 @@
       </div>
       <div class="panel-body">
 
-        <% if Event.where("date = ?", Time.zone.today).present? && (Event.where("date = ?", Time.zone.today).count > 3)  %>
-          <% @events = Event.where("date = ?", Time.zone.today).order(date: :asc) %>
-        <% else %>
-          <% @events = Event.where("date >= ?", Time.zone.today).order(date: :asc).take(3) %>
-        <% end %>
-
-        <ul class="events">
-          <% @events.each do |event| %>
-            <li class="event">
-              <% if event.image.present? %>
-                <div class="event-img" style="background-image: url(<%= image_path event.image.url(:medium) %>)"></div>
-              <% end %>
-              <div class="event-content">
-                <p class="meta meta-top meta-blue">
-                  <% if event.date.today? %>
-                    Aujourd'hui
-                    <%= + ' de ' +
-                    event.start_time.strftime('%Hh') +
-                    (event.start_time.strftime('%M') != '00' ? event.start_time.strftime('%M') : '') +
-                    ' à ' +
-                    event.end_time.strftime('%Hh') +
-                    (event.end_time.strftime('%M') != '00' ? event.end_time.strftime('%M') : '') %>
-                  <% elsif event.date == Date.tomorrow %>
-                    Demain
-                    <%= + ' de ' +
-                    event.start_time.strftime('%Hh') +
-                    (event.start_time.strftime('%M') != '00' ? event.start_time.strftime('%M') : '') +
-                    ' à ' +
-                    event.end_time.strftime('%Hh') +
-                    (event.end_time.strftime('%M') != '00' ? event.end_time.strftime('%M') : '') %>
-                  <% else %>
-                    <%= event.date.strftime('%d/%m/%y') %>
-                    <%= ' de ' +
-                    event.start_time.strftime('%Hh') +
-                    (event.start_time.strftime('%M') != '00' ? event.start_time.strftime('%M') : '') +
-                    ' à ' +
-                    event.end_time.strftime('%Hh') +
-                    (event.end_time.strftime('%M') != '00' ? event.end_time.strftime('%M') : '') %>
-                  <% end %>
-                </p>
-                <h3 class="event-title">
-                  <%= event.title %>
-                  <% if event.host? %>
-                    <span class="info-block">
-                      par <%= event.host %>
-                    </span>
-                  <% end %>
-                </h3>
-                <p class="meta meta-bottom meta-grey">
-                  <% if event.location.present? %>
-                    <i class="icon material-icons">view_agenda</i>
-                    <%= event.location %>
-                    <span class="pull-right muted"><%= event.full_price %></span>
-                  <% else %>
-                    <span class="muted"><%= event.full_price %></span>
-                  <% end %>
-                </p>
-                <% if event.link.present? %>
-                  <a href="<%= event.link %>" class="event-more">Plus d'infos ›</a>
-                  <% if can? :manage, Event %>
-                    <%= link_to 'Modifier', edit_event_path(event), class: "muted event-more pull-right" %>
-                  <% end %>
-                <% else %>
-                  <% if can? :manage, Event %>
-                    <%= link_to 'Modifier', edit_event_path(event), class: "muted event-more" %>
-                  <% end %>
-                <% end %>
-              </div>
-            </li>
+        <div class="events">
+          <% if @events %>
+            <% @events.each do |event| %>
+              <%= render('events/event-item', event: event, hasDescription: false ) %>
+            <% end %>
+          <% else %>
+            <p class="muted">Aucun évènements...</p>
           <% end %>
-        </ul>
+        </div>
 
         <%= link_to "Voir plus d'événements ›", events_path  %>
 
