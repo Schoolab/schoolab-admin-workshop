@@ -4,6 +4,13 @@ class ResidentsController < ApplicationController
   def index
     @users = User.all
     authorize! :read, User
+    respond_to do |format|
+      format.html
+      format.xls {
+        filename = "Residents-#{Time.now.strftime("%Y%m%d%H%M%S")}.xls"
+        send_data(@users.to_xls(:name => filename, columns: [:first_name, :last_name, :email, :phone, :title, { :company => [:name] }], headers: ["Prénom", "Nom", "Email", "Téléphone", "Poste", "Entreprise"]))
+      }
+    end
   end
 
   # GET /residents/:id

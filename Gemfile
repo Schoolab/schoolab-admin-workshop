@@ -41,6 +41,9 @@ gem 'omniauth'
 gem 'devise_token_auth'
 gem 'rack-cors', :require => 'rack/cors'
 
+# Export to Excel
+gem 'to_xls'
+
 # Change activerecord to avoid deleting records
 gem 'acts_as_paranoid'
 

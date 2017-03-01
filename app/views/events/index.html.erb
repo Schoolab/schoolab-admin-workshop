@@ -4,6 +4,9 @@
       Événements
       <% if can? :manage, Event %>
         <div class="pull-right">
+          <%= link_to events_path(format: :xls), class: "btn btn-default btn-icon" do %>
+            <i class="material-icons">file_download</i> <span>Export Excel</span>
+          <% end %>
           <%= link_to "Nouvel événement", new_event_path, class: 'btn btn-primary' %>
         </div>
       <% end %>

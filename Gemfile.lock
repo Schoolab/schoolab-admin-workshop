@@ -244,6 +244,7 @@ GEM
       railties (>= 4.2.0, < 5.1)
     rollbar (2.14.0)
       multi_json
+    ruby-ole (1.2.12)
     ruby_http_client (3.0.0)
     sass (3.4.22)
     sass-rails (5.0.6)
@@ -259,6 +260,8 @@ GEM
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
     slop (3.6.0)
+    spreadsheet (1.1.4)
+      ruby-ole (>= 1.0)
     spring (2.0.0)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -274,6 +277,8 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.5)
+    to_xls (1.5.3)
+      spreadsheet
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.0)
@@ -339,6 +344,7 @@ DEPENDENCIES
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
+  to_xls
   turbolinks (~> 5)
   twitter-bootstrap-rails
   tzinfo-data
