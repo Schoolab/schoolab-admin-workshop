@@ -66,6 +66,7 @@ class FloorsController < ApplicationController
       format.html { redirect_to floors_path, notice: 'Floor was successfully recovered.' }
       format.json { head :success }
     end
+    authorize! :manage, Floor
   end
 
   # DELETE /floors/1

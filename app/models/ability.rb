@@ -15,8 +15,6 @@ class Ability
     elsif user.role == "user"
       can :manage, Reservation
       can :read, :all
-    else
-      can :read, :all
     end
     #
     # The first argument to `can` is the action you are giving the user
