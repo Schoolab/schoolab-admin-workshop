@@ -5,12 +5,11 @@
 <div class="row">
   <div class="col-xs-12 col-md-4">
     <div class="panel txt-c">
-      <div class="panel-body">
+      <div class="panel-heading">
         <div class="thumbnail losange-thumb no-thumb floor-thumb mb" style="width:68px;height:68px;"></div>
-
-        <div class="panel-heading">
-          <h2><%= @floor.name %></h2>
-        </div>
+        <h2><%= @floor.name %></h2>
+      </div>
+      <div class="panel-body">
         <ul class="list-infos">
           <li class="muted"><%= @companies.count %> <%= 'entreprise'.pluralize(@companies.count) %></li>
           <li class="muted"><%= @floor.residents_nb(@companies) %> <%= 'résident'.pluralize(@residents) %></li>

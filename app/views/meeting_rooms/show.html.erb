@@ -2,14 +2,13 @@
   <div class="col-xs-12 col-md-4">
 
     <div class="panel txt-c">
-      <div class="panel-body">
+      <div class="panel-heading">
         <div class="thumbnail losange-thumb no-thumb place-thumb mb" style="width:68px;height:68px;"></div>
 
-        <div class="panel-heading">
-          <h2><%= @meeting_room.name %></h2>
-        </div>
+        <h2><%= @meeting_room.name %></h2>
+      </div>
 
-
+      <div class="panel-body">
         <% if can? :manage, MeetingRoom %>
           <%= link_to edit_meeting_room_path(@meeting_room), class: 'btn btn-default btn-icon' do %>
             <i class="material-icons">settings</i><span>Paramètres</span>

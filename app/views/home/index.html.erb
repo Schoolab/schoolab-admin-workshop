@@ -4,18 +4,18 @@
   <div class="col-xs-12 col-md-4">
 
     <div class="panel txt-c">
-      <div class="panel-body">
+      <div class="panel-heading">
         <% if current_user.photo.file? %>
         <div class="thumbnail ovale-thumb resident-thumb mb" style="width:96px;height:96px;">
           <%= image_tag current_user.photo.url(:medium), size: 96 %>
         </div>
         <% end %>
-        <div class="panel-heading">
-          <h2>
-            <span class="panel-heading-prefix block">Bienvenue</span>
-            <%= current_user.first_name %>
-          </h2>
-        </div>
+        <h2>
+          <span class="panel-heading-prefix block">Bienvenue</span>
+          <%= current_user.first_name %>
+        </h2>
+      </div>
+      <div class="panel-body">
         <p class="muted">
           <% if current_user.title? %>
             <%= current_user.title %>

@@ -3,14 +3,14 @@
     border-radius: .125rem;
     box-shadow: 0 .125rem .25rem $box-shadow-color;
     background-color: $white;
-    padding: 2rem 0 0;
+    padding: 0;
     color: $brand-75;
 }
 
 .panel-heading {
     background-color: transparent;
     border: none;
-    padding: 0 1.5rem 1rem;
+    padding: 2rem 1.5rem 1rem;
 }
 
 .panel-default > .panel-heading {
@@ -56,5 +56,15 @@
 
 .panel-footer {
   background-color: $brand-05;
-  padding: 1rem 1.5rem;
+  padding: 1rem 1.5rem 2rem;
+}
+
+.panel-top {
+  overflow: hidden;
+  border-radius: $border-radius-small $border-radius-small 0 0;
+}
+
+.panel-top + .panel {
+  border-top: none;
+  border-radius: 0 0 $border-radius-small $border-radius-small;
 }

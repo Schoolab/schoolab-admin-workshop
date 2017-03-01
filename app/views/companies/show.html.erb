@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col-xs-12 col-md-4">
     <div class="panel txt-c">
-      <div class="panel-body">
+      <div class="panel-heading">
         <% if @company.image.file? %>
           <div class="thumbnail company-thumb mb" style="width:96px;height:96px;">
             <%= image_tag @company.image.url(:medium), size: 96 %>
@@ -12,9 +12,9 @@
           <div class="thumbnail no-thumb company-thumb mb" style="width:96px;height:96px;"></div>
         <% end %>
 
-        <div class="panel-heading">
-          <h2><%= @company.name %></h2>
-        </div>
+        <h2><%= @company.name %></h2>
+      </div>
+      <div class="panel-body">
         <ul class="list-infos">
           <li class="muted">
             <%= link_to @company.floor.name, floor_path(@company.floor) %>
