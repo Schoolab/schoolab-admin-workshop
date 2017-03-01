@@ -60,7 +60,7 @@
 }
 
 .list-dot {
-  background-color: $brand-blue-10;
+  background-color: $brand-10;
   width: .75rem;
   height: .75rem;
   border: 2px solid rgba($black, 0.1);
@@ -71,17 +71,17 @@
 }
 
 .list-dot--success {
-  background-color: $brand-blue-green;
+  background-color: $brand-green;
 }
 
 .list-dot--info {
-  background-color: $brand-blue-blue;
+  background-color: $brand-blue;
 }
 
 .list-dot--warning {
-  background-color: $brand-blue-orange;
+  background-color: $brand-orange;
 }
 
 .list-dot--danger {
-  background-color: $brand-blue-red;
+  background-color: $brand-red;
 }
