@@ -1,7 +1,9 @@
-<!-- TODO: change name to room -->
-<% if isSearch %>
+<!-- TODO: change reservation-infos to room -->
+<% if type == "search" %>
   <% reservation_end_time = @search.start_time + @search.length.to_s.to_i %>
   <div class="reservation-infos <%= reservations = room.reservation_at(@search.start_time, reservation_end_time) ? 'booked' : '' %>" style="background-color: <%= room.colour %>">
+<%elsif type == "link" %>
+  <div class="reservation-infos" style="background-color: <%= room.colour %>">
 <% else %>
   <div class="reservation-infos booked" style="background-color: <%= room.colour %>">
 <% end %>
@@ -14,7 +16,7 @@
   </div>
 
   <div class="reservation-infos-bottom">
-    <% if isSearch %>
+    <% if type == "search" %>
 
       <% if reservations = room.reservation_at(@search.start_time, reservation_end_time) %>
 
@@ -71,7 +73,18 @@
 
       <% end %>
 
-    <% else %>
+    <% end %>
+
+    <% if type == "link" %>
+
+      <span class="btn btn-room">Voir les réservations</span>
+      <div class="reservation-infos-resident-list">
+        <span class="reservation-infos-resident">Cette fonctionnalité arrive bientôt !</span>
+      </div>
+
+    <% end %>
+
+    <% if type == "reservation" %>
 
       <% if reservation.user == current_user && reservation.start_time > Time.current %>
         <%= link_to "Annuler", reservation, method: :delete, class: 'btn btn-room' %>

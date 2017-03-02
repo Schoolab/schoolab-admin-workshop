@@ -1,5 +1,3 @@
-<% @employees = User.where('company_id = ?', @company.id) %>
-
 <div class="row">
   <div class="col-xs-12 col-md-4">
     <div class="panel txt-c">
@@ -19,7 +17,7 @@
           <li class="muted">
             <%= link_to @company.floor.name, floor_path(@company.floor) %>
           </li>
-          <li class="muted"><%= @employees.count %> <%= 'employé'.pluralize(@employees.count) %></li>
+          <li class="muted"><%= @company.employees.count %> <%= 'employé'.pluralize(@company.employees.count) %></li>
         </ul>
 
         <h4><%= @company.name %> c'est quoi ?</h4>
@@ -54,38 +52,9 @@
         <h2>Liste des employés</h2>
       </div>
       <div class="panel-body">
-        <% if @employees.each do |employee| %>
+        <% if @company.employees.each do |employee| %>
 
-        <div class="resident">
-          <%= link_to resident_path(employee) do %>
-            <% if employee.photo.file? %>
-              <div class="thumbnail ovale-thumb resident-thumb pull-left" style="width:80px;height:80px;">
-                <%= image_tag employee.photo.url(:medium), size: 80 %>
-              </div>
-            <% else %>
-              <div class="thumbnail ovale-thumb no-thumb resident-thumb" style="width:80px;height:80px;"></div>
-            <% end %>
-          <% end %>
-
-          <div class="resident-details">
-            <h3 class="panel-title">
-              <%= link_to resident_path(employee) do %>
-                <%= employee.name %>
-              <% end %>
-            </h3>
-            <% if employee.title? %>
-              <p class="panel-subtitle"><%= employee.title %></p>
-            <% end %>
-            <ul class="inline-list">
-              <% if employee.email? %>
-                <li><%= mail_to employee.email %></li>
-              <% end %>
-              <% if employee.phone? %>
-                <li class="secondary-info"><%= tel_to employee.phone %></li>
-              <% end %>
-            </ul>
-          </div>
-        </div>
+          <%= render "layouts/list-item", type: employee %>
 
         <% end.empty? %>
 

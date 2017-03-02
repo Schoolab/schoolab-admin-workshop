@@ -1,0 +1,57 @@
+<% puts case type.class.to_s
+
+  when 'User'
+    thumbnail = type.photo
+    thumb_shape = "ovale-thumb"
+    thumb_type = "resident-thumb"
+    thumb_size = 80
+
+    path = resident_path(type)
+    title = type.name
+    subtitle = type.title
+    %>
+
+  <% when 'Company'
+    thumbnail = type.image
+    thumb_type = "company-thumb"
+    thumb_size = 80
+
+    path = company_path(type)
+    title = type.name
+    subtitle = type.employees.count.to_s
+    subtitle += ' employé'.pluralize(type.employees.count).to_s
+    %>
+
+  <% else %>
+    ELSE <%= type.class %>
+
+<% end %>
+
+<div class="resident">
+  <%= link_to path do %>
+    <% if thumbnail.file? %>
+      <div class="thumbnail <%= thumb_shape.presence || thumb_shape %> pull-left" style="width:<%= thumb_size %>px;height:<%= thumb_size %>px;">
+        <%= image_tag thumbnail.url(:medium), size: thumb_size %>
+      </div>
+    <% else %>
+      <div class="thumbnail no-thumb <%= thumb_shape.presence || thumb_shape %> <%= thumb_type.presence || thumb_type %>" style="width:<%= thumb_size %>px;height:<%= thumb_size %>px;"></div>
+    <% end %>
+  <% end %>
+
+  <div class="resident-details">
+    <h3 class="panel-title">
+      <%= link_to path do title end %>
+    </h3>
+    <p class="panel-subtitle">
+      <%= subtitle %>
+    </p>
+    <ul class="inline-list">
+      <% if type.email? %>
+        <li><%= mail_to type.email %></li>
+      <% end %>
+      <% if type.phone? %>
+        <li class="secondary-info"><%= tel_to type.phone %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

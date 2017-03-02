@@ -69,7 +69,7 @@
 
         <% if @reservations.each do |reservation| %>
 
-          <%= render('reservations/reservation-item', reservation: reservation) %>
+          <%= render('reservations/reservation-item', reservation: reservation, type: "reservation") %>
 
         <% end.empty? %>
 
@@ -90,36 +90,7 @@
 
         <% if @newbies.each do |employee| %>
 
-        <div class="resident">
-          <%= link_to resident_path(employee) do %>
-            <% if employee.photo.file? %>
-              <div class="thumbnail ovale-thumb resident-thumb pull-left" style="width:80px;height:80px;">
-                <%= image_tag employee.photo.url(:medium), size: 80 %>
-              </div>
-            <% else %>
-              <div class="thumbnail no-thumb ovale-thumb resident-thumb" style="width:80px;height:80px;"></div>
-            <% end %>
-          <% end %>
-
-          <div class="resident-details">
-            <h3 class="panel-title">
-              <%= link_to resident_path(employee) do %>
-                <%= employee.name %></h3>
-              <% end %>
-            <% if employee.title.present? || employee.company.present? %>
-              <p class="panel-subtitle">
-                <% if employee.title.present? %>
-                  <%= employee.title %>
-                <% end %>
-                <% if employee.company.present? %>
-                  <span class="muted">
-                    chez <%= link_to employee.company.name, company_path(employee.company) %>
-                  </span>
-                <% end %>
-              </p>
-            <% end %>
-          </div>
-        </div>
+          <%= render "layouts/list-item", type: employee %>
 
         <% end.empty? %>
 

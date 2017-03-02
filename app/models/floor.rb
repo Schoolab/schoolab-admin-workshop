@@ -10,8 +10,7 @@ class Floor < ApplicationRecord
 
     if companies.present?
       companies.each do |company|
-        employees = User.where('company_id = ?', company.id)
-        residents += employees.count
+        residents += company.employees.count
       end
     end
 

@@ -7,4 +7,9 @@ class Company < ApplicationRecord
 
   acts_as_paranoid
   audited
+
+  def employees
+    return User.where('company_id = ?', self.id)
+  end
+
 end
