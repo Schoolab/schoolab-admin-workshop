@@ -13,11 +13,11 @@
   <tbody>
     <% @events.each do |event| %>
     <tr>
-      <td><%= event.friendly_date %></td>
-      <td><%= event.start_time.strftime('%kh%M') %>-<%= event.end_time.strftime('%kh%M') %></td>
+      <td data-order="<%= event.date %>"><%= event.friendly_date %></td>
+      <td data-order="<%= event.start_time %>"><%= event.start_time.strftime('%kh%M') %>-<%= event.end_time.strftime('%kh%M') %></td>
       <td><strong><%= event.title %></strong></td>
       <td><%= event.location %></td>
-      <td><%= event.full_price %></td>
+      <td data-order="<%= event.price %>"><%= event.full_price %></td>
       <td>
         <div class="pull-right">
           <% if current_page?(action: 'future') %>

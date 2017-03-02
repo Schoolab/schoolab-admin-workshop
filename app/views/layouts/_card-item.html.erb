@@ -1,0 +1,150 @@
+<% puts case type.class.to_s
+
+  when 'Floor'
+    @companies = Company.where('floor_id = ?', @floor.id)
+    @spaces = MeetingRoom.where('floor_id = ?', @floor.id)
+    thumb_shape = "losange-thumb"
+    thumb_type = "floor-thumb"
+    thumb_size = 68
+
+    edit_path = edit_floor_path(type)
+    name = type.name
+
+    list_info_companies = @companies.count.to_s
+    list_info_companies += ' entreprise'.pluralize(@companies.count)
+
+    list_info_floors = type.residents_nb(@companies).to_s
+    list_info_floors += ' résident'.pluralize(@residents)
+
+    list_info_spaces = @spaces.count.to_s
+    list_info_spaces += ' salle'.pluralize(@spaces.count)
+    list_info_spaces += ' de réunion'
+
+    list_infos = [
+      list_info_companies, list_info_floors, list_info_spaces
+    ]
+
+    list_contact_infos = []
+
+  when 'Company'
+    thumbnail = type.image
+    thumb_type = "company-thumb"
+    thumb_size = 96
+
+    edit_path = edit_company_path(type)
+    name = type.name
+
+    list_info_floor = link_to type.floor.name, floor_path(type.floor)
+    list_info_employees = type.employees.count.to_s
+    list_info_employees += ' employé'.pluralize(type.employees.count)
+
+    list_infos = [
+      list_info_floor, list_info_employees
+    ]
+
+    description = "<h4>" + type.name + "c'est quoi ?</h4>"
+    if type.description?
+      description += "<p>" + type.description + "</p>"
+    else
+      description += "<p>Pas de description...</p>"
+    end
+
+    if type.email?
+      list_contact_info_email = mail_to type.email
+    end
+
+    if type.phone?
+      list_contact_info_phone = mail_to type.phone
+    end
+
+    list_contact_infos = [
+      ["list-icon-email", list_contact_info_email],
+      ["list-icon-phone", list_contact_info_phone]
+    ]
+
+  when 'User'
+    thumbnail = type.photo
+    thumb_shape = "ovale-thumb"
+    thumb_type = "resident-thumb"
+    thumb_size = 96
+
+    edit_path = edit_resident_path(type)
+    name = type.name
+
+    list_info_title = type.title
+    if type.company.present?
+      list_info_title += ' chez '
+      list_info_title += link_to type.company.name, company_path(type.company)
+    end
+
+    list_infos = [
+      list_info_title
+    ]
+
+    if type.email?
+      list_contact_info_email = mail_to type.email
+    end
+
+    if type.phone?
+      list_contact_info_phone = mail_to type.phone
+    end
+
+    list_contact_infos = [
+      ["list-icon-email", list_contact_info_email],
+      ["list-icon-phone", list_contact_info_phone]
+    ]
+
+  else
+    p "Le type " + type.class + " n'est pas encore supporté."
+
+end %>
+
+
+<div class="panel txt-c">
+  <div class="panel-heading">
+
+    <% if thumbnail.present? && thumbnail.file? %>
+      <div class="thumbnail <%= thumb_shape.presence || thumb_shape %> mb" style="width:<%= thumb_size %>px;height:<%= thumb_size %>px;">
+        <%= image_tag thumbnail.url(:medium), size: thumb_size %>
+      </div>
+    <% else %>
+      <div class="thumbnail no-thumb <%= thumb_shape.presence || thumb_shape %> <%= thumb_type.presence || thumb_type %> mb" style="width:<%= thumb_size %>px;height:<%= thumb_size %>px;"></div>
+    <% end %>
+
+    <h2><%= name %></h2>
+
+  </div>
+  <div class="panel-body">
+
+    <ul class="list-infos">
+      <% list_infos.each do |info| %>
+
+        <li class="muted"><%= info.html_safe %></li>
+
+      <% end %>
+
+    </ul>
+
+    <% if description.present? %>
+      <%= description.html_safe %>
+    <% end %>
+
+    <ul class="simple-list list-contact-infos">
+      <% debug list_contact_infos %>
+      <% list_contact_infos.each do |key,value| %>
+        <li class="list-icon <% puts key.to_s %>"><%= value %></li>
+      <% end %>
+    </ul>
+
+    <% if current_user == @user %>
+      <%= link_to edit_user_registration_path, class: 'btn btn-default btn-icon' do %>
+        <i class="material-icons">edit</i> <span>Modifier</span>
+      <% end %>
+    <% elsif can? :manage, type.class %>
+      <%= link_to edit_path, class: 'btn btn-default btn-icon' do %>
+        <i class="material-icons">edit</i><span>Modifier</span>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>

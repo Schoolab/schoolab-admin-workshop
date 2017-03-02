@@ -9,9 +9,8 @@
     path = resident_path(type)
     title = type.name
     subtitle = type.title
-    %>
 
-  <% when 'Company'
+  when 'Company'
     thumbnail = type.image
     thumb_type = "company-thumb"
     thumb_size = 80
@@ -20,12 +19,11 @@
     title = type.name
     subtitle = type.employees.count.to_s
     subtitle += ' employé'.pluralize(type.employees.count).to_s
-    %>
 
-  <% else %>
-    ELSE <%= type.class %>
+  else
+    p "Le type " + type.class + " n'est pas encore supporté."
 
-<% end %>
+end %>
 
 <div class="resident">
   <%= link_to path do %>

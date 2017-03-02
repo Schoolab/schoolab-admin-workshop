@@ -6,13 +6,22 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    Time.zone = 'Paris'
-    today = Time.zone.today
-
-    @today = Event.where("date = ?", today).order(date: :asc)
-    @tomorrow = Event.where("date = ?", today + 1).order(date: :asc)
-    @week_events = Event.where("date > ? and date < ?", today + 1, today + 7).order(date: :asc)
     authorize! :read, Event
+    respond_to do |format|
+      format.html {
+        Time.zone = 'Paris'
+        today = Time.zone.today
+
+        @today = Event.where("date = ?", today).order(date: :asc)
+        @tomorrow = Event.where("date = ?", today + 1).order(date: :asc)
+        @week_events = Event.where("date > ? and date < ?", today + 1, today + 7).order(date: :asc)
+      }
+      format.xls {
+        @events = Event.all
+        filename = "Evenements-#{Time.now.strftime("%Y%m%d%H%M%S")}.xls"
+        send_data(@events.to_xls(:name => filename, columns: [:title, :date, :location, :host, :price, :link, :description, :public], headers: ["Titre", "Date", "Lieu", "Organisateur", "Prix", "Lien", "Description", "Public"]))
+      }
+    end
   end
 
   # GET /events/past
