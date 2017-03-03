@@ -39,5 +39,4 @@ class MeetingRoom < ApplicationRecord
     self.floor.colour.present? ? self.floor.colour : ""
   end
 
-
 end

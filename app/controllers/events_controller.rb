@@ -10,7 +10,11 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html {
         Time.zone = 'Paris'
-        @events = Event.where("date >= ?", Time.zone.today).order(date: :asc)
+        today = Time.zone.today
+
+        @today = Event.where("date = ?", today).order(date: :asc)
+        @tomorrow = Event.where("date = ?", today + 1).order(date: :asc)
+        @week_events = Event.where("date > ? and date < ?", today + 1, today + 7).order(date: :asc)
       }
       format.xls {
         @events = Event.all
@@ -23,14 +27,27 @@ class EventsController < ApplicationController
   # GET /events/past
   def past
     Time.zone = 'Paris'
-    @past_events = Event.where("date < ?", Time.zone.today).order(date: :desc)
+    today = Time.zone.today
+
+    @events = Event.where("date < ?", today).order(date: :desc)
+    authorize! :manage, Event
+  end
+
+  # GET /events/future
+  def future
+    Time.zone = 'Paris'
+    today = Time.zone.today
+
+    @events = Event.where("date > ?", today + 7).order(date: :asc)
     authorize! :manage, Event
   end
 
   # GET /events/past
   def deleted
     Time.zone = 'Paris'
-    @past_events = Event.only_deleted.order(date: :desc)
+    today = Time.zone.today
+
+    @events = Event.only_deleted.order(date: :desc)
     authorize! :manage, Event
   end
 

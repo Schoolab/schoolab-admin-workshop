@@ -3,14 +3,19 @@
     border-radius: .125rem;
     box-shadow: 0 .125rem .25rem $box-shadow-color;
     background-color: $white;
-    padding: 2rem 0 0;
-    color: $brand-blue-75;
+    padding: 0;
+    color: $brand-75;
 }
 
 .panel-heading {
     background-color: transparent;
     border: none;
-    padding: 0 1.5rem 1rem;
+    padding: 2rem 1.5rem 1rem;
+}
+
+.panel-heading--bordered {
+  border-bottom: 1px solid $border-color;
+  margin: 0 0 1rem 0;
 }
 
 .panel-default > .panel-heading {
@@ -30,7 +35,7 @@
     font-weight: bold;
     font-size: 1rem;
     line-height: 1rem;
-    color: $brand-blue-blue;
+    color: $brand-blue;
     padding: 0 1rem;
 }
 
@@ -40,14 +45,14 @@
 }
 
 .panel-grey {
-  background-color: $brand-blue-05;
+  background-color: $brand-05;
 }
 
 .panel-title {
   margin: 0 auto;
   font-size: 1.25rem;
   line-height: 2rem;
-  color: $brand-blue-primary;
+  color: $brand-primary;
 }
 
 .panel-subtitle {
@@ -55,6 +60,16 @@
 }
 
 .panel-footer {
-  background-color: $brand-blue-05;
-  padding: 1rem 1.5rem;
+  background-color: $brand-05;
+  padding: 1rem 1.5rem 2rem;
+}
+
+.panel-top {
+  overflow: hidden;
+  border-radius: $border-radius-small $border-radius-small 0 0;
+}
+
+.panel-top + .panel {
+  border-top: none;
+  border-radius: 0 0 $border-radius-small $border-radius-small;
 }

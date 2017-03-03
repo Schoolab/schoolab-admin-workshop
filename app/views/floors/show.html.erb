@@ -1,29 +1,8 @@
-<% @companies = Company.where('floor_id = ?', @floor.id) %>
-<% @residents = 0 %>
-<% @spaces = MeetingRoom.where('floor_id = ?', @floor.id) %>
-
 <div class="row">
   <div class="col-xs-12 col-md-4">
-    <div class="panel txt-c">
-      <div class="panel-body">
-        <div class="img-thumbnail no-thumb floor-thumb" style="width:96px;height:96px;"></div>
 
-        <div class="panel-heading">
-          <h2><%= @floor.name %></h2>
-        </div>
-        <ul class="list-infos">
-          <li class="muted"><%= @companies.count %> <%= 'entreprise'.pluralize(@companies.count) %></li>
-          <li class="muted"><%= @floor.residents_nb(@companies) %> <%= 'résident'.pluralize(@residents) %></li>
-          <li class="muted"><%= @spaces.count %> <%= 'salle'.pluralize(@spaces.count) %> de réunion</li>
-        </ul>
-
-        <% if current_user.role == "admin" %>
-          <%= link_to edit_floor_path(@floor), class: 'btn btn-default btn-icon' do %>
-            <i class="material-icons">settings</i><span>Paramètres</span>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
+    <%= render "layouts/card-item", type: @floor %>
+    
   </div>
 
   <div class="col-xs-12 col-md-8">
@@ -35,36 +14,7 @@
       <div class="panel-body">
         <% if @companies.each do |company| %>
 
-          <% @employees = User.where('company_id = ?', company.id) %>
-
-          <div class="resident">
-            <%= link_to company_path(company) do %>
-              <% if company.image.file? %>
-                <div class="img-thumbnail company-thumb pull-left" style="width:80px;height:80px;">
-                  <%= image_tag company.image.url(:medium), size: 80 %>
-                </div>
-              <% else %>
-                <div class="img-thumbnail no-thumb company-thumb" style="width:80px;height:80px;"></div>
-              <% end %>
-            <% end %>
-
-            <div class="resident-details">
-              <h3 class="panel-title">
-                <%= link_to company_path(company) do %>
-                  <%= company.name %>
-                <% end %>
-              </h3>
-              <p class="panel-subtitle"><%= @employees.count %> <%= 'employé'.pluralize(@employees.count) %></p>
-              <ul class="inline-list">
-                <% if company.email? %>
-                  <li><%= mail_to company.email %></li>
-                <% end %>
-                <% if company.phone? %>
-                  <li class="secondary-info"><%= tel_to company.phone %></li>
-                <% end %>
-              </ul>
-            </div>
-          </div>
+          <%= render "layouts/list-item", type: company %>
 
         <% end.empty? %>
 
@@ -81,24 +31,10 @@
       <div class="panel-body row">
         <% if @spaces.each do |space| %>
 
-        <div class="reservation col-xs-12 col-md-6 col-xl-4">
-          <div class="reservation-infos" style="background-color: <%= space.colour %>">
-            <div class="reservation-infos-content">
-              <div class="reservation-infos-name">
-                <%= space.name %>
-              </div>
-              <div class="reservation-infos-floor">
-                <%= space.floor.present? ? space.floor.name : "N/A" %> - <%= space.capacity %> <%= 'place'.pluralize(space.capacity) %>
-              </div>
-            </div>
-            <div class="reservation-infos-bottom">
+        <div class="col-xs-12 col-md-6 col-xl-4">
 
-              <span class="btn btn-reservation">Voir les réservations</span>
-              <div class="reservation-infos-resident-list">
-                <span class="reservation-infos-resident">Cette fonctionnalité arrive bientôt !</span>
-              </div>
-            </div>
-          </div>
+          <%= render('meeting_rooms/room-item', room: space, reservation: space.reservations, type: "link") %>
+
         </div>
 
         <% end.empty? %>

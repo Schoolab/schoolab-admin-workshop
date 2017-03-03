@@ -6,17 +6,35 @@
       <th>Titre</th>
       <th>Lieu</th>
       <th>Prix</th>
+      <th data-orderable="false"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @past_events.each do |event| %>
+    <% @events.each do |event| %>
     <tr>
       <td data-order="<%= event.date %>"><%= event.friendly_date %></td>
       <td data-order="<%= event.start_time %>"><%= event.start_time.strftime('%kh%M') %>-<%= event.end_time.strftime('%kh%M') %></td>
       <td><strong><%= event.title %></strong></td>
       <td><%= event.location %></td>
       <td data-order="<%= event.price %>"><%= event.full_price %></td>
+      <td>
+        <div class="pull-right">
+          <% if current_page?(action: 'future') %>
+            <%= link_to event_path(event), class: 'btn btn-default btn-xs' do %>
+            <i class="material-icons">visibility</i><span>Voir</span>
+            <% end %>
+            <%= link_to edit_event_path(event), class: 'btn btn-default btn-xs' do %>
+            <i class="material-icons">edit</i><span>Modifier</span>
+            <% end %>
+          <% end %>
+          <% if current_page?(action: 'deleted') %>
+            <%= link_to recover_event_path(event), method: :put, class: 'btn btn-success btn-xs' do %>
+            <i class="material-icons">restore</i><span>Rétablir</span>
+            <% end %>
+          <% end %>
+        </div>
+      </td>
     </tr>
     <% end %>
   </tbody>

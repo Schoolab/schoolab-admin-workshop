@@ -18,6 +18,8 @@ class FloorsController < ApplicationController
   # GET /floors/1
   # GET /floors/1.json
   def show
+    @companies = Company.where('floor_id = ?', @floor.id)
+    @spaces = MeetingRoom.where('floor_id = ?', @floor.id)
   end
 
   # GET /floors/new

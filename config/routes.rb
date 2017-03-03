@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :events do
     get 'deleted' => "events#deleted", on: :collection
     get 'past' => "events#past", on: :collection
+    get 'future' => "events#future", on: :collection
+    match 'recover', to: 'events#recover', on: :member, via: [:put, :patch]
   end
 
   resources :companies do

@@ -1,11 +1,13 @@
-.img-thumbnail {
-  background-color: $brand-blue-10;
+.thumbnail {
+  background-color: $brand-15;
   padding: 0;
+  margin: 0;
   border-radius: 0;
   border: none;
   position: relative;
+  display: inline-block;
 
-  &:before {
+  &:after {
       position: absolute;
       content: "";
       top: 0;
@@ -21,12 +23,14 @@
   }
 }
 
+// No thumb > icon
+
 .no-thumb {
-    &:after {
+    &:before {
         font-family: Material Icons;
         font-size: 4rem;
         line-height: 4rem;
-        color: $brand-blue-50;
+        color: $brand-50;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -34,21 +38,44 @@
     }
 }
 
-.no-thumb.resident-thumb:after {
+.no-thumb.resident-thumb:before {
   content: "person";
 }
 
-.no-thumb.company-thumb:after {
+.no-thumb.company-thumb:before {
   content: "location_city";
 }
 
-.no-thumb.floor-thumb:after {
+.no-thumb.floor-thumb:before {
   content: "view_agenda";
 }
 
-.resident-thumb, .resident-thumb:before {
+.no-thumb.place-thumb:before {
+  font-family: "Material Design Icons";
+  content: "\F1A6";
+}
+
+// Thumb shapes
+
+.ovale-thumb, .ovale-thumb:after {
   border-radius: 50%;
   overflow: hidden;
+}
+
+.losange-thumb {
+  width: 68px;
+  height: 68px;
+  transform: rotate(45deg);
+
+  &:before {
+    font-size: 3rem;
+    line-height: 3rem;
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  & > * {
+    transform: rotate(-45deg)!important;
+  }
 }
 
 .navbar-thumbnail {

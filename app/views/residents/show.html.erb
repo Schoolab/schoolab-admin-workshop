@@ -1,50 +1,8 @@
 <div class="row">
   <div class="col-xs-12 col-md-4">
-    <div class="panel txt-c">
-      <div class="panel-body">
-        <% if @user.photo.file? %>
-          <div class="img-thumbnail resident-thumb" style="width:96px;height:96px;">
-            <%= image_tag @user.photo.url(:medium), size: 96 %>
-          </div>
-        <% else %>
-          <div class="img-thumbnail no-thumb resident-thumb" style="width:96px;height:96px;"></div>
-        <% end %>
-        <div class="panel-heading">
-          <h2><%= @user.name %></h2>
-        </div>
-        <p class="muted">
-          <% if @user.title.present? %>
-            <%= @user.title %>
-          <% end %>
-          <% if @user.company.present? %>
-            chez <%= link_to @user.company.name, company_path(@user.company) %>
-          <% end %>
-        </p>
-        <ul class="simple-list">
-          <li class="list-icon list-icon-email"><%= mail_to @user.email %></li>
-          <% if @user.phone? %>
-            <li class="list-icon list-icon-phone"><%= tel_to @user.phone %></li>
-          <% end %>
-        </ul>
 
-        <% if current_user == @user %>
-          <%= link_to edit_user_registration_path, class: 'btn btn-default btn-icon' do %>
-            <i class="material-icons">settings</i> <span>Paramètres</span>
-          <% end %>
-        <% elsif current_user.role == "admin" %>
-          <ul class="simple-list">
-            <% unless @user.last_sign_in_at.present? %>
-              <li>L'utilisateur ne s'est jamais connecté.</li>
-            <% else @user.current_sign_in_at.present? %>
-              <li><%= 'Dernière connexion il y a ' + time_ago_in_words(@user.current_sign_in_at) + '.'%></li>
-            <% end %>
-          </ul>
-          <%= link_to edit_resident_path(@user), class: 'btn btn-default btn-icon' do %>
-            <i class="material-icons">settings</i> <span>Paramètres</span>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
+    <%= render "layouts/card-item", type: @user %>
+
   </div>
 
   <div class="col-xs-12 col-md-8">
@@ -56,49 +14,10 @@
       </div>
 
       <div class="panel-body reservation-list">
-        <% @user.reservations.order('reservations.start_time ASC').each do |reservation| %>
-          <div class="reservation booked">
-            <div class="reservation-infos" style="background-color: <%= reservation.meeting_room.colour %>">
-              <div class="reservation-infos-content">
-                <div class="reservation-infos-name">
-                  <%= reservation.meeting_room.name %>
-                </div>
-                <div class="reservation-infos-floor">
-                  <%= reservation.meeting_room.floor.present? ? reservation.meeting_room.floor.name : "N/A" %>
-                </div>
-              </div>
-              <div class="reservation-infos-bottom">
-                <% if reservation.user == current_user && reservation.start_time > Time.current %>
-                  <%= link_to "Annuler", reservation, method: :delete, class: 'btn btn-reservation', style: 'color:' + reservation.meeting_room.colour + ';' %>
-                <% elsif (reservation.start_time <= Time.current && reservation.end_time >= Time.current) %>
-                  <span class="btn-reservation" style="color:<%= reservation.meeting_room.colour %>;">En cours</span>
-                <% else %>
-                  <span class="btn-reservation" style="color:<%= reservation.meeting_room.colour %>;">Terminée</span>
-                <% end %>
-              </div>
-            </div>
-            <div class="reservation-details">
-              <h3 class="reservation-details-title">Votre réservation</h3>
-              <p>
-                <% if reservation.start_time.today? %>
-                  Aujourd'hui
-                <% else %>
-                  <%= reservation.date %>
-                <% end %>
-                <%=
-                  'de ' +
-                  reservation.start_time.strftime('%Hh') +
-                  (reservation.start_time.strftime('%M') != '00' ? reservation.start_time.strftime('%M') : '') +
-                  ' à ' +
-                  reservation.end_time.strftime('%Hh') +
-                  (reservation.end_time.strftime('%M') != '00' ? reservation.end_time.strftime('%M') : '') +
-                  '.'
-                %>
-              </p>
-              <h3 class="reservation-details-title muted">Information de la salle</h3>
-              <p class="muted">Cette salle est située au <%= reservation.meeting_room.floor.present? ? reservation.meeting_room.floor.name : "N/A" %>. <%#- Il y a une réunion avant la votre jusqu’à 11h30.%></p>
-            </div>
-          </div>
+        <% @user.reservations.order('reservations.start_time DESC').each do |reservation| %>
+
+          <%= render('reservations/reservation-item', reservation: reservation) %>
+
         <% end %>
       </div>
 

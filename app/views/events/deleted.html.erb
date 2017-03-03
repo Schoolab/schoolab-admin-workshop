@@ -1,5 +1,5 @@
 <div class="panel col-xs-12">
-  <div class="panel-heading">
+  <div class="panel-heading panel-heading--bordered">
     <h2>
       Événements
       <% if can? :manage, Event %>
@@ -10,7 +10,8 @@
     </h2>
     <% if can? :manage, Event %>
       <ul class="inline-list mt">
-        <li><%= link_to "À venir", events_path %></li>
+        <li><%= link_to "7 prochains jours", events_path %></li>
+        <li><%= link_to "À venir", future_events_path %></li>
         <li><%= link_to "Terminés", past_events_path %></li>
         <li><strong>Corbeille</strong></li>
       </ul>

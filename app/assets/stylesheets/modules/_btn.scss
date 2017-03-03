@@ -34,7 +34,7 @@
 
     &:focus {
       outline: 0;
-      border-color: $brand-blue-blue;
+      border-color: $brand-blue;
     }
 
     .glyphicon, .material-icons, .icon, span {
@@ -73,15 +73,15 @@
 }
 
 .btn-default {
-  background-color: $brand-blue-10;
+  background-color: $brand-10;
 
   &:hover {
-    background-color: $brand-blue-10;
+    background-color: $brand-10;
     border-color: transparent;
   }
 
   &:focus {
-    background-color: $brand-blue-10;
+    background-color: $brand-10;
   }
 }
 
@@ -103,4 +103,16 @@
 
 .btn-link--danger {
   color: $brand-blue-danger;
+}
+
+.btn-reservation, .btn-room {
+    display: block;
+    width: 100%;
+    background-color: $white;
+    color: $brand-50;
+    border-radius: .125rem;
+    min-width: 196px;
+    padding: 0 .25rem;
+    line-height: 2rem;
+    font-size: 1rem;
 }

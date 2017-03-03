@@ -1,0 +1,25 @@
+<div class="panel col-xs-12">
+  <div class="panel-heading panel-heading--bordered">
+    <h2>
+      Événements
+      <% if can? :manage, Event %>
+        <div class="pull-right">
+          <%= link_to "Nouvel événement", new_event_path, class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </h2>
+    <% if can? :manage, Event %>
+      <ul class="inline-list mt">
+        <li><%= link_to "7 prochains jours", events_path %></li>
+        <li><strong>À venir</strong></li>
+        <li><%= link_to "Terminés", past_events_path %></li>
+        <li><%= link_to "Corbeille", deleted_events_path %></li>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="panel-body">
+    <%= render 'list' %>
+  </div>
+
+</div>
