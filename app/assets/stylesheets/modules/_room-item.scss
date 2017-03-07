@@ -1,0 +1,142 @@
+.room-item {
+  background-color: $grey;
+  min-height: 176px;
+  padding: 1rem;
+  white-space: nowrap;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  &:only-child {
+      width: 100%;
+      border-radius: .125rem;
+      margin-bottom: 1rem;
+  }
+
+  &:before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 0;
+      @include linearGradient(rgba($black,0), rgba($black, .25));
+  }
+
+  .booked:after {
+    content: "lock";
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    @include vendor(transform, translateX(-50%));
+    font-family: "Material Icons";
+    font-size: 4rem;
+    line-height: 4rem;
+    color: $black;
+    opacity: .25;
+    z-index: 0;
+  }
+}
+
+.room-item__content {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  padding-top: 2rem;
+}
+
+.room-item__bottom {
+  width: 100%;
+  align-self: flex-end;
+  position: relative;
+  z-index: 2;
+}
+
+.room-item__title {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  color: rgba($black, .75);
+}
+
+.room-item__subtitle {
+  font-size: 1rem;
+  line-height: 1rem;
+  color: rgba($black, .5);
+}
+
+.room-item__infos {
+  font-size: .75rem;
+  line-height: 1rem;
+  color: rgba($white, .75);
+}
+
+.room-item__resident {
+    color: $white;
+    line-height: 2rem;
+    font-size: 1rem;
+    display: inline-block;
+
+    &:hover {
+        color: $white;
+    }
+}
+
+a.room-item__resident:hover {
+  text-decoration: underline;
+}
+
+
+// ====================
+// Room item dropdown
+// ====================
+
+.room-item__bottom:hover .room-item__dropdown {
+  display: block;
+}
+
+.room-item__dropdown {
+  display: none;
+  position: absolute;
+  width: 100%;
+  padding: 1rem .5rem .5rem;
+  margin: 0 0 1rem;
+
+  &:before {
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    border: .5rem solid rgba($black, .75);
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    position: absolute;
+    top: -.5rem;
+    @include vendor(transform, translateX(-50%));
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: .5rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba($black,.75);
+    border-radius: .125rem;
+    z-index: -1;
+  }
+}
+
+.room-item__dropdown .room-item__resident {
+  line-height: 1.5rem;
+  margin: 0 0 .5rem;
+}
+
+.room-item__dropdown a {
+  color: $white;
+  cursor: pointer;
+}
