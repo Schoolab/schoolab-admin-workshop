@@ -11,28 +11,13 @@
       <!-- TODO: Utiliser une méthode de rails -->
       <% if event.date.today? %>
         Aujourd'hui
-        <%= + ' de ' +
-        event.start_time.strftime('%Hh') +
-        (event.start_time.strftime('%M') != '00' ? event.start_time.strftime('%M') : '') +
-        ' à ' +
-        event.end_time.strftime('%Hh') +
-        (event.end_time.strftime('%M') != '00' ? event.end_time.strftime('%M') : '') %>
+        <%= + ' de ' + event.friendly_hour(event.start_time) + ' à ' + event.friendly_hour(event.end_time) %>
       <% elsif event.date == Date.tomorrow %>
         Demain
-        <%= + ' de ' +
-        event.start_time.strftime('%Hh') +
-        (event.start_time.strftime('%M') != '00' ? event.start_time.strftime('%M') : '') +
-        ' à ' +
-        event.end_time.strftime('%Hh') +
-        (event.end_time.strftime('%M') != '00' ? event.end_time.strftime('%M') : '') %>
+        <%= + ' de ' + event.friendly_hour(event.start_time) + ' à ' + event.friendly_hour(event.end_time) %>
       <% else %>
         <%= event.friendly_date %>
-        <%= ' de ' +
-        event.start_time.strftime('%Hh') +
-        (event.start_time.strftime('%M') != '00' ? event.start_time.strftime('%M') : '') +
-        ' à ' +
-        event.end_time.strftime('%Hh') +
-        (event.end_time.strftime('%M') != '00' ? event.end_time.strftime('%M') : '') %>
+        <%= + ' de ' + event.friendly_hour(event.start_time) + ' à ' + event.friendly_hour(event.end_time) %>
       <% end %>
     </p>
     <h3 class="event-title">

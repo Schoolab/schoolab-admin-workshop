@@ -16,6 +16,7 @@ class ResidentsController < ApplicationController
   # GET /residents/:id
   def show
     @user = User.find(params[:id])
+    @reservations = @user.reservations.order('reservations.start_time DESC')
     authorize! :read, User
   end
 

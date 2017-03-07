@@ -1,8 +1,6 @@
 <div class="row">
   <div class="col-xs-12 col-md-4">
-
     <%= render "layouts/card-item", type: @user %>
-
   </div>
 
   <div class="col-xs-12 col-md-8">
@@ -12,15 +10,11 @@
       <div class="panel-heading">
         <h2>Dernières réservations</h2>
       </div>
-
       <div class="panel-body reservation-list">
-        <% @user.reservations.order('reservations.start_time DESC').each do |reservation| %>
-
+        <% @reservations.each do |reservation| %>
           <%= render('reservations/reservation-item', reservation: reservation) %>
-
         <% end %>
       </div>
-
     </div>
 
     <% elsif (current_user.role == "admin" || current_user == @user) && @user.reservations.count == 0 %>
