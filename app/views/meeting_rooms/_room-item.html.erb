@@ -24,7 +24,7 @@
         <% if reservations.count > 1 %>
 
           <%-# More than 1 reservation -%>
-          <span class="btn btn-reservation">Réservé</span>
+          <span class="btn room-item__btn">Réservé</span>
 
           <div class="room-item__dropdown">
             <% reservations.each do |reservation| %>
@@ -50,7 +50,7 @@
             </div>
 
             <% if reservation.user == current_user %>
-              <%= link_to "Annuler", reservation, method: :delete, class: 'btn btn-reservation', style: 'color:' + room.colour + ';' %>
+              <%= link_to "Annuler", reservation, method: :delete, class: 'btn room-item__btn', style: 'color:' + room.colour + ';' %>
             <% else %>
               <%= link_to reservation.user.name, resident_path(reservation.user), class: 'room-info__resident' %>
             <% end %>
@@ -68,7 +68,7 @@
           <%= f.input :end_time, as: :hidden, input_html: { value: reservation_end_time } %>
 
           <% label = 'Réserver de ' + @search.start_time.strftime('%Hh') + (@search.start_time.strftime('%M') != '00' ? @search.start_time.strftime('%M') : '') + ' à ' + reservation_end_time.strftime('%Hh') + (reservation_end_time.strftime('%M') != '00' ? reservation_end_time.strftime('%M') : '') %>
-          <%= f.submit label, class: 'btn btn-reservation', style: 'color:' + room.colour + ';' %>
+          <%= f.submit label, class: 'btn room-item__btn', style: 'color:' + room.colour + ';' %>
         <% end %>
 
       <% end %>
@@ -77,7 +77,7 @@
 
     <% if type == "link" %>
 
-      <span class="btn btn-room">Voir les réservations</span>
+      <span class="btn room-item__btn">Voir les réservations</span>
       <div class="room-item__dropdown">
         <span class="room-info__resident">Cette fonctionnalité arrive bientôt !</span>
       </div>
@@ -87,11 +87,11 @@
     <% if type == "reservation" %>
 
       <% if reservation.user == current_user && reservation.start_time > Time.current %>
-        <%= link_to "Annuler", reservation, method: :delete, class: 'btn btn-room' %>
+        <%= link_to "Annuler", reservation, method: :delete, class: 'btn room-item__btn' %>
       <% elsif (reservation.start_time <= Time.current && reservation.end_time >= Time.current) %>
-        <span class="btn-room" style="color:<%= room.colour %>;">En cours</span>
+        <span class="btn room-item__btn" style="color:<%= room.colour %>;">En cours</span>
       <%else %>
-        <span class="btn-room" style="color:<%= room.colour %>;">Terminée</span>
+        <span class="btn room-item__btn" style="color:<%= room.colour %>;">Terminée</span>
       <% end %>
 
     <% end %>
