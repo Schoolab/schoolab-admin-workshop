@@ -86,8 +86,6 @@
         <h2>Ils nous ont rejoint cette semaine</h2>
       </div>
       <div class="panel-body">
-        <% @newbies = User.where('created_at >= ?', Time.zone.today - 7).order('created_at DESC') %>
-
         <% if @newbies.each do |employee| %>
 
           <%= render "layouts/list-item", type: employee %>

@@ -11,23 +11,23 @@
     }
 }
 
-.reservation-details {
+.reservation__details {
     width: 100%;
     border: 1px solid rgba($black, .1);
     border-left: none;
     border-radius: 0 .125rem .125rem 0;
     padding: 1rem 1.5rem;
 
-    h3 {
-        font-size: 1rem;
-        font-weight: bold;
-        line-height: 2rem;
-        margin: 0;
-    }
-
     p {
         font-size: 1rem;
         line-height: 1rem;
         margin: 0 0 1rem;
     }
+}
+
+.reservation__title {
+    font-size: 1rem;
+    font-weight: bold;
+    line-height: 2rem;
+    margin: 0;
 }
