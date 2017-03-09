@@ -4,9 +4,9 @@
   <div class="panel">
     <div class="panel-heading">
       <% if form.object.new_record? %>
-        <h2>Ajouter une personne</h2>
+        <h2><%= title "Ajouter une personne" %></h2>
       <% else %>
-        <h2>Modifier une personne</h2>
+        <h2><%= title "Modifier une personne" %></h2>
       <% end %>
     </div>
 

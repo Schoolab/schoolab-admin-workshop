@@ -1,7 +1,7 @@
 <div class="panel col-xs-12">
   <div class="panel-heading panel-heading--bordered">
     <h2>
-      Personnes
+      <%= title "Personnes" %>
       <% if can? :manage, User %>
       <div class="pull-right">
         <%= link_to residents_path(format: :xls), class: "btn btn-default btn-icon" do %>

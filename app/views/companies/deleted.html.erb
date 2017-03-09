@@ -1,7 +1,7 @@
 <div class="panel col-xs-12">
   <div class="panel-heading panel-heading--bordered">
     <h2>
-      Entreprises
+      <%= title "Entreprises" %>
       <% if can? :manage, Company %>
         <div class="pull-right">
           <%= link_to 'Nouvelle entreprise', new_company_path, class: 'btn btn-primary' %>
