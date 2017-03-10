@@ -14,7 +14,7 @@ class EventsController < ApplicationController
 
         @today = Event.where("date = ?", today).order(date: :asc)
         @tomorrow = Event.where("date = ?", today + 1).order(date: :asc)
-        @week_events = Event.where("date > ? and date < ?", today + 1, today + 7).order(date: :asc)
+        @week_events = Event.where("date > ? and date <= ?", today + 1, today + 7).order(date: :asc)
       }
       format.xls {
         @events = Event.all
