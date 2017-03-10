@@ -84,9 +84,7 @@
       <div class="input-group">
         <%= f.password_field :current_password, placeholder: "Entrer votre mot de passe actuel avant de sauvegarder...", class: "form-control" %>
         <span class="input-group-btn">
-          <%= f.button :submit, :class => "btn btn-primary" do %>
-            Sauvegarder
-          <% end %>
+          <%= f.submit "Sauvegarder", class: "btn btn-primary" %>
         </span>
       </div>
     </div>
