@@ -1,7 +1,7 @@
 <div class="panel col-xs-12">
   <div class="panel-heading panel-heading--bordered">
     <h2>
-      Événements
+      <%= title "Évènements" %>
       <% if can? :manage, Event %>
         <div class="pull-right">
           <%= link_to events_path(format: :xls), class: "btn btn-default btn-icon" do %>

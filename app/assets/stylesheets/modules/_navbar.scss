@@ -98,3 +98,20 @@
     margin-top: 5rem;
   }
 }
+
+.dropdown-menu {
+  font-size: 1rem;
+
+  & > li > a {
+    // line-height: 2rem;
+    // padding: 0 1.5rem;
+    color: $brand-75;
+  }
+}
+
+.dropdown-menu .title {
+  padding: 3px 20px;
+  // line-height: 2rem;
+  font-weight: bold;
+  color: $brand-primary;
+}

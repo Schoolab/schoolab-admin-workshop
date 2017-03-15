@@ -5,9 +5,9 @@
   <div class="panel">
     <div class="panel-heading">
       <% if f.object.new_record? %>
-        <h2>Ajouter une entreprise</h2>
+        <h2><%= title "Ajouter une entreprise" %></h2>
       <% else %>
-        <h2>Modifier une entreprise</h2>
+        <h2><%= title "Modifier une entreprise" %></h2>
       <% end %>
     </div>
 

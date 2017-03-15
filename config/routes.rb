@@ -47,6 +47,7 @@ Rails.application.routes.draw do
       end
       scope :residents do
         get '/' => 'residents#index'
+        get 'last' => 'residents#last'
       end
       scope :companies do
         get '/' => 'companies#index'

@@ -12,6 +12,7 @@ class HomeController < ApplicationController
       redirect_to new_user_session_path
     else
       @reservations = current_user.reservations.where('reservations.end_time > ?', Time.current).order('reservations.start_time ASC')
+      @newbies = User.where('created_at >= ?', Time.zone.today - 7).order('created_at DESC')
     end
   end
 

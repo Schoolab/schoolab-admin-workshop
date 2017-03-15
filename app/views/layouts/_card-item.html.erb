@@ -42,7 +42,7 @@
       list_info_floor, list_info_employees
     ]
 
-    description = "<h4>" + type.name + "c'est quoi ?</h4>"
+    description = "<h4>" + type.name + " c'est quoi ?</h4>"
     if type.description?
       description += "<p>" + type.description + "</p>"
     else
@@ -111,7 +111,7 @@ end %>
       <div class="thumbnail no-thumb <%= thumb_shape.presence || thumb_shape %> <%= thumb_type.presence || thumb_type %> mb" style="width:<%= thumb_size %>px;height:<%= thumb_size %>px;"></div>
     <% end %>
 
-    <h2><%= name %></h2>
+    <h2><%= title name %></h2>
 
   </div>
   <div class="panel-body">

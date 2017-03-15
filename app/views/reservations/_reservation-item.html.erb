@@ -2,8 +2,8 @@
 
   <%= render('meeting_rooms/room-item', room: reservation.meeting_room, reservation: reservation, type: "reservation") %>
 
-  <div class="reservation-details">
-    <h3 class="reservation-details-title">Votre réservation</h3>
+  <div class="reservation__details">
+    <h3 class="reservation__title">Votre réservation</h3>
     <p>
       <% if reservation.start_time.today? %>
       Aujourd'hui
@@ -19,7 +19,7 @@
       '.'
       %>
     </p>
-    <h3 class="reservation-details-title muted">Information de la salle</h3>
+    <h3 class="reservation__title muted">Information de la salle</h3>
     <p class="muted">Cette salle est située au <%= reservation.meeting_room.floor.present? ? reservation.meeting_room.floor.name : "N/A" %>. Il y a de la place pour <%= reservation.meeting_room.capacity %> <%= 'personne'.pluralize(reservation.meeting_room.capacity) %>. <%#-Il y a une réunion avant la votre jusqu’à 11h30.%></p>
   </div>
 

@@ -17,6 +17,10 @@ class Event < ApplicationRecord
     I18n.l(self.date, format: '%A %e %B')
   end
 
+  def friendly_hour(time)
+    return time.strftime('%kh') + (time.strftime('%M') != '00' ? time.strftime('%M') : '')
+  end
+
   def picker_date
     if self.date.present?
       I18n.l(self.date, format: '%d/%m/%Y')

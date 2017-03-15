@@ -1,21 +1,21 @@
 <!-- TODO: change reservation-infos to room -->
 <% if type == "search" %>
   <% reservation_end_time = @search.start_time + @search.length.to_s.to_i %>
-  <div class="reservation-infos <%= reservations = room.reservation_at(@search.start_time, reservation_end_time) ? 'booked' : '' %>" style="background-color: <%= room.colour %>">
+  <div class="room-item <%= reservations = room.reservation_at(@search.start_time, reservation_end_time) ? 'booked' : '' %>" style="background-color: <%= room.colour %>">
 <%elsif type == "link" %>
-  <div class="reservation-infos" style="background-color: <%= room.colour %>">
+  <div class="room-item" style="background-color: <%= room.colour %>">
 <% else %>
-  <div class="reservation-infos booked" style="background-color: <%= room.colour %>">
+  <div class="room-item booked" style="background-color: <%= room.colour %>">
 <% end %>
 
-  <div class="reservation-infos-content">
-    <div class="reservation-infos-name"><%= room.name %></div>
-    <div class="reservation-infos-floor">
+  <div class="room-item__content">
+    <div class="room-item__title"><%= room.name %></div>
+    <div class="room-item__subtitle">
       <%= room.floor.present? ? room.floor.name : "N/A" %> - <%= room.capacity %> <%= 'place'.pluralize(room.capacity) %>
     </div>
   </div>
 
-  <div class="reservation-infos-bottom">
+  <div class="room-item__bottom">
     <% if type == "search" %>
 
       <% if reservations = room.reservation_at(@search.start_time, reservation_end_time) %>
@@ -24,18 +24,18 @@
         <% if reservations.count > 1 %>
 
           <%-# More than 1 reservation -%>
-          <span class="btn btn-reservation">Réservé</span>
+          <span class="btn room-item__btn">Réservé</span>
 
-          <div class="reservation-infos-resident-list">
+          <div class="room-item__dropdown">
             <% reservations.each do |reservation| %>
-              <div class="reservation-infos-prefix">
+              <div class="room-item__infos">
                 Réservé de <%= reservation.start_time.strftime('%Hh') + (reservation.start_time.strftime('%M') != '00' ? reservation.start_time.strftime('%M') : '') + ' à ' + reservation.end_time.strftime('%Hh') + (reservation.end_time.strftime('%M') != '00' ? reservation.end_time.strftime('%M') : '') %> par
               </div>
 
               <% if reservation.user == current_user %>
-                <span class="reservation-infos-resident">Vous (<%= link_to "Annuler", reservation, method: :delete %>)</span>
+                <span class="room-info__resident">Vous (<%= link_to "Annuler", reservation, method: :delete %>)</span>
               <% else %>
-                <%= link_to reservation.user.name, resident_path(reservation.user), class: 'reservation-infos-resident' %>
+                <%= link_to reservation.user.name, resident_path(reservation.user), class: 'room-info__resident' %>
               <% end %>
             <% end %>
           </div>
@@ -44,15 +44,15 @@
 
           <%-# 1 reservation -%>
           <% reservations.each do |reservation| %>
-            <div class="reservation-infos-prefix">
+            <div class="room-item__infos">
               Réservé de <%= reservation.start_time.strftime('%Hh') + (reservation.start_time.strftime('%M') != '00' ? reservation.start_time.strftime('%M') : '') + ' à ' + reservation.end_time.strftime('%Hh') + (reservation.end_time.strftime('%M') != '00' ? reservation.end_time.strftime('%M') : '') %>
               <%= reservation.user != current_user ? 'par' : ' ' %>
             </div>
 
             <% if reservation.user == current_user %>
-              <%= link_to "Annuler", reservation, method: :delete, class: 'btn btn-reservation', style: 'color:' + room.colour + ';' %>
+              <%= link_to "Annuler", reservation, method: :delete, class: 'btn room-item__btn', style: 'color:' + room.colour + ';' %>
             <% else %>
-              <%= link_to reservation.user.name, resident_path(reservation.user), class: 'reservation-infos-resident' %>
+              <%= link_to reservation.user.name, resident_path(reservation.user), class: 'room-info__resident' %>
             <% end %>
           <% end %>
 
@@ -68,7 +68,7 @@
           <%= f.input :end_time, as: :hidden, input_html: { value: reservation_end_time } %>
 
           <% label = 'Réserver de ' + @search.start_time.strftime('%Hh') + (@search.start_time.strftime('%M') != '00' ? @search.start_time.strftime('%M') : '') + ' à ' + reservation_end_time.strftime('%Hh') + (reservation_end_time.strftime('%M') != '00' ? reservation_end_time.strftime('%M') : '') %>
-          <%= f.submit label, class: 'btn btn-reservation', style: 'color:' + room.colour + ';' %>
+          <%= f.submit label, class: 'btn room-item__btn', style: 'color:' + room.colour + ';' %>
         <% end %>
 
       <% end %>
@@ -77,9 +77,9 @@
 
     <% if type == "link" %>
 
-      <span class="btn btn-room">Voir les réservations</span>
-      <div class="reservation-infos-resident-list">
-        <span class="reservation-infos-resident">Cette fonctionnalité arrive bientôt !</span>
+      <span class="btn room-item__btn">Voir les réservations</span>
+      <div class="room-item__dropdown">
+        <span class="room-info__resident">Cette fonctionnalité arrive bientôt !</span>
       </div>
 
     <% end %>
@@ -87,11 +87,11 @@
     <% if type == "reservation" %>
 
       <% if reservation.user == current_user && reservation.start_time > Time.current %>
-        <%= link_to "Annuler", reservation, method: :delete, class: 'btn btn-room' %>
+        <%= link_to "Annuler", reservation, method: :delete, class: 'btn room-item__btn' %>
       <% elsif (reservation.start_time <= Time.current && reservation.end_time >= Time.current) %>
-        <span class="btn-room" style="color:<%= room.colour %>;">En cours</span>
+        <span class="btn room-item__btn" style="color:<%= room.colour %>;">En cours</span>
       <%else %>
-        <span class="btn-room" style="color:<%= room.colour %>;">Terminée</span>
+        <span class="btn room-item__btn" style="color:<%= room.colour %>;">Terminée</span>
       <% end %>
 
     <% end %>
