@@ -12,6 +12,7 @@ class Ability
       can :manage, User
       can :manage, MeetingRoom
       can :manage, Reservation
+      can :manage, Project
     elsif user.role == "user"
       can :manage, Reservation
       can :read, :all
