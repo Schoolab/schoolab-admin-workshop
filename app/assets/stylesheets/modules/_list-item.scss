@@ -1,4 +1,4 @@
-.resident {
+.list-item {
   background: $white;
   border-radius: $border-radius-small;
   border: 1px solid $border-color;
@@ -8,6 +8,6 @@
   flex-direction: row;
 }
 
-.resident-details {
+.list-item__details {
   margin: 0 0 0 1rem;
 }

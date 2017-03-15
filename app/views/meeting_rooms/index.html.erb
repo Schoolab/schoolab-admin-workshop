@@ -1,7 +1,7 @@
 <div class="panel col-xs-12">
   <div class="panel-heading panel-heading--bordered">
     <h2>
-      Espaces
+      <%= title "Espaces" %>
       <% if can? :manage, MeetingRoom %>
       <div class="pull-right">
         <%= link_to 'Ajouter un espace', new_meeting_room_path, class: 'btn btn-primary' %>
