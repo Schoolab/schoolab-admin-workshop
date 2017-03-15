@@ -22,6 +22,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+    @season_collection = Season.collection_for_select
   end
 
   # GET /projects/1/edit
