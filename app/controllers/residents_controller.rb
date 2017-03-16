@@ -17,13 +17,13 @@ class ResidentsController < ApplicationController
   def show
     @user = User.find(params[:id])
     @reservations = @user.reservations.order('reservations.start_time DESC')
-    authorize! :read, User
+    authorize! :read, @user
   end
 
   # GET /residents/new
   def new
     @user = User.new
-    authorize! :manage, User
+    authorize! :create, User
   end
 
   # POST /residents
@@ -38,7 +38,7 @@ class ResidentsController < ApplicationController
     else
       render :new
     end
-    authorize! :manage, User
+    authorize! :create, User
   end
 
   # DELETE /residents/:id
@@ -46,13 +46,13 @@ class ResidentsController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     redirect_to residents_url, notice: 'Residents was successfully removed.'
-    authorize! :manage, User
+    authorize! :destroy, @user
   end
 
   # GET /residents/:id
   def edit
     @user = User.find(params[:id])
-    authorize! :manager, User
+    authorize! :update, @user
   end
 
   # PATCH/PUT /residents/:id
@@ -68,7 +68,7 @@ class ResidentsController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
-    authorize! :manage, User
+    authorize! :update, @user
   end
 
   private
