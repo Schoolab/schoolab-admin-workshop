@@ -31,6 +31,10 @@ class User < ApplicationRecord
     self.first_name + " " + self.last_name
   end
 
+  def is_admin?
+    self.role == 'admin'
+  end
+
   def company_name
     if self.company.present?
       self.company.name

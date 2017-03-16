@@ -6,7 +6,7 @@
       <th>Email</th>
       <th>Téléphone</th>
       <th>Entreprise</th>
-      <% if can? :manage, User %>
+      <% if current_user.is_admin? %>
       <th data-orderable="false">Rôle</th>
       <th data-orderable="false"></th>
       <% end %>
@@ -21,7 +21,7 @@
       <td><%= mail_to user.email %></td>
       <td><%= tel_to user.phone %></td>
       <td><%= user.company.present? ? user.company.name : "N/A" %></td>
-      <% if can? :manage, User %>
+      <% if current_user.is_admin? %>
       <td>
         <%= simple_form_for user, url: resident_path(user), method: :patch do |f| %>
         <%= f.input :role, collection: User::ROLES, label: false, default: 1, input_html: {class: 'input-xs', onchange: "this.form.submit()"} %>

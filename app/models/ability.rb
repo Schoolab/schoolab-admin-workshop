@@ -14,11 +14,12 @@ class Ability
       can :manage, Reservation
       can :manage, Project
     elsif user.role == "user"
-      can :manage, Reservation
+      can :manage, Reservation, user_id: user.id
+      can :update, User, id: user.id
       can :read, :all
     else
-      can :read, Event
-      can :read, User
+      # can :read, Event
+      # can :read, User
     end
     #
     # The first argument to `can` is the action you are giving the user
