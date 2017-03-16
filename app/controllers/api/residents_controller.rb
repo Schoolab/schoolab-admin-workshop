@@ -8,7 +8,7 @@ class Api::ResidentsController < Api::BaseController
 
   def last
     Time.zone = 'Paris'
-    @residents = User.where('created_at >= ?', Time.zone.today - 7).order('created_at DESC')
+    @residents = User.all.order('created_at DESC').limit(6)
     render :index
     authorize! :read, User
   end
