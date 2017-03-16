@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170316094633) do
+ActiveRecord::Schema.define(version: 20170316152958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,8 +80,8 @@ ActiveRecord::Schema.define(version: 20170316094633) do
     t.datetime "updated_at",  null: false
     t.text     "description"
     t.string   "colour"
-    t.time     "deleted_at"
     t.integer  "number"
+    t.time     "deleted_at"
   end
 
   create_table "logs", force: :cascade do |t|
@@ -126,17 +126,21 @@ ActiveRecord::Schema.define(version: 20170316094633) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.integer  "foor_id"
+    t.integer  "floor_id"
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string   "name",         null: false
-    t.string   "project_type", null: false
+    t.string   "name",               null: false
+    t.string   "project_type",       null: false
     t.text     "description"
     t.integer  "season_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.time     "deleted_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["season_id"], name: "index_projects_on_season_id", using: :btree
   end
 

@@ -7,6 +7,46 @@
     color: $brand-75;
 }
 
+.panel-header {
+  width: 100%;
+  height: auto;
+  max-height: 10rem;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 0;
+  border-radius: $border-radius-small $border-radius-small 0 0;
+
+  &:before, &:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+  }
+
+  &:before {
+    @include linearGradient(rgba($black, 0), rgba($black, .25));
+  }
+
+  &:after {
+    border: 1px solid rgba($black, .1);
+  }
+
+  img {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+  }
+}
+
+.panel-header + .panel {
+  border-radius-top-left: 0;
+  border-radius-top-right: 0;
+  border-top: none;
+}
+
 .panel-heading {
     background-color: transparent;
     border: none;

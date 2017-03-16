@@ -46,6 +46,10 @@
   content: "location_city";
 }
 
+.no-thumb.project-thumb:before {
+  content: "assignment";
+}
+
 .no-thumb.floor-thumb:before {
   content: "view_agenda";
 }

@@ -1,0 +1,24 @@
+.card-item--title {
+  
+}
+
+.card-item--section {
+  &:not(:last-child) {
+    margin: 0 0 1rem;
+  }
+}
+
+.card-item--section-title {
+  margin-bottom: 4px;
+  font-size: 1.25rem;
+  line-height: 2rem;
+  color: $brand-primary;
+}
+
+.card-item--item-title {
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  display: block;
+  margin: 0;
+}

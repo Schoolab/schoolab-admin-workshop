@@ -29,7 +29,13 @@
             <li><%= link_to "Réserver une salle", search_reservations_path %></li>
           </ul>
         </li>
-        <li><%= link_to "Projets", projects_path %></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gestion de projets <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Programmes", programs_path  %></li>
+            <li><%= link_to "Projets", projects_path %></li>
+          </ul>
+        </li>
         <% elsif user_signed_in? && current_user.role == "user" %>
         <li><%= link_to "Réserver une salle", search_reservations_path %></li>
         <li><%= link_to "Événements", events_path  %></li>
