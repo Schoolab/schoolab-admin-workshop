@@ -29,6 +29,7 @@
             <li><%= link_to "Réserver une salle", search_reservations_path %></li>
           </ul>
         </li>
+        <li><%= link_to "Projets", projects_path %></li>
         <% elsif user_signed_in? && current_user.role == "user" %>
         <li><%= link_to "Réserver une salle", search_reservations_path %></li>
         <li><%= link_to "Événements", events_path  %></li>

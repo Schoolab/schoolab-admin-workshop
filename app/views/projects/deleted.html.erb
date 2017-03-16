@@ -1,0 +1,23 @@
+<div class="panel col-xs-12">
+  <div class="panel-heading panel-heading--bordered">
+    <h2>
+      <%= title "Projets" %>
+      <% if can? :manage, Projet %>
+        <div class="pull-right">
+          <%= link_to 'Nouveau projet', new_project_path, class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </h2>
+    <% if can? :manage, Projet %>
+      <ul class="inline-list mt">
+        <li><%= link_to "Tous", projects_path %></li>
+        <li><strong>Corbeille</strong></li>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="panel-body">
+    <%= render 'list' %>
+  </div>
+
+</div>

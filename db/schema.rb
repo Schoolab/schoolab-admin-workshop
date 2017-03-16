@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315094447) do
+ActiveRecord::Schema.define(version: 20170316094633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,21 @@ ActiveRecord::Schema.define(version: 20170315094447) do
     t.integer  "number"
   end
 
+  create_table "logs", force: :cascade do |t|
+    t.string   "title",              null: false
+    t.date     "date"
+    t.text     "description"
+    t.integer  "project_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.time     "deleted_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.index ["project_id"], name: "index_logs_on_project_id", using: :btree
+  end
+
   create_table "meeting_rooms", force: :cascade do |t|
     t.string   "name"
     t.integer  "floor_id"
@@ -101,6 +116,30 @@ ActiveRecord::Schema.define(version: 20170315094447) do
     t.index ["floor_id"], name: "index_meeting_rooms_on_floor_id", using: :btree
   end
 
+  create_table "programs", force: :cascade do |t|
+    t.string   "name",               null: false
+    t.text     "description",        null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.time     "deleted_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "foor_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string   "name",         null: false
+    t.string   "project_type", null: false
+    t.text     "description"
+    t.integer  "season_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.time     "deleted_at"
+    t.index ["season_id"], name: "index_projects_on_season_id", using: :btree
+  end
+
   create_table "reservations", force: :cascade do |t|
     t.integer  "meeting_room_id"
     t.integer  "user_id"
@@ -114,12 +153,35 @@ ActiveRecord::Schema.define(version: 20170315094447) do
     t.index ["user_id"], name: "index_reservations_on_user_id", using: :btree
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string   "name",        null: false
+    t.integer  "user_id"
+    t.integer  "entity_id"
+    t.integer  "entity_type"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.time     "deleted_at"
+    t.index ["entity_id", "entity_type"], name: "index_roles_on_entity_id_and_entity_type", using: :btree
+    t.index ["user_id"], name: "index_roles_on_user_id", using: :btree
+  end
+
   create_table "room_searches", force: :cascade do |t|
     t.datetime "start_time",  null: false
     t.time     "length_time", null: false
     t.integer  "length",      null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "seasons", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.integer  "program_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.time     "deleted_at"
+    t.index ["program_id"], name: "index_seasons_on_program_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

@@ -20,6 +20,8 @@ class User < ApplicationRecord
 
   belongs_to :company
 
+  has_many :roles
+
   ROLES = %i[admin user inactive]
 
   acts_as_paranoid

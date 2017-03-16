@@ -18,6 +18,11 @@ Rails.application.routes.draw do
     match 'recover', to: 'companies#recover', on: :member, via: [:put, :patch]
   end
 
+  resources :projects do
+    get 'deleted' => 'projects#deleted', on: :collection
+    match 'recover', to: 'projects#recover', on: :member, via: [:put, :patch]
+  end
+
   resources :floors do
     get 'deleted' => 'floors#deleted', on: :collection
     match 'recover', to: 'floors#recover', on: :member, via: [:put, :patch]
