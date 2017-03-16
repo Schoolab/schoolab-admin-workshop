@@ -22,7 +22,8 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
-    @season_collection = Season.collection_for_select
+    @types_collection = Project.types_collection
+    @seasons_collection = Season.collection_for_select
   end
 
   # GET /projects/1/edit
@@ -77,10 +78,12 @@ class ProjectsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_project
       @company = Project.with_deleted.find(params[:id])
+      @types_collection = Project.types_collection
+      @seasons_collection = Season.collection_for_select
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :type, :season_id, :description)
+      params.require(:project).permit(:name, :project_type, :season_id, :description)
     end
-end
+  end

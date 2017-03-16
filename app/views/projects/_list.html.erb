@@ -12,8 +12,8 @@
     <% @projects.each do |project| %>
       <tr>
         <td><%= project.name %></td>
-        <td><%= project.season.present? ? project.season : "N/A" %></td>
-        <td><%= project.program.present? ? project.program : "N/A" %></td>
+        <td><%= project.season.present? ? project.program.name : "N/A" %></td>
+        <td><%= project.season.present? ? project.season.name : "N/A" %></td>
         <td>
           <div class="pull-right">
             <% if current_page?(action: 'index') %>
