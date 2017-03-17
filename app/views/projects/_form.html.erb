@@ -33,21 +33,21 @@
       <div class="row form-row">
 
         <div class="form-group col-md-12 has-feedback has-feedback-left">
-          <%= f.label :name, "Nom de l'entreprise", class: "sr-only" %>
+          <%= f.label :name, "Nom du projet", class: "sr-only" %>
           <%= f.text_field :name, autofocus: true, placeholder: "Nom du projet", class: "form-control" %>
-          <i class="form-control-feedback material-icons">location_city</i>
+          <i class="form-control-feedback material-icons">assignment</i>
         </div>
 
-        <div class="form-group col-md-6 has-feedback has-feedback-left">
-          <%= f.label :project_type, "Type de projet" %>
-          <%= f.input :project_type, as: :select, collection: @types_collection, label: false %>
-          <i class="form-control-feedback material-icons">view_agenda</i>
+        <div class="form-group select-wrapper col-md-6 has-feedback has-feedback-left">
+          <%= f.label :project_type, "Type de projet", class: "sr-only" %>
+          <%= f.input :project_type, as: :select, collection: @types_collection, label: false, class: "form-control" %>
+          <i class="form-control-feedback material-icons">filter_list</i>
         </div>
 
-        <div class="form-group col-md-6 has-feedback has-feedback-left">
-          <%= f.label :season, "Saison" %>
-          <%= f.association :season, label: false, collection: @seasons_collection %>
-          <i class="form-control-feedback material-icons">view_agenda</i>
+        <div class="form-group select-wrapper col-md-6 has-feedback has-feedback-left">
+          <%= f.label :season, "Saison", class: "sr-only" %>
+          <%= f.association :season, label: false, collection: @seasons_collection, class: "form-control" %>
+          <i class="form-control-feedback material-icons">date_range</i>
         </div>
 
         <div class="form-group col-xs-12">

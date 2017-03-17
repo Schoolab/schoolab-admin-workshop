@@ -40,7 +40,7 @@
   margin: 0 auto .5rem;
 }
 
-.form-group:last-child {
+.form-group:last-child, .form-group > .form-group {
   margin: 0 auto;
 }
 
@@ -54,7 +54,7 @@
   margin-bottom: 1.5rem;
 }
 
-.select-wrapper {
+.form-group.select {
   position: relative;
 
   &:after {
@@ -66,7 +66,7 @@
     height: 2rem;
     position: absolute;
     right: .125rem;
-    top: 1px;
+    bottom: 0;
     pointer-events:none;
     color: $brand-75;
     text-align: center;

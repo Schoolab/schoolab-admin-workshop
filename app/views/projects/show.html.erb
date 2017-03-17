@@ -12,7 +12,7 @@
       <div class="panel-body">
         <% if @project.roles.each do |role| %>
 
-          <%= render "layouts/list-item", type: role.user %>
+          <%= render "layouts/list-item", item: role.user %>
           <%= button_to "Retirer " + role.user.name, role, method: :delete %>
           <br>
 

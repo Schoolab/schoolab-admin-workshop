@@ -2,7 +2,7 @@ class ResidentsController < ApplicationController
 
   # GET /residents
   def index
-    @users = User.all
+    @users = User.all.order(:first_name)
     authorize! :read, User
     respond_to do |format|
       format.html

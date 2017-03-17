@@ -40,9 +40,11 @@
       <h4>Que faites-vous ?</h4>
       <p>Donnez nous un peu plus de détails à propos de votre présence ici. Cela permettra aux autres résidents de mieux vous identifier dans l’immeuble.</p>
       <div class="row form-row">
-        <div class="form-group select-wrapper col-md-6 has-feedback has-feedback-left">
+        <div class="form-group col-md-6 has-feedback has-feedback-left">
           <%= f.label :company_id, "Entreprise", class: "sr-only" %>
-          <%= f.collection_select :company_id, Company.all.order(:name), :id, :name, {}, class: 'form-control' %>
+          <div class="form-group select">
+            <%= f.collection_select :company_id, Company.all.order(:name), :id, :name, {}, class: 'form-control' %>
+          </div>
           <i class="form-control-feedback material-icons">location_city</i>
         </div>
         <div class="form-group col-md-6 has-feedback has-feedback-left">

@@ -1,65 +1,122 @@
-<% puts case type.class.to_s
+<% puts case item.class.to_s
 
   when 'User'
-    thumbnail = type.photo
-    thumb_shape = "ovale-thumb"
-    thumb_type = "resident-thumb"
-    thumb_size = 80
+    cardItem_thumbnail = item.photo
+    cardItem_thumbShape = "ovale-thumb"
+    cardItem_thumbType = "resident-thumb"
+    cardItem_thumbSize = 80
 
-    path = resident_path(type)
-    title = type.name
-    if type.title.present?
-      subtitle = type.title + ' '
+    cardItem_path = resident_path(item)
+    cardItem_titleHeading = item.name
+    if item.title.present?
+      cardItem_titleSubtitle = item.title + ' '
     else
-      subtitle = ''
+      cardItem_titleSubtitle = ''
     end
 
-    if type.company.present? && controller.controller_name != "companies"
-      subtitle += '<span class="muted">chez '
-      subtitle += link_to type.company.name, company_path(type.company)
-      subtitle += '</span>'
+    if item.company.present? && controller.controller_name != "companies"
+      cardItem_titleSubtitle += '<span class="muted">chez '
+      cardItem_titleSubtitle += link_to item.company.name, company_path(item.company)
+      cardItem_titleSubtitle += '</span>'
     end
+
+    if item.email?
+      listInfo_email = mail_to item.email
+    end
+
+    if item.phone?
+      listInfo_phone = mail_to item.phone
+    end
+
+    cardItem_contactList = [ ["list-icon-email", listInfo_email], ["list-icon-phone", listInfo_phone] ]
 
   when 'Company'
-    thumbnail = type.image
-    thumb_type = "company-thumb"
-    thumb_size = 80
+    cardItem_thumbnail = item.image
+    cardItem_thumbType = "company-thumb"
+    cardItem_thumbSize = 80
 
-    path = company_path(type)
-    title = type.name
-    subtitle = type.employees.count.to_s
-    subtitle += ' employé'.pluralize(type.employees.count).to_s
+    cardItem_path = company_path(item)
+    cardItem_titleHeading = item.name
+    cardItem_titleSubtitle = item.employees.count.to_s
+    cardItem_titleSubtitle += ' employé'.pluralize(item.employees.count).to_s
 
-  else
-    p "Le type " + type.class + " n'est pas encore supporté."
+    if item.email?
+      listInfo_email = mail_to item.email
+    end
+
+    if item.phone?
+      listInfo_phone = mail_to item.phone
+    end
+
+    cardItem_contactList = [ ["list-icon-email", listInfo_email], ["list-icon-phone", listInfo_phone] ]
+
+  when 'Program'
+    cardItem_thumbnail = item.image
+    cardItem_thumbType = "image-thumb"
+    cardItem_thumbSize = 80
+
+    cardItem_path = program_path(item)
+    cardItem_titleHeading = item.name
+
+    if item.seasons.count > 0
+      cardItem_titleSubtitle = item.seasons.count.to_s + ' saison'.pluralize(item.seasons.count) + ' - '
+    else
+      cardItem_titleSubtitle = ''
+    end
+    if item.projects.count > 0
+      cardItem_titleSubtitle += item.projects.count.to_s + ' projet'.pluralize(item.projects.count)
+    else
+      cardItem_titleSubtitle += "Pas de projets"
+    end
+
+  when 'Project'
+    cardItem_thumbnail = item.image
+    cardItem_thumbType = "project-thumb"
+    cardItem_thumbSize = 80
+
+    cardItem_path = project_path(item)
+    cardItem_titleHeading = item.name
+    cardItem_titleSubtitle = "soon"
 
 end %>
 
 <div class="list-item">
-  <%= link_to path do %>
-    <% if thumbnail.file? %>
-      <div class="thumbnail <%= thumb_shape.presence || thumb_shape %> pull-left" style="width:<%= thumb_size %>px;height:<%= thumb_size %>px;">
-        <%= image_tag thumbnail.url(:medium), size: thumb_size %>
+  <%= link_to cardItem_path do %>
+
+    <% if cardItem_thumbnail.file? %>
+      <div class="thumbnail <%= cardItem_thumbShape.presence || cardItem_thumbShape %> pull-left" style="width:<%= cardItem_thumbSize %>px;height:<%= cardItem_thumbSize %>px;">
+        <%= image_tag cardItem_thumbnail.url(:medium), size: cardItem_thumbSize %>
       </div>
     <% else %>
-      <div class="thumbnail no-thumb <%= thumb_shape.presence || thumb_shape %> <%= thumb_type.presence || thumb_type %>" style="width:<%= thumb_size %>px;height:<%= thumb_size %>px;"></div>
+      <div class="thumbnail no-thumb <%= cardItem_thumbShape.presence || cardItem_thumbShape %> <%= cardItem_thumbType.presence || cardItem_thumbType %>" style="width:<%= cardItem_thumbSize %>px;height:<%= cardItem_thumbSize %>px;"></div>
     <% end %>
+
   <% end %>
 
   <div class="list-item__details">
-    <h3 class="panel-title">
-      <%= link_to path do title end %>
-    </h3>
-    <p class="panel-subtitle">
-      <%= subtitle.html_safe %>
-    </p>
-    <ul class="inline-list">
-      <% if type.email? %>
-        <li><%= mail_to type.email %></li>
-      <% end %>
-      <% if type.phone? %>
-        <li class="secondary-info"><%= tel_to type.phone %></li>
-      <% end %>
-    </ul>
+
+    <% if cardItem_titleHeading.presence %>
+      <h3 class="panel-title">
+        <%= link_to cardItem_path do cardItem_titleHeading end %>
+      </h3>
+    <% end %>
+
+    <% if cardItem_titleSubtitle.presence %>
+      <p class="subtitle">
+        <%= cardItem_titleSubtitle.html_safe %>
+      </p>
+    <% end %>
+
+    <% if cardItem_contactList.presence %>
+      <ul class="inline-list">
+        <% if item.email? %>
+          <li><%= mail_to item.email %></li>
+        <% end %>
+        <% if item.phone? %>
+          <li class="secondary-info"><%= tel_to item.phone %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
   </div>
 </div>

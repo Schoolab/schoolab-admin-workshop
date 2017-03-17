@@ -1,12 +1,12 @@
 class ProgramsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy, :recover]
+  before_action :set_program, only: [:show, :edit, :update, :destroy, :recover]
 
   load_and_authorize_resource
 
   # GET /programs
   # GET /programs.json
   def index
-    @programs = Program.all
+    @programs = Program.all.order(name: :asc)
   end
 
   # GET /programs/deleted
@@ -74,8 +74,8 @@ class ProgramsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_project
-      @company = Project.with_deleted.find(params[:id])
+    def set_program
+      @program = Program.with_deleted.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

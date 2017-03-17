@@ -10,9 +10,9 @@
         <h2>Liste des employés</h2>
       </div>
       <div class="panel-body">
-        <% if @company.employees.each do |employee| %>
+        <% if @employees.each do |employee| %>
 
-          <%= render "layouts/list-item", type: employee %>
+          <%= render "layouts/list-item", item: employee %>
 
         <% end.empty? %>
 

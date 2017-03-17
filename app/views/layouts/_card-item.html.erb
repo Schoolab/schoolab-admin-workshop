@@ -58,7 +58,7 @@
   when 'Project'
     cardItem_imageType = "cover"
     cardItem_thumbnailName = item.image
-    cardItem_thumbItem = "company-thumb"
+    cardItem_thumbItem = "image-thumb"
     cardItem_thumbSize = 96
     cardItem_editPath = edit_project_path(item)
     cardItem_titleHeading = item.name
@@ -158,10 +158,13 @@
 
 <% if cardItem_imageType == "cover" %>
 
-  <div class="panel-header">
-    <%= image_tag cardItem_thumbnailName.url(:cover) %>
-  </div>
-
+  <% if cardItem_thumbnailName.present? && cardItem_thumbnailName.file? %>
+    <div class="panel-header">
+      <%= image_tag cardItem_thumbnailName.url(:cover) %>
+    </div>
+  <% else %>
+    <div class="panel-header no-thumb <%= cardItem_thumbItem.presence || cardItem_thumbItem %>"></div>
+  <% end %>
 <% end %>
 
 <div class="panel <%= cardItem_textAlign.presence || cardItem_textAlign %>">
@@ -181,7 +184,7 @@
     <% end %>
 
     <% if cardItem_titleHeading.present? %>
-      <h2 class="card-item--title"><%= cardItem_titleHeading %></h2>
+      <h2 class="card-item--title"><%= title cardItem_titleHeading %></h2>
     <% end %>
 
   </div>

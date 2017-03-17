@@ -12,7 +12,7 @@
       <div class="panel-body">
         <% if @program.projects.each do |project| %>
 
-          <!-- <%= render "layouts/list-item", type: project %> -->
+          <%= render "layouts/list-item", item: project %>
 
         <% end.empty? %>
 

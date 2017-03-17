@@ -32,10 +32,16 @@
 
       <div class="row form-row">
 
-        <div class="form-group col-md-12 has-feedback has-feedback-left">
-          <%= f.label :name, "Nom de l'entreprise", class: "sr-only" %>
-          <%= f.text_field :name, autofocus: true, placeholder: "Nom du projet", class: "form-control" %>
+        <div class="form-group col-md-6 has-feedback has-feedback-left">
+          <%= f.label :name, "Nom du programme", class: "sr-only" %>
+          <%= f.text_field :name, autofocus: true, placeholder: "Nom du programme", class: "form-control" %>
           <i class="form-control-feedback material-icons">location_city</i>
+        </div>
+
+        <div class="form-group select-wrapper  col-md-6 has-feedback has-feedback-left">
+          <%= f.label :floor_id, "Étage", class: "sr-only" %>
+          <%= f.association :floor, collection: Floor.order('number ASC'), class: 'form-control', label: false, prompt: "Étage" %>
+          <i class="form-control-feedback material-icons">view_agenda</i>
         </div>
 
         <div class="form-group col-xs-12">

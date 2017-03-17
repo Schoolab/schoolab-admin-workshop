@@ -6,17 +6,18 @@ class CompaniesController < ApplicationController
   # GET /companies
   # GET /companies.json
   def index
-    @companies = Company.all
+    @companies = Company.all.order(name: :asc)
   end
 
   # GET /companies/deleted
   def deleted
-    @companies = Company.only_deleted
+    @companies = Company.only_deleted.order(name: :asc)
   end
 
   # GET /companies/1
   # GET /companies/1.json
   def show
+    @employees = User.where("company_id = ?", params[:id]).order(:first_name)
   end
 
   # GET /companies/new

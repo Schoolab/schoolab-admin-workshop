@@ -14,7 +14,7 @@
       <div class="panel-body">
         <% if @companies.each do |company| %>
 
-          <%= render "layouts/list-item", type: company %>
+          <%= render "layouts/list-item", item: company %>
 
         <% end.empty? %>
 
