@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170316152958) do
+ActiveRecord::Schema.define(version: 20170317110311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,8 +80,8 @@ ActiveRecord::Schema.define(version: 20170316152958) do
     t.datetime "updated_at",  null: false
     t.text     "description"
     t.string   "colour"
-    t.integer  "number"
     t.time     "deleted_at"
+    t.integer  "number"
   end
 
   create_table "logs", force: :cascade do |t|
@@ -161,7 +161,7 @@ ActiveRecord::Schema.define(version: 20170316152958) do
     t.string   "name",        null: false
     t.integer  "user_id"
     t.integer  "entity_id"
-    t.integer  "entity_type"
+    t.string   "entity_type"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.time     "deleted_at"

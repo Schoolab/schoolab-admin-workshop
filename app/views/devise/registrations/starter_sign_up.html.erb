@@ -1,0 +1,83 @@
+<div class="row">
+
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+
+    <%= bootstrap_devise_error_messages! %>
+    <div class="panel">
+      <div class="panel-heading">
+        <%= image_tag 'logo_starter.png', size: '211x89' %>
+        <h2><%= title t('.sign_up', :default => "Bienvenue dans Starter !") %></h2>
+      </div>
+      <div class="panel-body">
+        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { role: "form" }) do |f| %>
+
+          <h4>Faites-nous un sourire</h4>
+          <p>Envoyez nous votre photo, ce sera plus simple pour de vous identifier dans l’immeuble.</p>
+          <p class="small">Vous n’avez pas de photo ? Pas de panique, de temps en temps nous faisons des séances photos à Schoolab, on vous préviendra par mail.</p>
+          <div class="row form-row">
+            <div class="form-group col-xs-12">
+              <%= f.file_field :photo, class: "inputfile", data: { :caption => "{nb} fichiers selectionnés" } %>
+              <%= f.label :photo, '<span class="label-btn">Envoyer une photo</span><span class="label-filename">Pas de fichier selectionné</span>'.html_safe %>
+            </div>
+          </div>
+
+          <h4>Comment vous appelle-t-on ?</h4>
+          <p>Nous avons besoin de vos informations personnelles afin de pouvoir vous appeler par votre nom ou si vous avez oublié votre mot de passe.</p>
+          <div class="row form-row">
+            <div class="form-group col-md-6">
+              <%= f.label :first_name, "Prénom", class: "sr-only" %>
+              <%= f.text_field :first_name, autofocus: true, placeholder: "Prénom", class: "form-control" %>
+            </div>
+            <div class="form-group col-md-6">
+              <%= f.label :last_name, "Nom", class: "sr-only" %>
+              <%= f.text_field :last_name, placeholder: "Nom", class: "form-control" %>
+            </div>
+          </div>
+
+          <h4>Dans quelle startup êtes-vous ?</h4>
+          <div class="row form-row">
+              <%= f.hidden_field :company_id, value: 25 %>
+            <div class="form-group col-md-12 has-feedback has-feedback-left">
+              <%= f.label :title, "Titre/rôle", class: "sr-only" %>
+              <%= f.text_field :title, placeholder: "Nom de la Startup", class: "form-control" %>
+              <i class="form-control-feedback material-icons">work</i>
+            </div>
+          </div>
+
+          <h4>Vos moyens de contact</h4>
+          <p>Il est important d’indiquer un moyen de contact afin que d’autres résidents puisse vous joindre.</p>
+          <div class="row form-row">
+            <div class="form-group col-md-6 has-feedback has-feedback-left">
+              <%= f.label :email, class: "sr-only" %>
+              <%= f.email_field :email, placeholder: "Adresse mail", class: "form-control" %>
+              <i class="form-control-feedback material-icons">mail</i>
+            </div>
+            <div class="form-group col-md-6 has-feedback has-feedback-left">
+              <%= f.label :phone, class: "sr-only" %>
+              <%= f.text_field :phone, placeholder: "Numéro de téléphone", class: "form-control" %>
+              <i class="form-control-feedback material-icons">phone</i>
+            </div>
+          </div>
+
+          <h4>Et on sécurise votre compte</h4>
+          <p>Comme à votre habitude, indiquez un mot de passe afin de sécuriser l’accès à votre compte sur l’admin Schoolab. On ne va rien vous apprendre, mais il vaut mieux garder ces informations pour vous.</p>
+          <div class="row form-row">
+            <div class="form-group col-md-6">
+              <%= f.label :password, class: "sr-only" %>
+              <%= f.password_field :password, autocomplete: "off", placeholder: "Mot de passe", class: "form-control" %>
+            </div>
+            <div class="form-group col-md-6">
+              <%= f.label :password_confirmation, class: "sr-only" %>
+              <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirmation", class: "form-control" %>
+            </div>
+          </div>
+
+          <%= f.button :submit, class: "btn btn-primary btn-icon center-block" do %>
+            <i class="material-icons">send</i> <span>Que l'aventure commence !</span>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>

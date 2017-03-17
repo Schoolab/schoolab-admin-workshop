@@ -22,6 +22,8 @@ class User < ApplicationRecord
 
   has_many :roles
 
+  has_many :projects, through: :roles, source: :entity, source_type: 'Project'
+
   ROLES = %i[admin user inactive]
 
   acts_as_paranoid

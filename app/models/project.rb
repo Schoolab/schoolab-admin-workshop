@@ -21,6 +21,10 @@ class Project < ApplicationRecord
     self.season.program
   end
 
+  def full_name
+    self.name + ' (' + self.season.name + ' - ' + self.program.name + ')'
+  end
+
   # Class Methods
   def self.types_collection
     [

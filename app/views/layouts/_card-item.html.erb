@@ -1,4 +1,5 @@
-<% puts case item.class.to_s
+<%
+  case item.class.to_s
 
   when 'Floor'
     @companies = Company.where('floor_id = ?', @floor.id)
@@ -72,11 +73,10 @@
     end
 
     details_title = '<h3 class="card-item--section-title">Détails</h3>'
-    listInfo_type = '<p class="card-item--item-title">Type</p>' + item.project_type
-    listInfo_program = '<p class="card-item--item-title">Programme</p>'
-    listInfo_season = '<p class="card-item--item-title">Saison</p>'
+    listInfo_program = '<p class="card-item--item-title">Programme</p>' + item.program.name
+    listInfo_season = '<p class="card-item--item-title">Saison</p>' + item.season.name
 
-    cardItem_detailsList = [ listInfo_type, listInfo_program, listInfo_season ]
+    cardItem_detailsList = [ listInfo_program, listInfo_season ]
 
     cardItem_contactList = []
 
@@ -94,12 +94,25 @@
     list_info_title = item.title
     if item.company.present?
       list_info_title += ' chez '
-      list_info_title += link_to item.company.name, company_path(item.company)
+      list_info_title += link_to item.company.name, item.company
     end
 
     cardItem_infosList = [
       list_info_title
     ]
+
+    # Liste de ses rôles (hors projets/startups)
+    list_info_roles = item.roles.map do |role|
+      role.entity_type != 'Project' ? role.name + ' - ' + role.entity.name : nil
+    end
+    cardItem_infosList.concat list_info_roles.compact # remove nil values
+
+    # Liste des projets/startups auxquels il a participé
+    list_info_projects = ['<br><strong>Projets</strong>']
+    item.projects.each do |project|
+      list_info_projects.push(link_to project.name, project)
+    end
+    cardItem_infosList.concat list_info_projects
 
     if item.email?
       listInfo_email = mail_to item.email
@@ -117,7 +130,8 @@
   else
     p "Le item " + item.class + " n'est pas encore supporté."
 
-end %>
+  end
+%>
 
 
 <% if cardItem_imageType == "cover" %>
@@ -141,7 +155,7 @@ end %>
       <% else %>
         <div class="thumbnail no-thumb <%= cardItem_thumbShape.presence || cardItem_thumbShape %> <%= cardItem_thumbItem.presence || cardItem_thumbItem %> mb" style="width:<%= cardItem_thumbSize %>px;height:<%= cardItem_thumbSize %>px;"></div>
       <% end %>
-      
+
     <% end %>
 
     <% if cardItem_titleHeading.present? %>
