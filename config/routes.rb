@@ -26,7 +26,10 @@ Rails.application.routes.draw do
   resources :projects do
     get 'deleted' => 'projects#deleted', on: :collection
     match 'recover', to: 'projects#recover', on: :member, via: [:put, :patch]
+    resources :members, only: [:create], controller: :project_members
   end
+
+  resources :roles, only: [:destroy]
 
   resources :floors do
     get 'deleted' => 'floors#deleted', on: :collection

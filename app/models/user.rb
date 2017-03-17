@@ -20,7 +20,7 @@ class User < ApplicationRecord
 
   belongs_to :company
 
-  has_many :roles
+  has_many :roles, dependent: :destroy
 
   has_many :projects, through: :roles, source: :entity, source_type: 'Project'
 
@@ -28,6 +28,8 @@ class User < ApplicationRecord
 
   acts_as_paranoid
   audited
+
+  # Instance methods
 
   def name
     self.first_name + " " + self.last_name
@@ -50,7 +52,7 @@ class User < ApplicationRecord
   end
 
   private
-  def set_default_role
-    self.role = "user"
-  end
+    def set_default_role
+      self.role = "user"
+    end
 end

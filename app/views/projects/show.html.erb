@@ -10,14 +10,21 @@
         <h2>Liste des participants</h2>
       </div>
       <div class="panel-body">
-        <% if @project.users.each do |user| %>
+        <% if @project.roles.each do |role| %>
 
-          <%= render "layouts/list-item", type: user %>
+          <%= render "layouts/list-item", type: role.user %>
+          <%= button_to "Retirer " + role.user.name, role, method: :delete %>
+          <br>
 
         <% end.empty? %>
 
           <p class="muted">Il n'y a personne dans ce projet.</p>
 
+        <% end %>
+        <%= simple_form_for :role, url: project_members_path(@project) do |f| %>
+          <%= f.input :user_id, collection: @other_users, label: "Membre" %>
+          <%= f.input :name, collection: Role.collection_for_select, label: "Rôle" %>
+          <%= f.submit "Ajouter un membre" %>
         <% end %>
       </div>
     </div>

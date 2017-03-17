@@ -1,7 +1,8 @@
 class Program < ApplicationRecord
-  has_many :seasons
-  has_many :roles, as: :entity
+  has_many :seasons, dependent: :destroy
+  has_many :roles, as: :entity, dependent: :destroy
   has_many :users, through: :roles
+  belongs_to :floor
 
   acts_as_paranoid
   audited

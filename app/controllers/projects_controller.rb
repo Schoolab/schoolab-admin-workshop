@@ -17,6 +17,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @other_users = User.all - @project.users
   end
 
   # GET /projects/new
@@ -60,7 +61,7 @@ class ProjectsController < ApplicationController
   def recover
     @project.recover
     respond_to do |format|
-      format.html { redirect_to projects_path, notice: 'Le projet à bien été reccupéré.' }
+      format.html { redirect_to projects_path, notice: 'Le projet à bien été recupéré.' }
       format.json { head :success }
     end
   end
@@ -68,6 +69,7 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
+    p "test"
     @project.destroy
     respond_to do |format|
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
@@ -77,7 +79,7 @@ class ProjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @company = Project.with_deleted.find(params[:id])
+      @project = Project.with_deleted.find(params[:id])
       @types_collection = Project.types_collection
       @seasons_collection = Season.collection_for_select
     end
