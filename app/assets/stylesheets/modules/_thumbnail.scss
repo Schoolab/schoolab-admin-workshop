@@ -59,6 +59,10 @@
   content: "\F1A6";
 }
 
+.no-thumb.image-thumb:before {
+  content: "insert_photo";
+}
+
 // Thumb shapes
 
 .ovale-thumb, .ovale-thumb:after {

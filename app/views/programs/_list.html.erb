@@ -1,0 +1,33 @@
+<table class="table table-hover datatable">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th data-orderable="false"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @programs.each do |program| %>
+      <tr>
+        <td><%= program.name %></td>
+        <td>
+          <div class="pull-right">
+            <% if current_page?(action: 'index') %>
+              <%= link_to program_path(program), class: 'btn btn-default btn-xs' do %>
+              <i class="material-icons">visibility</i><span>Voir</span>
+              <% end %>
+              <%= link_to edit_program_path(program), class: 'btn btn-default btn-xs' do %>
+              <i class="material-icons">edit</i><span>Modifier</span>
+              <% end %>
+            <% end %>
+            <% if current_page?(action: 'deleted') %>
+              <%= link_to recover_program_path(program), method: :put, class: 'btn btn-success btn-xs' do %>
+              <i class="material-icons">restore</i><span>Rétablir</span>
+              <% end %>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

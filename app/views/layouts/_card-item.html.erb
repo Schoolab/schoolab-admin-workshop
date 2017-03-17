@@ -72,11 +72,36 @@
       cardItem_description += "<p>Pas de description...</p>"
     end
 
-    details_title = '<h3 class="card-item--section-title">Détails</h3>'
+    cardItem_detailsTitle = '<h3 class="card-item--section-title">Détails</h3>'
     listInfo_program = '<p class="card-item--item-title">Programme</p>' + item.program.name
     listInfo_season = '<p class="card-item--item-title">Saison</p>' + item.season.name
 
     cardItem_detailsList = [ listInfo_program, listInfo_season ]
+
+    cardItem_contactList = []
+
+  when 'Program'
+    cardItem_textAlign = "txt-c"
+    cardItem_imageType = "thumb"
+    cardItem_thumbnailName = item.image
+    cardItem_thumbItem = "image-thumb"
+    cardItem_thumbSize = 96
+    cardItem_editPath = edit_program_path(item)
+    cardItem_titleHeading = item.name
+
+    # listInfo_floor = link_to item.floor.name, floor_path(item.floor)
+    # cardItem_infosList = [ listInfo_floor ]
+
+    cardItem_description = '<h3 class="card-item--section-title">À propos</h3>'
+    if item.description?
+      cardItem_description += "<p>" + item.description + "</p>"
+    else
+      cardItem_description += "<p>Pas de description...</p>"
+    end
+
+    cardItem_detailsTitle = '<h3 class="card-item--section-title">Détails</h3>'
+
+    cardItem_detailsList = []
 
     cardItem_contactList = []
 
@@ -126,9 +151,6 @@
       ["list-icon-email", listInfo_email],
       ["list-icon-phone", listInfo_phone]
     ]
-
-  else
-    p "Le item " + item.class + " n'est pas encore supporté."
 
   end
 %>
@@ -181,7 +203,7 @@
 
     <% if cardItem_detailsList.present? %>
       <div class="card-item--section">
-        <%= details_title.html_safe %>
+        <%= cardItem_detailsTitle.html_safe %>
         <ul class="simple-list list-details--multiline">
           <% cardItem_detailsList.each do |detail| %>
             <li><%= detail.html_safe %></li>

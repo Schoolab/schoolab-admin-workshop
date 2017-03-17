@@ -8,8 +8,10 @@
 }
 
 .panel-header {
+  background-color: $brand-15;
   width: 100%;
   height: auto;
+  min-height: 4rem;
   max-height: 10rem;
   overflow: hidden;
   position: relative;
@@ -27,10 +29,11 @@
   }
 
   &:before {
-    @include linearGradient(rgba($black, 0), rgba($black, .25));
+
   }
 
   &:after {
+    @include linearGradient(rgba($black, 0), rgba($black, .25));
     border: 1px solid rgba($black, .1);
   }
 
@@ -42,8 +45,8 @@
 }
 
 .panel-header + .panel {
-  border-radius-top-left: 0;
-  border-radius-top-right: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   border-top: none;
 }
 
