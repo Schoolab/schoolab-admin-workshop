@@ -9,6 +9,10 @@
     @include rwd-max-width(700px) {
       flex-direction: column;
     }
+
+    &:hover {
+      background-color: $brand-05;
+    }
 }
 
 .reservation__details {

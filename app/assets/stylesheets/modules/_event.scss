@@ -6,9 +6,14 @@
 }
 
 .event {
+  background-color: $white;
   border-radius: $border-radius-small;
   border: 1px solid $border-color;
   margin: 0 0 1rem;
+
+  &:hover {
+    background-color: $brand-05;
+  }
 }
 
 .event-img {
