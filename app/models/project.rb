@@ -1,5 +1,5 @@
 class Project < ApplicationRecord
-  has_many :roles, as: :entity
+  has_many :roles, as: :entity, dependent: :destroy
   has_many :users, through: :roles
 
   has_attached_file :image, styles: { large: "1200x1200", medium: "300x300>", cover: "500x500>" , thumb: "100x100>" }, default_url: "/images/:style/missing.png"
