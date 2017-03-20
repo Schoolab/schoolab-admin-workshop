@@ -71,6 +71,12 @@
           </div>
           <% end %>
           <% end %>
+
+          <% @project.logs.each do |log| %>
+          <h2><%= log.title %></h2>
+          <p><%= link_to "delete log", project_log_path(log), method: :delete %></p>
+          <hr>
+          <% end %>
         </div>
       </div>
     </div>
