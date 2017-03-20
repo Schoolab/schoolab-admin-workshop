@@ -30,8 +30,8 @@
             <% end %>
           </span>
         <% end %>
-      <% if can? :manage, Log %>
-        <%= link_to "delete log", project_log_path(log), method: :delete %>
+      <% if can? :manage, item %>
+        <%= link_to "delete log", project_log_path(item.project, item), method: :delete %>
       <% end %>
     </div>
   </div>

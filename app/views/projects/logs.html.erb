@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-xs-12 col-md-4">
+    <%= render "layouts/card-item", item: @project %>
+  </div>
+
+  <div class="col-xs-12 col-md-8">
+    <div class="panel">
+      <div class="panel-heading panel-heading--bordered">
+        <h2><%= title @project.name %></h2>
+        <ul class="tablist inline-list mt" role="tablist">
+          <li role="presentation">
+            <%= link_to "Participants", @project %>
+          </li>
+          <li role="presentation" class="active">
+            <%= link_to "Historique", project_logs_path(@project) %>
+          </li>
+        </ul>
+      </div>
+      <div class="tab-content">
+
+        <div role="tabpanel" class="tab-pane active">
+
+          <div class="panel-body">
+
+            <% if @project.logs.each do |log| %>
+
+            <%= render "projects/log-item", item: log %>
+
+            <% end.empty? %>
+
+            <p class="muted">Il n'y a aucun historique pour ce projet.</p>
+
+            <% end %>
+
+            <%= simple_form_for :log, url: project_logs_path(@project) do |f| %>
+            <%= f.input :title, as: :string %>
+            <%= f.input :date, as: :date %>
+            <%= f.submit "Ajouter" %>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

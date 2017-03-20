@@ -9,15 +9,15 @@
         <h2><%= title @project.name %></h2>
         <ul class="tablist inline-list mt" role="tablist">
           <li role="presentation" class="active">
-            <a href="#participants" aria-controls="participants" role="tab" data-toggle="tab">Participants</a>
+            <%= link_to "Participants", @project %>
           </li>
           <li role="presentation">
-            <a href="#logs" aria-controls="logs" role="tab" data-toggle="tab">Historique</a>
+            <%= link_to "Historique", project_logs_path(@project) %>
           </li>
         </ul>
       </div>
       <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="participants">
+        <div role="tabpanel" class="tab-pane active">
 
           <div class="panel-body">
 
@@ -27,38 +27,38 @@
 
               <% else %>
 
-                <% if @project.roles.where(name: "coach").present? %>
-                <h3 class="panel-section__title">Équipe Schoolab</h3>
-                <div class="row">
-                  <% @project.roles.where(name: "coach").each do |role| %>
-                  <div class="col-xs-12 col-md-6">
-                    <%= render "member-item", role: role %>
-                  </div>
-                  <% end %>
+              <% if @project.roles.where(name: "coach").present? %>
+              <h3 class="panel-section__title">Équipe Schoolab</h3>
+              <div class="row">
+                <% @project.roles.where(name: "coach").each do |role| %>
+                <div class="col-xs-12 col-md-6">
+                  <%= render "member-item", role: role %>
                 </div>
                 <% end %>
+              </div>
+              <% end %>
 
-                <% if @project.roles.where(name: "member").present? %>
-                <h3 class="panel-section__title">Équipe projet</h3>
-                <div class="row">
-                  <% @project.roles.where(name: "member").each do |role| %>
-                  <div class="col-xs-12 col-md-6">
-                    <%= render "member-item", role: role %>
-                  </div>
-                  <% end %>
+              <% if @project.roles.where(name: "member").present? %>
+              <h3 class="panel-section__title">Équipe projet</h3>
+              <div class="row">
+                <% @project.roles.where(name: "member").each do |role| %>
+                <div class="col-xs-12 col-md-6">
+                  <%= render "member-item", role: role %>
                 </div>
                 <% end %>
+              </div>
+              <% end %>
 
-                <% if @project.roles.where(name: "member").present? %>
-                <h3 class="panel-section__title">Entreprise cliente</h3>
-                <div class="row">
-                  <% @project.roles.where(name: "client").each do |role| %>
-                  <div class="col-xs-12 col-md-6">
-                    <%= render "member-item", role: role %>
-                  </div>
-                  <% end %>
+              <% if @project.roles.where(name: "member").present? %>
+              <h3 class="panel-section__title">Entreprise cliente</h3>
+              <div class="row">
+                <% @project.roles.where(name: "client").each do |role| %>
+                <div class="col-xs-12 col-md-6">
+                  <%= render "member-item", role: role %>
                 </div>
                 <% end %>
+              </div>
+              <% end %>
 
               <% end %>
 
@@ -83,19 +83,6 @@
               <% end %>
             </div>
           </div>
-        </div>
-
-        <div role="tabpanel" class="tab-pane" id="logs">
-
-          <% if @logs.each do |log| %>
-
-            <%= render "log-item", item: log %>
-
-          <% end.empty? %>
-
-            <p class="muted">Il n'y a aucun historique pour ce projet.</p>
-
-          <% end %>
         </div>
       </div>
     </div>
