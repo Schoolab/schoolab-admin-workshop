@@ -16,15 +16,15 @@
       <div class="panel-body">
         <p class="muted">
           <% if current_user.title? %>
-            <%= current_user.title %>
+          <%= current_user.title %>
           <% end %>
           <% if current_user.company.present? %>
-            chez <%= link_to current_user.company.name, company_path(current_user.company) %>
+          chez <%= link_to current_user.company.name, company_path(current_user.company) %>
           <% end %>
         </p>
 
         <%= link_to resident_path(current_user), class: 'btn btn-default btn-icon' do %>
-          <i class="material-icons">visibility</i> <span>Voir mon profil</span>
+        <i class="material-icons">visibility</i> <span>Voir mon profil</span>
         <% end %>
         <%= link_to "Deconnexion", destroy_user_session_path, :method => :delete, class: 'btn btn-primary' %>
       </div>
@@ -38,15 +38,37 @@
 
         <div class="events">
           <% if @events %>
-            <% @events.each do |event| %>
-              <%= render('events/event-item', event: event, hasDescription: false ) %>
-            <% end %>
+          <% @events.each do |event| %>
+          <%= render('events/event-item', event: event, hasDescription: false ) %>
+          <% end %>
           <% else %>
-            <p class="muted">Aucun évènements...</p>
+          <p class="muted">Aucun évènements...</p>
           <% end %>
         </div>
 
         <%= link_to "Voir plus d'événements ›", events_path  %>
+
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-heading">
+        <h2>Mes projets</h2>
+      </div>
+      <div class="panel-body">
+
+        <div class="events">
+
+        <% if current_user.projects.each do |project| %>
+
+          <%= render "layouts/list-item", item: project %>
+
+          <% end.empty? %>
+
+          <p class="muted">Vous n'avez aucun projet.</p>
+
+          <% end %>
+        </div>
 
       </div>
     </div>
@@ -58,7 +80,7 @@
         <h2>
           Mes réservations à venir
           <% if @current_user.reservations.where('reservations.end_time > ?', Time.current) %>
-            <%= link_to "Réserver une salle", search_reservations_path, class: 'heading-link pull-right' %>
+          <%= link_to "Réserver une salle", search_reservations_path, class: 'heading-link pull-right' %>
           <% end %>
         </h2>
       </div>
@@ -67,12 +89,12 @@
 
         <% if @reservations.each do |reservation| %>
 
-          <%= render('reservations/reservation-item', reservation: reservation, type: "reservation") %>
+        <%= render('reservations/reservation-item', reservation: reservation, type: "reservation") %>
 
         <% end.empty? %>
 
-          <p class="muted">Oh non... il n'y a aucune reservation.</p>
-          <%= link_to "Réserver une salle", search_reservations_path, class: 'btn btn-info' %>
+        <p class="muted">Oh non... il n'y a aucune reservation.</p>
+        <%= link_to "Réserver une salle", search_reservations_path, class: 'btn btn-info' %>
 
         <% end %>
 
@@ -86,11 +108,11 @@
       <div class="panel-body">
         <% if @newbies.each do |employee| %>
 
-          <%= render "layouts/list-item", item: employee %>
+        <%= render "layouts/list-item", item: employee %>
 
         <% end.empty? %>
 
-          <p class="muted">Personne ne nous a rejoint cette semaine...</p>
+        <p class="muted">Personne ne nous a rejoint cette semaine...</p>
 
         <% end %>
       </div>

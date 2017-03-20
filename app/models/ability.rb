@@ -6,19 +6,18 @@ class Ability
     #
     user ||= User.new # guest user (not logged in)
     if user.role == "admin"
-      can :manage, Event
-      can :manage, Company
-      can :manage, Floor
-      can :manage, User
-      can :manage, MeetingRoom
-      can :manage, Reservation
-      can :manage, Program
-      can :manage, Project
-      can :manage, Role
+      can :manage, :all
     elsif user.role == "user"
       can :manage, Reservation, user_id: user.id
       can :update, User, id: user.id
-      can :read, :all
+      can :read, Event
+      can :read, Company
+      can :read, Floor
+      can :read, User
+      can :read, MeetingRoom
+      can :read, Reservation
+      can :read, Program
+      can :read, Project
     else
       can :read, Event
       can :read, User
