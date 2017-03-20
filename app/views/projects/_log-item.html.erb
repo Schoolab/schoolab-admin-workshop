@@ -31,7 +31,7 @@
           </span>
         <% end %>
       <% if can? :manage, Log %>
-        <a href="#">Modifier</a>
+        <%= link_to "delete log", project_log_path(log), method: :delete %>
       <% end %>
     </div>
   </div>
