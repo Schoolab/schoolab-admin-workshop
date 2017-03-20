@@ -164,13 +164,14 @@
 <div class="panel <%= cardItem_textAlign.presence || cardItem_textAlign %>">
 
   <div class="panel-heading">
-
-    <% if cardItem_thumbnailName.present? && cardItem_thumbnailName.file? %>
-      <div class="thumbnail <%= cardItem_thumbShape.presence || cardItem_thumbShape %> mb" style="width:<%= cardItem_thumbSize %>px;height:<%= cardItem_thumbSize %>px;">
-        <%= image_tag cardItem_thumbnailName.url(:thumb), size: cardItem_thumbSize %>
-      </div>
-    <% else %>
-      <div class="thumbnail no-thumb <%= cardItem_thumbShape.presence || cardItem_thumbShape %> <%= cardItem_thumbItem.presence || cardItem_thumbItem %> mb" style="width:<%= cardItem_thumbSize %>px;height:<%= cardItem_thumbSize %>px;"></div>
+    <% if cardItem_imageType == "thumb" %>
+      <% if cardItem_thumbnailName.present? && cardItem_thumbnailName.file? %>
+        <div class="thumbnail <%= cardItem_thumbShape.presence || cardItem_thumbShape %> mb" style="width:<%= cardItem_thumbSize %>px;height:<%= cardItem_thumbSize %>px;">
+          <%= image_tag cardItem_thumbnailName.url(:thumb), size: cardItem_thumbSize %>
+        </div>
+      <% else %>
+        <div class="thumbnail no-thumb <%= cardItem_thumbShape.presence || cardItem_thumbShape %> <%= cardItem_thumbItem.presence || cardItem_thumbItem %> mb" style="width:<%= cardItem_thumbSize %>px;height:<%= cardItem_thumbSize %>px;"></div>
+      <% end %>
     <% end %>
 
     <% if cardItem_titleHeading.present? %>
