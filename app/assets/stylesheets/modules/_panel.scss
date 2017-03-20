@@ -113,7 +113,7 @@
   border-radius: 0 0 $border-radius-small $border-radius-small;
 }
 
-.panel-section {
+.panel-section:not(:last-child) {
   margin: 0 0 1.5rem;
 }
 

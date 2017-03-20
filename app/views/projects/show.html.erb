@@ -28,7 +28,7 @@
           </div>
         </div>
 
-        <%if can? :manage, Role %>
+        <% if can? :manage, Role %>
           <%= simple_form_for :role, url: project_members_path(@project) do |f| %>
             <div class="row form-row">
               <div class="form-group col-md-6 has-feedback has-feedback-left">
