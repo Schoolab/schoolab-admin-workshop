@@ -80,8 +80,8 @@ ActiveRecord::Schema.define(version: 20170317110311) do
     t.datetime "updated_at",  null: false
     t.text     "description"
     t.string   "colour"
-    t.integer  "number"
     t.time     "deleted_at"
+    t.integer  "number"
   end
 
   create_table "logs", force: :cascade do |t|
