@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  has_attached_file :image, styles: { large: "1200x1200", medium: "300x300>", thumb: "100x100>" }, default_url: ""
+  has_attached_file :image, styles: { large: "1200x1200", medium: "300x300>", cover: "500x500>", thumb: "192x192>" }, default_url: ""
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   acts_as_paranoid

@@ -10,21 +10,42 @@
         <h2>Liste des participants</h2>
       </div>
       <div class="panel-body">
-        <% if @project.roles.each do |role| %>
 
-          <%= render "layouts/list-item", item: role.user %>
-          <%= button_to "Retirer " + role.user.name, role, method: :delete %>
-          <br>
+        <div class="panel-section">
+          <h3 class="panel-section__title">Équipe du projet</h3>
+          <div class="row">
+            <% if @project.roles.each do |role| %>
 
-        <% end.empty? %>
+              <div class="col-xs-12 col-md-6">
+                <%= render "member-item", role: role %>
+              </div>
 
-          <p class="muted">Il n'y a personne dans ce projet.</p>
+            <% end.empty? %>
 
-        <% end %>
-        <%= simple_form_for :role, url: project_members_path(@project) do |f| %>
-          <%= f.input :user_id, collection: @other_users, label: "Membre" %>
-          <%= f.input :name, collection: Role.collection_for_select, label: "Rôle" %>
-          <%= f.submit "Ajouter un membre" %>
+              <p class="muted">Il n'y a personne dans ce projet.</p>
+
+            <% end %>
+          </div>
+        </div>
+
+        <% if can? :manage, Role %>
+          <%= simple_form_for :role, url: project_members_path(@project) do |f| %>
+            <div class="row form-row">
+              <div class="form-group col-md-6 has-feedback has-feedback-left">
+                <%= f.label :name, "Membre", class: "sr-only" %>
+                <%= f.input :user_id, collection: @other_users,  label: false, prompt: "Membre" %>
+                <i class="form-control-feedback material-icons">person</i>
+              </div>
+              <div class="form-group col-md-3 has-feedback has-feedback-left">
+                <%= f.label :name, "Rôle", class: "sr-only" %>
+                <%= f.input :name, collection: Role.collection_for_select,  label: false, prompt: "Rôle" %>
+                <i class="form-control-feedback material-icons">whatshot</i>
+              </div>
+              <div class="col-md-3">
+                <%= f.submit "Ajouter un membre", class: "btn btn-primary col-xs-12" %>
+              </div>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>

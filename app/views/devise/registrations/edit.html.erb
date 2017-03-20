@@ -12,13 +12,9 @@
       <p class="small">Vous n’avez pas de photo ? Pas de panique, de temps en temps nous faisons des séances photos à Schoolab, on vous préviendra par mail.</p>
       <div class="row form-row">
         <div class="form-group col-xs-12 align-items-center">
-          <% if @user.photo.file? %>
-            <div class="thumbnail ovale-thumb resident-thumb" style="width:96px;height:96px;margin-right:1rem;">
-              <%= image_tag @user.photo.url(:medium), size: 96 %>
-            </div>
-          <% else %>
-            <div class="thumbnail ovale-thumb no-thumb resident-thumb" style="width:96px;height:96px;margin-right:1rem;"></div>
-          <% end %>
+          <div class="thumbnail ovale-thumb resident-thumb" style="width:96px;height:96px;margin-right:1rem;">
+            <%= image_tag @user.photo.url(:thumb), size: 96 %>
+          </div>
           <%= f.file_field :photo, class: "inputfile", data: { :caption => "{nb} fichiers selectionnés" } %>
           <%= f.label :photo, '<span class="label-btn">Envoyer une photo</span><span class="label-filename">Pas de fichier selectionné</span>'.html_safe %>
         </div>

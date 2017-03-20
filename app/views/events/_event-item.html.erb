@@ -7,8 +7,6 @@
   <div class="event-content">
 
     <p class="meta meta-top meta-blue">
-
-      <!-- TODO: Utiliser une méthode de rails -->
       <% if event.date.today? %>
         Aujourd'hui
         <%= + ' de ' + event.friendly_hour(event.start_time) + ' à ' + event.friendly_hour(event.end_time) %>
