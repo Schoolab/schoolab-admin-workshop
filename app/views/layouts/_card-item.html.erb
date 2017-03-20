@@ -5,7 +5,7 @@
     @companies = Company.where('floor_id = ?', @floor.id)
     @spaces = MeetingRoom.where('floor_id = ?', @floor.id)
     cardItem_textAlign = "txt-c"
-    cardItem_imageType = "thumb"
+    cardItem_imageType = "no-thumb"
     cardItem_thumbItem = "floor-thumb"
     cardItem_thumbSize = 96
     cardItem_editPath = edit_floor_path(item)
@@ -165,13 +165,11 @@
 
   <div class="panel-heading">
     <% if cardItem_imageType == "thumb" %>
-      <% if cardItem_thumbnailName.present? && cardItem_thumbnailName.file? %>
-        <div class="thumbnail <%= cardItem_thumbShape.presence || cardItem_thumbShape %> mb" style="width:<%= cardItem_thumbSize %>px;height:<%= cardItem_thumbSize %>px;">
-          <%= image_tag cardItem_thumbnailName.url(:thumb), size: cardItem_thumbSize %>
-        </div>
-      <% else %>
-        <div class="thumbnail no-thumb <%= cardItem_thumbShape.presence || cardItem_thumbShape %> <%= cardItem_thumbItem.presence || cardItem_thumbItem %> mb" style="width:<%= cardItem_thumbSize %>px;height:<%= cardItem_thumbSize %>px;"></div>
-      <% end %>
+      <div class="thumbnail <%= cardItem_thumbShape.presence || cardItem_thumbShape %> mb" style="width:<%= cardItem_thumbSize %>px;height:<%= cardItem_thumbSize %>px;">
+        <%= image_tag cardItem_thumbnailName.url(:thumb), size: cardItem_thumbSize %>
+      </div>
+    <% elsif cardItem_imageType == "no-thumb" %>
+      <div class="thumbnail no-thumb <%= cardItem_thumbShape.presence || cardItem_thumbShape %> <%= cardItem_thumbItem.presence || cardItem_thumbItem %> mb" style="width:<%= cardItem_thumbSize %>px;height:<%= cardItem_thumbSize %>px;"></div>
     <% end %>
 
     <% if cardItem_titleHeading.present? %>
