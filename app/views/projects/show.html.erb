@@ -28,22 +28,24 @@
           </div>
         </div>
 
-        <%= simple_form_for :role, url: project_members_path(@project) do |f| %>
-          <div class="row form-row">
-            <div class="form-group col-md-6 has-feedback has-feedback-left">
-              <%= f.label :name, "Membre", class: "sr-only" %>
-              <%= f.input :user_id, collection: @other_users,  label: false, prompt: "Membre" %>
-              <i class="form-control-feedback material-icons">person</i>
+        <%if can? :manage, Role %>
+          <%= simple_form_for :role, url: project_members_path(@project) do |f| %>
+            <div class="row form-row">
+              <div class="form-group col-md-6 has-feedback has-feedback-left">
+                <%= f.label :name, "Membre", class: "sr-only" %>
+                <%= f.input :user_id, collection: @other_users,  label: false, prompt: "Membre" %>
+                <i class="form-control-feedback material-icons">person</i>
+              </div>
+              <div class="form-group col-md-3 has-feedback has-feedback-left">
+                <%= f.label :name, "Rôle", class: "sr-only" %>
+                <%= f.input :name, collection: Role.collection_for_select,  label: false, prompt: "Rôle" %>
+                <i class="form-control-feedback material-icons">whatshot</i>
+              </div>
+              <div class="col-md-3">
+                <%= f.submit "Ajouter un membre", class: "btn btn-primary col-xs-12" %>
+              </div>
             </div>
-            <div class="form-group col-md-3 has-feedback has-feedback-left">
-              <%= f.label :name, "Rôle", class: "sr-only" %>
-              <%= f.input :name, collection: Role.collection_for_select,  label: false, prompt: "Rôle" %>
-              <i class="form-control-feedback material-icons">whatshot</i>
-            </div>
-            <div class="col-md-3">
-              <%= f.submit "Ajouter un membre", class: "btn btn-primary col-xs-12" %>
-            </div>
-          </div>
+          <% end %>
         <% end %>
       </div>
     </div>
