@@ -5,11 +5,9 @@
 
     <div class="panel txt-c">
       <div class="panel-heading">
-        <% if current_user.photo.file? %>
         <div class="thumbnail ovale-thumb resident-thumb mb" style="width:96px;height:96px;">
-          <%= image_tag current_user.photo.url(:medium), size: 96 %>
+          <%= image_tag current_user.photo.url(:thumb), size: 96 %>
         </div>
-        <% end %>
         <h2>
           <span class="panel-heading-prefix block">Bienvenue</span>
           <%= current_user.first_name %>

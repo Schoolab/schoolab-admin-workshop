@@ -38,14 +38,6 @@
     }
 }
 
-.no-thumb.resident-thumb:before {
-  content: "person";
-}
-
-.no-thumb.company-thumb:before {
-  content: "location_city";
-}
-
 .no-thumb.project-thumb:before {
   content: "assignment";
 }
@@ -57,10 +49,6 @@
 .no-thumb.place-thumb:before {
   font-family: "Material Design Icons";
   content: "\F1A6";
-}
-
-.no-thumb.image-thumb:before {
-  content: "insert_photo";
 }
 
 // Thumb shapes

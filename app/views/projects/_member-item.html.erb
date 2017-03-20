@@ -1,0 +1,31 @@
+<div class="member-item">
+  <%= link_to resident_path(role.user) do %>
+    <div class="thumbnail ovale-thumb pull-left" style="width:3rem;height:3rem;">
+      <%= image_tag role.user.photo.url(:thumb) %>
+    </div>
+  <% end %>
+
+  <div class="member-item__details">
+    <div class="member-item__title">
+      <%= link_to role.user.name, resident_path(role.user) %>
+      <span class="muted member-item__actions">
+        <%= link_to "Retirer", role, method: :delete, data: { confirm: 'Êtes-vous sûr ?' } %>
+      </span>
+    </div>
+    <div class="member-item__subtitle">
+      <% if role.name == "director" %>
+        Directeur de programme
+      <% elsif role.name == "coach" %>
+        Coach
+      <% elsif role.name =="mentor" %>
+        Mentor
+      <% else %>
+        <%= role.user.title %>
+        <% if role.user.company.presence %>
+          <span class="muted"> chez <%= link_to role.user.company.name, company_path(role.user.company) %></span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+</div>

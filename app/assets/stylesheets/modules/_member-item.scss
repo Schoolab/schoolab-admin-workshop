@@ -1,0 +1,30 @@
+.member-item {
+  display: flex;
+  position: relative;
+  margin: 0 0 .75rem;
+}
+
+.member-item__details {
+  margin: 0 0 0 .5rem;
+}
+
+.member-item__actions {
+
+}
+
+.member-item__title {
+  color: $brand-primary;
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.25rem;
+
+  & > a {
+    color: $brand-primary;
+  }
+}
+
+.member-item__subtitle {
+  font-weight: normal;
+  font-size: 1rem;
+  line-height: 1.25rem;
+}

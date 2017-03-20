@@ -7,6 +7,7 @@
     cardItem_thumbSize = 80
 
     cardItem_path = resident_path(item)
+    cardItem_editPath = edit_resident_path(item)
     cardItem_titleHeading = item.name
     if item.title.present?
       cardItem_titleSubtitle = item.title + ' '
@@ -36,6 +37,7 @@
     cardItem_thumbSize = 80
 
     cardItem_path = company_path(item)
+    cardItem_editPath = edit_company_path(item)
     cardItem_titleHeading = item.name
     cardItem_titleSubtitle = item.employees.count.to_s
     cardItem_titleSubtitle += ' employé'.pluralize(item.employees.count).to_s
@@ -56,6 +58,7 @@
     cardItem_thumbSize = 80
 
     cardItem_path = program_path(item)
+    cardItem_editPath = edit_program_path(item)
     cardItem_titleHeading = item.name
 
     if item.seasons.count > 0
@@ -75,6 +78,7 @@
     cardItem_thumbSize = 80
 
     cardItem_path = project_path(item)
+    cardItem_editPath = edit_project_path(item)
     cardItem_titleHeading = item.name
     cardItem_titleSubtitle = "soon"
 
@@ -83,13 +87,9 @@ end %>
 <div class="list-item">
   <%= link_to cardItem_path do %>
 
-    <% if cardItem_thumbnail.file? %>
-      <div class="thumbnail <%= cardItem_thumbShape.presence || cardItem_thumbShape %> pull-left" style="width:<%= cardItem_thumbSize %>px;height:<%= cardItem_thumbSize %>px;">
-        <%= image_tag cardItem_thumbnail.url(:medium), size: cardItem_thumbSize %>
-      </div>
-    <% else %>
-      <div class="thumbnail no-thumb <%= cardItem_thumbShape.presence || cardItem_thumbShape %> <%= cardItem_thumbType.presence || cardItem_thumbType %>" style="width:<%= cardItem_thumbSize %>px;height:<%= cardItem_thumbSize %>px;"></div>
-    <% end %>
+    <div class="thumbnail <%= cardItem_thumbShape.presence || cardItem_thumbShape %> pull-left" style="width:<%= cardItem_thumbSize %>px;height:<%= cardItem_thumbSize %>px;">
+      <%= image_tag cardItem_thumbnail.url(:thumb), size: cardItem_thumbSize %>
+    </div>
 
   <% end %>
 
@@ -98,6 +98,11 @@ end %>
     <% if cardItem_titleHeading.presence %>
       <h3 class="panel-title">
         <%= link_to cardItem_path do cardItem_titleHeading end %>
+        <% if (can? :manage, item.class) && (cardItem_editPath.presence) %>
+          <span class="list-item__actions">
+            <%= link_to "Modifier", cardItem_editPath, class: "muted" %>
+          </span>
+        <% end %>
       </h3>
     <% end %>
 

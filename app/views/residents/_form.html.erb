@@ -17,7 +17,7 @@
         <div class="form-group col-xs-12 align-items-center">
           <% if @user.photo.file? %>
             <div class="thumbnail ovale-thumb resident-thumb" style="width:96px;height:96px;margin-right:1rem;">
-              <%= image_tag @user.photo.url(:medium), size: 96 %>
+              <%= image_tag @user.photo.url(:thumb), size: 96 %>
             </div>
           <% else %>
             <div class="thumbnail ovale-thumb no-thumb resident-thumb" style="width:96px;height:96px;margin-right:1rem;"></div>

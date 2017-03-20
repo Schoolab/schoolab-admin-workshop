@@ -10,7 +10,7 @@ class Role < ApplicationRecord
       ["Membre", 'member'],
       ["Coach", 'coach'],
       ["Mentor", 'mentor'],
-      ["Direceur", 'director']
+      ["Directeur de programme", 'director']
     ]
   end
 end
