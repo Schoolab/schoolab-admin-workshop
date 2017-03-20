@@ -90,12 +90,14 @@
 .panel-title {
   margin: 0 auto;
   font-size: 1.25rem;
-  line-height: 2rem;
+  line-height: 1.5rem;
   color: $brand-primary;
 }
 
 .panel-subtitle {
   margin: 0 auto .5rem;
+  line-height: 1.25rem;
+  margin: 0 0 0.75rem;
 }
 
 .panel-footer {

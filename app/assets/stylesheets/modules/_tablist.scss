@@ -1,0 +1,18 @@
+.tablist {
+
+}
+
+.tablist {
+  li {
+    color: $brand-75;
+
+    & > a {
+      color: $brand-75;
+    }
+  }
+
+  .active {
+    color: inherit;
+    font-weight: bold;
+  }
+}

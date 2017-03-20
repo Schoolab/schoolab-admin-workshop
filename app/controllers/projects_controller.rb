@@ -18,6 +18,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @other_users = User.all - @project.users
+    @logs = Log.where("project_id = ?", params[:id]).order('date DESC')
   end
 
   # GET /projects/new

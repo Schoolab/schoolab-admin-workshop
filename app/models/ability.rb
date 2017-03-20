@@ -15,6 +15,7 @@ class Ability
       can :manage, Program
       can :manage, Project
       can :manage, Role
+      can :manage, Log
     elsif user.role == "user"
       can :manage, Reservation, user_id: user.id
       can :update, User, id: user.id

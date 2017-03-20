@@ -4,49 +4,76 @@
   </div>
 
   <div class="col-xs-12 col-md-8">
-
     <div class="panel">
-      <div class="panel-heading">
-        <h2>Liste des participants</h2>
+      <div class="panel-heading panel-heading--bordered">
+        <h2><%= title @project.name %></h2>
+        <ul class="tablist inline-list mt" role="tablist">
+          <li role="presentation" class="active">
+            <a href="#participants" aria-controls="participants" role="tab" data-toggle="tab">Participants</a>
+          </li>
+          <li role="presentation">
+            <a href="#logs" aria-controls="logs" role="tab" data-toggle="tab">Historique</a>
+          </li>
+        </ul>
       </div>
-      <div class="panel-body">
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="participants">
 
-        <div class="panel-section">
-          <h3 class="panel-section__title">Équipe du projet</h3>
-          <div class="row">
-            <% if @project.roles.each do |role| %>
+          <div class="panel-body">
 
-              <div class="col-xs-12 col-md-6">
-                <%= render "member-item", role: role %>
-              </div>
+            <div class="panel-section">
+              <h3 class="panel-section__title">Équipe du projet</h3>
+              <div class="row">
+                <% if @project.roles.each do |role| %>
 
-            <% end.empty? %>
+                  <div class="col-xs-12 col-md-6">
+                    <%= render "member-item", role: role %>
+                  </div>
 
-              <p class="muted">Il n'y a personne dans ce projet.</p>
+                <% end.empty? %>
 
-            <% end %>
-          </div>
-        </div>
+                  <p class="muted">Il n'y a personne dans ce projet.</p>
 
-        <% if can? :manage, Role %>
-          <%= simple_form_for :role, url: project_members_path(@project) do |f| %>
-            <div class="row form-row">
-              <div class="form-group col-md-6 has-feedback has-feedback-left">
-                <%= f.label :name, "Membre", class: "sr-only" %>
-                <%= f.input :user_id, collection: @other_users,  label: false, prompt: "Membre" %>
-                <i class="form-control-feedback material-icons">person</i>
-              </div>
-              <div class="form-group col-md-3 has-feedback has-feedback-left">
-                <%= f.label :name, "Rôle", class: "sr-only" %>
-                <%= f.input :name, collection: Role.collection_for_select,  label: false, prompt: "Rôle" %>
-                <i class="form-control-feedback material-icons">whatshot</i>
-              </div>
-              <div class="col-md-3">
-                <%= f.submit "Ajouter un membre", class: "btn btn-primary col-xs-12" %>
+                <% end %>
               </div>
             </div>
+
+            <div class="panel-section">
+              <% if can? :manage, Role %>
+                <%= simple_form_for :role, url: project_members_path(@project) do |f| %>
+                  <div class="row form-row">
+                    <div class="form-group col-md-6 has-feedback has-feedback-left">
+                      <%= f.label :name, "Membre", class: "sr-only" %>
+                      <%= f.input :user_id, collection: @other_users,  label: false, prompt: "Membre" %>
+                      <i class="form-control-feedback material-icons">person</i>
+                    </div>
+                    <div class="form-group col-md-3 has-feedback has-feedback-left">
+                      <%= f.label :name, "Rôle", class: "sr-only" %>
+                      <%= f.input :name, collection: Role.collection_for_select,  label: false, prompt: "Rôle" %>
+                      <i class="form-control-feedback material-icons">whatshot</i>
+                    </div>
+                    <div class="col-md-3">
+                      <%= f.submit "Ajouter un membre", class: "btn btn-primary col-xs-12" %>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="logs">
+
+          <% if @logs.each do |log| %>
+
+            <%= render "log-item", item: log %>
+
+          <% end.empty? %>
+
+            <p class="muted">Il n'y a aucun historique pour ce projet.</p>
+
           <% end %>
-        <% end %>
+
+        </div>
       </div>
     </div>
   </div>
