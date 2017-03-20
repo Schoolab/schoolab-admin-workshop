@@ -1,11 +1,12 @@
 class ProgramsController < ApplicationController
   before_action :set_program, only: [:show, :edit, :update, :destroy, :recover]
 
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:index]
 
   # GET /programs
   # GET /programs.json
   def index
+    authorize! :manage, Program
     @programs = Program.all.order(name: :asc)
   end
 

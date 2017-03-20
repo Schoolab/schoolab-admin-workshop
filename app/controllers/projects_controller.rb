@@ -1,11 +1,12 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy, :recover]
 
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:index]
 
   # GET /projects
   # GET /projects.json
   def index
+    authorize! :manage, Project
     @projects = Project.all
   end
 
