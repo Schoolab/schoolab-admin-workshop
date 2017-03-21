@@ -1,51 +1,17 @@
-<% if !item.description.presence && item.image.presence
-  logItem_mediasOption = "only-medias"
-end %>
+<% if item.image? && item.description? %>
 
-<div class="log-item <%= logItem_mediasOption.presence || logItem_mediasOption %>">
-  <div class="log-item__container">
-    <% if item.date.presence %>
-      <div class="log-item__header">
-        <span class="log-item__date"><%= item.friendly_date %></span>
-      </div>
-    <% end %>
+  <%= render "projects/log-item/description-image", item: item %>
 
-    <div class="log-item__content">
-      <% if item.description.presence %>
-        <div class="log-item__title">
-          <%= item.title %>
-        </div>
-        <div class="log-item__description">
-          <%= item.description %>
-        </div>
-      <% else %>
-        <div class="log-item__title bigger">
-          <%= item.title %>
-        </div>
-      <% end %>
-    </div>
+<% elsif item.image? %>
 
-    <div class="log-item__footer">
-        <% if item.created_at.present? %>
-          <span class="muted">
-            <% if item.audits.present? %>
-              <%= 'Publié par ' %>
-              <%= link_to item.audits.first.user.name, resident_path(item.audits.first.user.id) %>
-            <% end %>
-          </span>
-        <% end %>
-      <% if can? :manage, item %>
-        <%= link_to "Supprimer", project_log_path(item.project, item), method: :delete, class: "ml-auto" %>
-      <% end %>
-    </div>
-  </div>
-  <% if item.image.presence %>
-    <div class="log-item__medias">
-      <% if logItem_mediasOption.presence %>
-        <%= image_tag item.image.url(:cover) %>
-      <% else %>
-        <%= image_tag item.image.url(:thumb), size: 96 %>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+  <%= render "projects/log-item/image", item: item %>
+
+<% elsif item.description? %>
+
+  <%= render "projects/log-item/description", item: item %>
+
+<% else %>
+
+  <%= render "projects/log-item/title", item: item %>
+
+<% end %>

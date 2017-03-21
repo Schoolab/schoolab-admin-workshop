@@ -1,0 +1,15 @@
+<div class="log-item__footer">
+
+    <% if item.created_at.present? %>
+      <span class="muted">
+        <% if item.audits.present? %>
+          <%= 'Publié par ' %>
+          <%= link_to item.audits.first.user.name, resident_path(item.audits.first.user.id) %>
+        <% end %>
+      </span>
+    <% end %>
+  <% if can? :manage, item %>
+    <%= link_to "Supprimer", project_log_path(item.project, item), method: :delete, class: "ml-auto" %>
+  <% end %>
+
+</div>
