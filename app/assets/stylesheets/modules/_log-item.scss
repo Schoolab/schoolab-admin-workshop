@@ -1,7 +1,12 @@
 .log-item {
   display: flex;
+  background-color: $white;
   padding: 1.5rem;
   flex-direction: row;
+
+  &:hover {
+    background-color: $brand-05;
+  }
 
   &:not(:last-child) {
     border-bottom: 1px solid rgba($black, .1);
@@ -13,7 +18,13 @@
 }
 
 .log-item__container {
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
+}
+
+.log-item__content {
+  margin-bottom: auto;
 }
 
 .log-item__header {}
@@ -47,13 +58,20 @@
 }
 
 .log-item__footer {
+  display: flex;
+  position: relative;
   color: $brand-50;
   font-weight: normal;
   font-size: 1rem;
   line-height: 1.25rem;
+
+  a {
+    color: $brand-50;
+  }
 }
 
 .log-item__medias {
+  position: relative;
   overflow: hidden;
   border-radius: $border-radius-small;
   width: 12rem;
@@ -62,6 +80,18 @@
 
   img {
     width: 100%;
+    height: auto;
+  }
+}
+
+.only-medias {
+  flex-direction: column;
+
+  .log-item__medias {
+    margin: 1rem 0 0 0;
+    width: 100%;
+    height: auto;
+    max-height: 16rem;
   }
 }
 

@@ -3,6 +3,7 @@ class LogsController < ApplicationController
 
   def index
     @project = Project.find(params[:project_id])
+    @logs = @project.logs.order('date DESC')
     render 'projects/logs'
   end
 
@@ -30,7 +31,7 @@ class LogsController < ApplicationController
   private
 
     def log_params
-      params.require(:log).permit(:title, :date, :description)
+      params.require(:log).permit(:title, :date, :description, :image)
     end
 
 end

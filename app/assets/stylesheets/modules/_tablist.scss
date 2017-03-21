@@ -1,18 +1,43 @@
-.tablist {
+.tablist-heading {
+  display: flex;
+  position: relative;
+  background-color: $brand-05;
+  border-bottom: 1px solid $border-color;
+  padding: .5rem 1.5rem;
+}
 
+.tablist {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .tablist {
   li {
     color: $brand-75;
+    font-size: 1rem;
+    line-height: 2rem;
+
+    &:not(:last-child) {
+      margin: 0 1rem 0 0;
+    }
 
     & > a {
       color: $brand-75;
+    }
+
+    .tablist-action {
+      color: $brand-blue;
     }
   }
 
   .active {
     color: inherit;
     font-weight: bold;
+  }
+
+  &.right {
+    margin-left: auto;
   }
 }

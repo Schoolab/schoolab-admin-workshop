@@ -1,4 +1,8 @@
-<div class="log-item">
+<% if !item.description.presence && item.image.presence
+  logItem_mediasOption = "only-medias"
+end %>
+
+<div class="log-item <%= logItem_mediasOption.presence || logItem_mediasOption %>">
   <div class="log-item__container">
     <% if item.date.presence %>
       <div class="log-item__header">
@@ -25,17 +29,23 @@
         <% if item.created_at.present? %>
           <span class="muted">
             <% if item.audits.present? %>
-              <%= 'Créé par ' %>
-              <%= link_to item.audits.first.user.name, resident_path(item.audits.first.user.id) %>.
+              <%= 'Publié par ' %>
+              <%= link_to item.audits.first.user.name, resident_path(item.audits.first.user.id) %>
             <% end %>
           </span>
         <% end %>
       <% if can? :manage, item %>
-        <%= link_to "delete log", project_log_path(item.project, item), method: :delete %>
+        <%= link_to "Supprimer", project_log_path(item.project, item), method: :delete, class: "ml-auto" %>
       <% end %>
     </div>
   </div>
-  <!-- <div class="log-item__medias">
-    <img src="https://images.unsplash.com/photo-1439209306665-700c9bca794c?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=" alt="">
-  </div> -->
+  <% if item.image.presence %>
+    <div class="log-item__medias">
+      <% if logItem_mediasOption.presence %>
+        <%= image_tag item.image.url(:cover) %>
+      <% else %>
+        <%= image_tag item.image.url(:thumb), size: 96 %>
+      <% end %>
+    </div>
+  <% end %>
 </div>

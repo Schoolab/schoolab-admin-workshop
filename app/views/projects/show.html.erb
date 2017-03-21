@@ -5,65 +5,70 @@
 
   <div class="col-xs-12 col-md-8">
     <div class="panel">
-      <div class="panel-heading panel-heading--bordered">
-        <h2><%= title @project.name %></h2>
-        <ul class="tablist inline-list mt" role="tablist">
-          <li role="presentation" class="active">
-            <%= link_to "Participants", @project %>
-          </li>
-          <li role="presentation">
-            <%= link_to "Historique", project_logs_path(@project) %>
+      <div class="tablist-heading">
+        <ul class="tablist">
+          <li class="active"><%= link_to "Participants", @project %></li>
+          <li><%= link_to "Historique", project_logs_path(@project) %></li>
+        </ul>
+
+        <ul class="tablist right">
+          <li>
+            <li><a href="#" data-toggle="modal" data-target="#newLogModal" class="tablist-action">Nouveau rapport</a></li>
           </li>
         </ul>
       </div>
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active">
 
-          <div class="panel-body">
+      <div class="panel-body mt">
 
+        <% if @project.project_type == 'startup' %>
+
+        <% else %>
+
+          <% if @project.roles.where(name: ["coach", "mentor", "director"]).present? %>
             <div class="panel-section">
-
-              <% if @project.project_type == 'startup' %>
-
-              <% else %>
-
-              <% if @project.roles.where(name: "coach").present? %>
               <h3 class="panel-section__title">Équipe Schoolab</h3>
               <div class="row">
-                <% @project.roles.where(name: "coach").each do |role| %>
-                <div class="col-xs-12 col-md-6">
-                  <%= render "member-item", role: role %>
-                </div>
+                <% @project.roles.where(name: ["coach", "mentor", "director"]).each do |role| %>
+                  <div class="col-xs-12 col-md-6">
+                    <%= render "member-item", role: role %>
+                  </div>
                 <% end %>
               </div>
-              <% end %>
+            </div>
+          <% end %>
 
-              <% if @project.roles.where(name: "member").present? %>
-              <h3 class="panel-section__title">Équipe projet</h3>
-              <div class="row">
-                <% @project.roles.where(name: "member").each do |role| %>
-                <div class="col-xs-12 col-md-6">
-                  <%= render "member-item", role: role %>
-                </div>
-                <% end %>
-              </div>
-              <% end %>
-
-              <% if @project.roles.where(name: "member").present? %>
-              <h3 class="panel-section__title">Entreprise cliente</h3>
+          <% if @project.roles.where(name: "client").present? %>
+            <div class="panel-section">
+              <h3 class="panel-section__title">Équipe du client</h3>
               <div class="row">
                 <% @project.roles.where(name: "client").each do |role| %>
-                <div class="col-xs-12 col-md-6">
-                  <%= render "member-item", role: role %>
-                </div>
+                  <div class="col-xs-12 col-md-6">
+                    <%= render "member-item", role: role %>
+                  </div>
                 <% end %>
               </div>
-              <% end %>
+            </div>
+          <% end %>
 
-              <% end %>
+          <% if @project.roles.where(name: "member").present? %>
+            <div class="panel-section">
+              <h3 class="panel-section__title">Équipe du projet</h3>
+              <div class="row">
+                <% @project.roles.where(name: "member").each do |role| %>
+                  <div class="col-xs-12 col-md-6">
+                    <%= render "member-item", role: role %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
 
-              <% if can? :manage, Role %>
-              <%= simple_form_for :role, url: project_members_path(@project) do |f| %>
+        <% end %>
+
+        <% if can? :manage, Role %>
+          <div class="panel-section">
+            <h3 class="panel-section__title">Ajouter un membre</h3>
+            <%= simple_form_for :role, url: project_members_path(@project) do |f| %>
               <div class="row form-row">
                 <div class="form-group col-md-6 has-feedback has-feedback-left">
                   <%= f.label :name, "Membre", class: "sr-only" %>
@@ -79,11 +84,11 @@
                   <%= f.submit "Ajouter un membre", class: "btn btn-primary col-xs-12" %>
                 </div>
               </div>
-              <% end %>
-              <% end %>
-            </div>
+            <% end %>
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>
+
+<%= render "projects/log-modal" %>
