@@ -20,7 +20,7 @@
 
       <% if @logs.each do |log| %>
 
-        <%= render "projects/log-item", item: log %>
+        <%= render "projects/logs/log-item", item: log %>
 
       <% end.empty? %>
 
@@ -31,4 +31,4 @@
   </div>
 </div>
 
-<%= render "projects/log-modal" %>
+<%= render "projects/logs/log-modal" %>

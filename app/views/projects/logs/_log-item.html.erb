@@ -1,0 +1,17 @@
+<% if item.image? && item.description? %>
+
+  <%= render "projects/logs/description-image", item: item %>
+
+<% elsif item.image? %>
+
+  <%= render "projects/logs/image", item: item %>
+
+<% elsif item.description? %>
+
+  <%= render "projects/logs/description", item: item %>
+
+<% else %>
+
+  <%= render "projects/logs/title", item: item %>
+
+<% end %>

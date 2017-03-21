@@ -3,6 +3,7 @@
   background-color: $white;
   padding: 1.5rem;
   flex-direction: row;
+  align-items: flex-start;
 
   &:hover {
     background-color: $brand-05;
@@ -71,12 +72,14 @@
 }
 
 .log-item__medias {
+  background-color: $brand-15;
   position: relative;
   overflow: hidden;
   border-radius: $border-radius-small;
   width: 12rem;
   flex-shrink: 0;
   margin: 0 0 0 1em;
+  border: 1px solid $border-color;
 
   img {
     width: 100%;
@@ -88,7 +91,7 @@
   flex-direction: column;
 
   .log-item__medias {
-    margin: .5rem 0 0 0;
+    margin: .5rem 0 1rem 0;
     width: 100%;
     height: auto;
     max-height: 16rem;
