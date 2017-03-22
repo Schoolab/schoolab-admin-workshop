@@ -17,7 +17,12 @@ class Ability
       can :read, MeetingRoom
       can :read, Reservation
       can :read, Program
-      can :read, Project
+      can :read, Project do |project|
+        project.users.include? user
+      end
+      can :manage, Log do |log|
+        log.project.users.include? user
+      end
     else
       can :read, Event
       can :read, User
