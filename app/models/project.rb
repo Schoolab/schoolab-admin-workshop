@@ -33,11 +33,4 @@ class Project < ApplicationRecord
     ]
   end
 
-  def picker_date
-    if self.date.present?
-      I18n.l(self.date, format: '%d/%m/%Y')
-    else
-      I18n.l(Date.today, format: '%d/%m/%Y')
-    end
-  end
 end

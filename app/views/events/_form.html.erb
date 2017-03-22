@@ -21,7 +21,7 @@
 
         <div class="form-group col-md-6 has-feedback">
           <%= f.label :start_time, "Date" %>
-          <%= f.input :date, as: :string, label: false, input_html: { class: 'datepicker form-control', value: f.object.picker_date } %>
+          <%= f.input :date, as: :string, label: false, input_html: { class: 'datepicker-future form-control', value: f.object.picker_date } %>
           <i class="form-control-feedback material-icons">today</i>
         </div>
 

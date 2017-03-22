@@ -8,7 +8,7 @@
         J’ai besoin d’une salle le
       <div class="form-group has-feedback">
         <%= f.label :start_time_date, "Date", class: "sr-only" %>
-        <%= f.input :start_time_date, as: :string, label: false, input_html: { class: 'datepicker', value: f.object.datepicker_start_time } %>
+        <%= f.input :start_time_date, as: :string, label: false, input_html: { class: 'datepicker-future', value: f.object.datepicker_start_time } %>
         <i class="form-control-feedback material-icons">today</i>
       </div> à
       <div class="length">

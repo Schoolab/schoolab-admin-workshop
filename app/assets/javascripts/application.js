@@ -39,10 +39,20 @@ $(document).on('turbolinks:load', function() {
 		titleFormat: 'MM yyyy'
 	};
 
-	$('.datepicker').datepicker({
+	$('.datepicker-future').datepicker({
 		language: 'fr',
 		autoclose: true,
 		startDate: new Date(),
+		todayHighlight: true,
+		icons: {
+			previous: 'glyphicon glyphicon-chevron-left',
+			next: 'glyphicon glyphicon-chevron-right',
+		}
+	});
+
+	$('.datepicker-all').datepicker({
+		language: 'fr',
+		autoclose: true,
 		todayHighlight: true,
 		icons: {
 			previous: 'glyphicon glyphicon-chevron-left',

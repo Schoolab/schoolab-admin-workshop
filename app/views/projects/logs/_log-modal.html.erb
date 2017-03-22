@@ -18,17 +18,17 @@
 
             <div class="form-group col-md-6 has-feedback">
               <%= f.label :date, "Date" %>
-              <%= f.input :date, as: :string, label: false, input_html: { class: 'datepicker form-control' } %>
+              <%= f.input :date, as: :string, label: false, input_html: { class: 'datepicker-all form-control', value: I18n.l(Date.today, format: '%d/%m/%Y') } %>
               <i class="form-control-feedback material-icons">today</i>
             </div>
 
             <div class="form-group col-md-12">
               <%= f.label :description, "Description" %>
-              <%= f.input_field :description, input_html: { rows: 3 }, class: "form-control" %>
+              <%= f.input :description, as: :text, input_html: { rows: 3 }, label: false, class: "form-control" %>
             </div>
 
             <div class="form-group col-xs-12">
-              <%= f.label "Image", style: "display: block;" %>
+              <%= f.label "Image", style: "display: block;", required: false %>
               <div class="row">
                 <div class="col-xs-12">
                   <%= f.file_field :image, as: :file, class: "inputfile", data: { :caption => "{nb} fichiers selectionnés" } %>
