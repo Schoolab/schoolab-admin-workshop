@@ -4,7 +4,7 @@
     cardItem_thumbnail = item.photo
     cardItem_thumbShape = "ovale-thumb"
     cardItem_thumbType = "resident-thumb"
-    cardItem_thumbSize = 80
+    cardItem_thumbSize = "5rem"
 
     cardItem_path = resident_path(item)
     cardItem_editPath = edit_resident_path(item)
@@ -34,7 +34,7 @@
   when 'Company'
     cardItem_thumbnail = item.image
     cardItem_thumbType = "company-thumb"
-    cardItem_thumbSize = 80
+    cardItem_thumbSize = "5rem"
 
     cardItem_path = company_path(item)
     cardItem_editPath = edit_company_path(item)
@@ -55,7 +55,7 @@
   when 'Program'
     cardItem_thumbnail = item.image
     cardItem_thumbType = "image-thumb"
-    cardItem_thumbSize = 80
+    cardItem_thumbSize = "5rem"
 
     cardItem_path = program_path(item)
     cardItem_editPath = edit_program_path(item)
@@ -75,7 +75,7 @@
   when 'Project'
     cardItem_thumbnail = item.image
     cardItem_thumbType = "project-thumb"
-    cardItem_thumbSize = 80
+    cardItem_thumbSize = "5rem"
 
     cardItem_path = project_path(item)
     cardItem_editPath = edit_project_path(item)
@@ -87,9 +87,7 @@ end %>
 <div class="list-item">
   <%= link_to cardItem_path do %>
 
-    <div class="thumbnail <%= cardItem_thumbShape.presence || cardItem_thumbShape %> pull-left" style="width:<%= cardItem_thumbSize %>px;height:<%= cardItem_thumbSize %>px;">
-      <%= image_tag cardItem_thumbnail.url(:thumb), size: cardItem_thumbSize %>
-    </div>
+    <%= render "layouts/thumbnail", thumb: cardItem_thumbnail, size: cardItem_thumbSize, addclass: "pull-left", shape: cardItem_thumbShape.presence || cardItem_thumbShape %>
 
   <% end %>
 

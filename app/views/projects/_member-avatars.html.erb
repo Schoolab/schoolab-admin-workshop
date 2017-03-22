@@ -1,0 +1,27 @@
+<div class="member-avatars">
+
+  <% if item.roles.where(name: ["coach", "mentor", "director"]).present? %>
+    <% item.roles.where(name: ["coach", "mentor", "director"]).each do |role| %>
+
+      <%= render "layouts/thumbnail", thumb: role.user.photo %>
+
+    <% end %>
+  <% end %>
+
+  <% if item.roles.where(name: ["client"]).present? %>
+    <% item.roles.where(name: "client").each do |role| %>
+
+      <%= render "layouts/thumbnail", thumb: role.user.photo %>
+
+    <% end %>
+  <% end %>
+
+  <% if item.roles.where(name: ["member"]).present? %>
+    <% item.roles.where(name: ["member"]).each do |role| %>
+
+      <%= render "layouts/thumbnail", thumb: role.user.photo %>
+
+    <% end %>
+  <% end %>
+
+</div>

@@ -7,7 +7,8 @@
     cardItem_textAlign = "txt-c"
     cardItem_imageType = "no-thumb"
     cardItem_thumbItem = "floor-thumb"
-    cardItem_thumbSize = 96
+    cardItem_thumbShape = "square-thumb"
+    cardItem_thumbSize = "6rem"
     cardItem_editPath = edit_floor_path(item)
     cardItem_titleHeading = item.name
 
@@ -26,8 +27,8 @@
     cardItem_textAlign = "txt-c"
     cardItem_imageType = "thumb"
     cardItem_thumbnailName = item.image
-    cardItem_thumbItem = "company-thumb"
-    cardItem_thumbSize = 96
+    cardItem_thumbShape = "square-thumb"
+    cardItem_thumbSize = "6rem"
     cardItem_editPath = edit_company_path(item)
     cardItem_titleHeading = item.name
 
@@ -57,8 +58,8 @@
   when 'Project'
     cardItem_imageType = "cover"
     cardItem_thumbnailName = item.image
-    cardItem_thumbItem = "image-thumb"
-    cardItem_thumbSize = 96
+    cardItem_thumbShape = "square-thumb"
+    cardItem_thumbSize = "6rem"
     cardItem_editPath = edit_project_path(item)
     cardItem_titleHeading = item.name
 
@@ -83,8 +84,8 @@
     cardItem_textAlign = "txt-c"
     cardItem_imageType = "thumb"
     cardItem_thumbnailName = item.image
-    cardItem_thumbItem = "image-thumb"
-    cardItem_thumbSize = 96
+    cardItem_thumbShape = "square-thumb"
+    cardItem_thumbSize = "6rem"
     cardItem_editPath = edit_program_path(item)
     cardItem_titleHeading = item.name
 
@@ -109,8 +110,7 @@
     cardItem_imageType = "thumb"
     cardItem_thumbnailName = item.photo
     cardItem_thumbShape = "ovale-thumb"
-    cardItem_thumbItem = "resident-thumb"
-    cardItem_thumbSize = 96
+    cardItem_thumbSize = "6rem"
 
     cardItem_editPath = edit_resident_path(item)
     cardItem_titleHeading = item.name
@@ -165,11 +165,11 @@
 
   <div class="panel-heading">
     <% if cardItem_imageType == "thumb" %>
-      <div class="thumbnail <%= cardItem_thumbShape.presence || cardItem_thumbShape %> mb" style="width:<%= cardItem_thumbSize %>px;height:<%= cardItem_thumbSize %>px;">
-        <%= image_tag cardItem_thumbnailName.url(:thumb), size: cardItem_thumbSize %>
-      </div>
+
+      <%= render "layouts/thumbnail", thumb: cardItem_thumbnailName, size: cardItem_thumbSize, addclass: "mb", shape: cardItem_thumbShape.presence || cardItem_thumbShape %>
+
     <% elsif cardItem_imageType == "no-thumb" %>
-      <div class="thumbnail no-thumb <%= cardItem_thumbShape.presence || cardItem_thumbShape %> <%= cardItem_thumbItem.presence || cardItem_thumbItem %> mb" style="width:<%= cardItem_thumbSize %>px;height:<%= cardItem_thumbSize %>px;"></div>
+      <div class="thumbnail no-thumb <%= cardItem_thumbShape.presence || cardItem_thumbShape %> <%= cardItem_thumbItem.presence || cardItem_thumbItem %> mb" style="width:<%= cardItem_thumbSize %>;height:<%= cardItem_thumbSize %>;"></div>
     <% end %>
 
     <% if cardItem_titleHeading.present? %>

@@ -18,6 +18,7 @@ class Ability
       can :read, Reservation
       can :read, Program
       can :read, Project
+      can :manage, Log
     else
       can :read, Event
       can :read, User

@@ -8,14 +8,10 @@
       <div class="tablist-heading">
         <ul class="tablist">
           <li class="active"><%= link_to "Participants", @project %></li>
-          <li><%= link_to "Historique", project_logs_path(@project) %></li>
+          <li><%= link_to "Actualités", project_logs_path(@project) %></li>
         </ul>
 
-        <ul class="tablist right">
-          <li>
-            <li><a href="#" data-toggle="modal" data-target="#newLogModal" class="tablist-action">Nouveau rapport</a></li>
-          </li>
-        </ul>
+        <ul class="tablist right"></ul>
       </div>
 
       <div class="panel-body mt">
@@ -90,5 +86,3 @@
       </div>
     </div>
   </div>
-
-<%= render "projects/logs/log-modal" %>
