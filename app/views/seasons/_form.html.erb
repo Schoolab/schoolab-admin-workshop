@@ -1,0 +1,106 @@
+<%= simple_form_for(@season) do |f| %>
+  <%= f.error_notification %>
+
+<div class="col-xs-12 col-md-8">
+  <div class="panel">
+    <div class="panel-heading">
+      <% if f.object.new_record? %>
+        <h2><%= title "Ajouter une saison" %></h2>
+      <% else %>
+        <h2><%= title "Modifier une saison" %></h2>
+      <% end %>
+    </div>
+
+    <div class="panel-body">
+
+      <div class="row form-row">
+
+        <div class="form-group col-xs-12 align-items-center">
+          <% if @season.image.file? %>
+            <div class="thumbnail square-thumb" style="margin-right: 1rem;">
+              <%= image_tag @season.image.url(:medium), size: 96, class: "pull-left" %>
+            </div>
+          <% else %>
+            <div class="thumbnail square-thumb no-thumb image-thumb" style="width:96px;height:96px;margin-right:1rem;"></div>
+          <% end %>
+
+          <%= f.file_field :image, as: :file, class: "inputfile", data: { :caption => "{nb} fichiers selectionnés" } %>
+          <%= f.label :image, '<span class="label-btn">Envoyer une photo</span><span class="label-filename">Pas de fichier selectionné</span>'.html_safe %>
+        </div>
+
+      </div>
+
+      <div class="row form-row">
+
+        <div class="form-group col-md-6 has-feedback has-feedback-left">
+          <%= f.label :name, "Nom du seasonme", class: "sr-only" %>
+          <%= f.text_field :name, autofocus: true, placeholder: "Nom du seasonme", class: "form-control" %>
+          <i class="form-control-feedback material-icons">location_city</i>
+        </div>
+
+        <div class="form-group select-wrapper  col-md-6 has-feedback has-feedback-left">
+          <%= f.label :floor_id, "Étage", class: "sr-only" %>
+          <%= f.association :floor, collection: Floor.order('number ASC'), class: 'form-control', label: false, prompt: "Étage" %>
+          <i class="form-control-feedback material-icons">view_agenda</i>
+        </div>
+
+        <div class="form-group col-xs-12">
+          <%= f.input :description, :input_html => { :rows => 4 } %>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="col-xs-12 col-md-4">
+  <div class="panel">
+    <div class="panel-heading">
+      <h3>Publier</h3>
+    </div>
+    <div class="panel-body">
+      <ul class="simple-list muted">
+        <% if @season.created_at.present? %>
+          <li>
+            <% if @season.audits.present? %>
+              <% user_id = @season.audits.first.user.id %>
+              <%= 'Créé il y a ' + time_ago_in_words(@season.created_at) + ' par ' %>
+              <%= link_to @season.audits.first.user.name, resident_path(user_id) %>.
+            <% else %>
+              <%= 'Créé il y a ' + time_ago_in_words(@season.created_at) + '.' %>
+            <% end %>
+          </li>
+        <% end %>
+        <% if @season.updated_at != @season.created_at %>
+          <li>
+            <% if @season.audits.present? %>
+            <%-# Évènement créés avec Audited -%>
+              <% user_id = @season.audits.last.user.id %>
+              <%= 'Modifié il y a ' + time_ago_in_words(@season.updated_at) + ' par ' %>
+              <%= link_to @season.audits.last.user.name, resident_path(user_id) %>.
+            <% else %>
+            <%-# Évènement créés avant Audited -%>
+              <%= 'Modifié il y a ' + time_ago_in_words(@season.updated_at) + '.' %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="panel-footer">
+      <% if f.object.new_record? %>
+        <div class="flex-end">
+          <%= f.submit "Publier", class: "btn btn-primary" %>
+        </div>
+      <% else %>
+        <div class="space-between">
+          <%= link_to "Supprimer", season_path(season), method: :delete, data: { confirm: 'Êtes-vous sûr ?' }, class: "btn btn-link btn-link--danger" %>
+          <%= f.submit "Sauvegarder", class: "btn btn-primary pull-right" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% end %>

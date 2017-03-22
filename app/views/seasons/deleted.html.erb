@@ -1,0 +1,22 @@
+<div class="panel col-xs-12">
+  <div class="panel-heading panel-heading--bordered">
+    <h2>
+      <%= title "Saison" %>
+      <% if can? :manage, season %>
+        <div class="pull-right">
+          <%= link_to 'Nouveau seasonme', new_season_path, class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </h2>
+    <% if can? :manage, Project %>
+      <ul class="inline-list mt">
+        <li><%= link_to "Tous", seasons_path %></li>
+        <li><strong>Corbeille</strong></li>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="panel-body">
+    <%= render 'list' %>
+  </div>
+</div>

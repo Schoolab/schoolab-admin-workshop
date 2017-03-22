@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
 
   resources :programs do
+    resources :seasons
     get 'deleted' => 'programs#deleted', on: :collection
     match 'recover', to: 'programs#recover', on: :member, via: [:put, :patch]
   end
