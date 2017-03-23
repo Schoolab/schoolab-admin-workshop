@@ -1,27 +1,50 @@
 <div class="member-avatars">
 
-  <% if item.roles.where(name: ["coach", "mentor", "director"]).present? %>
-    <% item.roles.where(name: ["coach", "mentor", "director"]).each do |role| %>
+  <% members = [] %>
 
-      <%= render "layouts/thumbnail", thumb: role.user.photo %>
-
-    <% end %>
+  <% item.roles.where(name: ["director", "coach", "mentor"]).each do |role| %>
+    <% members.push(role) %>
   <% end %>
 
-  <% if item.roles.where(name: ["client"]).present? %>
-    <% item.roles.where(name: "client").each do |role| %>
-
-      <%= render "layouts/thumbnail", thumb: role.user.photo %>
-
-    <% end %>
+  <% item.roles.where(name: "client").each do |role| %>
+    <% members.push(role) %>
   <% end %>
 
-  <% if item.roles.where(name: ["member"]).present? %>
-    <% item.roles.where(name: ["member"]).each do |role| %>
+  <% item.roles.where(name: ["member"]).each do |role| %>
+    <% members.push(role) %>
+  <% end %>
 
-      <%= render "layouts/thumbnail", thumb: role.user.photo %>
+  <% if members.count > 5 %>
 
+    <% members.first(4).each do |member| %>
+      <span data-toggle="tooltip" data-placement="top" title="<%= member.user.name %>">
+        <%= render "layouts/thumbnail", thumb: member.user.photo %>
+      </span>
     <% end %>
+
+    <div class="member-more">
+      <div class="member-more__thumb">+<%= members.count - 4 %></div>
+      <div class="member-more__tooltip top">
+        <ul class="member-more__list">
+          <% members[4..-1].each do |member| %>
+            <li><%= member.user.name %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+  <% elsif members.count <= 5 %>
+
+    <% members.each do |member| %>
+      <span data-toggle="tooltip" data-placement="top" title="<%= member.user.name %>">
+        <%= render "layouts/thumbnail", thumb: member.user.photo %>
+      </span>
+    <% end %>
+
+  <% elsif members.count = 0 %>
+
+    Aucun participants...
+
   <% end %>
 
 </div>

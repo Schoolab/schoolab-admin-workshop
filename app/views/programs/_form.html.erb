@@ -16,13 +16,7 @@
       <div class="row form-row">
 
         <div class="form-group col-xs-12 align-items-center">
-          <% if @program.image.file? %>
-            <div class="thumbnail square-thumb" style="margin-right: 1rem;">
-              <%= image_tag @program.image.url(:medium), size: 96, class: "pull-left" %>
-            </div>
-          <% else %>
-            <div class="thumbnail square-thumb no-thumb image-thumb" style="width:96px;height:96px;margin-right:1rem;"></div>
-          <% end %>
+          <%= render "layouts/thumbnail", thumb: @program.image, size: "6rem", shape: "square-thumb", addclass: "pull-left mr" %>
 
           <%= f.file_field :image, as: :file, class: "inputfile", data: { :caption => "{nb} fichiers selectionnés" } %>
           <%= f.label :image, '<span class="label-btn">Envoyer une photo</span><span class="label-filename">Pas de fichier selectionné</span>'.html_safe %>
