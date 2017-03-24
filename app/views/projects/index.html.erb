@@ -1,23 +1,33 @@
 <div class="panel col-xs-12">
   <div class="panel-heading panel-heading--bordered">
     <h2>
-      <%= title "Projets" %>
       <% if can? :manage, Project %>
+        <%= title "Projets" %>
         <div class="pull-right">
           <%= link_to 'Nouveau projet', new_project_path, class: 'btn btn-primary' %>
         </div>
+      <% else %>
+        <%= title "Mes projets" %>
       <% end %>
     </h2>
-    <% if can? :manage, Project %>
-      <ul class="inline-list mt">
-        <li><strong>Tous</strong></li>
+    <ul class="inline-list mt">
+      <li><strong>Tous</strong></li>
+      <% if can? :manage, Project %>
         <li><%= link_to "Corbeille", deleted_projects_path %></li>
-      </ul>
-    <% end %>
+      <% end %>
+    </ul>
   </div>
 
-  <div class="panel-body">
-    <%= render 'list' %>
+  <div class="panel-body row">
+    <% if @projects.each do |project| %>
+      <div class="col-xs-12 col-md-4">
+        <%= render 'projects/project-item', item: project %>
+      </div>
+    <% end.empty? %>
+      <div class="col-xs-12">
+        <p class="muted">Il n'y a pas de projets dans ce programme.</p>
+      </div>
+    <% end %>
   </div>
 
 </div>

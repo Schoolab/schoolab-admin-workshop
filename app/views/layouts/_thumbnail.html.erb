@@ -1,0 +1,23 @@
+<% if !defined?(addclass)
+  addclass = ""
+end
+
+if defined?(shape)
+  shapeImage = shape
+else
+  shapeImage = "ovale-thumb"
+end
+
+if defined?(size)
+  sizeImage = size
+else
+  sizeImage = "2rem"
+end
+
+if defined?(thumb)
+  itemImage = thumb
+end %>
+
+<div class="thumbnail <%= shapeImage %> <%= addclass.presence || addclass %>" style="width:<%= sizeImage %>;height:<%= sizeImage %>;">
+  <%= image_tag itemImage.url(:thumb), size: sizeImage %>
+</div>

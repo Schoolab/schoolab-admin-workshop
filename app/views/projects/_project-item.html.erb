@@ -1,0 +1,31 @@
+<div class="project-item">
+  <div class="project-item__container">
+    <div class="project-item__header">
+      <div class="project-item__cover embed-responsive-16by9">
+        <%= image_tag item.image.url(:cover) %>
+      </div>
+      <div class="project-item__overlay">
+        <%= render "projects/member-avatars", item: item %>
+      </div>
+    </div>
+    <div class="project-item__content">
+      <!-- <div class="project-item__date">
+        Dates
+      </div> -->
+      <h3 class="project-item__title">
+        <%= link_to item.name, project_path(item) %>
+        <% if can? :manage, Project %>
+          <span class="project-item__actions muted">
+            <%= link_to "Modifier", edit_project_path(item) %>
+          </span>
+        <% end %>
+      </h3>
+      <div class="project-item__subtitle">
+        <% @participants = item.roles.count.to_s %>
+        <%= @participants  + ' participant'.pluralize(@participants) %> -
+        <% @logs = item.logs.count.to_s %>
+        <%= @logs + ' actualité'.pluralize(@logs) %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,8 +6,12 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    authorize! :manage, Project
-    @projects = Project.all
+    authorize! :read, Project
+    if current_user.role == "admin"
+      @projects = Project.all
+    else
+      @projects = current_user.projects
+    end
   end
 
   # GET /projects/deleted

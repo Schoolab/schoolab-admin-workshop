@@ -8,61 +8,51 @@
       <div class="tablist-heading">
         <ul class="tablist">
           <li class="active"><%= link_to "Participants", @project %></li>
-          <li><%= link_to "Historique", project_logs_path(@project) %></li>
+          <li><%= link_to "Actualités", project_logs_path(@project) %></li>
         </ul>
 
-        <ul class="tablist right">
-          <li>
-            <li><a href="#" data-toggle="modal" data-target="#newLogModal" class="tablist-action">Nouveau rapport</a></li>
-          </li>
-        </ul>
+        <ul class="tablist right"></ul>
       </div>
 
       <div class="panel-body mt">
 
-        <% if @project.project_type == 'startup' %>
-
-        <% else %>
-
-          <% if @project.roles.where(name: ["coach", "mentor", "director"]).present? %>
-            <div class="panel-section">
-              <h3 class="panel-section__title">Équipe Schoolab</h3>
-              <div class="row">
-                <% @project.roles.where(name: ["coach", "mentor", "director"]).each do |role| %>
-                  <div class="col-xs-12 col-md-6">
-                    <%= render "member-item", role: role %>
-                  </div>
-                <% end %>
-              </div>
+        <% if @project.roles.where(name: ["coach", "mentor", "director"]).present? %>
+          <div class="panel-section">
+            <h3 class="panel-section__title">Équipe Schoolab</h3>
+            <div class="row">
+              <% @project.roles.where(name: ["coach", "mentor", "director"]).each do |role| %>
+                <div class="col-xs-12 col-md-6">
+                  <%= render "member-item", role: role %>
+                </div>
+              <% end %>
             </div>
-          <% end %>
+          </div>
+        <% end %>
 
-          <% if @project.roles.where(name: "client").present? %>
-            <div class="panel-section">
-              <h3 class="panel-section__title">Équipe du client</h3>
-              <div class="row">
-                <% @project.roles.where(name: "client").each do |role| %>
-                  <div class="col-xs-12 col-md-6">
-                    <%= render "member-item", role: role %>
-                  </div>
-                <% end %>
-              </div>
+        <% if @project.roles.where(name: "client").present? %>
+          <div class="panel-section">
+            <h3 class="panel-section__title">Équipe du client</h3>
+            <div class="row">
+              <% @project.roles.where(name: "client").each do |role| %>
+                <div class="col-xs-12 col-md-6">
+                  <%= render "member-item", role: role %>
+                </div>
+              <% end %>
             </div>
-          <% end %>
+          </div>
+        <% end %>
 
-          <% if @project.roles.where(name: "member").present? %>
-            <div class="panel-section">
-              <h3 class="panel-section__title">Équipe du projet</h3>
-              <div class="row">
-                <% @project.roles.where(name: "member").each do |role| %>
-                  <div class="col-xs-12 col-md-6">
-                    <%= render "member-item", role: role %>
-                  </div>
-                <% end %>
-              </div>
+        <% if @project.roles.where(name: "member").present? %>
+          <div class="panel-section">
+            <h3 class="panel-section__title">Équipe du projet</h3>
+            <div class="row">
+              <% @project.roles.where(name: "member").each do |role| %>
+                <div class="col-xs-12 col-md-6">
+                  <%= render "member-item", role: role %>
+                </div>
+              <% end %>
             </div>
-          <% end %>
-
+          </div>
         <% end %>
 
         <% if can? :manage, Role %>
@@ -90,5 +80,3 @@
       </div>
     </div>
   </div>
-
-<%= render "projects/logs/log-modal" %>

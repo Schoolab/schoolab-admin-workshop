@@ -4,7 +4,7 @@
     cardItem_thumbnail = item.photo
     cardItem_thumbShape = "ovale-thumb"
     cardItem_thumbType = "resident-thumb"
-    cardItem_thumbSize = 80
+    cardItem_thumbSize = "5rem"
 
     cardItem_path = resident_path(item)
     cardItem_editPath = edit_resident_path(item)
@@ -34,13 +34,18 @@
   when 'Company'
     cardItem_thumbnail = item.image
     cardItem_thumbType = "company-thumb"
-    cardItem_thumbSize = 80
+    cardItem_thumbSize = "5rem"
 
     cardItem_path = company_path(item)
     cardItem_editPath = edit_company_path(item)
     cardItem_titleHeading = item.name
     cardItem_titleSubtitle = item.employees.count.to_s
     cardItem_titleSubtitle += ' employé'.pluralize(item.employees.count).to_s
+    if item.floor.present?
+      cardItem_titleSubtitle += ' - ' + item.floor.name
+    else
+      cardItem_titleSubtitle += ' - Pas d\'étage'
+    end
 
     if item.email?
       listInfo_email = mail_to item.email
@@ -55,7 +60,7 @@
   when 'Program'
     cardItem_thumbnail = item.image
     cardItem_thumbType = "image-thumb"
-    cardItem_thumbSize = 80
+    cardItem_thumbSize = "5rem"
 
     cardItem_path = program_path(item)
     cardItem_editPath = edit_program_path(item)
@@ -75,21 +80,24 @@
   when 'Project'
     cardItem_thumbnail = item.image
     cardItem_thumbType = "project-thumb"
-    cardItem_thumbSize = 80
+    cardItem_thumbSize = "5rem"
 
     cardItem_path = project_path(item)
     cardItem_editPath = edit_project_path(item)
     cardItem_titleHeading = item.name
-    cardItem_titleSubtitle = "soon"
+    cardItem_titleSubtitle = item.roles.count.to_s
+    cardItem_titleSubtitle += ' participant'.pluralize(item.roles.count.to_s)
+    cardItem_titleSubtitle += ' - '
+    cardItem_titleSubtitle += item.logs.count.to_s
+    cardItem_titleSubtitle += ' actualité'.pluralize(@logs)
+
 
 end %>
 
 <div class="list-item">
   <%= link_to cardItem_path do %>
 
-    <div class="thumbnail <%= cardItem_thumbShape.presence || cardItem_thumbShape %> pull-left" style="width:<%= cardItem_thumbSize %>px;height:<%= cardItem_thumbSize %>px;">
-      <%= image_tag cardItem_thumbnail.url(:thumb), size: cardItem_thumbSize %>
-    </div>
+    <%= render "layouts/thumbnail", thumb: cardItem_thumbnail, size: cardItem_thumbSize, addclass: "pull-left", shape: cardItem_thumbShape.presence || cardItem_thumbShape %>
 
   <% end %>
 
@@ -99,8 +107,8 @@ end %>
       <h3 class="panel-title">
         <%= link_to cardItem_path do cardItem_titleHeading end %>
         <% if (can? :manage, item.class) && (cardItem_editPath.presence) %>
-          <span class="list-item__actions">
-            <%= link_to "Modifier", cardItem_editPath, class: "muted" %>
+          <span class="list-item__actions muted">
+            <%= link_to "Modifier", cardItem_editPath %>
           </span>
         <% end %>
       </h3>

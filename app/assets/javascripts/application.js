@@ -60,6 +60,10 @@ $(document).on('turbolinks:load', function() {
 		}
 	});
 
+	$(function () {
+	  $('[data-toggle="tooltip"]').tooltip()
+	});
+
 	$('.inputfile').each(function() {
 
 		var label	 = $(this).next(),
