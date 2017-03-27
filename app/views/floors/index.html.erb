@@ -1,20 +1,21 @@
-<div class="panel col-xs-12">
-  <div class="panel-heading panel-heading--bordered">
-    <h2>
-      <%= title "Étages" %>
-      <% if can? :manage, Floor %>
-        <div class="pull-right">
-          <%= link_to 'Ajouter un étage', new_floor_path, class: 'btn btn-primary' %>
-        </div>
-      <% end %>
-    </h2>
+<h2 class="page__title">
+  <%= title "Étages" %>
+  <% if can? :manage, Floor %>
+    <div class="pull-right">
+      <%= link_to 'Ajouter un étage', new_floor_path, class: 'btn btn-info' %>
+    </div>
+  <% end %>
+</h2>
 
-    <% if can? :manage, Floor %>
-      <ul class="inline-list mt">
-        <li><strong>Tous</strong></li>
-        <li><%= link_to "Corbeille", deleted_floors_path %></li>
-      </ul>
-    <% end %>
+<div class="panel col-xs-12">
+
+  <div class="tablist-heading">
+    <ul class="tablist">
+      <%= nav_link "Tous", floors_path %>
+      <% if can? :manage, Floor %>
+        <%= nav_link "Corbeille", deleted_floors_path %>
+      <% end %>
+    </ul>
   </div>
 
   <div class="panel-body">

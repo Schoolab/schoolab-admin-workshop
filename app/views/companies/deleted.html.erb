@@ -1,19 +1,19 @@
+<h2 class="page__title">
+  <%= title "Entreprises" %>
+  <% if can? :manage, Company %>
+    <div class="pull-right">
+      <%= link_to 'Nouvelle entreprise', new_company_path, class: 'btn btn-info' %>
+    </div>
+  <% end %>
+</h2>
+
 <div class="panel col-xs-12">
-  <div class="panel-heading panel-heading--bordered">
-    <h2>
-      <%= title "Entreprises" %>
-      <% if can? :manage, Company %>
-        <div class="pull-right">
-          <%= link_to 'Nouvelle entreprise', new_company_path, class: 'btn btn-primary' %>
-        </div>
-      <% end %>
-    </h2>
-    <% if can? :manage, Company %>
-      <ul class="inline-list mt">
-        <li><%= link_to "Tous", companies_path %></li>
-        <li><strong>Corbeille</strong></li>
-      </ul>
-    <% end %>
+  
+  <div class="tablist-heading">
+    <ul class="tablist">
+      <%= nav_link "Tous", companies_path %>
+      <%= nav_link "Corbeille", deleted_companies_path %>
+    </ul>
   </div>
 
   <div class="panel-body">

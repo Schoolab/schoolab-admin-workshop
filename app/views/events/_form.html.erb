@@ -1,14 +1,19 @@
 <%= simple_form_for(@event) do |f| %>
   <%= f.error_notification %>
 
+<div class="col-xs-12">
+  <h2 class="page__title">
+    <% if f.object.new_record? %>
+      <%= title "Ajouter un évènement" %>
+    <% else %>
+      <%= title "Modifier un évènement" %>
+    <% end %>
+  </h2>
+</div>
 <div class="col-xs-12 col-md-8">
   <div class="panel">
     <div class="panel-heading">
-      <% if f.object.new_record? %>
-        <h2><%= title "Ajouter un évènement" %></h2>
-      <% else %>
-        <h2><%= title "Modifier un évènement" %></h2>
-      <% end %>
+      <h3>Informations générales</h3>
     </div>
     <div class="panel-body">
       <div class="row form-row">

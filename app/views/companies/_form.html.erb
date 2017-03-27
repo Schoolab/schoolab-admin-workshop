@@ -1,22 +1,26 @@
 <%= simple_form_for(@company) do |f| %>
   <%= f.error_notification %>
 
+<div class="col-xs-12">
+  <h2 class="page__title">
+    <% if f.object.new_record? %>
+      <%= title "Ajouter une entreprise" %>
+    <% else %>
+      <%= title "Modifier une entreprise" %>
+    <% end %>
+  </h2>
+</div>
+
 <div class="col-xs-12 col-md-8">
   <div class="panel">
     <div class="panel-heading">
-      <% if f.object.new_record? %>
-        <h2><%= title "Ajouter une entreprise" %></h2>
-      <% else %>
-        <h2><%= title "Modifier une entreprise" %></h2>
-      <% end %>
+      <h3>Informations générales</h3>
     </div>
-
     <div class="panel-body">
-
       <div class="row form-row">
 
         <div class="form-group col-xs-12 align-items-center">
-          <%= render "layouts/thumbnail", thumb: @company.image, size: "6rem", addclass: "pull-left mr" %>
+          <%= render "layouts/thumbnail", thumb: @company.image, size: "6rem", addclass: "mr" %>
 
           <%= f.file_field :image, as: :file, class: "inputfile", data: { :caption => "{nb} fichiers selectionnés" } %>
           <%= f.label :image, '<span class="label-btn">Envoyer une photo</span><span class="label-filename">Pas de fichier selectionné</span>'.html_safe %>
@@ -54,9 +58,7 @@
         </div>
 
       </div>
-
     </div>
-
   </div>
 </div>
 

@@ -8,17 +8,19 @@ class SeasonsController < ApplicationController
   # GET /programs/:program_id/seasons.json
   def index
     authorize! :manage, Season
-    @seasons = Season.all.order(name: :asc)
+    @seasons = Season.where(program_id: @program.id).order(name: :asc)
   end
 
   # GET /programs/:program_id/seasons/deleted
   def deleted
-    @seasons = Season.only_deleted
+    @seasons = Season.only_deleted.where(program_id: @program.id)
   end
 
   # GET /programs/:program_id/seasons/1
   # GET /programs/:program_id/seasons/1.json
   def show
+    @programs = Program.all.order(name: :asc)
+    @projects = @season.projects.all
   end
 
   # GET /programs/:program_id/seasons/new

@@ -1,0 +1,11 @@
+<div class="tablist-heading">
+  <ul class="tablist">
+    <%= nav_link "Tous", projects_path %>
+    <% @programs.each do |program| %>
+      <%= nav_link program.name, program_path(program) %>
+    <% end %>
+    <% if can? :manage, Project %>
+      <%= nav_link "Corbeille", deleted_projects_path %>
+    <% end %>
+  </ul>
+</div>

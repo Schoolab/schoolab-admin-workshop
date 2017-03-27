@@ -1,10 +1,17 @@
 <% puts case item.class.to_s
 
   when 'User'
+    if defined?(hasBorder) && hasBorder == false
+      listItem_border = "no-border"
+    end
     cardItem_thumbnail = item.photo
     cardItem_thumbShape = "ovale-thumb"
     cardItem_thumbType = "resident-thumb"
-    cardItem_thumbSize = "5rem"
+    if defined?(size)
+      cardItem_thumbSize = size
+    else
+      cardItem_thumbSize = "5rem"
+    end
 
     cardItem_path = resident_path(item)
     cardItem_editPath = edit_resident_path(item)
@@ -21,6 +28,12 @@
       cardItem_titleSubtitle += '</span>'
     end
 
+    if defined?(hasDetails)
+      listItem_details = hasDetails
+    else
+      listItem_details = true
+    end
+
     if item.email?
       listInfo_email = mail_to item.email
     end
@@ -32,9 +45,16 @@
     cardItem_contactList = [ ["list-icon-email", listInfo_email], ["list-icon-phone", listInfo_phone] ]
 
   when 'Company'
+    if defined?(hasBorder) && hasBorder == false
+      listItem_border = "no-border"
+    end
     cardItem_thumbnail = item.image
     cardItem_thumbType = "company-thumb"
-    cardItem_thumbSize = "5rem"
+    if defined?(size)
+      cardItem_thumbSize = size
+    else
+      cardItem_thumbSize = "5rem"
+    end
 
     cardItem_path = company_path(item)
     cardItem_editPath = edit_company_path(item)
@@ -45,6 +65,12 @@
       cardItem_titleSubtitle += ' - ' + item.floor.name
     else
       cardItem_titleSubtitle += ' - Pas d\'étage'
+    end
+
+    if defined?(hasDetails)
+      listItem_details = hasDetails
+    else
+      listItem_details = true
     end
 
     if item.email?
@@ -58,9 +84,16 @@
     cardItem_contactList = [ ["list-icon-email", listInfo_email], ["list-icon-phone", listInfo_phone] ]
 
   when 'Program'
+    if defined?(hasBorder) && hasBorder == false
+      listItem_border = "no-border"
+    end
     cardItem_thumbnail = item.image
     cardItem_thumbType = "image-thumb"
-    cardItem_thumbSize = "5rem"
+    if defined?(size)
+      cardItem_thumbSize = size
+    else
+      cardItem_thumbSize = "5rem"
+    end
 
     cardItem_path = program_path(item)
     cardItem_editPath = edit_program_path(item)
@@ -77,34 +110,70 @@
       cardItem_titleSubtitle += "Pas de projets"
     end
 
+    if defined?(hasDetails)
+      listItem_details = hasDetails
+    else
+      listItem_details = true
+    end
+
+  when 'Season'
+    if defined?(hasBorder) && hasBorder == false
+      listItem_border = "no-border"
+    end
+    cardItem_thumbType = "no-thumb"
+    if defined?(size)
+      cardItem_thumbSize = size
+    else
+      cardItem_thumbSize = "5rem"
+    end
+
+    cardItem_path = program_season_path(item.program, item)
+    cardItem_editPath = edit_program_season_path(item.program, item)
+    cardItem_titleHeading = item.name
+    cardItem_titleSubtitle = item.projects.count.to_s + " projet".pluralize(item.projects.count.to_s)
+
+    if defined?(hasDetails)
+      listItem_details = hasDetails
+    else
+      listItem_details = true
+    end
+
   when 'Project'
+    if defined?(hasBorder) && hasBorder == false
+      listItem_border = "no-border"
+    end
     cardItem_thumbnail = item.image
     cardItem_thumbType = "project-thumb"
-    cardItem_thumbSize = "5rem"
+    if defined?(size)
+      cardItem_thumbSize = size
+    else
+      cardItem_thumbSize = "5rem"
+    end
 
     cardItem_path = project_path(item)
     cardItem_editPath = edit_project_path(item)
     cardItem_titleHeading = item.name
-    cardItem_titleSubtitle = item.roles.count.to_s
-    cardItem_titleSubtitle += ' participant'.pluralize(item.roles.count.to_s)
-    cardItem_titleSubtitle += ' - '
-    cardItem_titleSubtitle += item.logs.count.to_s
-    cardItem_titleSubtitle += ' actualité'.pluralize(@logs)
+    cardItem_titleSubtitle = item.roles.count.to_s + ' participant'.pluralize(item.roles.count.to_s)
+    cardItem_titleSubtitle += ' - ' + item.logs.count.to_s + ' actualité'.pluralize(@logs)
 
-
+    if defined?(hasDetails)
+      listItem_details = hasDetails
+    else
+      listItem_details = true
+    end
 end %>
 
-<div class="list-item">
-  <%= link_to cardItem_path do %>
-
-    <%= render "layouts/thumbnail", thumb: cardItem_thumbnail, size: cardItem_thumbSize, addclass: "pull-left", shape: cardItem_thumbShape.presence || cardItem_thumbShape %>
-
+<div class="list-item <%= listItem_border.presence || listItem_border %>">
+  <% if cardItem_thumbnail %>
+    <%= link_to cardItem_path do %>
+      <%= render "layouts/thumbnail", thumb: cardItem_thumbnail, size: cardItem_thumbSize, addclass: "pull-left", shape: cardItem_thumbShape.presence || cardItem_thumbShape %>
+    <% end %>
   <% end %>
 
   <div class="list-item__details">
 
     <% if cardItem_titleHeading.presence %>
-      <h3 class="panel-title">
+      <h3 class="list-item__title">
         <%= link_to cardItem_path do cardItem_titleHeading end %>
         <% if (can? :manage, item.class) && (cardItem_editPath.presence) %>
           <span class="list-item__actions muted">
@@ -115,12 +184,12 @@ end %>
     <% end %>
 
     <% if cardItem_titleSubtitle.presence %>
-      <p class="panel-subtitle">
+      <p class="list-item__subtitle">
         <%= cardItem_titleSubtitle.html_safe %>
       </p>
     <% end %>
 
-    <% if cardItem_contactList.presence %>
+    <% if cardItem_contactList.presence && listItem_details %>
       <ul class="inline-list">
         <% if item.email? %>
           <li><%= mail_to item.email %></li>

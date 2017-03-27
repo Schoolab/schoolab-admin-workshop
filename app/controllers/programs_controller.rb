@@ -18,6 +18,7 @@ class ProgramsController < ApplicationController
   # GET /programs/1
   # GET /programs/1.json
   def show
+    @programs = Program.all.order(name: :asc)
   end
 
   # GET /programs/new

@@ -1,3 +1,5 @@
+<%= render "projects/show/page-title" %>
+
 <div class="row">
   <div class="col-xs-12 col-md-4">
     <%= render "layouts/card-item", item: @project %>
@@ -6,17 +8,15 @@
   <div class="col-xs-12 col-md-8">
     <div class="panel">
       <div class="tablist-heading">
-        <ul class="tablist">
-          <li><%= link_to "Participants", @project %></li>
-          <li class="active"><%= link_to "Actualités", project_logs_path(@project) %></li>
-        </ul>
+        <%= render "projects/show/tablist" %>
 
         <ul class="tablist right">
-          <li>
-            <li><a href="#" data-toggle="modal" data-target="#newLogModal" class="tablist-action">Nouveau rapport</a></li>
-          </li>
+          <% if can? :manage, Log %>
+            <li><a href="#" data-toggle="modal" data-target="#newLogModal" class="tablist-action">Ajouter</a></li>
+          <% end %>
         </ul>
       </div>
+
 
       <% if @logs.each do |log| %>
 
@@ -24,7 +24,9 @@
 
       <% end.empty? %>
 
-        <p class="muted">Il n'y a aucun historique pour ce projet.</p>
+        <div class="panel-body">
+          <p class="muted">Il n'y a aucun historique pour ce projet.</p>
+        </div>
 
       <% end %>
     </div>

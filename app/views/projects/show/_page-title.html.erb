@@ -1,0 +1,8 @@
+<h2 class="page__title">
+  <%= title @project.name %>
+  <div class="pull-right">
+    <%= link_to edit_project_path(@project), class: 'btn btn-default btn-icon' do %>
+      <i class="material-icons">edit</i><span>Modifier</span>
+    <% end %>
+  </div>
+</h2>

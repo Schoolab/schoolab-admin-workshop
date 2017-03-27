@@ -1,19 +1,21 @@
-<div class="panel col-xs-12">
-  <div class="panel-heading panel-heading--bordered">
-    <h2>
-      <%= title "Réservations" %>
-      <div class="pull-right">
-        <%= link_to "Réserver une salle", search_reservations_path, class: "btn btn-primary" %>
-      </div>
-    </h2>
-    <% if can? :manage, Reservation %>
-      <ul class="inline-list mt">
-        <li><strong>À venir</strong></li>
-        <li><%= link_to "Terminés", past_reservations_path %></li>
-        <li><%= link_to "Corbeille", deleted_reservations_path %></li>
-      </ul>
-    <% end %>
+<h2 class="page__title">
+  <%= title "Réservations" %>
+  <div class="pull-right">
+    <%= link_to "Réserver une salle", search_reservations_path, class: "btn btn-info" %>
   </div>
+</h2>
+
+<div class="panel col-xs-12">
+
+  <% if can? :manage, Reservation %>
+    <div class="tablist-heading">
+      <ul class="tablist">
+        <%= nav_link "À venir", reservations_path %>
+        <%= nav_link "Terminés", past_reservations_path %>
+        <%= nav_link "Corbeille", deleted_reservations_path %>
+      </ul>
+    </div>
+  <% end %>
 
   <div class="panel-body">
     <%= render 'list' %>

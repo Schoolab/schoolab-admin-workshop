@@ -1,3 +1,18 @@
+<!-- Salut petit curieux ;)
+<h2 class="page__title">
+  <%= render "layouts/thumbnail", thumb: @user.photo, size: "2.5rem", addclass: "mr" %>
+  <% if current_user == @user %>
+    Vous
+    <div class="pull-right">
+      <%= link_to edit_resident_path(@user), class: 'btn btn-default btn-icon' do %>
+        <i class="material-icons">edit</i><span>Modifier</span>
+      <% end %>
+    </div>
+  <% else %>
+    <%= @user.name %>
+  <% end %>
+
+</h2> -->
 <div class="row">
   <div class="col-xs-12 col-md-4">
     <%= render "layouts/card-item", item: @user %>
@@ -10,7 +25,7 @@
       <div class="panel-heading">
         <h2>Dernières réservations</h2>
       </div>
-      <div class="panel-body reservation-list">
+      <div class="panel-body reservation-list pt0">
         <% @reservations.each do |reservation| %>
           <%= render('reservations/reservation-item', reservation: reservation) %>
         <% end %>

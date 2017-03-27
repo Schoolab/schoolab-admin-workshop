@@ -1,28 +1,29 @@
 <%= form.error_notification %>
 
+<div class="col-xs-12">
+  <h2 class="page__title">
+    <% if form.object.new_record? %>
+      <%= title "Ajouter une personne" %>
+    <% else %>
+      <%= title "Modifier une personne" %>
+    <% end %>
+  </h2>
+</div>
+
 <div class="col-xs-12 col-md-8">
   <div class="panel">
     <div class="panel-heading">
-      <% if form.object.new_record? %>
-        <h2><%= title "Ajouter une personne" %></h2>
-      <% else %>
-        <h2><%= title "Modifier une personne" %></h2>
-      <% end %>
+      <h3>Informations générales</h3>
     </div>
-
     <div class="panel-body">
-
       <div class="row form-row">
 
         <div class="form-group col-xs-12 align-items-center">
-          <%= render "layouts/thumbnail", thumb: @user.photo, size: "6rem", addclass: "pull-left mr" %>
+          <%= render "layouts/thumbnail", thumb: @user.photo, size: "6rem", addclass: "mr" %>
 
           <%= form.file_field :photo, as: :file, class: "inputfile", data: { :caption => "{nb} fichiers selectionnés" } %>
           <%= form.label :photo, '<span class="label-btn">Envoyer une photo</span><span class="label-filename">Pas de fichier selectionné</span>'.html_safe %>
         </div>
-
-      </div>
-      <div class="row form-row">
 
         <div class="form-group col-md-6">
           <%= form.label :first_name, "Prénom", class: "sr-only" %>

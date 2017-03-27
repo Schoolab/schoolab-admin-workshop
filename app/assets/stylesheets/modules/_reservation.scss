@@ -1,37 +1,43 @@
 .reservation {
-    background-color: $white;
-    display: flex;
-    flex-direction: row;
-    border-radius: $border-radius-small;
-    overflow: hidden;
-    margin-bottom: 1rem;
+  background-color: $white;
+  display: flex;
+  flex-direction: row;
+  border-radius: $border-radius-small;
+  overflow: hidden;
+  margin-bottom: 1rem;
 
-    @include rwd-max-width(700px) {
-      flex-direction: column;
-    }
+  @include rwd-max-width(700px) {
+    flex-direction: column;
+  }
 
-    &:hover {
-      background-color: $brand-05;
-    }
+  &:hover {
+    background-color: $brand-05;
+  }
 }
 
 .reservation__details {
-    width: 100%;
-    border: 1px solid rgba($black, .1);
-    border-left: none;
-    border-radius: 0 .125rem .125rem 0;
-    padding: 1rem 1.5rem;
+  width: 100%;
+  border-left: none;
+  border: 1px solid rgba($black, .1);
+  border-radius: 0 .125rem .125rem 0;
+  padding: 1rem 1.5rem;
 
-    p {
-        font-size: 1rem;
-        line-height: 1rem;
-        margin: 0 0 1rem;
-    }
+  p {
+    font-size: 1rem;
+    line-height: 1rem;
+    margin: 0 0 1rem;
+  }
+
+  @include rwd-max-width(700px) {
+    border: 1px solid rgba($black, .1);
+    border-top: none;
+    border-radius: 0 0 .125rem .125rem;
+  }
 }
 
 .reservation__title {
-    font-size: 1rem;
-    font-weight: bold;
-    line-height: 2rem;
-    margin: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 2rem;
+  margin: 0;
 }

@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
+    @programs = Program.all.order(name: :asc)
     authorize! :read, Project
     if current_user.role == "admin"
       @projects = Project.all
@@ -16,6 +17,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/deleted
   def deleted
+    @programs = Program.all.order(name: :asc)
     @projects = Project.only_deleted
   end
 

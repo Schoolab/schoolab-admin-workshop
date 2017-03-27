@@ -11,12 +11,41 @@
   &:hover {
     background-color: $brand-05;
   }
+
+  &.no-border {
+    border: none;
+    padding: 0;
+
+    &:hover {
+      background-color: $white;
+    }
+  }
 }
 
-.list-item__details {
+.list-item__details:not(:only-child) {
   margin: 0 0 0 1rem;
 }
 
 .list-item__actions {
   font-size: 1rem;
+}
+
+.list-item__title {
+  margin: 0 auto;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+
+  a {
+    color: $brand-primary;
+  }
+}
+
+.list-item__subtitle {
+  margin: 0 auto .5rem;
+  line-height: 1.25rem;
+  margin: 0 0 0.75rem;
+
+  &:last-child {
+    margin: 0;
+  }
 }

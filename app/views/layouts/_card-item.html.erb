@@ -60,8 +60,8 @@
     cardItem_thumbnailName = item.image
     cardItem_thumbShape = "square-thumb"
     cardItem_thumbSize = "6rem"
-    cardItem_editPath = edit_project_path(item)
-    cardItem_titleHeading = item.name
+    # cardItem_editPath = edit_project_path(item)
+    # cardItem_titleHeading = item.name
 
     cardItem_infosList = []
 
@@ -125,19 +125,6 @@
       list_info_title
     ]
 
-    # Liste de ses rôles (hors projets/startups)
-    list_info_roles = item.roles.map do |role|
-      role.entity_type != 'Project' ? role.name + ' - ' + role.entity.name : nil
-    end
-    cardItem_infosList.concat list_info_roles.compact # remove nil values
-
-    # Liste des projets/startups auxquels il a participé
-    list_info_projects = ['<br><strong>Projets</strong>']
-    item.projects.each do |project|
-      list_info_projects.push(link_to project.name, project)
-    end
-    cardItem_infosList.concat list_info_projects
-
     if item.email?
       listInfo_email = mail_to item.email
     end
@@ -163,7 +150,7 @@
 
 <div class="panel <%= cardItem_textAlign.presence || cardItem_textAlign %>">
 
-  <div class="panel-heading">
+  <div class="panel-body">
     <% if cardItem_imageType == "thumb" %>
 
       <%= render "layouts/thumbnail", thumb: cardItem_thumbnailName, size: cardItem_thumbSize, addclass: "mb", shape: cardItem_thumbShape.presence || cardItem_thumbShape %>
@@ -175,9 +162,6 @@
     <% if cardItem_titleHeading.present? %>
       <h2 class="card-item--title"><%= title cardItem_titleHeading %></h2>
     <% end %>
-
-  </div>
-  <div class="panel-body">
 
     <% if cardItem_infosList.present? %>
       <ul class="list-infos">
@@ -212,13 +196,15 @@
       </ul>
     <% end %>
 
-    <% if current_user == @user %>
-      <%= link_to edit_user_registration_path, class: 'btn btn-default btn-icon' do %>
-        <i class="material-icons">edit</i> <span>Modifier</span>
-      <% end %>
-    <% elsif can? :manage, item.class %>
-      <%= link_to cardItem_editPath, class: 'btn btn-default btn-icon' do %>
-        <i class="material-icons">edit</i><span>Modifier</span>
+    <% if cardItem_editPath.present? %>
+      <% if current_user == @user %>
+        <%= link_to edit_user_registration_path, class: 'btn btn-default btn-icon' do %>
+          <i class="material-icons">edit</i> <span>Modifier</span>
+        <% end %>
+      <% elsif can? :manage, item.class %>
+        <%= link_to cardItem_editPath, class: 'btn btn-default btn-icon' do %>
+          <i class="material-icons">edit</i><span>Modifier</span>
+        <% end %>
       <% end %>
     <% end %>
 

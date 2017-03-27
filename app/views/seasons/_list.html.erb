@@ -1,4 +1,4 @@
-<table class="table table-hover datatable">
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Nom</th>
@@ -7,7 +7,7 @@
   </thead>
 
   <tbody>
-    <% @seasons.each do |season| %>
+    <% if @seasons.each do |season| %>
       <tr>
         <td><%= season.name %></td>
         <td>
@@ -27,6 +27,13 @@
             <% end %>
           </div>
         </td>
+      </tr>
+    <% end.empty? %>
+      <tr>
+        <td>
+          <span class="muted">La corbeille est vide...</span>
+        </td>
+        <td></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,19 +1,20 @@
+<h2 class="page__title">
+  <%= title "Programmes" %>
+  <% if can? :manage, Program %>
+    <div class="pull-right">
+      <%= link_to 'Nouveau programme', new_program_path, class: 'btn btn-info' %>
+    </div>
+  <% end %>
+</h2>
+
 <div class="panel col-xs-12">
-  <div class="panel-heading panel-heading--bordered">
-    <h2>
-      <%= title "Programmes" %>
-      <% if can? :manage, Program %>
-        <div class="pull-right">
-          <%= link_to 'Nouveau programme', new_program_path, class: 'btn btn-primary' %>
-        </div>
+  <div class="tablist-heading">
+    <ul class="tablist">
+      <%= nav_link "Tous", programs_path %>
+      <% if can? :manage, Project %>
+        <%= nav_link "Corbeille", deleted_programs_path %>
       <% end %>
-    </h2>
-    <% if can? :manage, Project %>
-      <ul class="inline-list mt">
-        <li><%= link_to "Tous", programs_path %></li>
-        <li><strong>Corbeille</strong></li>
-      </ul>
-    <% end %>
+    </ul>
   </div>
 
   <div class="panel-body">

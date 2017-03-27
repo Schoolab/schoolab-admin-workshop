@@ -1,34 +1,11 @@
 <% if user_signed_in? %>
 
+<h2 class="page__title">
+  <%= "Bienvenue, " + current_user.name %>
+</h2>
+
 <div class="row">
   <div class="col-xs-12 col-md-4">
-
-    <div class="panel txt-c">
-      <div class="panel-heading">
-        <div class="thumbnail ovale-thumb resident-thumb mb" style="width:96px;height:96px;">
-          <%= image_tag current_user.photo.url(:thumb), size: 96 %>
-        </div>
-        <h2>
-          <span class="panel-heading-prefix block">Bienvenue</span>
-          <%= current_user.first_name %>
-        </h2>
-      </div>
-      <div class="panel-body">
-        <p class="muted">
-          <% if current_user.title? %>
-          <%= current_user.title %>
-          <% end %>
-          <% if current_user.company.present? %>
-          chez <%= link_to current_user.company.name, company_path(current_user.company) %>
-          <% end %>
-        </p>
-
-        <%= link_to resident_path(current_user), class: 'btn btn-default btn-icon' do %>
-        <i class="material-icons">visibility</i> <span>Voir mon profil</span>
-        <% end %>
-        <%= link_to "Deconnexion", destroy_user_session_path, :method => :delete, class: 'btn btn-primary' %>
-      </div>
-    </div>
 
     <div class="panel">
       <div class="panel-heading">
@@ -37,12 +14,10 @@
       <div class="panel-body">
 
         <div class="events">
-          <% if @events %>
-          <% @events.each do |event| %>
-          <%= render('events/event-item', event: event, hasDescription: false ) %>
-          <% end %>
-          <% else %>
-          <p class="muted">Aucun évènements...</p>
+          <% if @events.each do |event| %>
+            <%= render('events/event-item', event: event, hasDescription: false ) %>
+          <% end.empty? %>
+            <p class="muted">Il n'y a aucun évènements.</p>
           <% end %>
         </div>
 
@@ -53,10 +28,56 @@
 
     <div class="panel">
       <div class="panel-heading">
+        <h2>Les nouvelles têtes</h2>
+      </div>
+      <div class="panel-body">
+        <% if @newbies.each do |employee| %>
+
+        <%= render "layouts/list-item", item: employee, size: "3rem", hasBorder: false, hasDetails: false %>
+
+        <% end.empty? %>
+
+        <p class="muted">Personne ne nous a rejoint cette semaine...</p>
+
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-xs-12 col-md-8">
+    <div class="panel">
+      <div class="panel-heading">
+        <h2>
+          Mes réservations à venir
+          <% if @reservations.present? %>
+          <%= link_to "Réserver une salle", search_reservations_path, class: 'panel-heading__link' %>
+          <% end %>
+        </h2>
+      </div>
+      <div class="panel-body">
+        <div class="reservation-list">
+
+          <% if @reservations.each do |reservation| %>
+
+          <%= render('reservations/reservation-item', reservation: reservation, type: "reservation") %>
+
+          <% end.empty? %>
+
+          <p class="muted">Vous n'avez aucune réservation.</p>
+          <%= link_to "Réserver une salle", search_reservations_path, class: 'btn btn-info mt' %>
+
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-heading">
         <h2>Mes projets</h2>
       </div>
       <div class="panel-body">
-
         <div class="events">
 
         <% if current_user.projects.each do |project| %>
@@ -69,52 +90,6 @@
 
           <% end %>
         </div>
-
-      </div>
-    </div>
-  </div>
-
-  <div class="col-xs-12 col-md-8">
-    <div class="panel">
-      <div class="panel-heading">
-        <h2>
-          Mes réservations à venir
-          <% if @current_user.reservations.where('reservations.end_time > ?', Time.current) %>
-          <%= link_to "Réserver une salle", search_reservations_path, class: 'heading-link pull-right' %>
-          <% end %>
-        </h2>
-      </div>
-
-      <div class="panel-body reservation-list">
-
-        <% if @reservations.each do |reservation| %>
-
-        <%= render('reservations/reservation-item', reservation: reservation, type: "reservation") %>
-
-        <% end.empty? %>
-
-        <p class="muted">Oh non... il n'y a aucune reservation.</p>
-        <%= link_to "Réserver une salle", search_reservations_path, class: 'btn btn-info' %>
-
-        <% end %>
-
-      </div>
-    </div>
-
-    <div class="panel">
-      <div class="panel-heading">
-        <h2>Les nouvelles têtes</h2>
-      </div>
-      <div class="panel-body">
-        <% if @newbies.each do |employee| %>
-
-        <%= render "layouts/list-item", item: employee %>
-
-        <% end.empty? %>
-
-        <p class="muted">Personne ne nous a rejoint cette semaine...</p>
-
-        <% end %>
       </div>
     </div>
 

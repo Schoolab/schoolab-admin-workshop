@@ -1,0 +1,25 @@
+.nav > li > a {
+  display: flex;
+}
+
+.nav {
+    .open {
+        & > a, & > a:hover, & > a:focus {
+            @include rwd-sm {
+              background-color: transparent;
+              color: $whitesmoke;
+            }
+        }
+    }
+
+    & > li > a {
+        padding: .5rem;
+
+        &:hover, &:focus {
+            @include rwd-sm {
+              background-color: transparent;
+              color: $white;
+            }
+        }
+    }
+}

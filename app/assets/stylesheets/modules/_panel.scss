@@ -1,10 +1,16 @@
 .panel {
-    border-color: $border-color;
-    border-radius: .125rem;
-    box-shadow: 0 .125rem .25rem $box-shadow-color;
-    background-color: $white;
-    padding: 0;
-    color: $brand-75;
+  border-color: $border-color;
+  border-radius: .125rem;
+  box-shadow: 0 .125rem .25rem $box-shadow-color;
+  background-color: $white;
+  padding: 0;
+  color: $brand-75;
+}
+
+.panel-large {
+  .panel-body {
+    padding: 4rem 2rem;
+  }
 }
 
 .panel-header {
@@ -47,9 +53,10 @@
 }
 
 .panel-heading {
-    background-color: transparent;
-    border: none;
-    padding: 2rem 1.5rem 1rem;
+  display: flex;
+  background-color: transparent;
+  border: none;
+  padding: 2rem 1.5rem 1rem;
 }
 
 .panel-heading--bordered {
@@ -58,46 +65,42 @@
 }
 
 .panel-default > .panel-heading {
-    background-color: transparent;
-    padding: 0 1.5rem 1rem;
+  background-color: transparent;
+  padding: 0 1.5rem 1rem;
+}
+
+.panel-heading .panel-heading__link {
+  font-size: 1rem;
+  color: $brand-blue;
+
+  @include rwd-sm {
+    margin-left: auto;
+  }
 }
 
 .panel-body {
-  padding: 0 1.5rem 1rem;
+  padding: 0 1.5rem 2rem;
 
-  &:last-child {
-    padding: 0 1.5rem 2rem;
+  &:first-of-type {
+    padding: 2rem 1.5rem;
   }
 }
 
 .panel-heading-prefix {
-    font-weight: bold;
-    font-size: 1rem;
-    line-height: 1rem;
-    color: $brand-blue;
-    padding: 0 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1rem;
+  color: $brand-blue;
+  padding: 0 1rem;
 }
 
 .img-thumbnail + .panel-heading {
-    margin: 1rem 0 0;
-    padding: 0 1.5rem .5rem;
+  margin: 1rem 0 0;
+  padding: 0 1.5rem .5rem;
 }
 
 .panel-grey {
   background-color: $brand-05;
-}
-
-.panel-title {
-  margin: 0 auto;
-  font-size: 1.25rem;
-  line-height: 1.5rem;
-  color: $brand-primary;
-}
-
-.panel-subtitle {
-  margin: 0 auto .5rem;
-  line-height: 1.25rem;
-  margin: 0 0 0.75rem;
 }
 
 .panel-footer {
@@ -121,5 +124,4 @@
 
 .panel-section__title {
   margin: 0 0 .75rem;
-
 }
