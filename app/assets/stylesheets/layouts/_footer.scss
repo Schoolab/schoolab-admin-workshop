@@ -1,10 +1,18 @@
 .footer {
+  padding: 1rem 0 2rem;
+}
+
+.footer-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 1rem 0 2rem;
   line-height: 1rem;
   color: $brand-25;
+
+
+  &:before {
+    display: none;
+  }
 
   a {
     color: $brand-50;
@@ -46,7 +54,7 @@
   margin: 0;
 
   @include rwd-sm {
-    justify-content: flex-end;
+    margin-left: auto;
   }
 }
 

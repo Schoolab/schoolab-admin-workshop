@@ -27,21 +27,9 @@
 
         <%= yield %>
 
-        <footer class="footer">
-            <ul class="footer-links">
-              <li class="footer-link">
-                <%= link_to "Le site Schoolab", "https://theschoolab.com/" %>
-              </li>
-              <li class="footer-link">
-                <%= mail_to "agency@theschoolab.com", "Signaler un bug" %>
-              </li>
-            </ul>
-            <p class="footer-copy">
-              <span>&copy; Schoolab 2017</span>
-            </p>
-        </footer>
-
       </div>
+
+      <%= render 'layouts/footer' %>
     </div>
 
   </body>
