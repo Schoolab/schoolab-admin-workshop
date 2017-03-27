@@ -172,7 +172,7 @@ end %>
 
     <% if cardItem_titleHeading.presence %>
       <h3 class="list-item__title">
-        <%= link_to cardItem_titleHeading, cardItem_path, class:"title" %>
+        <%= link_to cardItem_titleHeading, cardItem_path, class:"name" %>
         <% if (can? :manage, item.class) && (cardItem_editPath.presence) %>
           <span class="list-item__actions muted">
             <%= link_to "Modifier", cardItem_editPath %>

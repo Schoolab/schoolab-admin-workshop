@@ -13,7 +13,7 @@
         Dates
       </div> -->
       <h3 class="project-item__title">
-        <%= link_to item.name, project_path(item) %>
+        <%= link_to item.name, project_path(item), class: "name" %>
         <% if can? :manage, Project %>
           <span class="project-item__actions muted">
             <%= link_to "Modifier", edit_project_path(item) %>

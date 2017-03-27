@@ -7,7 +7,7 @@
   <% end %>
 </h2>
 
-<div class="panel col-xs-12">
+<div class="panel col-xs-12" id="list-items">
   <div class="tablist-heading">
     <ul class="tablist">
       <%= nav_link "Tous", programs_path %>
@@ -15,16 +15,23 @@
         <%= nav_link "Corbeille", deleted_programs_path %>
       <% end %>
     </ul>
+
+    <ul class="tablist right">
+      <%= render "layouts/tablist-search" %>
+    </ul>
   </div>
 
   <div class="panel-body row">
-    <% @programs.each do |program| %>
 
-      <div class="col-xs-12 col-md-6">
-        <%= render "layouts/list-item", item: program %>
-      </div>
+    <ul class="list list-items">
+      <% @programs.each do |program| %>
 
-    <% end %>
+        <li class="col-xs-12 col-md-6">
+          <%= render "layouts/list-item", item: program %>
+        </li>
+
+      <% end %>
+    </ul>
 
   </div>
 
