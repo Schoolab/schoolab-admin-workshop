@@ -34,7 +34,7 @@ class ResidentsController < ApplicationController
     @user.password_confirmation = "123456"
     if @user.save
       p ApplicationMailer.welcome_email @user
-      redirect_to residents_path, notice: 'Resident was successfully added.'
+      redirect_to residents_path, notice: I18n.t('residents.create')
     else
       render :new
     end
@@ -45,7 +45,7 @@ class ResidentsController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to residents_url, notice: 'Residents was successfully removed.'
+    redirect_to residents_url, notice: I18n.t('residents.destroy')
     authorize! :destroy, @user
   end
 
@@ -61,7 +61,7 @@ class ResidentsController < ApplicationController
     @user = User.find(params[:id])
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to residents_path, notice: 'User was successfully updated.' }
+        format.html { redirect_to residents_path, notice: I18n.t('residents.update') }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }

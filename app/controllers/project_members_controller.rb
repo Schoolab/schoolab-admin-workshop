@@ -6,7 +6,7 @@ class ProjectMembersController < ApplicationController
     @role.entity = @project
     @role.save
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'Membre ajouté.' }
+      format.html { redirect_to :back, notice: I18n.t('project_members.create') }
     end
     authorize! :update, @project
   end

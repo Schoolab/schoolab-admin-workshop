@@ -72,7 +72,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to events_url, notice: 'Évènement créé avec succès.' }
+        format.html { redirect_to events_url, notice: I18n.t('events.create') }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -86,7 +86,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to events_url, notice: 'Évènement mis à jour.' }
+        format.html { redirect_to events_url, notice: I18n.t('events.update') }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }
@@ -99,7 +99,7 @@ class EventsController < ApplicationController
   def recover
     @event.recover
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'L\'évènement à bien été reccupéré.' }
+      format.html { redirect_to events_url, notice: I18n.t('events.recover') }
       format.json { head :success }
     end
   end
@@ -109,7 +109,7 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'L\'évènement a bien été supprimé.' }
+      format.html { redirect_to events_url, notice: I18n.t('events.destroy') }
       format.json { head :no_content }
     end
   end

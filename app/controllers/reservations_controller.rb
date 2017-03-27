@@ -37,7 +37,7 @@ class ReservationsController < ApplicationController
 
     respond_to do |format|
       if @reservation.save
-        format.html { redirect_to :back, notice: 'La réservation a bien été enregistrée.' }
+        format.html { redirect_to :back, notice: I18n.t('reservations.create') }
         format.json { render :show, status: :created }
       else
         format.html { render :new }
@@ -51,7 +51,7 @@ class ReservationsController < ApplicationController
   def update
     respond_to do |format|
       if @reservation.update(reservation_params)
-        format.html { redirect_to reservations_path, notice: 'Reservation was successfully updated.' }
+        format.html { redirect_to reservations_path, notice: I18n.t('reservations.update') }
         format.json { render :show, status: :ok }
       else
         format.html { render :edit }
@@ -64,7 +64,7 @@ class ReservationsController < ApplicationController
   def recover
     @reservation.recover
     respond_to do |format|
-      format.html { redirect_to reservations_path, notice: 'La réservation à bien été reccupérée.' }
+      format.html { redirect_to reservations_path, notice: I18n.t('reservations.recover') }
       format.json { head :success }
     end
   end
@@ -74,7 +74,7 @@ class ReservationsController < ApplicationController
   def destroy
     @reservation.destroy
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'La réservation a été annulée.' }
+      format.html { redirect_to :back, notice: I18n.t('reservations.destroy') }
       format.json { head :no_content }
     end
   end

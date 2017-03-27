@@ -7,6 +7,79 @@ fr:
         restrict_dependent_destroy:
           has_one: "Vous ne pouvez pas supprimer l'enregistrement car une personne à charge %{record} existe"
           has_many: "Vous ne pouvez pas supprimer l'enregistrement parce que les %{record} dépendants existent"
+  companies:
+    name: "Entreprise"
+    create: "Entreprise créée avec succès."
+    update: "Entreprise modifiée avec succès."
+    recover: "Entreprise reccupérée avec succès."
+    destroy: "Entreprise supprimée avec succès."
+  events:
+    name: "Évènement"
+    create: "Évènement créé avec succès."
+    update: "Évènement modifié avec succès."
+    recover: "Évènement reccupéré avec succès."
+    destroy: "Évènement supprimé avec succès."
+  floors:
+    name: "Étage"
+    create: "Étage créé avec succès."
+    update: "Étage modifié avec succès."
+    recover: "Étage reccupéré avec succès."
+    destroy: "Étage supprimé avec succès."
+  home:
+  logs:
+    name: "Log"
+    create: "Élèment réé avec succès."
+    update: "Élèment modifié avec succès."
+    recover: "Élèment reccupéré avec succès."
+    destroy: "Élèment supprimé avec succès."
+  meeting_rooms:
+    name: "Espace"
+    create: "Espace créé avec succès."
+    update: "Espace modifié avec succès."
+    recover: "Espace reccupéré avec succès."
+    destroy: "Espace supprimé avec succès."
+  programs:
+    name: "Programme"
+    create: "Programme créé avec succès."
+    update: "Programme modifié avec succès."
+    recover: "Programme reccupéré avec succès."
+    destroy: "Programme supprimé avec succès."
+  project_members:
+    name: "Membre"
+    create: "Membre créé avec succès."
+    update: "Membre modifié avec succès."
+    recover: "Membre reccupéré avec succès."
+    destroy: "Membre supprimé avec succès."
+  projects:
+    name: "Projet"
+    create: "Projet créé avec succès."
+    update: "Projet modifié avec succès."
+    recover: "Projet reccupéré avec succès."
+    destroy: "Projet supprimé avec succès."
+  reservations:
+    name: "Résérvation"
+    create: "Résérvation créée avec succès."
+    update: "Résérvation modifiée avec succès."
+    recover: "Résérvation reccupérée avec succès."
+    destroy: "Résérvation annulée avec succès."
+  residents:
+    name: "Utilisateur"
+    create: "Utilisateur créé avec succès."
+    update: "Utilisateur modifié avec succès."
+    recover: "Utilisateur reccupéré avec succès."
+    destroy: "Utilisateur supprimé avec succès."
+  roles:
+    name: "Rôle"
+    create: "Rôle créé avec succès."
+    update: "Rôle modifié avec succès."
+    recover: "Rôle reccupéré avec succès."
+    destroy: "Rôle supprimé avec succès."
+  seasons:
+    name: "Saison"
+    create: "Saison créée avec succès."
+    update: "Saison modifiée avec succès."
+    recover: "Saison reccupérée avec succès."
+    destroy: "Saison supprimée avec succès."
   date:
     abbr_day_names:
     - Dim

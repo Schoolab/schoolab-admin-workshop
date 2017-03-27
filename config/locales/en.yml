@@ -20,4 +20,76 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  companies:
+    name: "Company"
+    create: "Company was successfully created."
+    update: "Company was successfully updated."
+    recover: "Company was successfully recovered."
+    destroy: "Company was successfully destroyed."
+  events:
+    name: "Event"
+    create: "Event was successfully created."
+    update: "Event was successfully updated."
+    recover: "Event was successfully recovered."
+    destroy: "Event was successfully destroyed."
+  floors:
+    name: "Floor"
+    create: "Floor was successfully created."
+    update: "Floor was successfully updated."
+    recover: "Floor was successfully recovered."
+    destroy: "Floor was successfully destroyed."
+  home:
+  logs:
+    name: "Log"
+    create: "Log was successfully created."
+    update: "Log was successfully updated."
+    recover: "Log was successfully recovered."
+    destroy: "Log was successfully destroyed."
+  meeting_rooms:
+    name: "Room"
+    create: "Room was successfully created."
+    update: "Room was successfully updated."
+    recover: "Room was successfully recovered."
+    destroy: "Room was successfully destroyed."
+  programs:
+    name: "Program"
+    create: "Program was successfully created."
+    update: "Program was successfully updated."
+    recover: "Program was successfully recovered."
+    destroy: "Program was successfully destroyed."
+  project_members:
+    name: "Member"
+    create: "Member was successfully created."
+    update: "Member was successfully updated."
+    recover: "Member was successfully recovered."
+    destroy: "Member was successfully removed."
+  projects:
+    name: "Project"
+    create: "Project was successfully created."
+    update: "Project was successfully updated."
+    recover: "Project was successfully recovered."
+    destroy: "Project was successfully destroyed."
+  reservations:
+    name: "Reservation"
+    create: "Reservation was successfully created."
+    update: "Reservation was successfully updated."
+    recover: "Reservation was successfully recovered."
+    destroy: "Reservation was successfully canceled."
+  residents:
+    name: "User"
+    create: "User was successfully created."
+    update: "User was successfully updated."
+    recover: "User was successfully recovered."
+    destroy: "User was successfully destroyed."
+  roles:
+    name: "Role"
+    create: "Role was successfully created."
+    update: "Role was successfully updated."
+    recover: "Role was successfully recovered."
+    destroy: "Role was successfully removed."
+  seasons:
+    name: "Season"
+    create: "Season was successfully created."
+    update: "Season was successfully updated."
+    recover: "Season was successfully recovered."
+    destroy: "Season was successfully destroyed."

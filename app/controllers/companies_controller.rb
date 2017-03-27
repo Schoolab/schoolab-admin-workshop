@@ -36,7 +36,7 @@ class CompaniesController < ApplicationController
 
     respond_to do |format|
       if @company.save
-        format.html { redirect_to companies_path, notice: 'Company was successfully created.' }
+        format.html { redirect_to companies_path, notice: I18n.t('companies.create') }
       else
         format.html { render :new }
       end
@@ -48,7 +48,7 @@ class CompaniesController < ApplicationController
   def update
     respond_to do |format|
       if @company.update(company_params)
-        format.html { redirect_to companies_path, notice: 'Company was successfully updated.' }
+        format.html { redirect_to companies_path, notice: I18n.t('companies.update') }
       else
         format.html { render :edit }
       end
@@ -59,7 +59,7 @@ class CompaniesController < ApplicationController
   def recover
     @company.recover
     respond_to do |format|
-      format.html { redirect_to companies_path, notice: 'L\'évènement à bien été reccupéré.' }
+      format.html { redirect_to companies_path, notice: I18n.t('companies.recover') }
       format.json { head :success }
     end
   end
@@ -69,7 +69,7 @@ class CompaniesController < ApplicationController
   def destroy
     @company.destroy
     respond_to do |format|
-      format.html { redirect_to companies_url, notice: 'Company was successfully destroyed.' }
+      format.html { redirect_to companies_url, notice: I18n.t('companies.destroy') }
     end
   end
 

@@ -34,7 +34,7 @@ class MeetingRoomsController < ApplicationController
 
     respond_to do |format|
       if @meeting_room.save
-        format.html { redirect_to meeting_rooms_url, notice: 'Meeting room was successfully created.' }
+        format.html { redirect_to meeting_rooms_url, notice: I18n.t('meeting_rooms.create') }
         format.json { render :show, status: :created, location: @meeting_room }
       else
         format.html { render :new }
@@ -48,7 +48,7 @@ class MeetingRoomsController < ApplicationController
   def update
     respond_to do |format|
       if @meeting_room.update(meeting_room_params)
-        format.html { redirect_to meeting_rooms_url, notice: 'Meeting room was successfully updated.' }
+        format.html { redirect_to meeting_rooms_url, notice: I18n.t('meeting_rooms.update') }
         format.json { render :show, status: :ok, location: @meeting_room }
       else
         format.html { render :edit }
@@ -61,7 +61,7 @@ class MeetingRoomsController < ApplicationController
   def recover
     @meeting_room.recover
     respond_to do |format|
-      format.html { redirect_to meeting_rooms_url, notice: 'Meeting room was successfully recovered.' }
+      format.html { redirect_to meeting_rooms_url, notice: I18n.t('meeting_rooms.recover') }
       format.json { head :success }
     end
   end
@@ -71,7 +71,7 @@ class MeetingRoomsController < ApplicationController
   def destroy
     @meeting_room.destroy
     respond_to do |format|
-      format.html { redirect_to meeting_rooms_url, notice: 'Meeting room was successfully destroyed.' }
+      format.html { redirect_to meeting_rooms_url, notice: I18n.t('meeting_rooms.destroy') }
       format.json { head :no_content }
     end
   end

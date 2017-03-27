@@ -1,9 +1,16 @@
 .alert {
-    border: none;
-    border-radius: .125rem;
-    padding: .5rem 1rem;
-    font-weight: normal;
-    margin-bottom: .5rem;
+  position: relative;
+  border: none;
+  border-radius: 0;
+  padding: 1.5rem 1rem;
+  font-weight: normal;
+  line-height: 1rem;
+  margin: 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
 }
 
 .alert-success {
@@ -31,7 +38,7 @@
 }
 
 .close {
-    line-height: 0.95;
+    line-height: 1rem;
     color: $black;
     text-shadow: none;
     opacity: 0.5;

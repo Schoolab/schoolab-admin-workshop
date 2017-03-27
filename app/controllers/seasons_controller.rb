@@ -41,7 +41,7 @@ class SeasonsController < ApplicationController
 
     respond_to do |format|
       if @season.save
-        format.html { redirect_to program_seasons_path, notice: 'season was successfully created.' }
+        format.html { redirect_to program_seasons_path, notice: I18n.t('seasons.create') }
       else
         format.html { render :new }
       end
@@ -53,7 +53,7 @@ class SeasonsController < ApplicationController
   def update
     respond_to do |format|
       if @season.update(season_params)
-        format.html { redirect_to program_seasons_path, notice: 'season was successfully updated.' }
+        format.html { redirect_to program_seasons_path, notice: I18n.t('seasons.update') }
       else
         format.html { render :edit }
       end
@@ -64,7 +64,7 @@ class SeasonsController < ApplicationController
   def recover
     @season.recover
     respond_to do |format|
-      format.html { redirect_to program_seasons_path, notice: 'Le seasonme à bien été reccupéré.' }
+      format.html { redirect_to program_seasons_path, notice: I18n.t('seasons.recover') }
       format.json { head :success }
     end
   end
@@ -74,7 +74,7 @@ class SeasonsController < ApplicationController
   def destroy
     @season.destroy
     respond_to do |format|
-      format.html { redirect_to program_seasons_path, notice: 'season was successfully destroyed.' }
+      format.html { redirect_to program_seasons_path, notice: I18n.t('seasons.destroy') }
     end
   end
 

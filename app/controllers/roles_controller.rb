@@ -5,7 +5,7 @@ class RolesController < ApplicationController
     authorize! :manage, @role.user
     @role.destroy
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'Role was removed.' }
+      format.html { redirect_to :back, notice: I18n.t('roles.destroy') }
     end
   end
 

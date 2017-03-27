@@ -12,7 +12,7 @@ class LogsController < ApplicationController
     @log.project = Project.find(params[:project_id])
     respond_to do |format|
       if @log.save
-        format.html { redirect_to project_logs_path(@log.project), notice: 'L\'élément a été ajouté.' }
+        format.html { redirect_to project_logs_path(@log.project), notice: I18n.t('logs.create') }
       else
         format.html { render :new }
       end
@@ -23,7 +23,7 @@ class LogsController < ApplicationController
     @log = Log.find(params[:id])
     @log.destroy
     respond_to do |format|
-      format.html { redirect_to project_logs_path(@log.project), notice: 'L\'élément a été supprimé.' }
+      format.html { redirect_to project_logs_path(@log.project), notice: I18n.t('logs.destroy') }
       format.json { head :no_content }
     end
   end

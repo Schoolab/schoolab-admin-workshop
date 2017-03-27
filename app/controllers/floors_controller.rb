@@ -38,7 +38,7 @@ class FloorsController < ApplicationController
 
     respond_to do |format|
       if @floor.save
-        format.html { redirect_to floors_path, notice: 'Floor was successfully created.' }
+        format.html { redirect_to floors_path, notice: I18n.t('floors.create') }
         format.json { render :show, status: :created, location: @floor }
       else
         format.html { render :new }
@@ -52,7 +52,7 @@ class FloorsController < ApplicationController
   def update
     respond_to do |format|
       if @floor.update(floor_params)
-        format.html { redirect_to floors_path, notice: 'Floor was successfully updated.' }
+        format.html { redirect_to floors_path, notice: I18n.t('floors.update') }
         format.json { render :show, status: :ok, location: @floor }
       else
         format.html { render :edit }
@@ -65,7 +65,7 @@ class FloorsController < ApplicationController
   def recover
     @floor.recover
     respond_to do |format|
-      format.html { redirect_to floors_path, notice: 'Floor was successfully recovered.' }
+      format.html { redirect_to floors_path, notice: I18n.t('floors.recover') }
       format.json { head :success }
     end
     authorize! :manage, Floor
@@ -76,7 +76,7 @@ class FloorsController < ApplicationController
   def destroy
     @floor.destroy
     respond_to do |format|
-      format.html { redirect_to floors_url, notice: 'Floor was successfully destroyed.' }
+      format.html { redirect_to floors_url, notice: I18n.t('floors.destroy') }
       format.json { head :no_content }
     end
   end

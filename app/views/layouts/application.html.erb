@@ -18,29 +18,33 @@
   </head>
   <body>
 
-    <%= render 'layouts/navbar' %>
+    <%= bootstrap_flash %>
 
-    <div class="container">
-      <%= bootstrap_flash %>
-      <%= yield %>
+    <div class="page-outer">
+      <%= render 'layouts/navbar' %>
 
-      <footer class="footer">
-        <div class="row">
-          <ul class="footer-links col-xs-12 col-sm-8">
-            <li class="footer-link">
-              <%= link_to "Le site Schoolab", "https://theschoolab.com/" %>
-            </li>
-            <li class="footer-link">
-              <%= mail_to "agency@theschoolab.com", "Signaler un bug" %>
-            </li>
-          </ul>
-          <p class="col-xs-12 col-sm-4">
-            <span class="pull-right">&copy; Schoolab 2017</span>
-          </p>
-        </div>
-      </footer>
+      <div class="container">
 
-    </div> <!-- /container -->
+        <%= yield %>
+
+        <footer class="footer">
+          <div class="row">
+            <ul class="footer-links col-xs-12 col-sm-8">
+              <li class="footer-link">
+                <%= link_to "Le site Schoolab", "https://theschoolab.com/" %>
+              </li>
+              <li class="footer-link">
+                <%= mail_to "agency@theschoolab.com", "Signaler un bug" %>
+              </li>
+            </ul>
+            <p class="col-xs-12 col-sm-4">
+              <span class="pull-right">&copy; Schoolab 2017</span>
+            </p>
+          </div>
+        </footer>
+
+      </div>
+    </div>
 
   </body>
 </html>

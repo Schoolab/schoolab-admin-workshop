@@ -37,7 +37,7 @@ class ProgramsController < ApplicationController
 
     respond_to do |format|
       if @program.save
-        format.html { redirect_to programs_path, notice: 'Program was successfully created.' }
+        format.html { redirect_to programs_path, notice: I18n.t('programs.create') }
       else
         format.html { render :new }
       end
@@ -49,7 +49,7 @@ class ProgramsController < ApplicationController
   def update
     respond_to do |format|
       if @program.update(program_params)
-        format.html { redirect_to programs_path, notice: 'Program was successfully updated.' }
+        format.html { redirect_to programs_path, notice: I18n.t('programs.update') }
       else
         format.html { render :edit }
       end
@@ -60,7 +60,7 @@ class ProgramsController < ApplicationController
   def recover
     @program.recover
     respond_to do |format|
-      format.html { redirect_to programs_path, notice: 'Le programme à bien été reccupéré.' }
+      format.html { redirect_to programs_path, notice: I18n.t('programs.recover') }
       format.json { head :success }
     end
   end
@@ -70,7 +70,7 @@ class ProgramsController < ApplicationController
   def destroy
     @program.destroy
     respond_to do |format|
-      format.html { redirect_to programs_url, notice: 'Program was successfully destroyed.' }
+      format.html { redirect_to programs_url, notice: I18n.t('programs.destroy') }
     end
   end
 

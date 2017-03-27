@@ -46,7 +46,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to projects_path, notice: 'Project was successfully created.' }
+        format.html { redirect_to projects_path, notice: I18n.t('projects.create') }
       else
         format.html { render :new }
       end
@@ -58,7 +58,7 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to projects_path, notice: 'Project was successfully updated.' }
+        format.html { redirect_to projects_path, notice: I18n.t('projects.update') }
       else
         format.html { render :edit }
       end
@@ -69,7 +69,7 @@ class ProjectsController < ApplicationController
   def recover
     @project.recover
     respond_to do |format|
-      format.html { redirect_to projects_path, notice: 'Le projet à bien été recupéré.' }
+      format.html { redirect_to projects_path, notice: I18n.t('projects.recover') }
       format.json { head :success }
     end
   end
@@ -77,10 +77,9 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
-    p "test"
     @project.destroy
     respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
+      format.html { redirect_to projects_url, notice: I18n.t('projects.destroy') }
     end
   end
 
