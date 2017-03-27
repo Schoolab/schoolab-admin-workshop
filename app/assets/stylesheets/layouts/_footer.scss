@@ -1,24 +1,55 @@
 .footer {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 0 2rem;
   line-height: 1rem;
   color: $brand-25;
 
   a {
     color: $brand-50;
   }
+
+  @include rwd-sm {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
 .footer-links {
+  display: flex;
+  justify-content: center;
   list-style: none;
+  margin: 0;
+  padding: 0;
+
+  @include rwd-sm {
+    justify-content: flex-start;
+  }
 }
 
 .footer-link {
-  display: inline-block;
+  display: flex;
+  flex-direction: row;
 
   &:not(:last-of-type) {
     &:after {
       content: "-";
+      margin: 0 .25rem;
     }
   }
+}
+
+.footer-copy {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+
+  @include rwd-sm {
+    justify-content: flex-end;
+  }
+}
+
+.footer-links, .footer-copy {
+  line-height: 1.5rem;
 }
