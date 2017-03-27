@@ -7,26 +7,32 @@
   <% end %>
 </h2>
 
-<div class="panel col-xs-12">
-  
+<div class="panel col-xs-12" id="list-items">
+
   <div class="tablist-heading">
     <ul class="tablist">
       <%= nav_link "Tous", companies_path %>
       <%= nav_link "Corbeille", deleted_companies_path %>
     </ul>
+
+    <ul class="tablist right">
+      <%= render "layouts/tablist-search" %>
+    </ul>
   </div>
 
-  <div class="panel-body">
+  <div class="panel-body row">
 
-    <% @companies.each do |company| %>
+    <ul class="list list-items">
+      <% @companies.each do |company| %>
 
-      <div class="col-xs-12 col-md-6">
-        <%= render "layouts/list-item", item: company %>
-      </div>
+        <li class="col-xs-12 col-md-6">
+          <%= render "layouts/list-item", item: company %>
+        </li>
 
-    <% end %>
+      <% end %>
+    </ul>
 
-
+    <ul class="pagination pull-right"></ul>
   </div>
 
 </div>

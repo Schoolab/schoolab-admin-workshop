@@ -69,8 +69,6 @@
 
     if defined?(hasDetails)
       listItem_details = hasDetails
-    else
-      listItem_details = true
     end
 
     if item.email?
@@ -174,7 +172,7 @@ end %>
 
     <% if cardItem_titleHeading.presence %>
       <h3 class="list-item__title">
-        <%= link_to cardItem_path do cardItem_titleHeading end %>
+        <%= link_to cardItem_titleHeading, cardItem_path, class:"title" %>
         <% if (can? :manage, item.class) && (cardItem_editPath.presence) %>
           <span class="list-item__actions muted">
             <%= link_to "Modifier", cardItem_editPath %>
@@ -184,13 +182,13 @@ end %>
     <% end %>
 
     <% if cardItem_titleSubtitle.presence %>
-      <p class="list-item__subtitle">
+      <p class="list-item__subtitle subtitle">
         <%= cardItem_titleSubtitle.html_safe %>
       </p>
     <% end %>
 
-    <% if cardItem_contactList.presence && listItem_details %>
-      <ul class="inline-list">
+    <% if cardItem_contactList.presence && listItem_details.presence %>
+      <ul class="inline-list infos">
         <% if item.email? %>
           <li><%= mail_to item.email %></li>
         <% end %>

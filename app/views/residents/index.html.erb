@@ -10,23 +10,31 @@
   <% end %>
 </h2>
 
-<div class="panel col-xs-12">
+<div class="panel col-xs-12" id="list-items">
 
   <div class="tablist-heading">
     <ul class="tablist">
       <%= nav_link "Tous", residents_path %>
     </ul>
+
+    <ul class="tablist right">
+      <%= render "layouts/tablist-search" %>
+    </ul>
   </div>
 
   <div class="panel-body row">
-    <% @users.each do |user| %>
 
-      <div class="col-xs-12 col-md-6">
-        <%= render "layouts/list-item", item: user %>
-      </div>
+    <ul class="list list-items">
+      <% @users.each do |user| %>
 
-    <% end %>
+        <li class="col-xs-12 col-md-6">
+          <%= render "layouts/list-item", item: user %>
+        </li>
 
+      <% end %>
+    </ul>
+
+    <ul class="pagination pull-right"></ul>
   </div>
 
 </div>

@@ -23,6 +23,14 @@
 
 $(document).on('turbolinks:load', function() {
 
+	var listItemOptions = {
+    valueNames: [ 'name', 'subtitle', 'infos' ],
+		page: 20,
+		pagination: true
+	};
+
+	var listItem = new List('list-items', listItemOptions );
+
 	moment.locale('fr');
 
 	$('.datatable').DataTable();
