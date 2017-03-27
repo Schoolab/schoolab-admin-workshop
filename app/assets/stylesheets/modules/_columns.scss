@@ -1,0 +1,25 @@
+.row-flex {
+  display: flex;
+  flex-direction: column;
+
+  @include rwd-md {
+    flex-direction: row;
+  }
+}
+
+.col-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.col-organisation {
+  order: 1;
+}
+
+.col-personnal {
+  order: -1;
+
+  @include rwd-md {
+    order: 2;
+  }
+}

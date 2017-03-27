@@ -13,6 +13,7 @@ class HomeController < ApplicationController
     else
       @reservations = current_user.reservations.where('reservations.end_time > ?', Time.current).order('reservations.start_time ASC')
       @newbies = User.where('created_at >= ?', Time.zone.today - 7).order('created_at DESC')
+      @projects = current_user.projects
     end
   end
 
