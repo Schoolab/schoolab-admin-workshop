@@ -78,9 +78,9 @@ ActiveRecord::Schema.define(version: 20170317110311) do
     t.string   "name"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.time     "deleted_at"
     t.text     "description"
     t.string   "colour"
-    t.time     "deleted_at"
     t.integer  "number"
   end
 

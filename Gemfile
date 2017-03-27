@@ -68,8 +68,8 @@ gem 'momentjs-rails', '~> 2.9'
 gem 'simple_form'
 
 # Rollbar
-gem 'rollbar'
-gem 'oj', '~> 2.12.14'
+# gem 'rollbar'
+# gem 'oj', '~> 2.12.14'
 
 # Date time handling
 gem 'date_time_attribute'
