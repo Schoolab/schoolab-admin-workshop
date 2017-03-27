@@ -46,7 +46,7 @@ fr:
     destroy: "Programme supprimé avec succès."
   project_members:
     name: "Membre"
-    create: "Membre créé avec succès."
+    create: "Membre ajouté avec succès."
     update: "Membre modifié avec succès."
     recover: "Membre reccupéré avec succès."
     destroy: "Membre supprimé avec succès."
@@ -73,7 +73,7 @@ fr:
     create: "Rôle créé avec succès."
     update: "Rôle modifié avec succès."
     recover: "Rôle reccupéré avec succès."
-    destroy: "Rôle supprimé avec succès."
+    destroy: "Membre retiré avec succès."
   seasons:
     name: "Saison"
     create: "Saison créée avec succès."
