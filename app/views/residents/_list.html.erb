@@ -3,6 +3,7 @@
     <tr>
       <th>Nom</th>
       <th>Prénom</th>
+      <th>Courriel</th>
       <th>Téléphone</th>
       <% if current_user.is_admin? %>
       <th data-orderable="false">Rôle</th>
@@ -16,6 +17,7 @@
     <tr>
       <td><%= user.last_name %></td>
       <td><%= user.first_name %></td>
+      <td><%= mail_to user.email %></td>
       <td><%= tel_to user.phone %></td>
       <% if current_user.is_admin? %>
       <td>
