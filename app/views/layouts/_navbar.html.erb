@@ -56,7 +56,8 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 
-              <%= current_user.first_name %>
+              <%= "tu t'appelles: " + current_user.first_name %>
+              <%= current_user.last_name %>
 
               <%= render "layouts/thumbnail", thumb: current_user.photo, addclass: "navbar-thumbnail" %>
 
