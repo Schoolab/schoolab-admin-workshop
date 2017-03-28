@@ -3,9 +3,7 @@
     <tr>
       <th>Nom</th>
       <th>Prénom</th>
-      <th>Email</th>
       <th>Téléphone</th>
-      <th>Entreprise</th>
       <% if current_user.is_admin? %>
       <th data-orderable="false">Rôle</th>
       <th data-orderable="false"></th>
@@ -18,9 +16,7 @@
     <tr>
       <td><%= user.last_name %></td>
       <td><%= user.first_name %></td>
-      <td><%= mail_to user.email %></td>
       <td><%= tel_to user.phone %></td>
-      <td><%= user.company.present? ? user.company.name : "N/A" %></td>
       <% if current_user.is_admin? %>
       <td>
         <%= simple_form_for user, url: resident_path(user), method: :patch do |f| %>

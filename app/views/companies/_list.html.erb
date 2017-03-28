@@ -1,8 +1,7 @@
-<table class="table table-hover">
+<table class="datatable table table-hover">
   <thead>
     <tr>
       <th>Nom</th>
-      <th>Étage</th>
       <th data-orderable="false"></th>
     </tr>
   </thead>
@@ -11,10 +10,6 @@
     <% @companies.each do |company| %>
       <tr>
         <td><%= company.name %></td>
-        <td>
-          <div class="list-dot" style="background-color: <%= company.floor.present? ? company.floor.colour : "" %>"></div>
-          <%= company.floor.present? ? company.floor.name : "N/A" %>
-        </td>
         <td>
           <div class="pull-right">
             <% if current_page?(action: 'index') %>

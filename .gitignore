@@ -18,7 +18,7 @@
 !/tmp/.keep
 
 # Ignore database config
-/config/database.yml
+#/config/database.yml
 
 # Ignore public files
 /public/system
